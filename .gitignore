@@ -1,0 +1,31 @@
+# Data — hosted on HuggingFace, not git (can exceed 100 MB)
+datasets/ltsf/*.csv
+datasets/ltsf/*.npz
+datasets/ltsf/*.parquet
+datasets/gift_eval/**
+
+# Results: commit small JSON metrics only, ignore large artefacts
+results/**/*.npz
+results/**/*.pt
+results/**/predictions.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+Thumbs.db
+
+# Stray
+NVIDIA Corporation/
+*.bak
+*.log
