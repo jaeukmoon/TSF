@@ -1,0 +1,226 @@
+---
+title: Leaderboard
+layout: default
+nav_order: 2
+---
+
+<style>
+  .lb-wrap { margin-top: 24px; }
+  .lb-tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+  .lb-tabs button {
+    padding: 8px 14px; border: 1px solid #2a2f36; background: #0e1116; color: #c9d1d9;
+    border-radius: 6px; cursor: pointer; font-size: 13px; font-family: inherit;
+  }
+  .lb-tabs button.active { background: #ff9d00; color: #000; border-color: #ff9d00; font-weight: 600; }
+  .lb-tabs button:hover:not(.active) { background: #1a1f26; }
+  table.lb {
+    width: 100%; border-collapse: collapse; font-size: 13px;
+    background: #0e1116; color: #c9d1d9; border-radius: 8px; overflow: hidden;
+  }
+  table.lb thead th {
+    background: #161b22; color: #e6edf3; padding: 10px 8px;
+    border-bottom: 2px solid #30363d; text-align: left; font-weight: 600;
+    cursor: pointer; user-select: none; white-space: nowrap;
+  }
+  table.lb thead th:hover { background: #1f262e; }
+  table.lb tbody td {
+    padding: 8px; border-bottom: 1px solid #21262d;
+    font-family: 'SFMono-Regular', 'Consolas', monospace;
+  }
+  table.lb tbody tr:hover { background: #161b22; }
+  td.num { text-align: right; }
+  td.best { color: #ff9d00; font-weight: 700; }
+  td.nodata { color: #484f58; }
+  .pill {
+    display: inline-block; padding: 2px 8px; border-radius: 10px;
+    font-size: 11px; font-family: inherit;
+  }
+  .p-heur { background: #3b2a14; color: #ffa657; }
+  .p-lin  { background: #14323b; color: #79c0ff; }
+  .p-tfm  { background: #2a1f3b; color: #c297ff; }
+  .p-fnd  { background: #143b22; color: #7ee787; }
+  .p-moe  { background: #3b1430; color: #ff7eb6; }
+  .search-box {
+    width: 260px; padding: 8px 12px; background: #0e1116; border: 1px solid #30363d;
+    border-radius: 6px; color: #c9d1d9; margin-bottom: 12px; font-family: inherit;
+  }
+  .legend { margin-top: 12px; color: #7d8590; font-size: 12px; }
+  .legend code { background: #161b22; padding: 2px 6px; border-radius: 4px; }
+</style>
+
+# TSF Benchmark — Leaderboard
+{: .no_toc }
+
+Interactive leaderboard across **LTSF 8 datasets** × horizons {96, 192, 336, 720}. Click any column header to sort. Best cell per dataset column is highlighted.
+
+<div class="lb-wrap">
+  <input type="text" id="lb-search" class="search-box" placeholder="filter by model / type / year..." />
+
+  <div class="lb-tabs">
+    <button class="active" data-h="96">h = 96</button>
+    <button data-h="192">h = 192</button>
+    <button data-h="336">h = 336</button>
+    <button data-h="720">h = 720</button>
+  </div>
+
+  <table class="lb" id="lb-table">
+    <thead>
+      <tr>
+        <th>#</th><th>Model</th><th>Type</th><th>Year</th><th>Lookback</th><th>Params</th>
+        <th class="num">ETTh1</th><th class="num">ETTh2</th><th class="num">ETTm1</th><th class="num">ETTm2</th>
+        <th class="num">ECL</th><th class="num">Exch.</th><th class="num">Traffic</th><th class="num">Weather</th>
+        <th class="num">Avg MSE</th>
+      </tr>
+    </thead>
+    <tbody id="lb-body"></tbody>
+  </table>
+
+  <div class="legend">
+    Metric: <strong>MSE</strong> (lower = better). Cells marked <span class="nodata">—</span> = not reported.
+    Highlighted orange = best reported for that (dataset, horizon) cell among the shown rows.
+    Pills: <span class="pill p-heur">heuristic</span> <span class="pill p-lin">linear</span>
+    <span class="pill p-tfm">transformer</span> <span class="pill p-fnd">foundation</span> <span class="pill p-moe">MoE / ensemble</span>.
+    Published numbers come from each paper's main table; harness numbers (base) use this repo's pipeline and are not directly comparable — see <a href="docs/sota_2026.html">SOTA 2026</a>.
+  </div>
+</div>
+
+<script>
+// ============================================================================
+// Data: { horizon: [rows] }
+// Row schema: [model, type_key, year, lookback, params, ETTh1, ETTh2, ETTm1, ETTm2, ECL, Exchange, Traffic, Weather, arch_doc]
+// null = not reported. Values are MSE.
+// ============================================================================
+const DATA = {
+  96: [
+    ["EMTSF",          "moe", 2025, 512, "9.66M",   0.359, 0.262, 0.271, 0.156, 0.126, null,  0.343, 0.138, "docs/archs/emtsf.html"],
+    ["Time-MoE-ultra", "moe", 2024, 512, "24M act", 0.323, 0.274, 0.256, null,  null,  null,  null,  null,  "docs/archs/time-moe.html"],
+    ["TimeExpert-G",   "fnd", 2025,  96, "113M",    0.338, 0.277, 0.301, 0.189, null,  0.086, null,  0.140, "docs/archs/timeexpert.html"],
+    ["PatchTST/64",    "tfm", 2023, 512, "7M",      null,  null,  null,  0.166, 0.129, null,  0.360, null,  "docs/archs/patchtst.html"],
+    ["iTransformer",   "tfm", 2024,  96, "4M",      null,  null,  null,  null,  null,  0.086, null,  null,  "docs/archs/itransformer.html"],
+    ["base (Seasonal Naive)", "heur", null, 96, "0", 0.0723, 0.1486, 1.0760, 0.3422, 0.3469, 0.0874, 1.2334, 0.2463, "docs/archs/base.html"],
+  ],
+  192: [
+    ["EMTSF",          "moe", 2025, 512, "9.66M",   0.399, 0.328, 0.322, 0.212, 0.144, null,  0.369, 0.181, "docs/archs/emtsf.html"],
+    ["base (Seasonal Naive)", "heur", null, 96, "0", 0.0903, 0.1625, 1.0968, 0.3627, 0.3035, 0.1560, 1.1272, 0.3067, "docs/archs/base.html"],
+  ],
+  336: [
+    ["EMTSF",          "moe", 2025, 512, "9.66M",   0.418, 0.347, 0.350, 0.263, 0.158, null,  0.382, 0.230, "docs/archs/emtsf.html"],
+    ["base (Seasonal Naive)", "heur", null, 96, "0", 0.1341, 0.2955, 0.9988, 0.3534, 0.2996, 0.2379, 1.3883, 0.3433, "docs/archs/base.html"],
+  ],
+  720: [
+    ["EMTSF",          "moe", 2025, 512, "9.66M",   0.436, 0.381, 0.414, 0.351, 0.190, null,  0.424, 0.304, "docs/archs/emtsf.html"],
+    ["base (Seasonal Naive)", "heur", null, 96, "0", 0.1620, 0.3022, 0.9470, 0.6615, 0.3540, 0.9984, 1.2996, 0.4904, "docs/archs/base.html"],
+  ],
+};
+
+const TYPE_PILL = {
+  heur: '<span class="pill p-heur">heuristic</span>',
+  lin:  '<span class="pill p-lin">linear</span>',
+  tfm:  '<span class="pill p-tfm">transformer</span>',
+  fnd:  '<span class="pill p-fnd">foundation</span>',
+  moe:  '<span class="pill p-moe">MoE / ensemble</span>',
+};
+const DATASETS = ['ETTh1','ETTh2','ETTm1','ETTm2','ECL','Exchange','Traffic','Weather'];
+
+let currentH = 96;
+let sortCol = null;
+let sortDir = 1;
+
+function getBestIdx(rows) {
+  // per dataset column (indices 5..12), find the min non-null value
+  const best = {};
+  for (let c = 0; c < DATASETS.length; c++) {
+    let min = Infinity, minIdx = -1;
+    rows.forEach((row, i) => {
+      const v = row[5 + c];
+      if (v != null && v < min) { min = v; minIdx = i; }
+    });
+    best[c] = minIdx;
+  }
+  return best;
+}
+
+function avg(row) {
+  const vals = row.slice(5, 13).filter(v => v != null);
+  if (!vals.length) return null;
+  return vals.reduce((a,b)=>a+b, 0) / vals.length;
+}
+
+function render() {
+  const body = document.getElementById('lb-body');
+  const q = document.getElementById('lb-search').value.toLowerCase();
+  let rows = DATA[currentH].filter(r => {
+    if (!q) return true;
+    return r.slice(0, 5).some(v => String(v).toLowerCase().includes(q));
+  });
+
+  if (sortCol !== null) {
+    rows = [...rows].sort((a, b) => {
+      let va = a[sortCol], vb = b[sortCol];
+      if (sortCol === 14) { va = avg(a); vb = avg(b); }
+      if (va == null) return 1;
+      if (vb == null) return -1;
+      if (typeof va === 'string') return va.localeCompare(vb) * sortDir;
+      return (va - vb) * sortDir;
+    });
+  }
+
+  const best = getBestIdx(rows);
+  body.innerHTML = rows.map((row, i) => {
+    const cells = [
+      `<td>${i+1}</td>`,
+      `<td><a href="${row[13]}">${row[0]}</a></td>`,
+      `<td>${TYPE_PILL[row[1]]}</td>`,
+      `<td>${row[2] ?? '—'}</td>`,
+      `<td>${row[3]}</td>`,
+      `<td>${row[4]}</td>`,
+    ];
+    for (let c = 0; c < DATASETS.length; c++) {
+      const v = row[5 + c];
+      if (v == null) cells.push(`<td class="num nodata">—</td>`);
+      else {
+        const cls = (best[c] === i) ? 'num best' : 'num';
+        cells.push(`<td class="${cls}">${v.toFixed(3)}</td>`);
+      }
+    }
+    const av = avg(row);
+    cells.push(av == null ? `<td class="num nodata">—</td>` : `<td class="num">${av.toFixed(3)}</td>`);
+    return `<tr>${cells.join('')}</tr>`;
+  }).join('');
+}
+
+// Tab switching
+document.querySelectorAll('.lb-tabs button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.lb-tabs button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentH = parseInt(btn.dataset.h);
+    render();
+  });
+});
+
+// Sort on header click
+document.querySelectorAll('#lb-table thead th').forEach((th, idx) => {
+  th.addEventListener('click', () => {
+    if (sortCol === idx) sortDir = -sortDir;
+    else { sortCol = idx; sortDir = 1; }
+    render();
+  });
+});
+
+// Search
+document.getElementById('lb-search').addEventListener('input', render);
+
+render();
+</script>
+
+---
+
+## How to add your model
+
+1. Implement `models/<name>/predict.py` with `forecast(context, horizon, freq)` — see [`models/base/`](https://github.com/jaeukmoon/TSF/tree/main/models/base)
+2. Run `python run.py --model <name>` — writes `results/<name>/ltsf/*.json`
+3. Run `python leaderboard.py` — regenerates the static fallback [leaderboard.md](leaderboard-static.html)
+4. Edit the `DATA` block in `leaderboard.html` to include the new row (automation TODO)
+
+For published (non-harness) numbers, use the [`tsf-scout`](https://github.com/jaeukmoon/TSF/blob/main/.claude/agents/tsf-scout.md) agent — it sweeps arXiv + updates [SOTA 2026](docs/sota_2026.html).
