@@ -5,6 +5,8 @@ Register a single `forecast()` function and get LTSF + GIFT-Eval scores + an aut
 
 📊 **Current leaderboard**: [leaderboard.md](leaderboard.md)
 📚 **Model lineage & SOTA reference**: [docs/sota_2026.md](docs/sota_2026.md), [docs/model_history.md](docs/model_history.md)
+🧩 **All models (architectures)**: [docs/models.md](docs/models.md) — per-model summaries in [docs/archs/](docs/archs/)
+🤖 **Auto-update agent**: [`tsf-scout`](.claude/agents/tsf-scout.md) — scans arXiv, updates SOTA docs + leaderboard reference
 
 ---
 
