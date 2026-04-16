@@ -1,0 +1,21 @@
+theme: jekyll-theme-cayman
+title: TSF Benchmark Harness
+description: Plug-and-play evaluation framework for time-series forecasting foundation models (LTSF + GIFT-Eval)
+url: https://jaeukmoon.github.io/TSF
+
+# Only these paths get rendered as pages
+include:
+  - README.md
+  - leaderboard.md
+  - docs
+
+# Skip these
+exclude:
+  - .claude
+  - __pycache__
+  - results/**/*.json
+  - datasets
+  - "*.py"
+  - "*.sh"
+  - requirements.txt
+  - .gitignore
