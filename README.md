@@ -1,3 +1,9 @@
+---
+title: Home
+layout: default
+nav_order: 1
+---
+
 # TSF Benchmark Harness
 
 A **plug-and-play evaluation framework** for time-series forecasting foundation models.

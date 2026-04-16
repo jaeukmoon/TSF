@@ -1,3 +1,8 @@
+---
+title: base (Seasonal Naive)
+parent: Model Architectures
+---
+
 # base — Seasonal Naive
 
 Reference baseline used to validate the harness. Not a learned model.

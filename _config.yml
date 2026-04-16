@@ -1,21 +1,44 @@
-theme: jekyll-theme-cayman
-title: TSF Benchmark Harness
+title: TSF Benchmark
 description: Plug-and-play evaluation framework for time-series forecasting foundation models (LTSF + GIFT-Eval)
 url: https://jaeukmoon.github.io/TSF
+baseurl: /TSF
 
-# Only these paths get rendered as pages
-include:
-  - README.md
-  - leaderboard.md
-  - docs
+# HuggingFace-ish dark technical docs look via just-the-docs
+remote_theme: just-the-docs/just-the-docs
 
-# Skip these
+plugins:
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+
+# just-the-docs config
+color_scheme: dark
+search_enabled: true
+heading_anchors: true
+nav_enabled: true
+
+aux_links:
+  "GitHub":
+    - "https://github.com/jaeukmoon/TSF"
+  "HuggingFace dataset":
+    - "https://huggingface.co/datasets/Yotto3108/tsf-benchmarks"
+
+footer_content: "© 2026 · Apache-2.0 · <a href=\"https://github.com/jaeukmoon/TSF\">GitHub</a>"
+
+# Do not render
 exclude:
   - .claude
   - __pycache__
-  - results/**/*.json
+  - results
   - datasets
   - "*.py"
   - "*.sh"
   - requirements.txt
   - .gitignore
+
+# Collections (optional structure)
+defaults:
+  - scope:
+      path: "docs/archs"
+    values:
+      parent: "Model Architectures"
+      layout: default

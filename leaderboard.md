@@ -1,80 +1,67 @@
+---
+title: Leaderboard
+layout: default
+nav_order: 2
+---
+
 # TSF Benchmark — Leaderboard
+{: .no_toc }
 
 _Auto-generated. Last update: 2026-04-14_
 
-## Evaluated models (1)
-- **base** — Seasonal Naive (`models/base/predict.py`). Reference adapter, weak baseline.
-
-## Datasets & horizons
-- LTSF 8: ETTh1, ETTh2, ETTm1, ETTm2, ECL, Exchange, Traffic, Weather
-- Horizons: [96, 192, 336, 720]
-- Metric cells: `MSE / MAE` (lower = better). `n_windows` noted per dataset.
+Cells: `MSE / MAE` (lower is better). Columns = dataset, rows = model.
+Separate table per forecasting horizon.
 
 ---
 
-### ETTh1  (n_windows ≈ 24)
+## Horizon = 96
 
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 0.0723 / 0.2130 | 0.0903 / 0.2363 | 0.1341 / 0.2966 | 0.1620 / 0.3358 |
+| Model | ETTh1 | ETTh2 | ETTm1 | ETTm2 | ECL | Exchange | Traffic | Weather |
+|---|---|---|---|---|---|---|---|---|
+| base (Seasonal Naive) | 0.0723 / 0.2130 | 0.1486 / 0.3012 | 1.0760 / 0.6379 | 0.3422 / 0.3760 | 0.3469 / 0.3352 | 0.0874 / 0.2095 | 1.2334 / 0.5149 | 0.2463 / 0.2424 |
 
-### ETTh2  (n_windows ≈ 24)
+## Horizon = 192
 
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 0.1486 / 0.3012 | 0.1625 / 0.3171 | 0.2955 / 0.4538 | 0.3022 / 0.4354 |
+| Model | ETTh1 | ETTh2 | ETTm1 | ETTm2 | ECL | Exchange | Traffic | Weather |
+|---|---|---|---|---|---|---|---|---|
+| base (Seasonal Naive) | 0.0903 / 0.2363 | 0.1625 / 0.3171 | 1.0968 / 0.6490 | 0.3627 / 0.3915 | 0.3035 / 0.3230 | 0.1560 / 0.2828 | 1.1272 / 0.4756 | 0.3067 / 0.2834 |
 
-### ETTm1  (n_windows ≈ 114)
+## Horizon = 336
 
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 1.0760 / 0.6379 | 1.0968 / 0.6490 | 0.9988 / 0.6363 | 0.9470 / 0.6279 |
+| Model | ETTh1 | ETTh2 | ETTm1 | ETTm2 | ECL | Exchange | Traffic | Weather |
+|---|---|---|---|---|---|---|---|---|
+| base (Seasonal Naive) | 0.1341 / 0.2966 | 0.2955 / 0.4538 | 0.9988 / 0.6363 | 0.3534 / 0.3834 | 0.2996 / 0.3284 | 0.2379 / 0.3501 | 1.3883 / 0.5472 | 0.3433 / 0.3248 |
 
-### ETTm2  (n_windows ≈ 114)
+## Horizon = 720
 
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 0.3422 / 0.3760 | 0.3627 / 0.3915 | 0.3534 / 0.3834 | 0.6615 / 0.5211 |
-
-### ECL  (n_windows ≈ 49)
-
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 0.3469 / 0.3352 | 0.3035 / 0.3230 | 0.2996 / 0.3284 | 0.3540 / 0.3702 |
-
-### Exchange  (n_windows ≈ 10)
-
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 0.0874 / 0.2095 | 0.1560 / 0.2828 | 0.2379 / 0.3501 | 0.9984 / 0.7859 |
-
-### Traffic  (n_windows ≈ 31)
-
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 1.2334 / 0.5149 | 1.1272 / 0.4756 | 1.3883 / 0.5472 | 1.2996 / 0.5294 |
-
-### Weather  (n_windows ≈ 104)
-
-| Model | h=96 (MSE/MAE) | h=192 (MSE/MAE) | h=336 (MSE/MAE) | h=720 (MSE/MAE) |
-|---|---|---|---|---|
-| base (SN) | 0.2463 / 0.2424 | 0.3067 / 0.2834 | 0.3433 / 0.3248 | 0.4904 / 0.4033 |
+| Model | ETTh1 | ETTh2 | ETTm1 | ETTm2 | ECL | Exchange | Traffic | Weather |
+|---|---|---|---|---|---|---|---|---|
+| base (Seasonal Naive) | 0.1620 / 0.3358 | 0.3022 / 0.4354 | 0.9470 / 0.6279 | 0.6615 / 0.5211 | 0.3540 / 0.3702 | 0.9984 / 0.7859 | 1.2996 / 0.5294 | 0.4904 / 0.4033 |
 
 ---
+
+## Evaluated models
+
+| Key | Type | Source |
+|---|---|---|
+| base | Seasonal Naive baseline | `models/base/predict.py` |
+
+> Add your model under `models/<name>/` → `python run.py --model <name>` → `python leaderboard.py`. A new row will appear in each horizon table above.
+
+## Published SOTA reference (h=96)
+
+Top numbers reported in published papers (not re-measured here). See [docs/sota_2026.md](docs/sota_2026.md) for full tables and horizon × 192/336/720.
+
+| Metric | ETTh1 | ETTh2 | ETTm1 | ETTm2 | ECL | Exchange | Traffic | Weather |
+|---|---|---|---|---|---|---|---|---|
+| Best MSE@96 | 0.323 | **0.262** | 0.256 | **0.156** | **0.126** | 0.086 | **0.343** | 0.138 |
+| Model | Time-MoE-ultra | EMTSF | Time-MoE-ultra | EMTSF | EMTSF | iTransformer | EMTSF | EMTSF |
+| Paper | [2409.16040](https://arxiv.org/abs/2409.16040) | [2510.23396](https://arxiv.org/abs/2510.23396) | [2409.16040](https://arxiv.org/abs/2409.16040) | [2510.23396](https://arxiv.org/abs/2510.23396) | [2510.23396](https://arxiv.org/abs/2510.23396) | [2310.06625](https://arxiv.org/abs/2310.06625) | [2510.23396](https://arxiv.org/abs/2510.23396) | [2510.23396](https://arxiv.org/abs/2510.23396) |
+
+**Bold** = this cell is the current published SOTA and the model in the row below can be directly compared only under matching lookback/split. Mixing lookback lengths across papers is **not** apples-to-apples.
 
 ## Caveats
 
-Numbers above are from this harness's evaluation pipeline (lookback=96, n_windows as produced by the built-in split). They are **not directly comparable** to published numbers in PatchTST / iTransformer / Time-MoE / EMTSF without reconciling:
-- train/val/test cutoffs  
-- lookback length  
-- per-channel vs global normalization  
-- rolling-origin vs fixed-origin evaluation
+Harness numbers (base row) use lookback=96 and the `datasetsforecast` LongHorizon default split. Published numbers may use L=336 / 512 and custom normalization, so **do not compare directly** without reconciling the pipeline.
 
-For the published SOTA reference, see:
-- [docs/sota_2026.md](docs/sota_2026.md) — EMTSF, TimeExpert, Time-MoE-ultra current leaders (Oct 2025)
-- [docs/model_history.md](docs/model_history.md) — 2021–2026 LTSF model lineage
-- [docs/ili_lineage.md](docs/ili_lineage.md) — ILI-specific model history
-
-## How to add your model
-
-See [README.md § Model Interface](README.md#model-interface). In short: drop a `predict.py` with `forecast(context, horizon, freq)` into `models/<your_name>/`, run `python run.py --model <your_name>`, then `python leaderboard.py` to refresh this table.
+See also: [docs/model_history.md](docs/model_history.md), [docs/ili_lineage.md](docs/ili_lineage.md)

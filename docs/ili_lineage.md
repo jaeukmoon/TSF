@@ -1,3 +1,9 @@
+---
+title: ILI Lineage
+layout: default
+nav_order: 6
+---
+
 # ILI Forecasting Model Lineage (2018–2026)
 
 ILI (Influenza-Like Illness) 특화 딥러닝 예측 모델 계보. 일반 LTSF 모델(Informer/PatchTST/DLinear 등)은 제외. **[verified]** = 원 논문 확인, **[unverified]** = 2차 자료 기반.

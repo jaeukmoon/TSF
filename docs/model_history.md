@@ -1,3 +1,9 @@
+---
+title: Model History
+layout: default
+nav_order: 5
+---
+
 # LTSF Benchmark — Historical Model Performance (2021–2026)
 
 본 문서는 Long-term Time Series Forecasting (LTSF) 표준 벤치마크 9개 데이터셋(ETTh1, ETTh2, ETTm1, ETTm2, ECL/Electricity, Exchange, Traffic, Weather, ILI)에 대한 주요 모델들의 MSE / MAE (정규화된 값)를 연대순으로 정리한 것이다.

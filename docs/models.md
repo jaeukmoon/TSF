@@ -1,3 +1,10 @@
+---
+title: Model Architectures
+layout: default
+nav_order: 3
+has_children: true
+---
+
 # Models Summary Index
 
 Architecture summaries for every model that has ever been evaluated in this
@@ -10,18 +17,18 @@ under `docs/archs/<model>.md` — generated via `/explain-arch`.
 
 | Model | Year | Category | Params | Pretrained? | Paper | Arch doc |
 |---|---|---|---|---|---|---|
-| base (Seasonal Naive) | — | heuristic | 0 | no | — | [archs/base.md](archs/base.md) |
-| Informer | 2021 | transformer | 11 M | no | [2012.07436](https://arxiv.org/abs/2012.07436) | _pending_ |
-| Autoformer | 2021 | decomposition transformer | 14 M | no | [2106.13008](https://arxiv.org/abs/2106.13008) | _pending_ |
-| DLinear / NLinear | 2023 | linear | < 1 M | no | [2205.13504](https://arxiv.org/abs/2205.13504) | _pending_ |
-| PatchTST | 2023 | patch transformer | 7 M | optional SSL | [2211.14730](https://arxiv.org/abs/2211.14730) | _pending_ |
-| TimesNet | 2023 | 2D conv (multi-period) | 5 M | no | [2210.02186](https://arxiv.org/abs/2210.02186) | _pending_ |
-| iTransformer | 2024 | inverted attention | 4 M | no | [2310.06625](https://arxiv.org/abs/2310.06625) | _pending_ |
-| Chronos | 2024 | foundation (tokenized T5) | 8 M – 710 M | yes | [2403.07815](https://arxiv.org/abs/2403.07815) | _pending_ |
-| Chronos-Bolt / Chronos-2 | 2024-25 | foundation (distilled) | 9 M – 205 M | yes | — | _pending_ |
-| Time-MoE (ultra) | 2024 | sparse MoE foundation | 24 M – 2.4 B active | yes | [2409.16040](https://arxiv.org/abs/2409.16040) | _pending_ |
-| TimeExpert / TimeExpert-G | 2025 | MoE foundation | 113 M | yes | [2509.23145](https://arxiv.org/abs/2509.23145) | _pending_ |
-| EMTSF | 2025 | ensemble MoE over SOTA backbones | 9.66 M | no | [2510.23396](https://arxiv.org/abs/2510.23396) | _pending_ |
+| base (Seasonal Naive) | — | heuristic | 0 | no | — | [archs/base](archs/base.html) |
+| Informer | 2021 | transformer | 11 M | no | [2012.07436](https://arxiv.org/abs/2012.07436) | [archs/informer](archs/informer.html) |
+| Autoformer | 2021 | decomposition transformer | 14 M | no | [2106.13008](https://arxiv.org/abs/2106.13008) | [archs/autoformer](archs/autoformer.html) |
+| FEDformer | 2022 | frequency transformer | 20 M | no | [2201.12740](https://arxiv.org/abs/2201.12740) | [archs/fedformer](archs/fedformer.html) |
+| DLinear / NLinear | 2023 | linear | < 1 M | no | [2205.13504](https://arxiv.org/abs/2205.13504) | [archs/dlinear](archs/dlinear.html) |
+| PatchTST | 2023 | patch transformer | 7 M | optional SSL | [2211.14730](https://arxiv.org/abs/2211.14730) | [archs/patchtst](archs/patchtst.html) |
+| TimesNet | 2023 | 2D conv (multi-period) | 5 M | no | [2210.02186](https://arxiv.org/abs/2210.02186) | [archs/timesnet](archs/timesnet.html) |
+| iTransformer | 2024 | inverted attention | 4 M | no | [2310.06625](https://arxiv.org/abs/2310.06625) | [archs/itransformer](archs/itransformer.html) |
+| Chronos / Chronos-Bolt / Chronos-2 | 2024-25 | foundation (tokenized T5 / distilled) | 8 M – 710 M | yes | [2403.07815](https://arxiv.org/abs/2403.07815) | [archs/chronos](archs/chronos.html) |
+| Time-MoE (ultra) | 2024 | sparse MoE foundation | 24 M – 2.4 B active | yes | [2409.16040](https://arxiv.org/abs/2409.16040) | [archs/time-moe](archs/time-moe.html) |
+| TimeExpert / TimeExpert-G | 2025 | MoE foundation | 113 M | yes | [2509.23145](https://arxiv.org/abs/2509.23145) | [archs/timeexpert](archs/timeexpert.html) |
+| EMTSF | 2025 | ensemble MoE over SOTA backbones | 9.66 M | no | [2510.23396](https://arxiv.org/abs/2510.23396) | [archs/emtsf](archs/emtsf.html) |
 
 Legend:
 - **Pretrained?** — whether the model is a foundation model / uses SSL pretraining before the target benchmark
