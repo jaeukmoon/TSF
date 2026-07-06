@@ -1,0 +1,1054 @@
+{
+ "turkforecastfmchronos2lorav1": {
+  "name": "TurkForecast-FM-Chronos2-LoRA-v1",
+  "sources": {
+   "gift": "TurkForecast-FM-Chronos2-LoRA-v1"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "stridechronos2": {
+  "name": "STRIDE (+Chronos-2)",
+  "sources": {
+   "gift": "STRIDE (+Chronos-2)"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "raesconductanceensemble": {
+  "name": "RAES-Conductance-Ensemble",
+  "sources": {
+   "gift": "RAES-Conductance-Ensemble"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "caststar": {
+  "name": "CastStar",
+  "sources": {
+   "gift": "CastStar"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tempoensemble": {
+  "name": "tempo_ensemble",
+  "sources": {
+   "gift": "tempo_ensemble"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "metisautocast": {
+  "name": "metis-autocast",
+  "sources": {
+   "gift": "metis-autocast"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "cobraagent": {
+  "name": "Cobra-Agent",
+  "sources": {
+   "gift": "Cobra-Agent"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto20fnf": {
+  "name": "Toto-2.0-FnF",
+  "sources": {
+   "gift": "Toto-2.0-FnF"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto2025bft": {
+  "name": "Toto-2.0-2.5B-FT",
+  "sources": {
+   "gift": "Toto-2.0-2.5B-FT"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "stridetimers1": {
+  "name": "STRIDE (+Timer-S1)",
+  "sources": {
+   "gift": "STRIDE (+Timer-S1)"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "taichutimeseriesagent": {
+  "name": "Taichu-TimeSeries-Agent",
+  "sources": {
+   "gift": "Taichu-TimeSeries-Agent"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "raesconductanceensemblev": {
+  "name": "RAES-Conductance-Ensemble-V",
+  "sources": {
+   "gift": "RAES-Conductance-Ensemble-V"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "prism": {
+  "name": "Prism",
+  "sources": {
+   "gift": "Prism"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "deosalphatimegptpredictor2025": {
+  "name": "DeOSAlphaTimeGPTPredictor-2025",
+  "sources": {
+   "gift": "DeOSAlphaTimeGPTPredictor-2025"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tirex2pretrained": {
+  "name": "TiRex-2-Pretrained",
+  "sources": {
+   "gift": "TiRex-2-Pretrained"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tsorchestra": {
+  "name": "TSOrchestra",
+  "sources": {
+   "gift": "TSOrchestra"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "timerouter": {
+  "name": "TimeRouter",
+  "sources": {
+   "gift": "TimeRouter"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "moiraiagentleaking": {
+  "name": "MoiraiAgent-leaking",
+  "sources": {
+   "gift": "MoiraiAgent-leaking"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "credence": {
+  "name": "Credence",
+  "sources": {
+   "gift": "Credence"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tsorchestratest": {
+  "name": "TSOrchestra-test",
+  "sources": {
+   "gift": "TSOrchestra-test"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "moiraiagent": {
+  "name": "MoiraiAgent",
+  "sources": {
+   "gift": "MoiraiAgent"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto2025b": {
+  "name": "Toto-2.0-2.5B",
+  "sources": {
+   "gift": "Toto-2.0-2.5B",
+   "fev": "Toto-2.0-2.5B"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "samay": {
+  "name": "Samay",
+  "sources": {
+   "gift": "Samay"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "charm": {
+  "name": "CHARM",
+  "sources": {
+   "gift": "CHARM"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tirex2zeroshot": {
+  "name": "TiRex-2-Zeroshot",
+  "sources": {
+   "gift": "TiRex-2-Zeroshot"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto201b": {
+  "name": "Toto-2.0-1B",
+  "sources": {
+   "gift": "Toto-2.0-1B",
+   "fev": "Toto-2.0-1B"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "synapse": {
+  "name": "Synapse",
+  "sources": {
+   "gift": "Synapse"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto20313m": {
+  "name": "Toto-2.0-313m",
+  "sources": {
+   "gift": "Toto-2.0-313m",
+   "fev": "Toto-2.0-313m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "zoocasttop1": {
+  "name": "ZooCast-Top1",
+  "sources": {
+   "gift": "ZooCast-Top1"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "patchtstfmr1": {
+  "name": "PatchTST-FM-r1",
+  "sources": {
+   "gift": "PatchTST-FM-r1"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "timecopilot": {
+  "name": "TimeCopilot",
+  "sources": {
+   "gift": "TimeCopilot"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "timers1": {
+  "name": "Timer-s1",
+  "sources": {
+   "gift": "Timer-s1"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronos2": {
+  "name": "chronos-2",
+  "sources": {
+   "gift": "chronos-2",
+   "fev": "Chronos-2"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "falconx": {
+  "name": "Falcon-X",
+  "sources": {
+   "gift": "Falcon-X"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "falcon20": {
+  "name": "Falcon-2.0",
+  "sources": {
+   "gift": "Falcon-2.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "flowstater11": {
+  "name": "FlowState-r1.1",
+  "sources": {
+   "gift": "FlowState-r1.1"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "granitepatchtstfmr1": {
+  "name": "Granite-PatchTST-FM-r1",
+  "sources": {
+   "gift": "Granite-PatchTST-FM-r1"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "xiheultra": {
+  "name": "Xihe-ultra",
+  "sources": {
+   "gift": "Xihe-ultra"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tirex": {
+  "name": "TiRex",
+  "sources": {
+   "gift": "TiRex",
+   "fev": "TiRex"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "graniteflowstater11": {
+  "name": "Granite-FlowState-r1.1",
+  "sources": {
+   "gift": "Granite-FlowState-r1.1"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "timesfm25": {
+  "name": "TimesFM-2.5",
+  "sources": {
+   "gift": "TimesFM-2.5",
+   "fev": "TimesFM-2.5"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "xihemax": {
+  "name": "Xihe-max",
+  "sources": {
+   "gift": "Xihe-max"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "longseerv10": {
+  "name": "LongSeer-v1.0",
+  "sources": {
+   "gift": "LongSeer-v1.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "t0alpha": {
+  "name": "t0-alpha",
+  "sources": {
+   "gift": "t0-alpha"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronos2synth": {
+  "name": "chronos-2-synth",
+  "sources": {
+   "gift": "chronos-2-synth"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto2022m": {
+  "name": "Toto-2.0-22m",
+  "sources": {
+   "gift": "Toto-2.0-22m",
+   "fev": "Toto-2.0-22m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "visit20": {
+  "name": "VISIT-2.0",
+  "sources": {
+   "gift": "VISIT-2.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "flowstate91m": {
+  "name": "FlowState-9.1M",
+  "sources": {
+   "gift": "FlowState-9.1M"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "xlstmmixer": {
+  "name": "xLSTM-Mixer",
+  "sources": {
+   "gift": "xLSTM-Mixer"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "ttmr3ft": {
+  "name": "TTM-R3-FT",
+  "sources": {
+   "gift": "TTM-R3-FT"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "moirai2": {
+  "name": "Moirai2",
+  "sources": {
+   "gift": "Moirai2"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "totoopenbase10": {
+  "name": "Toto_Open_Base_1.0",
+  "sources": {
+   "gift": "Toto_Open_Base_1.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "ttmr3pt": {
+  "name": "TTM-R3-PT",
+  "sources": {
+   "gift": "TTM-R3-PT"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto204m": {
+  "name": "Toto-2.0-4m",
+  "sources": {
+   "gift": "Toto-2.0-4m",
+   "fev": "Toto-2.0-4m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tempopfn": {
+  "name": "TempoPFN",
+  "sources": {
+   "gift": "TempoPFN"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "cleants65m": {
+  "name": "CleanTS-65M",
+  "sources": {
+   "gift": "CleanTS-65M"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tabpfnts": {
+  "name": "tabpfn_ts",
+  "sources": {
+   "gift": "tabpfn_ts",
+   "fev": "TabPFN-TS"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "kairos50m": {
+  "name": "Kairos_50m",
+  "sources": {
+   "gift": "Kairos_50m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "yinglong300m": {
+  "name": "YingLong_300m",
+  "sources": {
+   "gift": "YingLong_300m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "timesfm20500m": {
+  "name": "timesfm_2_0_500m",
+  "sources": {
+   "gift": "timesfm_2_0_500m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "kairos10m": {
+  "name": "Kairos_10m",
+  "sources": {
+   "gift": "Kairos_10m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "kairos23m": {
+  "name": "Kairos_23m",
+  "sources": {
+   "gift": "Kairos_23m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "yinglong110m": {
+  "name": "YingLong_110m",
+  "sources": {
+   "gift": "YingLong_110m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "patchfm": {
+  "name": "PatchFM",
+  "sources": {
+   "gift": "PatchFM"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "sundialbase128m": {
+  "name": "sundial_base_128m",
+  "sources": {
+   "gift": "sundial_base_128m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "yinglong50m": {
+  "name": "YingLong_50m",
+  "sources": {
+   "gift": "YingLong_50m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronosboltbase": {
+  "name": "chronos_bolt_base",
+  "sources": {
+   "gift": "chronos_bolt_base"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronosboltsmall": {
+  "name": "chronos_bolt_small",
+  "sources": {
+   "gift": "chronos_bolt_small"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "ttmr2finetuned": {
+  "name": "TTM-R2-Finetuned",
+  "sources": {
+   "gift": "TTM-R2-Finetuned"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "patchtst": {
+  "name": "PatchTST",
+  "sources": {
+   "gift": "PatchTST",
+   "fev": "PatchTST"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "flair": {
+  "name": "FLAIR",
+  "sources": {
+   "gift": "FLAIR"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "migas10": {
+  "name": "Migas-1.0",
+  "sources": {
+   "gift": "Migas-1.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "moirailarge": {
+  "name": "Moirai_large",
+  "sources": {
+   "gift": "Moirai_large"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "valbestsinglecmtt": {
+  "name": "ValBestSingle-cmtt",
+  "sources": {
+   "gift": "ValBestSingle-cmtt"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tft": {
+  "name": "tft",
+  "sources": {
+   "gift": "tft",
+   "fev": "TFT"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "yinglong6m": {
+  "name": "YingLong_6m",
+  "sources": {
+   "gift": "YingLong_6m"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "moiraibase": {
+  "name": "Moirai_base",
+  "sources": {
+   "gift": "Moirai_base"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "reverso": {
+  "name": "Reverso",
+  "sources": {
+   "gift": "Reverso"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "itransformer": {
+  "name": "iTransformer",
+  "sources": {
+   "gift": "iTransformer"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "lingjiang": {
+  "name": "Lingjiang",
+  "sources": {
+   "gift": "Lingjiang"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "reversosmall": {
+  "name": "Reverso-Small",
+  "sources": {
+   "gift": "Reverso-Small"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronoslarge": {
+  "name": "chronos_large",
+  "sources": {
+   "gift": "chronos_large"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "moiraismall": {
+  "name": "Moirai_small",
+  "sources": {
+   "gift": "Moirai_small"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronosbase": {
+  "name": "chronos_base",
+  "sources": {
+   "gift": "chronos_base"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "reversonano": {
+  "name": "Reverso-Nano",
+  "sources": {
+   "gift": "Reverso-Nano"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronossmall": {
+  "name": "Chronos_small",
+  "sources": {
+   "gift": "Chronos_small"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "timesfm": {
+  "name": "timesfm",
+  "sources": {
+   "gift": "timesfm"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "ffm": {
+  "name": "FFM",
+  "sources": {
+   "gift": "FFM"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "superlinear": {
+  "name": "Super-Linear",
+  "sources": {
+   "gift": "Super-Linear"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "visionts": {
+  "name": "visionts",
+  "sources": {
+   "gift": "visionts"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tide": {
+  "name": "tide",
+  "sources": {
+   "gift": "tide"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "nbeats": {
+  "name": "N-BEATS",
+  "sources": {
+   "gift": "N-BEATS"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "dlinear": {
+  "name": "DLinear",
+  "sources": {
+   "gift": "DLinear"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "deepar": {
+  "name": "deepar",
+  "sources": {
+   "gift": "deepar",
+   "fev": "DeepAR"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "ttmr2pretrained": {
+  "name": "TTM-R2-Pretrained",
+  "sources": {
+   "gift": "TTM-R2-Pretrained"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "lagllama": {
+  "name": "Lag-Llama",
+  "sources": {
+   "gift": "Lag-Llama"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "ttmr1pretrained": {
+  "name": "TTM-R1-Pretrained",
+  "sources": {
+   "gift": "TTM-R1-Pretrained"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "autoarima": {
+  "name": "auto_arima",
+  "sources": {
+   "gift": "auto_arima",
+   "fev": "AutoARIMA"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "seasonalnaive": {
+  "name": "seasonal_naive",
+  "sources": {
+   "gift": "seasonal_naive",
+   "fev": "Seasonal Naive"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "autotheta": {
+  "name": "auto_theta",
+  "sources": {
+   "gift": "auto_theta",
+   "fev": "AutoTheta"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "naive": {
+  "name": "naive",
+  "sources": {
+   "gift": "naive",
+   "fev": "Naive"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "visit10": {
+  "name": "VISIT-1.0",
+  "sources": {
+   "gift": "VISIT-1.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "crossformer": {
+  "name": "crossformer",
+  "sources": {
+   "gift": "crossformer"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "autoets": {
+  "name": "auto_ets",
+  "sources": {
+   "gift": "auto_ets",
+   "fev": "AutoETS"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tirex2": {
+  "name": "TiRex-2",
+  "sources": {
+   "fev": "TiRex-2"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "flowstate": {
+  "name": "FlowState",
+  "sources": {
+   "fev": "FlowState"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "tabpfnts3": {
+  "name": "TabPFN-TS-3",
+  "sources": {
+   "fev": "TabPFN-TS-3"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "toto10": {
+  "name": "Toto-1.0",
+  "sources": {
+   "fev": "Toto-1.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "moirai20": {
+  "name": "Moirai-2.0",
+  "sources": {
+   "fev": "Moirai-2.0"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "chronosbolt": {
+  "name": "Chronos-Bolt",
+  "sources": {
+   "fev": "Chronos-Bolt"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "sundialbase": {
+  "name": "Sundial-Base",
+  "sources": {
+   "fev": "Sundial-Base"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "statensemble": {
+  "name": "Stat. Ensemble",
+  "sources": {
+   "fev": "Stat. Ensemble"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "catboost": {
+  "name": "CatBoost",
+  "sources": {
+   "fev": "CatBoost"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "lightgbm": {
+  "name": "LightGBM",
+  "sources": {
+   "fev": "LightGBM"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ },
+ "drift": {
+  "name": "Drift",
+  "sources": {
+   "fev": "Drift"
+  },
+  "first_seen": "2026-07-06",
+  "status": "pending",
+  "card": null
+ }
+}

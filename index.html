@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TSF Leaderboard Tracker</title>
+<style>
+:root{--panel:#fff;--ink:#1a1f2e;--mut:#6b7280;--line:#e6e8ee;--accent:#3b5bdb}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;color:var(--ink);background:#f4f6fb}
+header{background:linear-gradient(135deg,#0b1020,#1e293b);color:#fff;padding:26px 20px}
+header .wrap{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+header h1{margin:0 0 6px;font-size:24px;letter-spacing:-.3px}
+header p{margin:0;color:#aab3c5;font-size:13px}
+header p a{color:#9db4ff;text-decoration:none}
+.nav{display:flex;gap:10px}
+.btn{display:inline-block;padding:9px 16px;border-radius:10px;font-size:13.5px;font-weight:700;text-decoration:none;cursor:pointer;border:0;background:rgba(255,255,255,.12);color:#e7ecf5;border:1px solid rgba(255,255,255,.25)}
+.btn:hover{background:rgba(255,255,255,.2)}
+.btn.on{background:#3b5bdb;color:#fff;border-color:#3b5bdb}
+main{max-width:1200px;margin:0 auto;padding:24px 20px 64px}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px;align-items:center}
+.chip{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--mut);font-size:13px;font-weight:700;cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.search{margin-left:auto;width:240px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;background:#fff}
+.note{font-size:12px;color:var(--mut);margin:10px 0 0;line-height:1.6}
+.tblwrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+table{border-collapse:collapse;width:100%;font-size:13px;min-width:860px}
+thead th{position:sticky;top:0;background:#f1f3f9;color:#475569;font-weight:700;font-size:12px;padding:10px 10px;text-align:left;border-bottom:2px solid var(--line);cursor:pointer;user-select:none;white-space:nowrap}
+thead th:hover{color:var(--accent)}
+thead th .arr{opacity:.5;font-size:10px}
+tbody td{padding:8px 10px;border-bottom:1px solid #eef0f5;white-space:nowrap}
+tbody tr:hover{background:#f8f9ff}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+td.best{color:#2b8a3e;font-weight:700}
+a.mdl{color:var(--ink);font-weight:600;text-decoration:none}
+a.mdl:hover{color:var(--accent);text-decoration:underline}
+.badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;background:#eef1f7;color:#374151;display:inline-block}
+.badge.new{background:#e03131;color:#fff}
+.badge.leak{background:#fff3bf;color:#9a6700}
+.badge.t-pretrained{background:#e7f5ff;color:#1971c2}
+.badge.t-finetuned{background:#f3f0ff;color:#6741d9}
+.badge.t-agentic{background:#fff4e6;color:#e8590c}
+.badge.t-stat{background:#ebfbee;color:#2b8a3e}
+.badge.arch{background:#eef2ff;color:#3b4ba8;border:1px solid #dfe3fb}
+.badge.org{background:#ffe3e3;color:#c92a2a}
+.badge.src{background:#e7f5ff;color:#1971c2}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,.04);display:flex;flex-direction:column;gap:8px}
+.card.pending{border-left:4px solid #f59f00;background:#fffdf5}
+.card h3{margin:0;font-size:16px;line-height:1.3;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.card .one{font-size:13.5px;font-weight:600;color:#374151;margin:0}
+.card .sum{font-size:13px;color:#4b5563;line-height:1.6;margin:0}
+.pm{margin:0;padding-left:18px;line-height:1.55;font-size:12.5px;color:#4b5563}
+.pm.plus li::marker{content:"+ ";color:#2b8a3e;font-weight:700}
+.pm.minus li::marker{content:"− ";color:#c92a2a;font-weight:700}
+.stats{display:flex;flex-wrap:wrap;gap:5px}
+.stat{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:#f1f3f9;color:#475569}
+.links{font-size:12px;display:flex;gap:12px;flex-wrap:wrap}
+.links a{color:var(--accent);text-decoration:none}
+.links a:hover{text-decoration:underline}
+.empty{color:var(--mut);font-size:14px;padding:40px 0;text-align:center}
+footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-size:12px;line-height:1.7}
+@media(max-width:760px){header .wrap{flex-direction:column;align-items:flex-start}.search{width:100%;margin-left:0}}
+</style></head>
+<body>
+<header><div class="wrap">
+  <div>
+    <h1>TSF Leaderboard Tracker</h1>
+    <p>시계열 예측 파운데이션 모델 리더보드 미러 ·
+       <a href="https://huggingface.co/spaces/Salesforce/GIFT-Eval" target="_blank" rel="noopener">GIFT-Eval</a> +
+       <a href="https://github.com/autogluon/fev" target="_blank" rel="noopener">fev-bench</a> ·
+       매일 자동 갱신 · <span id="upd">…</span></p>
+  </div>
+  <div class="nav">
+    <button class="btn on" id="tab-lb" onclick="showTab('lb')">🏆 리더보드</button>
+    <button class="btn" id="tab-cards" onclick="showTab('cards')">📇 모델 요약</button>
+    <a class="btn" href="https://github.com/jaeukmoon/TSF" target="_blank" rel="noopener">GitHub</a>
+  </div>
+</div></header>
+<main>
+
+<section id="view-lb">
+  <div class="chips">
+    <button class="chip on" id="src-gift" onclick="setSrc('gift')">GIFT-Eval <span id="n-gift"></span></button>
+    <button class="chip" id="src-fev" onclick="setSrc('fev')">fev-bench <span id="n-fev"></span></button>
+    <input class="search" id="q-lb" placeholder="모델 / org 검색…" oninput="renderTable()">
+  </div>
+  <div class="tblwrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+  <p class="note" id="note-lb"></p>
+</section>
+
+<section id="view-cards" style="display:none">
+  <div class="chips">
+    <button class="chip on" id="f-all" onclick="setCardFilter('all')">전체 <span id="n-all"></span></button>
+    <button class="chip" id="f-new" onclick="setCardFilter('new')">최근 2주 NEW</button>
+    <button class="chip" id="f-pending" onclick="setCardFilter('pending')">요약 대기 <span id="n-pending"></span></button>
+    <input class="search" id="q-cards" placeholder="모델 / 아키텍처 검색…" oninput="renderCards()">
+  </div>
+  <div class="grid" id="cards"></div>
+  <p class="empty" id="cards-empty" style="display:none">해당하는 카드가 없습니다.</p>
+</section>
+
+</main>
+<footer>
+  집계는 각 벤치마크의 공식 방법을 재현: GIFT-Eval은 config별 Seasonal-Naive 정규화 후 geometric mean(MASE·CRPS)과 평균 rank,
+  fev-bench는 Seasonal-Naive 대비 상대오차(clip [0.01,100])의 win rate와 skill score. 공식 수치와 미세한 차이가 있을 수 있습니다.
+  요약카드는 신규 모델 감지 시 Claude가 공개 근거(모델카드·arXiv)로 생성합니다.
+</footer>
+<script>
+let DB=null, CARDS=null, SRC='gift', SORT={key:null,asc:true}, CFILTER='all';
+const NEW_DAYS=14;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+const COLS={
+ gift:[
+  {k:'_rank',label:'#',num:1},
+  {k:'name',label:'Model'},
+  {k:'org',label:'Org'},
+  {k:'model_type',label:'Type'},
+  {k:'crps',label:'CRPS↓',num:1,fmt:v=>v?.toFixed(3)},
+  {k:'mase',label:'MASE↓',num:1,fmt:v=>v?.toFixed(3)},
+  {k:'rank_crps',label:'Rank(CRPS)',num:1,fmt:v=>v?.toFixed(1)},
+  {k:'rank_mase',label:'Rank(MASE)',num:1,fmt:v=>v?.toFixed(1)},
+  {k:'n_configs',label:'Configs',num:1},
+  {k:'leak',label:'Leak'},
+  {k:'_seen',label:'First seen'}],
+ fev:[
+  {k:'_rank',label:'#',num:1},
+  {k:'name',label:'Model'},
+  {k:'win_rate',label:'Win rate↑',num:1,fmt:v=>(v*100).toFixed(1)+'%'},
+  {k:'skill_score',label:'Skill score↑',num:1,fmt:v=>v?.toFixed(3)},
+  {k:'median_inference_time_s',label:'Med. inference(s)',num:1,fmt:v=>v==null?'—':v.toFixed(2)},
+  {k:'overlap',label:'Train overlap',num:1,fmt:v=>(v*100).toFixed(0)+'%'},
+  {k:'num_failures',label:'Failures',num:1},
+  {k:'_seen',label:'First seen'}]
+};
+
+function isNew(d){if(!d)return false;return (Date.now()-new Date(d))/864e5<=NEW_DAYS;}
+function seenOf(src,name){return DB.first_seen?.[src]?.[name];}
+
+function showTab(t){
+ document.getElementById('view-lb').style.display=t==='lb'?'':'none';
+ document.getElementById('view-cards').style.display=t==='cards'?'':'none';
+ document.getElementById('tab-lb').classList.toggle('on',t==='lb');
+ document.getElementById('tab-cards').classList.toggle('on',t==='cards');
+}
+function setSrc(s){SRC=s;SORT={key:null,asc:true};
+ document.getElementById('src-gift').classList.toggle('on',s==='gift');
+ document.getElementById('src-fev').classList.toggle('on',s==='fev');
+ renderTable();}
+function setCardFilter(f){CFILTER=f;
+ for(const x of['all','new','pending'])document.getElementById('f-'+x).classList.toggle('on',x===f);
+ renderCards();}
+function sortBy(k,num){SORT.asc=SORT.key===k?!SORT.asc:true;SORT.key=k;SORT.num=num;renderTable();}
+
+function renderTable(){
+ if(!DB)return;
+ const cols=COLS[SRC];
+ const q=(document.getElementById('q-lb').value||'').toLowerCase();
+ let rows=DB[SRC].map((e,i)=>({...e,_rank:i+1,_seen:seenOf(SRC,e.name)||''}));
+ if(q)rows=rows.filter(e=>(e.name+' '+(e.org||'')+' '+(e.model_type||'')).toLowerCase().includes(q));
+ if(SORT.key){const k=SORT.key,d=SORT.asc?1:-1;
+  rows.sort((a,b)=>{const x=a[k],y=b[k];if(x==null)return 1;if(y==null)return -1;
+   return SORT.num?(x-y)*d:String(x).localeCompare(String(y))*d;});}
+ document.querySelector('#tbl thead').innerHTML='<tr>'+cols.map(c=>
+  `<th onclick="sortBy('${c.k}',${c.num?1:0})">${c.label}${SORT.key===c.k?`<span class="arr"> ${SORT.asc?'▲':'▼'}</span>`:''}</th>`).join('')+'</tr>';
+ const best={};for(const c of cols)if(c.num&&c.k!=='_rank'&&c.k!=='n_configs'&&c.k!=='num_failures'){
+  const vals=rows.map(r=>r[c.k]).filter(v=>v!=null);
+  if(vals.length)best[c.k]=c.label.includes('↑')?Math.max(...vals):Math.min(...vals);}
+ document.querySelector('#tbl tbody').innerHTML=rows.map(e=>'<tr>'+cols.map(c=>{
+  let v=e[c.k];
+  if(c.k==='name'){
+   const link=e.model_link||e.code_link;
+   const nm=link?`<a class="mdl" href="${esc(link)}" target="_blank" rel="noopener">${esc(v)}</a>`:`<span class="mdl">${esc(v)}</span>`;
+   return `<td>${nm}${isNew(e._seen)?' <span class="badge new">NEW</span>':''}</td>`;}
+  if(c.k==='model_type')return `<td>${v?`<span class="badge t-${esc(v).replace(/[^a-z]/g,'')}">${esc(v)}</span>`:''}</td>`;
+  if(c.k==='leak')return `<td>${v==='Yes'?'<span class="badge leak">⚠ leak</span>':''}</td>`;
+  if(c.k==='_seen')return `<td class="num">${esc(v)}</td>`;
+  if(c.fmt&&v!=null)v=c.fmt(v);
+  const cls=(c.num?'num':'')+(best[c.k]!=null&&e[c.k]===best[c.k]?' best':'');
+  return `<td class="${cls}">${v==null?'—':esc(v)}</td>`;}).join('')+'</tr>').join('');
+ document.getElementById('note-lb').textContent=SRC==='gift'
+  ?'CRPS/MASE = Seasonal-Naive 정규화 후 97개 config geometric mean (낮을수록 좋음). Rank = config별 순위의 평균. ⚠ leak = 제출자가 test data leakage를 인정한 모델.'
+  :'win rate = 100개 task에서 전체 모델과의 pairwise 승률. skill score = 1 − gmean(Seasonal-Naive 대비 상대오차). Train overlap > 0이면 해당 데이터셋으로 학습한 모델.';
+}
+
+function renderCards(){
+ if(!CARDS)return;
+ const q=(document.getElementById('q-cards').value||'').toLowerCase();
+ let items=Object.entries(CARDS).map(([k,v])=>v);
+ items.sort((a,b)=>(b.first_seen||'').localeCompare(a.first_seen||'')||a.name.localeCompare(b.name));
+ if(CFILTER==='new')items=items.filter(v=>isNew(v.first_seen));
+ if(CFILTER==='pending')items=items.filter(v=>v.status!=='ok');
+ if(q)items=items.filter(v=>{const c=v.card||{};
+  return (v.name+' '+(c.org||'')+' '+(c.arch_type||'')+' '+(c.one_liner||'')).toLowerCase().includes(q);});
+ const el=document.getElementById('cards');
+ el.innerHTML=items.map(v=>{
+  const c=v.card||{};
+  const g=DB?.gift?.find(e=>e.name===(v.sources?.gift));
+  const f=DB?.fev?.find(e=>e.name===(v.sources?.fev));
+  const stats=[
+   g?`<span class="stat">GIFT rank(CRPS) ${g.rank_crps?.toFixed(1)}</span>`:'',
+   g?`<span class="stat">CRPS ${g.crps?.toFixed(3)}</span>`:'',
+   f?`<span class="stat">fev win ${(f.win_rate*100).toFixed(1)}%</span>`:'',
+  ].join('');
+  const links=[
+   c.paper_url?`<a href="${esc(c.paper_url)}" target="_blank" rel="noopener">📄 ${esc(c.paper_title||'paper')}</a>`:'',
+   g?.model_link?`<a href="${esc(g.model_link)}" target="_blank" rel="noopener">🤗 model</a>`:'',
+   g?.code_link?`<a href="${esc(g.code_link)}" target="_blank" rel="noopener">💻 code</a>`:'',
+  ].filter(Boolean).join('');
+  if(v.status!=='ok')return `<div class="card pending">
+   <h3>${esc(v.name)}${isNew(v.first_seen)?' <span class="badge new">NEW</span>':''}</h3>
+   <div class="stats">${stats}</div>
+   <p class="sum" style="color:#9a6700">요약 대기중 — 다음 자동 갱신에서 생성됩니다. (first seen ${esc(v.first_seen)})</p>
+   <div class="links">${links}</div></div>`;
+  return `<div class="card">
+   <h3>${esc(v.name)}
+    ${isNew(v.first_seen)?'<span class="badge new">NEW</span>':''}
+    ${c.arch_type?`<span class="badge arch">${esc(c.arch_type)}</span>`:''}
+    ${c.org?`<span class="badge org">${esc(c.org)}</span>`:''}
+    ${g?'<span class="badge src">GIFT</span>':''}${f?'<span class="badge src">fev</span>':''}
+   </h3>
+   <p class="one">${esc(c.one_liner)}</p>
+   <p class="sum">${esc(c.summary)}</p>
+   ${c.strengths?.length?`<ul class="pm plus">${c.strengths.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+   ${c.weaknesses?.length?`<ul class="pm minus">${c.weaknesses.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:''}
+   <div class="stats">${stats}</div>
+   <div class="links">${links}</div>
+  </div>`;}).join('');
+ document.getElementById('cards-empty').style.display=items.length?'none':'';
+ document.getElementById('n-all').textContent=`(${Object.keys(CARDS).length})`;
+ document.getElementById('n-pending').textContent=
+  `(${Object.values(CARDS).filter(v=>v.status!=='ok').length})`;
+}
+
+Promise.all([
+ fetch('data/leaderboard.json').then(r=>r.json()),
+ fetch('data/cards.json').then(r=>r.json()).catch(()=>({})),
+]).then(([db,cards])=>{
+ DB=db;CARDS=cards;
+ document.getElementById('upd').textContent='마지막 갱신 '+db.updated;
+ document.getElementById('n-gift').textContent=`(${db.gift.length})`;
+ document.getElementById('n-fev').textContent=`(${db.fev.length})`;
+ renderTable();renderCards();
+}).catch(e=>{
+ document.getElementById('upd').textContent='데이터 로드 실패: '+e;
+});
+</script>
+</body></html>
