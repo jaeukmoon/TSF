@@ -4,6 +4,10 @@ on:
   schedule:
     - cron: "30 23 * * *"   # 08:30 KST daily
   workflow_dispatch:
+    inputs:
+      max_cards:
+        description: "cards to generate this run (backfill: e.g. 60)"
+        default: "12"
 
 permissions:
   contents: write
@@ -25,6 +29,7 @@ jobs:
       - name: Update leaderboard + cards
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MAX_CARDS: ${{ inputs.max_cards || '12' }}
         run: python tracker/update.py
 
       - name: Commit & push if changed
