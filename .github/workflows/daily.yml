@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  actions: write
 
 jobs:
   update:
@@ -34,3 +35,8 @@ jobs:
           git diff --cached --quiet && echo "no changes" && exit 0
           git commit -m "data: daily leaderboard update $(date -u +%F)"
           git push
+
+      - name: Trigger Pages deploy
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy-pages --ref main
