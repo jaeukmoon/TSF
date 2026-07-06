@@ -6,6 +6,7 @@ get None and the card stays pending until a later run.
 """
 
 import json
+import os
 import re
 import urllib.parse
 import xml.etree.ElementTree as ET
@@ -94,13 +95,23 @@ def build_context(name, info):
     return "\n\n".join(parts)
 
 
+def available():
+    """True if the SDK and a credential are both present."""
+    if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):
+        return False
+    try:
+        import anthropic  # noqa: F401
+    except ImportError:
+        return False
+    return True
+
+
 def make_card(name, info):
     """Generate one card dict via Sonnet, or None if unavailable/failed."""
-    try:
-        import anthropic
-    except ImportError:
-        print("  [warn] anthropic SDK not installed; card pending")
+    if not available():
+        print("  [warn] anthropic SDK or ANTHROPIC_API_KEY missing; card pending")
         return None
+    import anthropic
 
     client = anthropic.Anthropic()
     context = build_context(name, info)
@@ -113,14 +124,11 @@ def make_card(name, info):
             messages=[{"role": "user", "content":
                        f"다음 근거로 '{name}' 모델의 요약카드를 작성하라.\n\n{context}"}],
         )
-    except anthropic.AuthenticationError:
-        print("  [warn] ANTHROPIC_API_KEY missing/invalid; card pending")
+        if response.stop_reason == "refusal":
+            print(f"  [warn] refusal for {name}; card pending")
+            return None
+        text = next((b.text for b in response.content if b.type == "text"), "")
+        return json.loads(text)
+    except Exception as e:  # noqa: BLE001 - one bad card must not kill the daily run
+        print(f"  [warn] card generation failed for {name}: {e}")
         return None
-    except anthropic.APIStatusError as e:
-        print(f"  [warn] API error {e.status_code} for {name}; card pending")
-        return None
-    if response.stop_reason == "refusal":
-        print(f"  [warn] refusal for {name}; card pending")
-        return None
-    text = next((b.text for b in response.content if b.type == "text"), "")
-    return json.loads(text)

@@ -83,6 +83,9 @@ def main():
 
     # generate cards for pending models (bounded per run)
     budget = MAX_CARDS
+    if not summarize.available():
+        print("[cards] anthropic SDK or ANTHROPIC_API_KEY missing; skipping card generation")
+        budget = 0
     for key, slot in sorted(cards.items(), key=lambda kv: kv[1]["first_seen"], reverse=True):
         if slot["status"] == "ok" or budget <= 0:
             continue
