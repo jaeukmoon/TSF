@@ -5,8 +5,28 @@
    "gift": "TurkForecast-FM-Chronos2-LoRA-v1"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Amazon Chronos-2를 터키어 특화 도메인으로 LoRA 파인튜닝한 개인 프로젝트 모델",
+   "summary": "TurkForecast-FM은 개발자 Mert Karatay(TurkForecast)가 120M 파라미터 T5 인코더 기반 foundation model인 Amazon Chronos-2에 LoRA/PEFT 파인튜닝을 적용해 만든 개인 프로젝트로, 스스로를 '최초의 Apache-2.0 터키어 수직 도메인 TSFM 파인튜닝'이라 소개한다. GIFT-Eval 97개 config에서 CRPS 0.423/MASE 0.658, 평균 순위 약 34-35위로 상위 1/3에 해당하는 준수한 성적을 낸다. 모델카드에는 v1.0에서 v1.1로 넘어가며 도메인별 conformal calibration, horizon-conditional CQR 등 여러 차례의 사후보정(post-hoc calibration) 튜닝 이력이 상세히 기록되어 있다.",
+   "arch_type": "Transformer FM",
+   "org": "TurkForecast (Mert Karatay, 개인 프로젝트)",
+   "strengths": [
+    "Chronos-2 베이스에 LoRA 경량 파인튜닝을 적용한 실용적 접근",
+    "GIFT-Eval 상위 1/3권(rank ~34-35/97)의 준수한 성적",
+    "학습 코드와 가중치 모두 공개(Apache-2.0, HF+GitHub 확인됨)"
+   ],
+   "weaknesses": [
+    "동료 검토 논문 없이 개인이 공개한 HF 모델카드가 유일한 문서",
+    "v1.0→v1.1 사이 반복적인 post-hoc quantile calibration 튜닝 이력이 있어 벤치마크 특이적 과적합 가능성 존재",
+    "터키어 수직 도메인에 특화되어 범용성은 제한적"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "stridechronos2": {
   "name": "STRIDE (+Chronos-2)",
@@ -14,8 +34,27 @@
    "gift": "STRIDE (+Chronos-2)"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "LLM reasoning trace를 Chronos-2의 continuous embedding에 주입하는 STRIDE 프레임워크 적용 버전",
+   "summary": "STRIDE(Strategic Time-series Reasoning Injected via Distilled Embeddings)는 LLM의 reasoning trace를 경량 LLM에 distill한 뒤, mean-pooled hidden state를 cross-modal prior로 시계열 foundation model의 continuous embedding space에 주입하는 프레임워크다. 이산 토큰 대신 연속 임베딩을 사용해 discretization으로 인한 정보 손실을 피하고, cross-entropy loss와 quantile loss를 함께 최적화한다. STRIDE(+Chronos-2)는 Google Cloud AI Research가 이 프레임워크를 Chronos-2 위에 plug-and-play로 적용한 버전으로, GIFT-Eval에서 CRPS 0.4544, MASE 0.6745, 97개 config 평균 rank_crps 24.9위로 상위권 성능을 보인다.",
+   "arch_type": "Transformer FM",
+   "org": "Google Cloud AI Research",
+   "strengths": [
+    "기존 TSFM(Chronos-2)에 plug-and-play로 결합 가능한 범용 reasoning 주입 구조",
+    "GIFT-Eval 상위권 성능(rank_crps 24.9위)",
+    "이산 토큰화 없이 연속 임베딩으로 수치 정보 손실을 최소화"
+   ],
+   "weaknesses": [
+    "기반 모델(Chronos-2) 외에 별도의 reasoning LLM distillation 파이프라인이 추가로 필요해 구조가 복잡함",
+    "STRIDE(+Timer-S1) 대비 MASE는 근소하게 열세(0.6745 vs 0.6744)"
+   ],
+   "paper_title": "Reasoning-Aware Training for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2605.08625",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "raesconductanceensemble": {
   "name": "RAES-Conductance-Ensemble",
@@ -23,8 +62,26 @@
    "gift": "RAES-Conductance-Ensemble"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "6개 오픈소스 TSFM 중 config별 최적 모델을 고르는 selection router, RAES-Conductance-Ensemble(leakage 포함)",
+   "summary": "Chronos-2, Toto-2.0-313m, TiRex-1.1-gifteval, Moirai-2.0-R-small, Chronos-Bolt-base, Moirai-1.1-R-large 등 6개 공개 오픈소스 TSFM을 zero-shot 컴포넌트 풀로 두고, config별 MASE/wSQL/ND/MAE를 정규화 가중합한 점수가 가장 낮은 component를 선택하는 router. 이 변형은 router의 선택 기준(priors)을 다른 저자들이 공개한 리더보드 test-set CSV에서 가져와 구성하기 때문에 test 정보가 간접적으로 라우팅 결정에 유입되는 test data leakage가 존재(leak=Yes). GitHub README에 라우팅 규칙과 재현 스크립트가 공개되어 있으며, GIFT-Eval 리더보드 CRPS/MASE rank는 각각 20.6/20.5로 상위권.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "California State University Northridge",
+   "strengths": [
+    "6개 컴포넌트 풀 중 config별 최적 모델을 선택하는 router 설계로 상위권 성능 달성",
+    "라우팅 규칙과 재현 코드를 GitHub에 공개"
+   ],
+   "weaknesses": [
+    "라우팅 priors가 타 저자 리더보드의 test-set CSV에서 유래해 test data leakage 존재",
+    "6개 component 모두를 서빙해야 해 단일 모델 대비 추론 비용/복잡도 증가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "caststar": {
   "name": "CastStar",
@@ -32,8 +89,27 @@
    "gift": "CastStar"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "6개 forecasting foundation model을 XGBoost로 결합하는 agentic ensemble 시스템",
+   "summary": "CastStar는 Chronos-2, TimesFM-2.5, FlowState, TiRex, PatchTST-FM, Toto-2.0-2.5B 등 6개 공개 forecasting FM의 예측을 pool로 두고 XGBoost 기반 calibration/routing으로 최종 예측을 만드는 agentic ensemble이다. 개별 모델을 재학습하지 않고 frozen inference 결과만 결합하는 model-agnostic 구조이며, GIFT-Eval 97개 config 전체에서 재현 가능한 notebook과 frozen artifact를 공개한다. GIFT-Eval에서 rank_crps 16.8, rank_mase 16.3으로 이번 배치 내 최상위권 성적을 기록했다. USTC-AGI가 개발했고 testdata_leakage는 No로 명시되어 있다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "USTC-AGI",
+   "strengths": [
+    "6개 SOTA FM을 결합해 GIFT-Eval 최상위권 정확도 달성",
+    "frozen artifact와 재현 notebook을 공개해 투명성 확보"
+   ],
+   "weaknesses": [
+    "6개 backbone FM을 모두 구동해야 해 inference 비용/latency 부담이 큼",
+    "개별 신규 아키텍처 기여 없이 기존 FM 조합에 의존",
+    "정식 논문/ablation 없이 모델 카드 수준의 설명만 존재"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tempoensemble": {
   "name": "tempo_ensemble",
@@ -41,8 +117,26 @@
    "gift": "tempo_ensemble"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "GPT2 backbone에 시계열 분해·prompt를 결합한 TEMPO 모델의 앙상블 제출 버전",
+   "summary": "TEMPO(tempo_ensemble)는 Melady Lab @ USC가 ICLR 2024에 발표한 prompt 기반 생성형 사전학습 Transformer로, GPT2를 backbone으로 시계열을 season/trend 등으로 분해(STL)한 뒤 학습 가능한 prompt와 결합해 예측을 수행하는 초기 오픈소스 시계열 foundation model 중 하나다. GIFT-Eval 제출 버전은 여러 TEMPO 체크포인트(v1/v2)를 결합한 앙상블로 추정되며, CRPS 0.4616(97개 config 평균 rank_crps 39.5위)로 준수하나 MASE는 0.7878(rank_mase 47.6위)로 상대적으로 낮다. 이 리더보드에서는 test data leakage(leak=Yes)로 플래그되어 있다.",
+   "arch_type": "Transformer FM",
+   "org": "Melady Lab @ USC",
+   "strengths": [
+    "시계열 분해(STL)와 prompt tuning을 결합해 GPT2 기반 LLM을 시계열 예측에 재활용하는 초기 접근",
+    "CRPS 기준으로는 이 배치 내 중상위권(rank_crps 39.5위)"
+   ],
+   "weaknesses": [
+    "test data leakage로 플래그됨(leak=Yes) — 보고된 성능이 과대평가됐을 가능성",
+    "MASE 기준 순위(rank_mase 47.6위)는 CRPS 대비 상대적으로 낮음"
+   ],
+   "paper_title": "TEMPO: Prompt-based Generative Pre-trained Transformer for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2310.04948",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "metisautocast": {
   "name": "metis-autocast",
@@ -50,8 +144,26 @@
    "gift": "metis-autocast"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "디지털 트윈과 예측 foundation model을 결합해 운영 의사결정을 자동화하는 Metis의 agentic 예측 시스템",
+   "summary": "metis-autocast는 Metis사가 제공하는 'Agent' 제품의 예측 구성요소로, 회사 웹사이트 설명에 따르면 운영 대상(자산·제약·물리 조건)의 디지털 트윈 모델을 구성하고 foundation model 기반 예측을 여러 관점에서 생성한 뒤, 과거 이력 데이터로 검증하고 최종 의사결정을 시스템에 전달하는 agentic 파이프라인이다. 학술 논문은 공개되어 있지 않고 상업 제품 웹페이지 수준의 설명만 확인된다. GIFT-Eval에서 rank_crps 18.3, rank_mase 21.4로 이 배치 내 모든 모델 중 가장 우수한 순위를 기록한다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Metis",
+   "strengths": [
+    "이 배치 내 GIFT-Eval 순위 최상위 수준(rank_mase 21.4)",
+    "디지털 트윈+예측+이력 검증을 결합한 agentic 파이프라인 구조"
+   ],
+   "weaknesses": [
+    "학술 논문이 공개되어 있지 않아 내부 foundation model의 구체적 아키텍처를 검증할 수 없음",
+    "상업 제품이라 코드나 가중치 재현이 불가능"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "cobraagent": {
   "name": "Cobra-Agent",
@@ -59,8 +171,27 @@
    "gift": "Cobra-Agent"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "4개 FM 예측을 model-conditional reliability 추정으로 동적 결합하는 agentic ensemble",
+   "summary": "Cobra-Agent는 Chronos-2, TimesFM-2.5, Toto-2.0-2.5B-FT, TiRex-1.1 네 개 pretrained forecasting FM의 출력을 후보로 두고, 입력 시계열·데이터셋 설정·forecast 패턴으로부터 각 후보의 신뢰도를 model-conditional하게 추정해 앙상블 가중치를 동적으로 구성하는 agentic 시스템이다. Toto-FnF의 feature 설계에서 착안한 시계열 fingerprint 신호를 확장해 사용하며, validation 데이터만으로 라우팅/가중치를 결정하고 test label은 학습·튜닝에 전혀 사용하지 않았다고 명시한다. GIFT-Eval에서 rank_crps 17.2, rank_mase 17.7로 이번 배치 내 최상위권 성적을 기록했다. Dalpha AI의 내부 연구 시스템이며 상세 기술 리포트는 추후 공개 예정이다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Dalpha AI",
+   "strengths": [
+    "4개 FM을 동적 가중치로 결합해 GIFT-Eval 최상위권 정확도 달성",
+    "validation-only 라우팅 설계로 test leakage 위험을 명시적으로 통제"
+   ],
+   "weaknesses": [
+    "4개 backbone FM을 모두 구동해야 해 inference 비용 부담",
+    "정식 기술 리포트/논문 미공개로 재현·검증이 제한적",
+    "공개 코드 저장소가 없음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto20fnf": {
   "name": "Toto-2.0-FnF",
@@ -68,8 +199,25 @@
    "gift": "Toto-2.0-FnF"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog이 10개 TSFM을 XGBoost로 게이팅하는 FFORMA 스타일 메타 앙상블, GIFT-Eval 벤치마킹 아티팩트",
+   "summary": "Toto-2.0-FnF(Family and Friends)는 Toto 2.0 체크포인트 5종과 Chronos-2·TimesFM-2.5·FlowState·TiRex·PatchTST-FM 등 외부 모델 5종을 합쳐 총 10개 foundation model 풀에 대해 (frequency, term)별 XGBoost 게이트를 학습시킨 FFORMA 스타일 메타러너다. 모델카드에 '벤치마킹 아티팩트이지 범용 모델이 아니다'라고 명시되어 있으며, GIFT-Eval 전체 리더보드(foundation+finetuned+ensemble+agentic)에서 모든 metric 기준 1위를 기록했다고 밝힌다. GIFT-Eval에서 crps 0.4634/mase 0.6762(평균순위 19.08/19.38)로 이 배치 내 최상위권이다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Datadog",
+   "strengths": [
+    "GIFT-Eval 전체 리더보드에서 metric별 1위 달성(모델카드 자체 명시)",
+    "10개 TSFM의 예측을 tsfeatures 기반 XGBoost 게이팅으로 결합, 라벨 미사용 설계로 leakage 없이 재현 가능"
+   ],
+   "weaknesses": [
+    "약 4.8GB 사전계산 예측 번들에 의존하는 벤치마킹 아티팩트로, 새 시계열에 대해 10개 base 모델을 모두 실행해야 해 실사용 배포에는 부적합(모델카드 경고 명시)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto2025bft": {
   "name": "Toto-2.0-2.5B-FT",
@@ -77,8 +225,25 @@
    "gift": "Toto-2.0-2.5B-FT"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog Toto-2.0-2.5B의 fine-tuned 버전, 이 배치 GIFT-Eval 상위권",
+   "summary": "Toto-2.0-2.5B-FT는 최대 규모 pretrained 체크포인트(Toto-2.0-2.5B)를 추가로 fine-tuning한 버전으로, GIFT-Eval에서 crps 0.4634/mase 0.6791(평균순위 20.86/21.99)을 기록해 동일 계열 pretrained 버전보다 순위가 크게 상승했다. fev-bench 수치는 제공되지 않았다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "fine-tuning으로 pretrained 2.5B 대비 GIFT-Eval 평균순위 약 10위 개선",
+    "이 배치의 Toto 2.0 계열 중 최상위 순위"
+   ],
+   "weaknesses": [
+    "fine-tuning 대상 데이터 구성이 문서에 상세히 공개되지 않아 재현성 확인이 어려움"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "stridetimers1": {
   "name": "STRIDE (+Timer-S1)",
@@ -86,8 +251,26 @@
    "gift": "STRIDE (+Timer-S1)"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "LLM reasoning trace를 Timer-S1(MoE) embedding에 주입하는 STRIDE 프레임워크 적용 버전",
+   "summary": "동일한 STRIDE(Strategic Time-series Reasoning Injected via Distilled Embeddings) 프레임워크를 decoder-only MoE 구조의 Timer-S1 위에 적용한 버전이다. 경량 LLM으로 distill한 reasoning trace를 cross-modal prior로 Timer-S1의 continuous embedding space에 주입해 cross-entropy loss와 quantile loss로 공동 최적화한다. GIFT-Eval에서 CRPS 0.4635, MASE 0.6744로 STRIDE(+Chronos-2)와 거의 동등한 최상위권 성능을 보이며, 97개 config 평균 rank_mase는 31.1위다.",
+   "arch_type": "MoE FM",
+   "org": "Google Cloud AI Research",
+   "strengths": [
+    "MoE 기반 대형 foundation model(Timer-S1)에 reasoning 주입으로 추가 성능 확보",
+    "GIFT-Eval 최상위권 MASE(0.6744)"
+   ],
+   "weaknesses": [
+    "기반 모델 대비 reasoning distillation 파이프라인 추가로 구조가 복잡함",
+    "rank_crps가 29.1위로 CRPS 기준으로는 STRIDE(+Chronos-2) 대비 근소 열세"
+   ],
+   "paper_title": "Reasoning-Aware Training for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2605.08625",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "taichutimeseriesagent": {
   "name": "Taichu-TimeSeries-Agent",
@@ -95,8 +278,25 @@
    "gift": "Taichu-TimeSeries-Agent"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "GIFT-Eval에 제출된 agentic 시계열 예측 모델 — 공개된 모델·코드 정보 없음",
+   "summary": "Taichu-TimeSeries-Agent는 GIFT-Eval 리더보드에 'zidongtaichu'라는 조직명으로 등록된 agentic 방식 제출물이나, 모델 링크와 코드 링크가 모두 비어 있고 arXiv 등에서도 이 모델명을 특정할 수 있는 공개 논문을 찾지 못했다. GIFT-Eval에서 CRPS 0.4635, MASE 0.6694, 97개 config 평균 rank_crps 22.2위, rank_mase 20.9위로 이 배치 내에서 가장 우수한 순위를 기록했음에도 아키텍처나 학습 방법에 대한 공개 정보가 없어 검증이 불가능하다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "zidongtaichu",
+   "strengths": [
+    "GIFT-Eval 97개 config 평균 rank_crps 22.2위, rank_mase 20.9위로 이 배치 내 최상위권 성능"
+   ],
+   "weaknesses": [
+    "모델 카드·논문·코드가 전혀 공개되어 있지 않아 아키텍처와 학습 방법을 검증할 수 없음",
+    "높은 리더보드 순위의 재현성·신뢰성을 제3자가 확인할 방법이 없음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "raesconductanceensemblev": {
   "name": "RAES-Conductance-Ensemble-V",
@@ -104,8 +304,25 @@
    "gift": "RAES-Conductance-Ensemble-V"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "동일 router 방식을 validation-priors만으로 구성해 leakage를 제거한 변형, RAES-Conductance-Ensemble-V",
+   "summary": "RAES-Conductance-Ensemble과 동일한 selection router 구조이나, priors를 타 저자의 리더보드 test-set 대신 공식 validation_dataset split에서 직접 계산해 test 정보 유입을 차단한 leakage-free 버전(leak=No). Chronos-Bolt-base를 제외한 5개 컴포넌트(Chronos-2, Toto-2.0-313m, TiRex-1.1-gifteval, Moirai-2.0-R-small, Moirai-1.1-R-large) 풀을 사용. GitHub README에 leakage 버전과의 관계 및 재현 스크립트가 명시되어 있으며, GIFT-Eval 리더보드 CRPS/MASE rank는 각각 23.9/23.6으로 leakage 버전(20.6/20.5)과 큰 차이 없는 상위권 성능을 유지.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "SETI",
+   "strengths": [
+    "validation split만으로 priors를 구성해 test data leakage 없이 상위권 성능 달성",
+    "leakage 버전 대비 성능 저하가 크지 않아 라우팅 설계의 견고성을 보여줌"
+   ],
+   "weaknesses": [
+    "5개 component 모두를 서빙해야 해 단일 모델 대비 추론 비용/복잡도 증가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "prism": {
   "name": "Prism",
@@ -113,8 +330,26 @@
    "gift": "Prism"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "여러 pretrained FM의 quantile 출력을 quantile별로 블렌딩하는 leakage-free 앙상블, Prism",
+   "summary": "Prism은 새 모델을 학습하는 대신 여러 pretrained time-series foundation model의 quantile 출력을 결합하는 확률적 예측 앙상블. Held-out validation window에서만 블렌딩 가중치를 학습해 test 데이터에 닿지 않는 leakage-free 설계를 표방하며, quantile 레벨별로 서로 다른 블렌딩을 학습해 중앙값에 강한 모델과 tail에 강한 모델의 상호보완을 노림. Birla AI Labs(Aditya Birla Group)의 Frontier Research and DeepTech Team이 개발, GIFT-Eval 리더보드 CRPS/MASE rank는 각각 19.1/19.4로 상위권에 위치. 상세 방법론을 담은 공개 리포트는 추후 공개 예정으로 아직 미공개.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Birla AI Labs",
+   "strengths": [
+    "quantile별 블렌딩으로 median/tail 모두에 강한 모델의 장점 결합",
+    "held-out validation 기반 설계로 leakage 우려 적음",
+    "GIFT-Eval 리더보드 상위권 성능"
+   ],
+   "weaknesses": [
+    "상세 방법론 논문이 아직 공개되지 않아 재현 검증 어려움"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "deosalphatimegptpredictor2025": {
   "name": "DeOSAlphaTimeGPTPredictor-2025",
@@ -122,8 +357,27 @@
    "gift": "DeOSAlphaTimeGPTPredictor-2025"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "금융 데이터 1조 개 포인트로 학습한 neurosymbolic 제어 기반 multivariate probabilistic FM 앙상블",
+   "summary": "DeOSAlphaTimeGPTPredictor-2025는 vencortex가 만든 investment-decision용 forecasting 모델로, 여러 foundation model 패러다임을 앙상블하고 대상 시계열의 개념적·구조적 제약을 추론하는 neurosymbolic controller를 결합한 구조다. 금융 시계열 데이터 약 1조 개 관측치로 학습되었고 inference 시 in-context learning으로 추가 성능을 끌어올린다고 소개된다. GIFT-Eval에서 rank_crps 21.4, rank_mase 22.9로 이번 배치 내 상위권 성적을 기록했다. Hugging Face에 모델이 등록되어 있으나 접근이 gated(수동 승인)로 제한되어 있고, 정식 학술 논문은 없다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "vencortex",
+   "strengths": [
+    "GIFT-Eval 상위권 정확도(rank_crps 21.4)",
+    "대규모 금융 데이터 기반 학습과 neurosymbolic 제약 추론 결합"
+   ],
+   "weaknesses": [
+    "모델이 gated(수동 승인)로 제한되어 있어 외부에서 자유롭게 검증·재현 불가능",
+    "정식 학술 논문 없이 회사 소개/모델 카드 수준의 설명만 존재",
+    "금융 도메인 데이터로만 학습되어 타 도메인 일반화는 검증되지 않음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tirex2pretrained": {
   "name": "TiRex-2-Pretrained",
@@ -131,8 +385,26 @@
    "gift": "TiRex-2-Pretrained"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "NXAI TiRex 2세대의 pretrained(fine-tune 없는 사전학습 단독) 체크포인트",
+   "summary": "TiRex-2-Pretrained는 NXAI의 xLSTM 기반 TiRex 계보 2세대 모델 중 순수 pretrained 버전이다. HF 저장소가 gated 상태라 상세 모델카드는 직접 확인하지 못했으나 GIFT-Eval 노트북(tirex-2.ipynb)이 공개되어 있다. GIFT-Eval에서 crps 0.4669/mase 0.6777(평균순위 28.01/29.61)로 1세대 TiRex 대비 크게 개선된 정확도를 보인다. leak=No로 표시되어 GIFT-Eval 테스트셋과의 오염은 없는 것으로 보고된다.",
+   "arch_type": "RNN",
+   "org": "NXAI",
+   "strengths": [
+    "1세대 TiRex 대비 GIFT-Eval crps/mase 평균순위 대폭 개선(rank ~29위권)",
+    "leak=No로 test data 오염 없이 확보한 성능"
+   ],
+   "weaknesses": [
+    "HF 모델 저장소가 gated 상태라 아키텍처 세부사항(파라미터 수, 레이어 구성 등)을 직접 검증하지 못함",
+    "TiRex-2 전용 별도 논문을 확인하지 못함"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tsorchestra": {
   "name": "TSOrchestra",
@@ -140,8 +412,26 @@
    "gift": "TSOrchestra"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "USC Melady Lab의 여러 시계열 foundation model을 결합한 zero-shot 앙상블 프레임워크",
+   "summary": "TSOrchestra는 여러 시계열 foundation model(TSFM)의 강점을 결합해 SOTA급 zero-shot 예측을 목표로 하는 앙상블 프레임워크로, GitHub 저장소에는 'Ongoing Project'로 표시되어 있다. 관련 논문 'Conversational Time Series Foundation Models: Towards Explainable and Effective Forecasting'에서 설명가능성(explainability)을 강조하는 conversational 접근을 제안한다. GIFT-Eval에서 crps 0.468/mase 0.6768(평균순위 20.74/22.06)로 이 배치 내 상위권 성능을 보인다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Melady Lab @ USC",
+   "strengths": [
+    "여러 TSFM을 결합해 단일 모델 대비 상위권 정확도(GIFT-Eval 평균순위 ~20위권)",
+    "conversational/explainable 예측을 지향하는 논문 기반 프레임워크"
+   ],
+   "weaknesses": [
+    "GitHub 저장소 자체가 'Ongoing Project'로 표시되어 문서·코드가 완성 단계는 아님",
+    "구성 모델 다수를 모두 구동해야 하는 앙상블 구조상 추론 비용이 개별 모델 합산 수준으로 큼"
+   ],
+   "paper_title": "Conversational Time Series Foundation Models: Towards Explainable and Effective Forecasting",
+   "paper_url": "https://arxiv.org/abs/2512.16022",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "timerouter": {
   "name": "TimeRouter",
@@ -149,8 +439,26 @@
    "gift": "TimeRouter"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "XGBoost 라우터로 4개 frozen 시계열 foundation model 중 최적 예측을 선택하는 앙상블 시스템",
+   "summary": "TimeRouter는 UConn DSIS 연구실과 Morgan Stanley가 공동 개발한 GIFT-Eval 제출물로, Chronos-2, FlowState, PatchTST-FM, Sundial 4개의 frozen TSFM 풀에 대해 margin/diversity gate와 CV-inverse-weighted fallback을 결합한 XGBoost 기반 라우터가 입력별로 어느 모델(들)을 신뢰할지 결정한다. 305차원 feature를 사용하는 5-seed XGBoost one-vs-all 앙상블(seed 42~46, 트리 400개·깊이 8) 구조로 공개되어 있다. GIFT-Eval 전체 97-config 기준 MASE 0.6746, CRPS 0.4696, 97개 config 평균 rank_crps 27.1위로 상위권 성능을 기록했다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "UConn & Morgan Stanley",
+   "strengths": [
+    "4개의 이미 검증된 frozen TSFM을 결합해 개별 모델의 약점을 상호 보완",
+    "XGBoost 라우터 가중치·gate 임계값(tau_m, tau_d)까지 구체적으로 공개되어 재현 가능성이 높음"
+   ],
+   "weaknesses": [
+    "라우팅 대상 4개 TSFM 각각의 추론을 모두 수행해야 해 단일 모델 대비 연산 비용이 높음",
+    "라우터 성능이 pool에 포함된 4개 기반 모델의 품질 범위 안에서만 결정됨"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "moiraiagentleaking": {
   "name": "MoiraiAgent-leaking",
@@ -158,8 +466,25 @@
    "gift": "MoiraiAgent-leaking"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "MoiraiAgent의 test data leakage 포함 평가 변형 — LLM 기반 expert-selection 프레임워크",
+   "summary": "MoiraiAgent와 동일한 LLM 기반 expert-selection 구조(Chronos-v2/TimesFM-2.5/TiRex 후보 풀, 3B selector)이나, 이 제출은 test data leakage가 있는 버전(leak=Yes)으로 표기됨. 리더보드 CRPS/MASE rank는 각각 27.6/24.3으로 leakage 없는 버전(28.7/26.4)보다 근소하게 개선된 수치를 기록. 두 버전 간 성능 차이가 크지 않다는 점은 leakage의 영향이 제한적임을 시사하나, 공정 비교를 위해서는 leakage-free 버전 참조가 바람직.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Salesforce AI Research",
+   "strengths": [
+    "LLM 기반 문맥 인지 selection으로 개별 expert 대비 개선"
+   ],
+   "weaknesses": [
+    "test data leakage가 존재하는 제출로 리더보드 수치를 액면 그대로 신뢰 불가",
+    "정식 논문 부재, 블로그 공개에 그침"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "credence": {
   "name": "Credence",
@@ -167,8 +492,26 @@
    "gift": "Credence"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "MCP 기반 agentic workflow를 네이티브 지원하는 zero-shot domain-adaptive TSFM 제품",
+   "summary": "Credence는 ContinualIST가 만든 시계열 foundation model 제품으로, 대규모 cross-domain 데이터로 학습되어 zero-shot·domain-adaptive 예측을 API/SDK 형태로 제공하고 MCP 기반 agentic workflow를 네이티브로 지원한다고 소개된다. 모델 자체는 SaaS 앱(app.credence.continualist.ai) 형태로만 제공되며 weight는 공개되어 있지 않다. GIFT-Eval에서 rank_crps 23.9, rank_mase 26.5로 이번 배치 내 상위권 성적을 기록했다. GIFT-Eval 공식 재현 notebook은 공개되어 있으나 모델 아키텍처 세부사항을 다루는 정식 논문은 없다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "ContinualIST",
+   "strengths": [
+    "GIFT-Eval 상위권 정확도(rank_crps 23.9)",
+    "MCP 기반 agentic 연동을 제품 차원에서 네이티브 지원"
+   ],
+   "weaknesses": [
+    "모델 weight/아키텍처 비공개, SaaS 앱으로만 제공되어 독립적 재현 불가능",
+    "정식 학술 논문 없이 제품 소개 수준의 설명만 존재"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tsorchestratest": {
   "name": "TSOrchestra-test",
@@ -176,8 +519,26 @@
    "gift": "TSOrchestra-test"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "TSOrchestra와 동일 랩(USC Melady)의 테스트성 제출, 실제 링크는 GPT2 기반 TEMPO 모델을 가리킴",
+   "summary": "이 항목은 이름이 'TSOrchestra-test'이지만 model_link가 TSOrchestra 앙상블이 아닌 같은 연구 그룹(DC-research/Melady Lab)의 이전 모델 TEMPO(HF: Melady/TEMPO)를 가리키고 있어, TSOrchestra 파이프라인 검증용 테스트 제출이거나 메타데이터 불일치로 보인다. TEMPO는 GPT2 백본에 prompt 기반 시계열 표현을 결합한 초기 공개 TSFM 중 하나로 ICLR 2024에 게재됐다. GIFT-Eval에서 crps 0.474/mase 0.6981(평균순위 26.24/35.44)를 기록했으나 leak=Yes로 표시되어 있다.",
+   "arch_type": "Transformer FM",
+   "org": "Melady Lab @ USC",
+   "strengths": [
+    "연결된 기반 모델(TEMPO)은 ICLR 2024에 공개 게재된 초기 TSFM 중 하나",
+    "GIFT-Eval crps 평균순위(26.24)는 이 배치 내 중상위권"
+   ],
+   "weaknesses": [
+    "leak=Yes로 표시되어 fine-tuning 데이터가 GIFT-Eval 테스트셋과 겹치는 test data leakage 존재",
+    "제출명(TSOrchestra-test)과 실제 연결 모델(TEMPO)이 불일치해 메타데이터 신뢰도가 낮고 code_link도 비어 있음"
+   ],
+   "paper_title": "TEMPO: Prompt-based Generative Pre-trained Transformer for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2310.04948",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "moiraiagent": {
   "name": "MoiraiAgent",
@@ -185,8 +546,26 @@
    "gift": "MoiraiAgent"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "GIFT-Eval 상위 3개 FM(Chronos-v2, TimesFM-2.5, TiRex) 중 최적 예측을 선택하는 LLM 기반 expert-selection 프레임워크",
+   "summary": "MoiraiAgent는 자체 forecasting model이 아니라, 3B 파라미터 LLM selector가 과거 값·시간 특징·후보 모델 예측·짧은 lookback window의 cross-validation 오차를 입력받아 태스크마다 최적 expert를 고르는 agentic 프레임워크. Expert pool은 GIFT-Eval 상위권인 Chronos-v2, TimesFM-2.5, TiRex로 구성되며 200만 개 학습 예제로 selector를 학습. Salesforce 블로그에 따르면 GIFT-Eval MASE 0.679로 개별 expert(Chronos-v2 0.698, TimesFM-2.5 0.705, TiRex 0.716, Moirai2 0.728)를 모두 상회한다고 보고. 리더보드 데이터 기준 CRPS/MASE rank는 각각 28.7/26.4로 상위권.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Salesforce AI Research",
+   "strengths": [
+    "개별 SOTA FM보다 우수한 조합 성능(자체 보고 MASE 0.679)",
+    "LLM 기반 문맥 인지 selection으로 확장 가능한 구조"
+   ],
+   "weaknesses": [
+    "자체 forecasting 능력이 없고 전적으로 후보 expert pool의 품질에 의존",
+    "정식 학술 논문 없이 블로그로만 공개"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto2025b": {
   "name": "Toto-2.0-2.5B",
@@ -195,8 +574,24 @@
    "fev": "Toto-2.0-2.5B"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog Toto 2.0 계열의 2.5B 최대 규모 체크포인트",
+   "summary": "Toto-2.0-2.5B는 Toto 2.0 패밀리 중 최대 규모(2.5B) 체크포인트로 GIFT-Eval에서 crps 0.4759/mase 0.6956(평균순위 29.75/30.22)을 기록해 pretrained 단독 체크포인트 중 최상위권이다. fev-bench에서는 win_rate 0.797·median inference time 24.59초로 정확도는 높지만 추론 비용도 패밀리 내에서 가장 크다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "Toto 2.0 pretrained 체크포인트 중 GIFT-Eval 최상위권 정확도"
+   ],
+   "weaknesses": [
+    "median inference time 24.59초로 패밀리 내 가장 느린 축에 속함"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "samay": {
   "name": "Samay",
@@ -204,8 +599,24 @@
    "gift": "Samay"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "GIFT-Eval 제출 모델 Samay — Kairosity 소속으로 표기되나 모델 자체에 대한 공개 문서 없음",
+   "summary": "Samay는 model_link/code_link가 모두 비어 있고, arXiv·웹 검색에서도 이 모델명 자체를 다룬 논문이나 기술 문서를 찾을 수 없음. 소속 조직으로 표기된 Kairosity는 'temporal world model' 기반 예측을 표방하는 스타트업이나, 회사 공개 자료에도 'Samay'라는 명칭의 구체적 모델 설명은 없음. GIFT-Eval 리더보드 수치만 확인 가능하며 CRPS/MASE rank는 각각 26.2/29.1로 상위권에 해당하나, 아키텍처·학습 데이터 등은 검증 불가.",
+   "arch_type": "Unknown",
+   "org": "Kairosity",
+   "strengths": [
+    "GIFT-Eval 리더보드 CRPS/MASE 모두 상위권 수치"
+   ],
+   "weaknesses": [
+    "모델 자체를 설명하는 공개 논문/모델카드/코드가 전무해 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "charm": {
   "name": "CHARM",
@@ -213,8 +624,27 @@
    "gift": "CHARM"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "RoPE attention 기반 63M 파라미터 zero-shot quantile forecasting foundation model",
+   "summary": "CHARM은 C3 AI가 개발한 zero-shot probabilistic time-series foundation model로, TCN-pool patch projection과 RoPE attention을 사용하는 Transformer encoder(hidden size 384, 최대 context 8192)에 99-quantile decoder를 결합한 구조다. GIFT-Eval 97개 config 전체에 대해 zero-shot으로 평가되었으며 testdata_leakage는 No로 명시된다. rank_crps 24.7, rank_mase 55.3으로 CRPS 기준으로는 상위권이지만 MASE(점 예측) 기준으로는 중위권에 그쳐 확률적 보정과 점 예측 정확도 간 격차가 있다. 모델 weight와 inference 코드는 비공개(closed-source)이며 모델 카드만 공개되어 있다.",
+   "arch_type": "Transformer FM",
+   "org": "C3 AI",
+   "strengths": [
+    "CRPS(확률적 예측) 기준 GIFT-Eval 상위권(rank 24.7)",
+    "최대 context length 8192로 긴 이력 활용 가능"
+   ],
+   "weaknesses": [
+    "MASE(점 예측) 기준 순위는 CRPS 대비 크게 낮음(rank 55.3)",
+    "weight/코드 비공개로 외부 검증·재현 불가능",
+    "정식 학술 논문 없이 모델 카드 수준 설명만 존재"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tirex2zeroshot": {
   "name": "TiRex-2-Zeroshot",
@@ -222,8 +652,26 @@
    "gift": "TiRex-2-Zeroshot"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "NXAI TiRex 2세대의 zero-shot 평가 체크포인트",
+   "summary": "TiRex-2-Zeroshot은 TiRex-2 계보를 zero-shot 설정으로 평가한 버전이다. GIFT-Eval에서 crps 0.4781/mase 0.6973(평균순위 31.22/35.82)으로 동일 계보의 pretrained 버전(rank 28.01/29.61)보다는 다소 낮지만 1세대 TiRex보다 우수하다. leak=No로 보고되며, HF 저장소는 gated 상태라 세부 모델카드는 직접 확인하지 못했다.",
+   "arch_type": "RNN",
+   "org": "NXAI",
+   "strengths": [
+    "1세대 TiRex 대비 개선된 GIFT-Eval 정확도(rank ~31~36위권)",
+    "zero-shot 설정에서도 leak 없이 검증된 성능"
+   ],
+   "weaknesses": [
+    "같은 계보의 pretrained 버전보다 GIFT-Eval 순위가 소폭 낮음",
+    "HF 저장소 gated로 아키텍처 세부사항 직접 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto201b": {
   "name": "Toto-2.0-1B",
@@ -232,8 +680,25 @@
    "fev": "Toto-2.0-1B"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog Toto 2.0 계열의 1B 파라미터 체크포인트, u-μP 스케일링 transformer FM",
+   "summary": "Toto-2.0-1B는 Datadog이 4m~2.5B까지 단일 학습 레시피로 만든 Toto 2.0 패밀리의 1B 규모 체크포인트다. Proportional Factorized Space-Time Attention과 Student-T mixture 출력을 쓰는 decoder-only transformer로, observability 메트릭(약 1조 포인트)·공개 데이터셋·synthetic data를 합쳐 학습했다. GIFT-Eval에서 crps 0.4784/mase 0.6992(평균순위 30.78/31.73), fev-bench에서 win_rate 0.7911·median inference time 11.9초를 기록해 BOOM·GIFT-Eval·TIME 세 벤치마크에서 상위권 성능을 보인다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "BOOM/GIFT-Eval/TIME 세 벤치마크 모두 상위권",
+    "fev-bench win_rate 0.7911로 높은 승률"
+   ],
+   "weaknesses": [
+    "Toto-2.0-2.5B-FT 등 상위 체크포인트 대비 GIFT-Eval crps/mase 순위는 한 단계 낮음"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "synapse": {
   "name": "Synapse",
@@ -241,8 +706,26 @@
    "gift": "Synapse"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "여러 시계열 foundation model의 예측을 맥락에 따라 동적으로 중재(arbitrate)하는 앙상블 프레임워크",
+   "summary": "Synapse는 Google Cloud AI Research가 제안한 arbitration 프레임워크로, 서로 다른 학습 데이터·프로토콜을 가진 여러 pretrained TSFM이 상황에 따라 상이한 전문성을 보인다는 관찰에서 출발한다. TSFM pool에 대해 상대적·맥락 의존적 성능을 기반으로 예측 가중치를 동적으로 할당하고, 구성 모델들의 output quantile에서 적응적으로 샘플링해 최종 예측 분포를 구성한다. GIFT-Eval에서 CRPS 0.4794, MASE 0.6986, 97개 config 평균 rank_crps 27.4위로 상위권 성능을 보였다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Google Cloud AI Research",
+   "strengths": [
+    "개별 TSFM보다 다양한 forecasting 세팅에서 일관되게 우수한 성능",
+    "모델 선택·horizon 분포 등 맥락에 따라 가중치를 동적으로 조정하는 arbitration 구조"
+   ],
+   "weaknesses": [
+    "pool에 포함된 개별 TSFM들의 추론을 모두 수행해야 해 단일 모델 대비 연산 비용이 높음",
+    "arbitration 대상 TSFM pool의 품질에 최종 성능이 종속적임"
+   ],
+   "paper_title": "Synapse: Adaptive Arbitration of Complementary Expertise in Time Series Foundational Models",
+   "paper_url": "https://arxiv.org/abs/2511.05460",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto20313m": {
   "name": "Toto-2.0-313m",
@@ -251,8 +734,25 @@
    "fev": "Toto-2.0-313m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog Toto 2.0 계열의 313M 체크포인트, 공식 문서상 GIFT-Eval top-3 foundation model로 소개",
+   "summary": "Toto-2.0-313m은 Toto 2.0 패밀리의 중간 규모(313M) 체크포인트로 공식 문서에서 GIFT-Eval top-3 foundation model로 언급된다. GIFT-Eval에서 crps 0.4814/mase 0.7028(평균순위 31.26/32.85), fev-bench에서 win_rate 0.7737·median inference time 4.51초를 기록했다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "313M 규모 대비 우수한 GIFT-Eval/fev-bench 성능(문서상 top-3 foundation model 언급)",
+    "median inference time 4.51초로 1B/2.5B 대비 훨씬 빠름"
+   ],
+   "weaknesses": [
+    "동일 계열 fine-tuned(2.5B-FT) 버전 대비 GIFT-Eval 평균순위는 낮음"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "zoocasttop1": {
   "name": "ZooCast-Top1",
@@ -260,8 +760,27 @@
    "gift": "ZooCast-Top1"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "여러 시계열 foundation model 중 태스크별 최적 모델을 자동 선택하는 model-zoo 라우팅 프레임워크(Top-1 선택 버전)",
+   "summary": "ZooCast(Nanjing University LAMDA Group, Shi·Huang·Han·Zhan·Ye, arXiv 2509.04208 'One-Embedding-Fits-All: Efficient Zero-Shot Time Series Forecasting by a Model Zoo')는 Chronos, Moirai, TimesFM, VisionTS, Kairos, TiRex, FlowState, Toto 등 기존 공개 TSFM들을 'model zoo'로 구성하고, 태스크와 모델을 하나의 공유 임베딩 공간에 매핑하는 'One-Embedding-Fits-All' 방식으로 태스크별 최적 모델을 O(1) 복잡도로 선택하는 프레임워크다. advantage subset characterization, model-task co-embedding, error-correcting consensus ranking의 세 요소로 구성되며 새 모델이 추가돼도 재학습 없이 지속적으로 성능을 개선할 수 있다. ZooCast-Top1은 태스크별로 zoo 내 1위 모델만 선택하는 설정이며, GIFT-Eval에서 CRPS 0.482/MASE 0.692, 평균 순위 약 30-31위로 이 배치 내 가장 우수한 성적을 기록했다. 리더보드에 공개된 제출 코드는 ICML 이중은닉 심사 관례에 따라 anonymous.4open.science에 익명으로 게시되어 있다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "Nanjing University (LAMDA Group)",
+   "strengths": [
+    "개별 TSFM 및 단순 앙상블 대비 우수한 GIFT-Eval 성적(이 배치 내 최상위, rank ~30-31/97)",
+    "새 모델 추가 시 재학습 없이 지속적 성능 개선이 가능한 구조",
+    "태스크-모델 공유 임베딩으로 O(1) 복잡도의 효율적 모델 선택"
+   ],
+   "weaknesses": [
+    "자체 예측 능력이 아닌 기존 공개 모델들의 성능에 의존하는 선택/라우팅 방식이라 zoo 구성 모델들의 한계를 그대로 물려받음",
+    "리더보드 제출 코드는 ICML 이중은닉 심사를 이유로 익명 상태(anonymous.4open.science)로 게시되어 있음"
+   ],
+   "paper_title": "One-Embedding-Fits-All: Efficient Zero-Shot Time Series Forecasting by a Model Zoo",
+   "paper_url": "https://arxiv.org/abs/2509.04208",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "patchtstfmr1": {
   "name": "PatchTST-FM-r1",
@@ -269,8 +788,25 @@
    "gift": "PatchTST-FM-r1"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "PatchTST 구조를 zero-shot FM으로 확장한 PatchTST-FM-r1, reconstruction-loss 기반 학습",
+   "summary": "PatchTST-FM-r1은 PatchTST의 아키텍처적 단순함을 유지하면서 input/output projection에 residual block, 확률적 예측을 위한 quantile head(99 quantile), contiguous/random patch masking을 결합한 학습 전략을 도입. Forecast를 masked forecast 구간의 reconstruction으로 취급해 imputation과 forecasting을 동시에 지원하며, context 길이 최대 8192, d_model 1024, patch length 16의 약 260M 파라미터 모델. GiftEvalPretrain, KernelSynth 기반 합성 데이터, GIFT-Eval과 겹치지 않는 TSMixup 데이터로 학습, GIFT-Eval 리더보드 CRPS/MASE rank는 각각 33.3/36.6으로 상위권.",
+   "arch_type": "Transformer FM",
+   "org": "IBM TSFM & Rensselaer Polytechnic Institute",
+   "strengths": [
+    "reconstruction-loss 기반으로 forecasting과 imputation을 동시 지원",
+    "GIFT-Eval 상위권 성능"
+   ],
+   "weaknesses": [
+    "8192 길이 context와 260M 파라미터로 추론 비용이 경량 모델 대비 높음"
+   ],
+   "paper_title": "Revisiting the Generic Transformer: Deconstructing a Strong Baseline for Time Series Foundation Models",
+   "paper_url": "https://arxiv.org/abs/2602.06909",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "timecopilot": {
   "name": "TimeCopilot",
@@ -278,8 +814,27 @@
    "gift": "TimeCopilot"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "LLM이 여러 시계열 foundation model을 자동 선택·설명하는 오픈소스 agentic forecasting 도구",
+   "summary": "TimeCopilot은 LLM reasoning과 Chronos, Moirai, TimesFM, TimeGPT 등 30개 이상의 시계열 foundation model을 결합한 오픈소스 forecasting agent다. 자연어 질의만으로 데이터 특성 해석, 모델 자동 선택, 기술적 의사결정에 대한 자연어 설명까지 end-to-end로 수행하며, NeurIPS 2025 BERTs 워크숍에 관련 논문이 채택되었다. GIFT-Eval 공식 사이트에서는 한때 AWS·Salesforce·Google·IBM 등을 제치고 종합 1위를 기록했다고 소개하며, 이 배치의 스냅샷에서는 CRPS 0.4831, MASE 0.7051, 97개 config 평균 rank_crps 29.0위로 상위권 성능을 보였다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "TimeCopilot",
+   "strengths": [
+    "자연어 명령만으로 모델 선택부터 예측·설명까지 자동화하는 agentic 워크플로우",
+    "30개 이상의 기존 TSFM을 통합 지원해 범용성이 높음",
+    "GIFT-Eval에서 상위권 성능(rank_crps 29.0위)"
+   ],
+   "weaknesses": [
+    "내부적으로 LLM 호출과 다수 TSFM 추론을 함께 수행해 단일 모델 대비 연산·비용 부담이 큼",
+    "LLM의 모델 선택·설명 품질이 사용된 LLM 자체 성능에 의존적임"
+   ],
+   "paper_title": "TimeCopilot",
+   "paper_url": "https://arxiv.org/abs/2509.00616",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "timers1": {
   "name": "Timer-s1",
@@ -287,8 +842,27 @@
    "gift": "Timer-s1"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "83억 파라미터 규모의 decoder-only MoE 구조 대형 시계열 foundation model",
+   "summary": "Timer-S1은 Tsinghua University와 ByteDance가 공동 개발한 시계열 foundation model로, 총 8.3B 파라미터(토큰당 활성 파라미터 0.75B)의 decoder-only MoE Transformer이며 context length는 최대 11,520까지 지원한다. TimeSTP(serial-token prediction)라는 학습 목표로 rolling 방식 추론 없이도 순차적 특성을 반영한 다단계 예측을 수행하며, 1조 개 시점 규모의 TimeBench 코퍼스로 사전학습 후 continued pre-training과 long-context extension으로 구성된 post-training 단계를 추가로 거쳤다. GIFT-Eval에서 CRPS 0.4853, MASE 0.6934, 97개 config 평균 rank_crps 37.6위로 상위권 성능을 기록했다.",
+   "arch_type": "MoE FM",
+   "org": "Tsinghua & ByteDance",
+   "strengths": [
+    "8.3B 파라미터 규모의 대형 MoE로 다양한 도메인에 걸친 zero-shot 일반화 성능 확보",
+    "최대 11,520 context length로 장기 이력 활용 가능",
+    "TimeSTP로 rolling 추론의 오차 누적 문제를 완화"
+   ],
+   "weaknesses": [
+    "대형 모델(0.75B 활성 파라미터)로 최소 40GB급 GPU 메모리가 권장돼 경량 환경에서 사용이 제한적",
+    "동일 배치 내 STRIDE(+Timer-S1) 조합 버전 대비 단독 성능은 다소 낮음(rank_crps 37.6위 vs 29.1위)"
+   ],
+   "paper_title": "Timer-S1: A Billion-Scale Time Series Foundation Model with Serial Scaling",
+   "paper_url": "https://arxiv.org/abs/2603.04791",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronos2": {
   "name": "chronos-2",
@@ -297,8 +871,26 @@
    "fev": "Chronos-2"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "univariate/multivariate/covariate 예측을 하나의 아키텍처로 지원하는 120M encoder-only FM",
+   "summary": "Chronos-2는 AWS가 개발한 120M 파라미터 encoder-only time series foundation model로, T5 encoder에서 착안한 구조에 group attention을 더해 관련 시계열 간 in-context learning과 covariate-informed 예측을 하나의 모델로 지원한다. 실데이터와 대규모 synthetic 데이터를 함께 학습했으며 GIFT-Eval, fev-bench, Chronos Benchmark II에서 공개 모델 중 SOTA zero-shot 정확도를 주장한다. GIFT-Eval에서는 rank_crps 33.8, rank_mase 33.4로 상위-중위권이지만, fev-bench에서는 win_rate 0.834, skill_score 0.473으로 이번 배치 내 최고 수준의 성능을 보인다. A10G GPU 기준 초당 300개 이상 시계열을 처리할 만큼 추론 효율도 높다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS",
+   "strengths": [
+    "fev-bench에서 이번 배치 내 최고 skill_score/win_rate",
+    "univariate/multivariate/covariate를 단일 아키텍처로 지원",
+    "GPU/CPU 모두에서 빠른 inference(초당 300+ 시계열)"
+   ],
+   "weaknesses": [
+    "GIFT-Eval rank는 agentic ensemble 계열(CastStar 등) 대비 낮음(rank_crps 33.8)"
+   ],
+   "paper_title": "Chronos-2: From Univariate to Universal Forecasting",
+   "paper_url": "https://arxiv.org/abs/2510.15821",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "falconx": {
   "name": "Falcon-X",
@@ -306,8 +898,25 @@
    "gift": "Falcon-X"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "이종 다변량 시계열을 공유 latent prototype 공간에서 모델링하는 Ant Group의 멀티변량 시계열 foundation model",
+   "summary": "Falcon-X는 서로 다른 물리적 의미를 가진 변량들을 raw 공간이 아닌 통합 latent prototype 공간으로 매핑해 정렬하는 Unified Prototype Diff-Attention과 Latent Entity Attention을 결합한 멀티변량 시계열 foundation model이다. Variate Reassembly Router로 변량별 궤적을 복원해 zero-shot 구조 전이를 지원한다. 2026년 arXiv 논문으로 공개되었으며 GIFT-Eval과 fev-bench 양쪽에서 평가되었다. GIFT-Eval에서 rank_mase 41.0, rank_crps 40.4로 중상위권에 위치한다.",
+   "arch_type": "Transformer FM",
+   "org": "ant-intl",
+   "strengths": [
+    "이종 다변량 간 상호작용을 명시적으로 모델링하는 구조적 novelty",
+    "GIFT-Eval·fev-bench 양쪽에서 공개 검증"
+   ],
+   "weaknesses": [
+    "동일 계열 univariate 모델 Falcon-2.0보다 CRPS/MASE 순위가 근소하게 낮음"
+   ],
+   "paper_title": "Falcon-X: A Time Series Foundation Model for Heterogeneous Multivariate Modeling",
+   "paper_url": "https://arxiv.org/abs/2605.27286",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "falcon20": {
   "name": "Falcon-2.0",
@@ -315,8 +924,26 @@
    "gift": "Falcon-2.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "ORBIT 학습 기법 기반의 univariate encoder-only 시계열 foundation model (Ant Group Falcon-TST 패밀리)",
+   "summary": "Falcon-2.0은 Ant Group(ant-intl)이 공개한 Falcon-TST 패밀리의 최신 univariate encoder-only 시계열 foundation model로, ORBIT(Omni-Range Bootstrap Incremental Training)이라는 학습 전략을 사용한다. quantile 기반 확률적 예측을 지원하며 GitHub를 통해 pip 패키지(falcon-tst)로 배포된다. Falcon-TST 패밀리는 계층적 MoE 구조의 이전 버전 Falcon-1.0, 멀티변량 확장판 Falcon-X와 함께 공개되어 있다. GIFT-Eval에서 rank_mase 28.3, rank_crps 37.0으로 상위권에 속한다.",
+   "arch_type": "Transformer FM",
+   "org": "ant-intl",
+   "strengths": [
+    "GIFT-Eval 상위권 정확도(rank_mase 28.3)",
+    "공개 pip 패키지 및 재현 코드 제공"
+   ],
+   "weaknesses": [
+    "Falcon-2.0 단독에 대한 별도 학술 논문은 공개되지 않음(설명은 README 수준)",
+    "univariate 전용이라 변량 간 상호작용은 Falcon-X가 담당"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "flowstater11": {
   "name": "FlowState-r1.1",
@@ -324,8 +951,25 @@
    "gift": "FlowState-r1.1"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "합성 사전학습 데이터(CauKer)와 개선된 S5 레이어를 더한 FlowState의 업데이트 버전(r1.1)",
+   "summary": "FlowState-r1.1은 v1.0 대비 CauKer 기반 합성 사전학습 데이터 추가, 사전학습 context 길이 확장(2048→4096), 출력 게이팅이 추가된 개선 S5 레이어, 더 큰 MLP 등을 반영한 업데이트 버전으로 총 파라미터는 약 18.5M이다. 로드 시 revision='r1.1'을 지정해야 하며, IBM Research는 GIFT-Eval 리더보드 기준 공개 코드/가중치가 있는 zero-shot 모델 중 최고 성능이라 주장한다. GIFT-Eval에서 rank_mase 38.0, rank_crps 36.4로 v1.0보다 개선된 상위권 순위를 기록한다.",
+   "arch_type": "SSM",
+   "org": "IBM TSFM",
+   "strengths": [
+    "v1.0 대비 CRPS/MASE 모두 개선(rank_mase 48.4→38.0)",
+    "20M 이하 파라미터로 GIFT-Eval 공개 zero-shot 모델 중 상위권"
+   ],
+   "weaknesses": [
+    "연구용 라이선스 버전이라 상업적 사용은 Granite-FlowState-r1.1로 별도 전환이 필요"
+   ],
+   "paper_title": "FlowState: Sampling-Rate-Equivariant Time-Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2508.05287",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "granitepatchtstfmr1": {
   "name": "Granite-PatchTST-FM-r1",
@@ -333,8 +977,25 @@
    "gift": "Granite-PatchTST-FM-r1"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "원조 PatchTST 구조를 8192 길이 context와 quantile head로 확장한 IBM의 대규모 재학습 시계열 foundation model",
+   "summary": "Granite-PatchTST-FM-r1은 patch 기반 transformer 구조인 PatchTST를 골격으로 하되, 입출력에 residual block과 99-quantile head를 추가하고 contiguous/random masking을 활용한 reconstruction-loss 학습 전략으로 재설계한 foundation model이다. context 길이를 8192까지 늘리고 d_model 1024, 약 260M 파라미터 규모로 다양한 데이터에 대규모 사전학습되었으며, 추론 시 예측 구간을 masked reconstruction으로 다뤄 결측치 보간과 예측을 동시에 수행한다. IBM TSFM팀과 Rensselaer Polytechnic Institute가 공동 개발했고, GIFT-Eval에서 rank_mase 42.0, rank_crps 36.6으로 상위권에 속한다.",
+   "arch_type": "Transformer FM",
+   "org": "IBM TSFM & Rensselaer Polytechnic Institute",
+   "strengths": [
+    "8192 길이의 긴 context와 quantile head로 확률적 예측 지원",
+    "GIFT-Eval 공개 zero-shot 모델 중 상위권"
+   ],
+   "weaknesses": [
+    "약 260M 파라미터로 FlowState류 경량 모델 대비 연산 비용이 훨씬 큼"
+   ],
+   "paper_title": "Revisiting the Generic Transformer: Deconstructing a Strong Baseline for Time Series Foundation Models",
+   "paper_url": "https://arxiv.org/abs/2602.06909",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "xiheultra": {
   "name": "Xihe-ultra",
@@ -342,8 +1003,25 @@
    "gift": "Xihe-ultra"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Ant Group Xihe 패밀리의 초대형(ultra) 변형으로 추정되는 zero-shot 모델",
+   "summary": "Xihe-ultra는 이름과 조직('Ant')으로 미루어 위 Xihe 패밀리(HIBA 아키텍처)의 한 변형으로 추정되나, 공개된 Xihe 논문(arXiv 2510.21795)에는 tiny/lite/base/flash/max까지만 명시되어 있어 'ultra'가 해당 논문 이후 추가된 상위 체크포인트인지는 확인되지 않는다. GIFT-Eval에서 CRPS 0.488/MASE 0.7011, 평균 순위 약 42-44위로 Xihe-max와 거의 동일한 중위권 성적을 보인다.",
+   "arch_type": "Transformer FM",
+   "org": "Ant Group",
+   "strengths": [
+    "Xihe-max와 유사하거나 근소하게 나은 중위권 성적(rank ~42-44/97)"
+   ],
+   "weaknesses": [
+    "Xihe 공식 논문에 명시된 변형 목록(tiny/lite/base/flash/max)에 'ultra'가 포함되어 있지 않아 정확한 스펙(파라미터 수 등) 확인 불가",
+    "모델 링크가 채워지지 않은 placeholder 상태라 개별 모델카드로 직접 검증 불가"
+   ],
+   "paper_title": "Xihe: Scalable Zero-Shot Time Series Learner Via Hierarchical Interleaved Block Attention",
+   "paper_url": "https://arxiv.org/abs/2510.21795",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tirex": {
   "name": "TiRex",
@@ -352,8 +1030,25 @@
    "fev": "TiRex"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "NXAI의 xLSTM 기반 35M 경량 zero-shot 시계열 foundation model",
+   "summary": "TiRex는 xLSTM 아키텍처를 기반으로 한 35M 파라미터 규모의 zero-shot 시계열 예측 모델로, in-context learning을 강화해 장단기 horizon 모두에서 강한 성능을 보인다. 학습 데이터는 chronos_datasets에서 GIFT-Eval과 겹치는 부분을 제거하고 GiftEvalPretrain 서브셋과 synthetic data를 더해 구성했다(leak=No). GIFT-Eval에서 crps 0.4885/mase 0.7158(평균순위 34.89/41.45)를 기록했고, fev-bench에서는 win_rate 0.7311·median inference time 1.5초로 매우 빠르다.",
+   "arch_type": "RNN",
+   "org": "NXAI",
+   "strengths": [
+    "35M의 작은 파라미터로 수백M~B 규모 transformer FM과 경쟁하는 정확도",
+    "median inference time 1.5초로 이 배치 내 최상위권 속도"
+   ],
+   "weaknesses": [
+    "mase 기준 평균순위(41.45)가 crps 기준(34.89)보다 낮아 포인트 예측 정확도는 상대적으로 약함"
+   ],
+   "paper_title": "TiRex: Zero-Shot Forecasting Across Long and Short Horizons with Enhanced In-Context Learning",
+   "paper_url": "https://arxiv.org/abs/2505.23719",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "graniteflowstater11": {
   "name": "Granite-FlowState-r1.1",
@@ -361,8 +1056,25 @@
    "gift": "Granite-FlowState-r1.1"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "FlowState-r1.1을 상업적 사용이 가능하도록 재공개한 IBM Granite 버전",
+   "summary": "Granite-FlowState-r1.1은 연구용 FlowState-r1.1과 동일한 SSM+Functional Basis Decoder 아키텍처를 상업/엔터프라이즈 라이선스로 재공개한 IBM Granite 시계열 모델이다. IBM 발표에 따르면 연구판과 MASE 성능은 동일하고 CRPS(확률적 예측 품질)는 연구판이 근소하게 더 우수하다. GIFT-Eval에서 rank_mase 37.2, rank_crps 37.6으로 연구용 버전과 거의 동일한 상위권 순위를 보인다.",
+   "arch_type": "SSM",
+   "org": "IBM TSFM",
+   "strengths": [
+    "상업적 사용이 가능한 라이선스로 연구판과 동등한 성능 제공",
+    "GIFT-Eval 공개 zero-shot 모델 중 상위권(rank_mase 37.2)"
+   ],
+   "weaknesses": [
+    "연구판 대비 CRPS(확률적 예측 품질)가 근소하게 낮음"
+   ],
+   "paper_title": "FlowState: Sampling-Rate-Equivariant Time-Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2508.05287",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "timesfm25": {
   "name": "TimesFM-2.5",
@@ -371,8 +1083,26 @@
    "fev": "TimesFM-2.5"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Google Research TimesFM 3세대 200M 체크포인트, GIFT-Eval 오염 제거 데이터로 사전학습된 zero-shot TS FM",
+   "summary": "TimesFM-2.5-200m은 PyTorch로 재구현된 decoder-only transformer로 QKV fused 구조 최적화가 적용됐다. 사전학습 데이터는 GiftEvalPretrain(오염 제거본), Wikimedia Pageviews, Google Trends, 합성 데이터로 구성되어 GIFT-Eval 테스트셋과의 leakage가 없다(leak=No). GIFT-Eval에서 crps 0.4903/mase 0.705(평균순위 36.69/37.74)를 기록했고, fev-bench에서는 win_rate 0.7422·skill_score 0.4668로 높은 편이나 median inference time이 17.46초로 비교적 느리다.",
+   "arch_type": "Transformer FM",
+   "org": "Google Research",
+   "strengths": [
+    "오염 제거된 사전학습 데이터로 leakage 없이 확보한 상위권 정확도(GIFT-Eval crps/mase rank 30~40위권)",
+    "fev-bench win_rate 0.7422로 높은 승률"
+   ],
+   "weaknesses": [
+    "median inference time 17.46초로 동급 모델(TiRex 1.5초 등) 대비 느림",
+    "200M 규모 대비 GIFT-Eval crps 절대순위는 top10권 밖(중상위)"
+   ],
+   "paper_title": "A decoder-only foundation model for time-series forecasting",
+   "paper_url": "https://arxiv.org/abs/2310.10688",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "xihemax": {
   "name": "Xihe-max",
@@ -380,8 +1110,27 @@
    "gift": "Xihe-max"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Ant Group의 Hierarchical Interleaved Block Attention(HIBA) 기반 대형 zero-shot 시계열 foundation model",
+   "summary": "Xihe는 Ant Group(Jun Zhou 등)이 발표한 계층적 블록-어텐션 구조 HIBA(Hierarchical Interleaved Block Attention)를 사용하는 시계열 foundation model 패밀리로, 블록 내부(local)와 블록 간(global) sparse attention을 결합해 다중 스케일 시간 의존성을 포착한다. 9.5M(tiny)부터 1.5B(max) 파라미터까지 여러 크기로 스케일링되며, 논문에서는 GIFT-Eval 전 구간에서 zero-shot SOTA를 달성했다고 보고한다. 다만 이 배치에서 확인된 리더보드 스냅샷 기준 Xihe-max의 실측 성적은 CRPS 0.4905/MASE 0.7109, 평균 순위 약 44-47위로 중위권에 해당해, 논문이 주장하는 최상위권 성적과는 차이가 있다.",
+   "arch_type": "Transformer FM",
+   "org": "Ant Group",
+   "strengths": [
+    "블록 내부/블록 간 sparse attention을 결합한 HIBA 구조로 다중 스케일 시간 패턴 포착",
+    "9.5M~1.5B까지 파라미터 스케일링을 지원하는 모델 패밀리",
+    "GIFT-Eval과 겹치지 않는 사전학습 데이터로 완전한 zero-shot 평가"
+   ],
+   "weaknesses": [
+    "논문이 주장하는 SOTA 성적과 달리 이 리더보드 스냅샷에서는 중위권(rank ~44-47/97)에 그침",
+    "대형(max, 1.5B) 변형임에도 경량 모델 대비 뚜렷한 우위를 보이지 못함"
+   ],
+   "paper_title": "Xihe: Scalable Zero-Shot Time Series Learner Via Hierarchical Interleaved Block Attention",
+   "paper_url": "https://arxiv.org/abs/2510.21795",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "longseerv10": {
   "name": "LongSeer-v1.0",
@@ -389,8 +1138,25 @@
    "gift": "LongSeer-v1.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "LongShine AI Research가 제출한 zero-shot 모델 — 공개 정보 없음",
+   "summary": "LongSeer-v1.0은 GIFT-Eval 리더보드에 LongShine AI Research 소속 zero-shot 모델로 등록되어 있으나, 모델·코드 링크가 모두 비어 있고 관련 논문이나 회사 정보도 외부 검색에서 확인되지 않는다. float32 정밀도로 평가되었다는 설정값 외에 공개된 아키텍처 정보는 없다. GIFT-Eval에서 rank_crps 39.7, rank_mase 39.6으로 이 배치 내에서는 상위권 수치를 보이지만, 그 근거가 되는 구조나 학습 방식은 검증할 수 없다.",
+   "arch_type": "Unknown",
+   "org": "LongShine AI Research",
+   "strengths": [
+    "GIFT-Eval 수치상으로는 상위권 정확도(rank_mase 39.6)"
+   ],
+   "weaknesses": [
+    "공개된 논문·코드·모델카드가 전무해 아키텍처와 수치의 재현/검증이 불가능",
+    "제출 조직(LongShine AI Research) 자체도 외부에서 확인되지 않음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "t0alpha": {
   "name": "t0-alpha",
@@ -398,8 +1164,26 @@
    "gift": "t0-alpha"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "covariate를 원생적으로(natively) 다루는 The Forecasting Company의 첫 오픈 웨이트 확률적 예측 foundation model",
+   "summary": "t0-alpha는 The Forecasting Company가 공개한 transformer 기반 시계열 foundation model 't0'의 첫 iteration으로, 과거·미래 covariate를 원생적으로 조건으로 사용해 확률적 multi-horizon 예측을 생성한다. 과거 시점에 걸친 covariate는 target과 함께 attend되어 동시에 예측되고, 미래 시점에 알려진 covariate(캘린더 feature, 프로모션 계획 등)는 조건으로만 사용된다. 자체 플랫폼 Retrocast를 통해 다른 오픈 웨이트 모델과 예측을 비교해볼 수 있다. GIFT-Eval에서 CRPS 0.4941, MASE 0.724, 97개 config 평균 rank_crps 37.4위로 준수한 성능을 보였다.",
+   "arch_type": "Transformer FM",
+   "org": "The Forecasting Company",
+   "strengths": [
+    "과거/미래 covariate를 모두 원생적으로 처리하는 조건부 확률 예측 구조",
+    "GIFT-Eval에서 상위~중상위권 성능(rank_crps 37.4위)"
+   ],
+   "weaknesses": [
+    "HuggingFace 모델 카드가 접근 제한(gated)되어 있어 파라미터 수 등 아키텍처 세부 스펙 확인이 제한적임",
+    "공개된 arXiv 논문이 확인되지 않아 학습 데이터·방법론의 상세 검증이 어려움"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronos2synth": {
   "name": "chronos-2-synth",
@@ -407,8 +1191,25 @@
    "gift": "chronos-2-synth"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "실데이터 없이 synthetic 데이터만으로 학습한 Chronos-2 변형",
+   "summary": "chronos-2-synth는 Chronos-2와 동일한 아키텍처를 유지하되 학습 데이터를 univariate/multivariate synthetic 데이터로만 한정한 ablation성 변형 모델이다. 실세계 데이터 없이도 어느 정도 zero-shot 성능을 낼 수 있는지 검증하는 목적으로 AWS/AutoGluon 팀이 배포했다. GIFT-Eval에서 rank_crps 42.1, rank_mase 43.5로 정식 Chronos-2(rank 33.8/33.4) 대비 순위가 떨어져 실데이터 학습의 기여도를 보여준다. fev-bench 결과는 이번 배치 데이터에 포함되어 있지 않다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS",
+   "strengths": [
+    "실데이터 없이 synthetic-only 학습만으로도 준수한 zero-shot 성능 확보",
+    "synthetic 데이터의 기여도를 보여주는 통제된 비교 대상"
+   ],
+   "weaknesses": [
+    "동일 아키텍처의 정식 Chronos-2 대비 GIFT-Eval 순위 하락(rank_crps 33.8→42.1)"
+   ],
+   "paper_title": "Chronos-2: From Univariate to Universal Forecasting",
+   "paper_url": "https://arxiv.org/abs/2510.15821",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto2022m": {
   "name": "Toto-2.0-22m",
@@ -417,8 +1218,25 @@
    "fev": "Toto-2.0-22m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog Toto 2.0 계열의 22M 경량 체크포인트",
+   "summary": "Toto-2.0-22m은 Toto 2.0 패밀리 중 가벼운 축에 속하는 22M 파라미터 체크포인트로, 공식 문서상 'Toto 1.0과 동등하거나 더 나은 품질을 약 7배 적은 파라미터로' 달성하는 효율적 기본값으로 소개된다. GIFT-Eval에서 crps 0.4963/mase 0.7188(평균순위 38.08/42.70), fev-bench에서 win_rate 0.7089·median inference time 1.24초를 기록했다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "22M의 작은 크기로 Toto 1.0 대비 효율 개선(공식 문서 명시)",
+    "median inference time 1.24초로 빠른 추론"
+   ],
+   "weaknesses": [
+    "Toto 2.0 계열 내에서는 313m/1B/2.5B 체크포인트 대비 GIFT-Eval 순위가 낮음"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "visit20": {
   "name": "VISIT-2.0",
@@ -426,8 +1244,25 @@
    "gift": "VISIT-2.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "GIFT-Eval 익명 제출 모델 VISIT의 2세대 버전 — V1 대비 큰 폭 성능 개선, 공개 정보는 여전히 없음",
+   "summary": "VISIT-2.0 역시 조직·링크가 공개되지 않은 익명 제출이지만, 같은 계열로 추정되는 VISIT-1.0(CRPS 1.591/MASE 1.270) 대비 CRPS 0.500/MASE 0.714로 대폭 개선되어 GIFT-Eval 중위권(평균 순위 약 42-45위)에 안착했다. 다만 아키텍처나 학습 방식을 설명하는 논문, 모델카드, 코드가 전혀 공개되지 않아 이 개선이 어떤 방법으로 이루어졌는지는 확인할 수 없다.",
+   "arch_type": "Unknown",
+   "org": "",
+   "strengths": [
+    "V1.0 대비 CRPS·MASE 모두 대폭 개선되어 중위권(rank ~42-45/97) 도달"
+   ],
+   "weaknesses": [
+    "조직·모델링크·코드가 공개되지 않아 아키텍처/학습 방식 검증 불가",
+    "V1→V2 개선의 근거(데이터, 구조 변경 등)를 확인할 공개 자료 없음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "flowstate91m": {
   "name": "FlowState-9.1M",
@@ -435,8 +1270,26 @@
    "gift": "FlowState-9.1M"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "FlowState의 오리지널 연구용 체크포인트(v1.0), IBM Research 공개 SSM 기반 경량 시계열 foundation model",
+   "summary": "FlowState-9.1M은 SSM 인코더와 Functional Basis Decoder를 결합한 FlowState의 초기 버전(v1.0) 연구용 가중치로, 약 9.1M 파라미터의 소형 모델이다. ibm-research/flowstate 저장소에서 revision 지정 없이 로드하면 이 v1.0이 기본으로 제공된다. 상업적 사용이 아닌 연구 재현 목적으로 공개되었다. GIFT-Eval에서 rank_mase 48.4, rank_crps 42.5로 중상위권에 위치하며, 이후 나온 r1.1 버전보다는 다소 낮은 순위다.",
+   "arch_type": "SSM",
+   "org": "IBM Research",
+   "strengths": [
+    "10M 이하의 매우 작은 파라미터 수로 중상위권 정확도 달성",
+    "연구 재현을 위한 가중치 공개"
+   ],
+   "weaknesses": [
+    "연구용 라이선스라 상업적 사용에는 Granite 버전이 별도로 필요",
+    "후속 버전 r1.1 대비 CRPS/MASE 모두 소폭 열세"
+   ],
+   "paper_title": "FlowState: Sampling-Rate-Equivariant Time-Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2508.05287",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "xlstmmixer": {
   "name": "xLSTM-Mixer",
@@ -444,8 +1297,27 @@
    "gift": "xLSTM-Mixer"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "xLSTM 블록과 채널 믹싱을 결합한 다변량 시계열 예측 모델(TU Darmstadt)",
+   "summary": "xLSTM-Mixer(AIML Lab, TU Darmstadt, Kraus et al., arXiv 2410.16928)는 모든 변수에 걸쳐 공유되는 선형(linear) 기본 예측을 먼저 산출한 뒤 이를 xLSTM(확장 LSTM) 블록으로 정제하고, 시간축 관점과 변수축(joint time-variate) 관점 두 가지를 결합해 최종 예측을 만드는 구조다. 순환 신경망(RNN) 계열 모델의 시계열 예측 부활을 표방하는 연구로, 원 논문은 장기 예측 벤치마크에서 최신 SOTA 대비 우수한 성능을 보고했다. GIFT-Eval 리더보드에서는 CRPS 0.510/MASE 0.780, 평균 순위 약 47-60위로 중위권 성적을 보인다.",
+   "arch_type": "RNN",
+   "org": "AIML Lab @ TU Darmstadt",
+   "strengths": [
+    "선형 예측 + xLSTM 정제 + 시간축/변수축 결합이라는 독창적 구조",
+    "attention 없이도 장기 예측 벤치마크에서 경쟁력 있는 성능(원 논문 기준)",
+    "논문·코드 모두 공개되어 학술적 검증 가능"
+   ],
+   "weaknesses": [
+    "GIFT-Eval CRPS 순위(약 47위)에 비해 MASE 순위(약 60위)가 상대적으로 낮아 점 예측 정확도가 약한 편",
+    "대형 zero-shot foundation model과 달리 특정 도메인에 맞춘 supervised 학습이 필요"
+   ],
+   "paper_title": "xLSTM-Mixer: Multivariate Time Series Forecasting by Mixing via Scalar Memories",
+   "paper_url": "https://arxiv.org/abs/2410.16928",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "ttmr3ft": {
   "name": "TTM-R3-FT",
@@ -453,8 +1325,28 @@
    "gift": "TTM-R3-FT"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "IBM의 초경량 MoE 기반 시계열 foundation model TTM-R3을 GIFT-Eval 타겟 데이터셋에 파인튜닝한 버전",
+   "summary": "TTM(Tiny Time Mixer)은 IBM Research가 개발한 attention 없는 MLP-Mixer 계열 초경량 시계열 foundation model로, NeurIPS 2024 논문 'Tiny Time Mixers (TTMs)'에서 처음 소개됐다. R3 세대는 trend-residual 분해, 3단계 사전학습, student-teacher 학습, FFT 기반 임베딩, 서로 다른 크기(1-35M 파라미터)의 mixer expert를 라우팅하는 MoE 구조를 도입해 속도와 정확도를 함께 개선했으며, R3 고유 아키텍처를 다루는 정식 논문은 아직 공개되지 않고 모델카드로만 설명되어 있다. FT 버전은 GIFT-Eval 각 타겟 데이터셋에 추가 파인튜닝을 거친 형태로, CRPS 0.511/MASE 0.713, 97개 config 평균 순위 약 45-47위의 중위권 성적을 보인다. GPU 기준 초당 약 7,500개 샘플을 처리하는 빠른 추론 속도가 특징이다.",
+   "arch_type": "MoE FM",
+   "org": "IBM Research (IBM TSFM)",
+   "strengths": [
+    "GPU 기준 초당 ~7,500 샘플의 매우 빠른 추론 속도(SOTA 대비 15-50배)",
+    "1-35M 파라미터의 초경량 모델로 CPU 배포에도 적합",
+    "약 1K 샘플만으로도 효과적인 few-shot 적응 가능"
+   ],
+   "weaknesses": [
+    "대형 foundation model 대비 정확도는 중위권(rank ~45-47/97)에 그침",
+    "R3 세대 고유 아키텍처(MoE 라우팅, trend-residual 분해 등)를 다루는 정식 논문이 아직 미공개, 모델카드 서술에만 의존",
+    "타겟 데이터셋별 파인튜닝이 필요해 완전한 zero-shot 대비 사용 편의성 저하"
+   ],
+   "paper_title": "Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series",
+   "paper_url": "https://arxiv.org/abs/2401.03955",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "moirai2": {
   "name": "Moirai2",
@@ -462,8 +1354,25 @@
    "gift": "Moirai2"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Salesforce가 공개한 decoder-only universal time series forecasting transformer, Moirai 1.x의 quantile-loss 기반 후속작",
+   "summary": "Moirai 2.0은 distributional loss 대신 quantile loss를 채택하고 single-token 예측에서 multi-token 예측으로 전환해 효율성과 안정성을 개선한 decoder-only transformer. GIFT-Eval Pretrain/Train의 non-leaking subset과 Chronos TSMixup, KernelSynth 합성 데이터, Salesforce 내부 운영 데이터로 사전학습. 데이터 필터링으로 예측 불가능하거나 저품질인 시계열을 제거하고, 결측치 정보를 포함한 patch token embedding과 patch-level random masking으로 강건성을 강화. GIFT-Eval 리더보드에서 CRPS/MASE rank가 각각 49.4/51.9로 97개 configuration 중 중위권에 위치.",
+   "arch_type": "Transformer FM",
+   "org": "Salesforce AI Research",
+   "strengths": [
+    "quantile loss·multi-token 예측으로 v1 대비 효율성/안정성 개선",
+    "데이터 필터링과 결측치 인식 patch embedding으로 강건성 강화"
+   ],
+   "weaknesses": [
+    "GIFT-Eval 리더보드 순위는 중위권 수준으로 최상위 FM 대비 우위 불명확"
+   ],
+   "paper_title": "Moirai 2.0: When Less Is More for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2511.11698",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "totoopenbase10": {
   "name": "Toto_Open_Base_1.0",
@@ -471,8 +1380,24 @@
    "gift": "Toto_Open_Base_1.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog의 Toto 1세대(Open-Base) 공개 모델, 최초 zero-shot observability TS FM",
+   "summary": "Toto-Open-Base-1.0은 Datadog이 공개한 Toto 계보의 1세대 모델로, Proportional Factorized Space-Time Attention 기반 decoder-only transformer이며 약 2조 포인트 규모(observability 약 1조+공개데이터+synthetic)로 사전학습됐다. GIFT-Eval에서 crps 0.5173/mase 0.7501(평균순위 47.94/53.81)을 기록했으며, 이는 모델카드에 공개된 자체 보고 수치(CRPS 0.517/MASE 0.750)와 일치한다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "Toto 계보 최초 공개 zero-shot 모델로 observability 특화 대규모 사전학습(약 2조 포인트)"
+   ],
+   "weaknesses": [
+    "Toto 2.0 계열 전체 대비 GIFT-Eval 평균순위가 낮은 구세대 모델(rank ~48~54위권)"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "ttmr3pt": {
   "name": "TTM-R3-PT",
@@ -480,8 +1405,27 @@
    "gift": "TTM-R3-PT"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "IBM TTM-R3의 사전학습(zero-shot) 버전 — 타겟 데이터셋 파인튜닝 없이 바로 추론",
+   "summary": "TTM-R3-PT는 위 TTM-R3 계열 중 타겟 데이터셋에 대한 추가 파인튜닝 없이 사전학습 가중치만으로 예측하는 pretrained 버전이다. FT 버전과 동일하게 trend-residual 분해, FFT 임베딩, multi-quantile head를 갖춘 MoE 기반 mixer 구조를 사용한다. GIFT-Eval에서 CRPS 0.5195/MASE 0.724, 평균 순위 약 48-51위로 FT 버전보다 근소하게 낮은 정확도를 보이며, 이는 타겟 데이터셋 적응 없이도 합리적인 zero-shot 성능을 낼 수 있음을 보여준다.",
+   "arch_type": "MoE FM",
+   "org": "IBM Research (IBM TSFM)",
+   "strengths": [
+    "파인튜닝 없이도 중위권 zero-shot 정확도 확보",
+    "빠른 추론 속도와 CPU 친화적 경량 구조",
+    "multi-quantile head로 확률적 예측(CRPS)을 직접 지원"
+   ],
+   "weaknesses": [
+    "FT 버전 대비도 정확도가 소폭 낮음(rank ~48-51/97)",
+    "R3 세대 전용 논문 미공개로 아키텍처 디테일 검증이 모델카드 서술에 한정됨"
+   ],
+   "paper_title": "Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series",
+   "paper_url": "https://arxiv.org/abs/2401.03955",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto204m": {
   "name": "Toto-2.0-4m",
@@ -490,8 +1434,26 @@
    "fev": "Toto-2.0-4m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog Toto 2.0 계열의 4M 최소 규모 체크포인트, edge/CPU 배포용",
+   "summary": "Toto-2.0-4m은 Toto 2.0 패밀리에서 가장 작은 4M 파라미터 체크포인트로 공식 문서에서 edge·CPU 배포나 최소 지연/메모리 예산용으로 권장된다. GIFT-Eval에서 crps 0.5242/mase 0.7565(평균순위 50.94/55.49)로 패밀리 내에서는 정확도가 가장 낮지만, fev-bench median inference time이 0.87초로 이 배치 전체에서 가장 빠르다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "median inference time 0.87초로 이 배치 내 최고 속도",
+    "4M의 초경량 크기로 edge/CPU 배포에 적합(공식 권장 용도)"
+   ],
+   "weaknesses": [
+    "GIFT-Eval crps/mase 평균순위(50.94/55.49)가 Toto 2.0 패밀리 내 최하위",
+    "fev-bench win_rate(0.6)도 패밀리 내 최저"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tempopfn": {
   "name": "TempoPFN",
@@ -499,8 +1461,27 @@
    "gift": "TempoPFN"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "순수 synthetic data로만 사전학습한 Linear RNN(GatedDeltaProduct) 기반 zero-shot 시계열 foundation model",
+   "summary": "TempoPFN은 University of Freiburg(automl 그룹)가 개발한 단변량 시계열 foundation model로, 실제 데이터를 전혀 사용하지 않고 synthetic data만으로 사전학습되어 benchmark leakage 위험을 원천적으로 배제한다. patching이나 windowing 없이 GatedDeltaProduct라는 Linear RNN backbone(DeltaProduct를 확장한 state-weaving 구조)으로 end-to-end 학습·추론을 수행하며, 이를 통해 RNN의 선형 연산 효율성과 Transformer 수준의 학습 병렬화를 동시에 달성한다. GIFT-Eval에서 CRPS 0.5327, MASE 0.7875, 97개 config 평균 rank_crps 55.1위로 synthetic-only 모델 중 상위 성능을 기록했다.",
+   "arch_type": "RNN",
+   "org": "University of Freiburg",
+   "strengths": [
+    "실제 데이터 미사용으로 benchmark leakage 위험이 구조적으로 없어 완전히 재현 가능",
+    "Linear RNN 구조로 긴 시퀀스에서도 병렬 학습이 가능하며 상태 추적이 안정적",
+    "synthetic-only 모델 중 GIFT-Eval 최상위 성능이라고 자체 소개"
+   ],
+   "weaknesses": [
+    "실제 데이터 기반 대형 pretrained 모델(STRIDE, Timer-S1 등) 대비 절대 순위는 중위권(rank_crps 55.1위)",
+    "38M 파라미터로 상대적으로 소형 모델"
+   ],
+   "paper_title": "TempoPFN: Synthetic Pre-training of Linear RNNs for Zero-shot Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2510.25502",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "cleants65m": {
   "name": "CleanTS-65M",
@@ -508,8 +1489,26 @@
    "gift": "CleanTS-65M"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "구조 변경 없이 data-centric cleaning만으로 성능을 끌어올린 65M encoder-only Transformer",
+   "summary": "CleanTS-65M은 attention이나 아키텍처를 전혀 수정하지 않은 vanilla encoder-only Transformer에 data-centric 접근(엄격한 데이터 클리닝·전처리)만을 적용해 경쟁력 있는 zero-shot 성능을 내는 것을 증명하려는 baseline 모델이다. 학습 데이터는 synthetic 데이터 없이 공개된 실세계 데이터만 사용했으며, GIFT-Eval/fev-bench/LSTF test 데이터와의 contamination이 없음을 명시적으로 보증한다. GIFT-Eval에서 rank_crps 53.0, rank_mase 61.3으로 중위권 성적을 보인다. Shandong University 팀이 개발했으며, 상세 기술 리포트와 정식 논문은 아직 공개되지 않았다.",
+   "arch_type": "Transformer FM",
+   "org": "Shandong University",
+   "strengths": [
+    "구조 변경 없이 data governance만으로 경쟁력 있는 성능 입증",
+    "test contamination 방지를 명시적으로 보증"
+   ],
+   "weaknesses": [
+    "GIFT-Eval rank가 상위 ensemble/agentic 모델 대비 중위권에 그침(rank_crps 53.0)",
+    "핵심 data cleaning 방법론과 학습 세부사항을 다루는 정식 논문이 아직 미공개"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tabpfnts": {
   "name": "tabpfn_ts",
@@ -518,8 +1517,27 @@
    "fev": "TabPFN-TS"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "tabular foundation model TabPFN을 feature engineering으로 시계열 회귀 문제로 변환하는 zero-shot 예측기",
+   "summary": "TabPFN-TS(tabpfn_ts)는 PriorLabs가 공개한 방법으로, 단변량 시계열 예측을 tabular regression 문제로 재구성한다. 시계열을 테이블로 변환한 뒤 캘린더·계절성 등 feature를 추가하고, tabular foundation model인 TabPFN으로 회귀를 수행해 그 결과를 예측값으로 사용한다. 학습 과정 없이 zero-shot으로 동작하며 NeurIPS 2024 워크숍에 채택되었다. GIFT-Eval에서 CRPS 0.5441, MASE 0.7709(97개 config 평균 rank_crps 57.7위)를 기록했고, fev-bench에서는 win_rate 0.598, skill_score 0.415로 더 강한 상대적 성능을 보였다.",
+   "arch_type": "Tabular FM",
+   "org": "PriorLabs",
+   "strengths": [
+    "학습 없이 즉시 사용 가능한 zero-shot 구조",
+    "캘린더·계절성 feature 엔지니어링을 자동화해 지원",
+    "fev-bench에서 win_rate 0.598, skill_score 0.415로 이 배치 내 상위권"
+   ],
+   "weaknesses": [
+    "past dynamic covariate와 static covariate를 현재 지원하지 않아 이를 필요로 하는 태스크에서는 성능 저하 가능",
+    "GIFT-Eval 기준으로는 rank_crps 57.7위로 fev-bench 대비 상대적으로 낮은 순위"
+   ],
+   "paper_title": "From Tables to Time: Extending TabPFN-v2 to Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2501.02945",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "kairos50m": {
   "name": "Kairos_50m",
@@ -527,8 +1545,26 @@
    "gift": "Kairos_50m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Kairos 패밀리 중 가장 큰 50M 파라미터 zero-shot 시계열 foundation model",
+   "summary": "Kairos-50M은 Kairos 패밀리에서 가장 큰 버전으로, 동일한 dynamic patching tokenizer·mixture-of-size encoding·DRoPE 구조를 사용하되 파라미터를 늘려 정확도를 높였다. GIFT-Eval에서 rank_mase 50.3, rank_crps 61.2로 패밀리 내에서 가장 우수한 순위를 기록한다.",
+   "arch_type": "Transformer FM",
+   "org": "ShanghaiTech University",
+   "strengths": [
+    "Kairos 패밀리 내 최고 정확도(rank_mase 50.3)",
+    "파라미터 효율성을 강조하는 설계 철학 유지"
+   ],
+   "weaknesses": [
+    "10M/23M 버전 대비 연산 비용 증가",
+    "여전히 GIFT-Eval 상위권 모델 대비 중위권 수준"
+   ],
+   "paper_title": "Kairos: Toward Adaptive and Parameter-Efficient Time Series Foundation Models",
+   "paper_url": "https://arxiv.org/abs/2509.25826",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "yinglong300m": {
   "name": "YingLong_300m",
@@ -536,8 +1572,27 @@
    "gift": "YingLong_300m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Alibaba YingLong 패밀리의 300M 파라미터 버전",
+   "summary": "YingLong(Alibaba, Xue Wang·Tian Zhou 등, arXiv 2506.11029 'Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model')은 causal transformer(decoder-only, GPT 계열) 구조로 78B 시점(time points) 규모의 데이터로 사전학습된 생성형(generative) 시계열 foundation model이다. output scaling과 지연된 chain-of-thought 방식의 디코딩을 도입해 예측 품질을 높인 것이 핵심 기여다. 300M 파라미터 버전은 GIFT-Eval에서 CRPS 0.548/MASE 0.798, 평균 순위 약 57-64위로 패밀리 내 110M 버전과 유사한 중하위권 성적을 보이며, 50M/6M 버전보다는 우수하다.",
+   "arch_type": "Transformer FM",
+   "org": "Alibaba",
+   "strengths": [
+    "78B 시점 규모의 대규모 사전학습 데이터",
+    "패밀리 내 50M/6M 버전 대비 향상된 정확도",
+    "flash-attention 지원으로 효율적인 추론"
+   ],
+   "weaknesses": [
+    "파라미터를 3배 가까이 늘렸음에도 110M 버전 대비 개선폭이 크지 않음(rank ~57-64/97)",
+    "전용 논문의 정식 인용정보가 HF 모델카드 기준 'Coming soon'으로 표기됨"
+   ],
+   "paper_title": "Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model",
+   "paper_url": "https://arxiv.org/abs/2506.11029",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "timesfm20500m": {
   "name": "timesfm_2_0_500m",
@@ -545,8 +1600,26 @@
    "gift": "timesfm_2_0_500m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Google Research의 decoder-only transformer 기반 시계열 foundation model, TimesFM 계보의 2세대 500M 체크포인트",
+   "summary": "TimesFM-2.0-500m은 patch 단위 입력(input_patch_len 32, output_patch_len 128)을 쓰는 50-layer decoder-only transformer로, model_dims 1280·약 500M 파라미터 규모다. 최대 context 2048까지 임의 horizon의 univariate 예측을 지원하며 quantile head 10개를 추가 제공하지만 사전학습 후 calibration은 되어 있지 않다. 사전학습 데이터에 LOTSA 서브셋이 포함되어 GIFT-Eval 테스트셋과 겹치는 부분이 있어 leak=Yes로 표시된다. GIFT-Eval 97개 config 평균순위는 crps 55.79/mase 56.68로 동일 배치 내 최신 TSFM 대비 중하위권이다.",
+   "arch_type": "Transformer FM",
+   "org": "Google Research",
+   "strengths": [
+    "decoder-only transformer 기반 TS FM 계보의 초기 공개 체크포인트, 임의 horizon·최대 context 2048 지원",
+    "quantile head 10개로 확률적 예측 부가 제공"
+   ],
+   "weaknesses": [
+    "사전학습 데이터(LOTSA 서브셋)가 GIFT-Eval 테스트셋과 겹쳐 test data leakage 존재(leak=Yes)",
+    "TimesFM-2.5 대비 GIFT-Eval crps/mase 순위가 낮음(중하위권)"
+   ],
+   "paper_title": "A decoder-only foundation model for time-series forecasting",
+   "paper_url": "https://arxiv.org/abs/2310.10688",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "kairos10m": {
   "name": "Kairos_10m",
@@ -554,8 +1627,26 @@
    "gift": "Kairos_10m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "동적 patch tokenizer와 mixture-of-size 인코딩으로 이질적 샘플링 밀도에 적응하는 ShanghaiTech의 10M 파라미터 경량 시계열 foundation model",
+   "summary": "Kairos-10M은 고정된 patch/positional encoding 대신 관측 밀도에 따라 tokenization 단위를 동적으로 조정하는 dynamic patching tokenizer와 mixture-of-size encoding을 사용하는 시계열 foundation model이다. Dynamic Rotary Position Embedding(DRoPE)으로 인스턴스별 스펙트럼 특성에 맞춘 위치 인코딩을 적용한다. 3000억 개 이상의 시점(timepoint)을 포함한 PreSTS corpus로 사전학습되었으며 ShanghaiTech University의 MLDI Lab(mldi-lab, Kan Ren 교수)이 공개했다. GIFT-Eval에서 rank_mase 55.0, rank_crps 64.1로 중위권에 위치한다.",
+   "arch_type": "Transformer FM",
+   "org": "ShanghaiTech University",
+   "strengths": [
+    "10M의 작은 파라미터 수로 파라미터 효율적인 zero-shot 성능을 목표",
+    "이질적 샘플링 밀도에 적응하는 동적 tokenization 구조"
+   ],
+   "weaknesses": [
+    "동일 패밀리의 23M/50M 버전보다 정확도가 소폭 낮음",
+    "GIFT-Eval 전체 순위는 중위권 수준"
+   ],
+   "paper_title": "Kairos: Toward Adaptive and Parameter-Efficient Time Series Foundation Models",
+   "paper_url": "https://arxiv.org/abs/2509.25826",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "kairos23m": {
   "name": "Kairos_23m",
@@ -563,8 +1654,26 @@
    "gift": "Kairos_23m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Kairos 패밀리의 23M 파라미터 중간 규모 zero-shot 시계열 foundation model",
+   "summary": "Kairos-23M은 dynamic patching tokenizer, mixture-of-size encoding, Dynamic Rotary Position Embedding(DRoPE)을 사용하는 Kairos 패밀리의 중간 크기 버전이다. PreSTS corpus로 사전학습된 ShanghaiTech University MLDI Lab의 모델로, 10M 버전보다 파라미터가 늘어난 만큼 GIFT-Eval에서 rank_mase 54.4, rank_crps 62.9로 근소하게 더 나은 성능을 보인다.",
+   "arch_type": "Transformer FM",
+   "org": "ShanghaiTech University",
+   "strengths": [
+    "패밀리 내 파라미터 대비 성능 균형이 좋은 중간 규모 옵션",
+    "10M 버전 대비 rank_mase 소폭 개선"
+   ],
+   "weaknesses": [
+    "50M 버전 대비 여전히 정확도가 낮음",
+    "GIFT-Eval 전체 순위는 중위권"
+   ],
+   "paper_title": "Kairos: Toward Adaptive and Parameter-Efficient Time Series Foundation Models",
+   "paper_url": "https://arxiv.org/abs/2509.25826",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "yinglong110m": {
   "name": "YingLong_110m",
@@ -572,8 +1681,27 @@
    "gift": "YingLong_110m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Alibaba의 causal transformer 생성형 시계열 foundation model YingLong의 110M 파라미터 버전",
+   "summary": "YingLong(Alibaba, Xue Wang·Tian Zhou 등, arXiv 2506.11029 'Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model')은 causal transformer(decoder-only, GPT 계열) 구조로 78B 시점(time points) 규모의 데이터로 사전학습된 생성형(generative) 시계열 foundation model이다. output scaling과 지연된 chain-of-thought 방식의 디코딩을 도입해 예측 품질을 높인 것이 핵심 기여다. 110M 파라미터 버전은 GIFT-Eval에서 CRPS 0.557/MASE 0.809, 평균 순위 약 58-64위로 중하위권에 위치하며, 같은 패밀리의 300M 버전과 근소한 차이를 보이고 50M/6M 버전보다는 우수하다.",
+   "arch_type": "Transformer FM",
+   "org": "Alibaba",
+   "strengths": [
+    "78B 시점 규모의 대규모 사전학습 데이터",
+    "generate() 기반 causal transformer로 임의 길이 예측 지원",
+    "flash-attention 지원으로 효율적인 추론"
+   ],
+   "weaknesses": [
+    "GIFT-Eval 중하위권(rank ~58-64/97)으로 동급 크기 경쟁 모델 대비 밀림",
+    "전용 논문의 정식 인용정보가 HF 모델카드 기준 'Coming soon'으로 표기되어 있어 최종 확정본은 아직 아님"
+   ],
+   "paper_title": "Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model",
+   "paper_url": "https://arxiv.org/abs/2506.11029",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "patchfm": {
   "name": "PatchFM",
@@ -581,8 +1709,26 @@
    "gift": "PatchFM"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "next-patch prediction 방식의 causal transformer 기반 univariate zero-shot forecasting FM",
+   "summary": "PatchFM은 LLM의 next-token 예측 방식을 next-patch 예측으로 변환한 decoder-only causal transformer로, RoPE 기반 causal self-attention, SwiGLU FFN, sinh⁻¹ 변환을 적용한 causal RevIN, KV-cache 기반 효율적 장기 추론, 추론 시 flip-equivariance(Reverso 기법 차용) 등을 포함. GIFT-Eval Pretrain/Chronos dataset/BOOM 등으로 학습하되, 벤치마크와 겹치는 데이터를 제외한 leakage-free 버전과 GIFT-Eval 데이터를 포함한 leakage 버전(PatchFM-Leakage) 두 가지를 공개. 이 엔트리는 leakage-free 버전(leak=No)이며, GIFT-Eval 리더보드 CRPS/MASE rank는 각각 57.1/63.4.",
+   "arch_type": "Transformer FM",
+   "org": "LITIS",
+   "strengths": [
+    "경량 causal transformer로 KV-cache 기반 효율적 장기 추론 지원",
+    "leakage 유무를 구분한 두 버전을 투명하게 공개"
+   ],
+   "weaknesses": [
+    "정식 학술 논문 없이 HF 모델카드/GitHub 코드로만 공개",
+    "GIFT-Eval 리더보드 중위권 성능"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "sundialbase128m": {
   "name": "sundial_base_128m",
@@ -590,8 +1736,27 @@
    "gift": "sundial_base_128m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "1조 개 시점으로 사전학습한 128M 파라미터 생성형 decoder-only 시계열 foundation model",
+   "summary": "Sundial(Timer 3.0)은 Tsinghua University가 개발한 generative 시계열 foundation model 계열로, 패치 임베딩 기반 decoder-only Transformer가 auto-regressive 토큰 표현을 학습하고, TimeFlow loss(flow-matching 기반 파라미터화된 loss)로 조건부 확률분포에서 샘플을 생성해 point/probabilistic 예측을 모두 지원한다. 128M 파라미터 버전은 1조 개 시점 데이터로 사전학습되었으며 ICML 2025 Oral로 채택되었다. GIFT-Eval에서 CRPS 0.559, MASE 0.7502, 97개 config 평균 rank_mase 58.7위로 중위권 성능을 기록했다.",
+   "arch_type": "Transformer FM",
+   "org": "Tsinghua University",
+   "strengths": [
+    "mean/quantile뿐 아니라 샘플 기반 임의의 통계량을 생성할 수 있는 probabilistic 구조",
+    "KV cache·FlashAttention·multi-patch prediction으로 추론 속도 최적화",
+    "Sundial 계열은 공식 발표 기준 GIFT-Eval MASE 1위 달성 이력 보유(대형 체크포인트 기준)"
+   ],
+   "weaknesses": [
+    "이 배치의 128M 버전 자체는 97개 config 평균 rank_crps 63.4위로 중하위권",
+    "동일 배치의 STRIDE·Timer-S1·TabPFN 계열 대비 절대 순위가 낮음"
+   ],
+   "paper_title": "Sundial: A Family of Highly Capable Time Series Foundation Models",
+   "paper_url": "https://arxiv.org/abs/2502.00816",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "yinglong50m": {
   "name": "YingLong_50m",
@@ -599,8 +1764,26 @@
    "gift": "YingLong_50m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Alibaba YingLong 패밀리의 50M 파라미터 경량 버전",
+   "summary": "YingLong(Alibaba, Xue Wang·Tian Zhou 등, arXiv 2506.11029 'Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model')은 causal transformer(decoder-only, GPT 계열) 구조로 78B 시점(time points) 규모의 데이터로 사전학습된 생성형(generative) 시계열 foundation model이다. output scaling과 지연된 chain-of-thought 방식의 디코딩을 도입해 예측 품질을 높인 것이 핵심 기여다. 50M 파라미터 버전은 GIFT-Eval에서 CRPS 0.567/MASE 0.822, 평균 순위 약 61-68위로 110M/300M 버전보다는 낮지만 6M 버전보다는 높은 성적을 보인다.",
+   "arch_type": "Transformer FM",
+   "org": "Alibaba",
+   "strengths": [
+    "50M의 상대적으로 작은 파라미터 수로도 zero-shot 예측 가능",
+    "flash-attention 지원으로 효율적인 추론"
+   ],
+   "weaknesses": [
+    "패밀리 내 110M/300M 버전 대비 정확도 열세(rank ~61-68/97)",
+    "전용 논문의 정식 인용정보가 HF 모델카드 기준 'Coming soon'으로 표기됨"
+   ],
+   "paper_title": "Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model",
+   "paper_url": "https://arxiv.org/abs/2506.11029",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronosboltbase": {
   "name": "chronos_bolt_base",
@@ -608,8 +1791,26 @@
    "gift": "chronos_bolt_base"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Chronos-Bolt 계열의 base 크기 direct multi-step quantile forecasting 모델",
+   "summary": "chronos_bolt_base는 T5 encoder-decoder 구조를 기반으로 patch 단위 입력과 direct multi-step quantile 생성을 결합한 Chronos-Bolt 계열의 base 크기 모델이다. 원조 Chronos-T5-base 대비 크게 빠른 inference를 제공하도록 설계되었다. GIFT-Eval에서 rank_crps 56.1, rank_mase 55.0으로 원조 chronos_base(rank 74.9/72.5)보다는 순위가 개선되었지만, testdata_leakage가 Yes로 명시되어 있어 이 개선폭을 그대로 신뢰하기 어렵다. fev-bench 결과는 이번 배치 데이터에 포함되어 있지 않다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS AI Labs",
+   "strengths": [
+    "원조 Chronos-T5-base 대비 GIFT-Eval 순위 개선",
+    "patch 기반 direct multi-step 생성으로 inference 효율적"
+   ],
+   "weaknesses": [
+    "GIFT-Eval testdata leakage 명시(leak=Yes) — 보고된 정확도를 그대로 신뢰하기 어려움",
+    "Chronos-Bolt 고유의 정식 논문은 없음(모델카드/블로그 설명만 존재)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronosboltsmall": {
   "name": "chronos_bolt_small",
@@ -617,8 +1818,26 @@
    "gift": "chronos_bolt_small"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Chronos-Bolt 계열의 small 크기 direct multi-step quantile forecasting 모델",
+   "summary": "chronos_bolt_small은 Chronos-Bolt 계열 중 가장 작은 파라미터 크기의 모델로, base/large와 동일하게 patch 기반 encoder-decoder 구조로 direct multi-step quantile 예측을 수행한다. 작은 크기 덕분에 빠른 inference가 강점이지만 표현력은 base/large 대비 제한적이다. GIFT-Eval에서 rank_crps 60.1, rank_mase 61.8로 chronos_bolt_base(56.1/55.0)보다 낮은 순위를 보이고, testdata_leakage 역시 Yes로 명시되어 있다. fev-bench 결과는 이번 배치 데이터에 포함되어 있지 않다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS AI Labs",
+   "strengths": [
+    "작은 파라미터 크기로 매우 빠른 inference",
+    "리소스 제약 환경에 적합"
+   ],
+   "weaknesses": [
+    "GIFT-Eval testdata leakage 명시(leak=Yes) — 보고된 정확도를 그대로 신뢰하기 어려움",
+    "같은 계열 base/large 대비 정확도(rank) 낮음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "ttmr2finetuned": {
   "name": "TTM-R2-Finetuned",
@@ -626,8 +1845,26 @@
    "gift": "TTM-R2-Finetuned"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "IBM Research TinyTimeMixer 2세대를 GIFT-Eval task별로 fine-tuning한 버전",
+   "summary": "TTM-R2-Finetuned는 TTM-R2-Pretrained를 각 태스크에 맞게 fine-tuning한 버전으로, GIFT-Eval에서 crps 0.5828/mase 0.7561(평균순위 65.24/55.05)을 기록해 동일 계열 pretrained 버전(rank 93.61/85.38)보다 크게 개선됐다. 이는 TTM이 특정 context/forecast 길이에 특화된 focused 모델이라 zero-shot 상태로는 GIFT-Eval의 다양한 설정에 잘 맞지 않지만 fine-tuning으로 그 격차를 상당 부분 메운다는 것을 보여준다. leak=Yes로 표시된다.",
+   "arch_type": "MLP",
+   "org": "IBM Research",
+   "strengths": [
+    "fine-tuning으로 동일 계열 pretrained 버전 대비 GIFT-Eval 평균순위 약 30위 개선",
+    "MLP-Mixer 기반의 경량 구조로 fine-tuning 비용이 낮음"
+   ],
+   "weaknesses": [
+    "사전학습 단계에서 GIFT-Eval 테스트셋과 겹치는 test data leakage 존재(leak=Yes)",
+    "fine-tuning을 거쳤음에도 이 배치의 상위권 zero-shot foundation model들보다는 순위가 낮음(중하위권)"
+   ],
+   "paper_title": "Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series",
+   "paper_url": "https://arxiv.org/abs/2401.03955",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "patchtst": {
   "name": "PatchTST",
@@ -636,8 +1873,26 @@
    "fev": "PatchTST"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "channel-independent patch tokenization으로 장기 예측을 수행하는 Transformer, PatchTST",
+   "summary": "PatchTST는 시계열을 sub-series patch token으로 분할하고 channel-independent Transformer backbone으로 처리해 장기 예측 성능과 연산 효율을 개선한 아키텍처. Look-back window 정보를 patch 단위로 압축해 attention 연산량을 줄이는 것이 핵심 아이디어. GIFT-Eval/fev-bench에서는 zero-shot FM이 아닌 데이터셋별 학습 baseline으로 평가되며, GIFT-Eval CRPS/MASE rank는 각각 67.4/75.1로 중하위권, fev-bench에서는 win_rate 0.3656·skill_score 0.3009를 기록.",
+   "arch_type": "Transformer FM",
+   "org": "Princeton University",
+   "strengths": [
+    "patch tokenization으로 긴 look-back에서도 연산 효율적",
+    "channel-independent 설계로 다변량 시계열에 대한 일반화 용이"
+   ],
+   "weaknesses": [
+    "zero-shot FM이 아닌 데이터셋별 학습이 필요",
+    "최신 pretrained FM 대비 리더보드 순위 낮음"
+   ],
+   "paper_title": "A Time Series is Worth 64 Words: Long-term Forecasting with Transformers",
+   "paper_url": "https://arxiv.org/abs/2211.14730",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "flair": {
   "name": "FLAIR",
@@ -645,8 +1900,26 @@
    "gift": "FLAIR"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "학습 없이 SVD 한 번으로 주기적 시계열을 분해해 예측하는 순수 통계적 rank-1 방법",
+   "summary": "FLAIR(Factored Level And Interleaved Ridge)는 딥러닝이나 GPU 없이 NumPy/SciPy만으로 구현된 약 1000줄 규모의 통계적 예측 기법이다. 시계열을 주기(period)로 reshape한 뒤 y(phase, period) = Level(period) × Shape(phase) 형태로 분해하고, Shape는 구조적으로 고정하고 Level만 Ridge 회귀로 예측하는 rank-1 decomposition을 사용한다. 하이퍼파라미터가 없고 SVD 한 번으로 학습이 끝나는 것이 핵심 특징이며, 저자는 GIFT-Eval에서 PatchTST와 비슷한 relMASE를 기록했다고 주장한다. 이 배치 데이터 기준으로는 rank_mase 75.3, rank_crps 65.9로 중하위권이다.",
+   "arch_type": "Statistical",
+   "org": "Mellon Inc.",
+   "strengths": [
+    "GPU/딥러닝 없이 CPU만으로 학습 및 추론 가능",
+    "하이퍼파라미터 없는 단일 SVD 기반 학습으로 재현성이 높음"
+   ],
+   "weaknesses": [
+    "뚜렷한 주기 구조가 없는 시계열에는 적용이 어려움",
+    "GIFT-Eval 전체 순위는 중하위권(rank_mase 75.3)"
+   ],
+   "paper_title": "Don't Learn the Shape: Forecasting Periodic Time Series by Rank-1 Decomposition",
+   "paper_url": "https://arxiv.org/abs/2605.07222",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "migas10": {
   "name": "Migas-1.0",
@@ -654,8 +1927,26 @@
    "gift": "Migas-1.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "여러 pretrained TSFM(Chronos-2, TimesFM 2.5, Moirai2, Toto 등)의 예측을 10M 파라미터 router로 결합하는 Mixture-of-Experts 포캐스팅 모델",
+   "summary": "Synthefy가 공개한 Migas 1.0은 개별 time-series foundation model이 각자의 pretraining 데이터 편향(bias)을 갖는다는 관찰에서 출발, 이를 억제하는 대신 활용하는 lightweight 10M-parameter MoE router로 여러 오픈소스 TSFM의 출력을 조합. 블로그 발표에서는 Chronos-2, TimesFM-2.5, Moirai2, Toto, AutoARIMA를 능가한다고 주장하나, 상세 아키텍처와 학습 절차를 검증할 수 있는 정식 논문은 공개되지 않음. GIFT-Eval 리더보드 기준 CRPS rank는 74.03/97로 하위권인 반면 MASE rank는 30.31/97로 중상위권에 위치해, 확률적 보정(calibration) 대비 점추정 성능이 상대적으로 우수한 비대칭적 결과를 보임.",
+   "arch_type": "MoE FM",
+   "org": "Synthefy",
+   "strengths": [
+    "여러 pretrained FM의 상호보완적 강점을 router로 조합하는 MoE 구조",
+    "점추정 지표(MASE)에서 중상위권 성능"
+   ],
+   "weaknesses": [
+    "세부 아키텍처/학습법을 검증할 공개 논문 부재(블로그 발표만 존재)",
+    "확률적 예측 품질(CRPS) 리더보드 순위는 하위권으로 마케팅 주장과 괴리"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "moirailarge": {
   "name": "Moirai_large",
@@ -663,8 +1954,25 @@
    "gift": "Moirai_large"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Salesforce Moirai 1.1-R-large — Moirai 패밀리 중 최대 크기의 universal forecasting transformer",
+   "summary": "Moirai-1.1-R-large는 base와 동일한 masked encoder 구조(any-variate attention, multi patch size projection)를 더 큰 파라미터 규모로 학습한 버전. GIFT-Eval 리더보드에서 CRPS/MASE rank는 각각 61.9/69.0으로 base(61.9/69.7)와 거의 동일한 수준에 그쳐, 모델 크기 확대가 이 벤치마크에서 뚜렷한 성능 향상으로 이어지지 않음을 보여줌. 이후 세대인 Moirai2가 동일 계열에서 더 큰 폭의 개선을 달성.",
+   "arch_type": "Transformer FM",
+   "org": "Salesforce AI Research",
+   "strengths": [
+    "Moirai 패밀리 중 최대 파라미터로 표현력 확보"
+   ],
+   "weaknesses": [
+    "base 대비 크기만 커졌을 뿐 리더보드 성능 개선은 미미",
+    "최신 FM 세대 대비 중하위권"
+   ],
+   "paper_title": "Unified Training of Universal Time Series Forecasting Transformers",
+   "paper_url": "https://arxiv.org/abs/2402.02592",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "valbestsinglecmtt": {
   "name": "ValBestSingle-cmtt",
@@ -672,8 +1980,26 @@
    "gift": "ValBestSingle-cmtt"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "GIFT-Eval agentic 제출 모델 — chronos-2를 활용한 것으로 추정되나 자체 방법론 문서는 없음",
+   "summary": "ValBestSingle-cmtt는 'G-connor' 명의로 제출된 agentic 유형 모델로, 제공된 링크는 Amazon Chronos-2의 공식 HF 모델 페이지만을 가리키고 있어 실제 제출된 방법론에 대한 별도 설명은 확인되지 않는다. 이름('Validation Best Single')으로 미루어 여러 후보 모델/설정 중 검증셋 성능이 가장 좋은 단일 모델을 선택하는 방식으로 추정되나, 공개된 논문이나 코드가 없어 검증할 수 없다. GIFT-Eval에서 MASE 순위는 약 37위(상위권)로 양호하지만 CRPS 순위는 약 75위(하위권)로 크게 갈려, 점 예측 정확도는 준수하나 확률적 예측(불확실성) 보정은 상대적으로 약한 것으로 보인다.",
+   "arch_type": "Ensemble/Agentic",
+   "org": "G-connor",
+   "strengths": [
+    "MASE 기준 상위권(rank ~37/97)의 점 예측 정확도"
+   ],
+   "weaknesses": [
+    "CRPS 기준 하위권(rank ~75/97)으로 확률적 예측 보정이 약함",
+    "자체 방법론을 설명하는 논문·코드가 공개되지 않아 아키텍처 검증 불가",
+    "제공된 링크가 베이스 모델(chronos-2)의 일반 모델카드일 뿐 실제 제출물과의 직접적 연관성은 확인되지 않음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tft": {
   "name": "tft",
@@ -682,8 +2008,26 @@
    "fev": "TFT"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "LSTM 인코더-디코더와 multi-head attention, 변수 선택 게이팅을 결합한 해석 가능 multi-horizon 예측 모델",
+   "summary": "Temporal Fusion Transformer(TFT)는 Google이 제안한 multi-horizon 시계열 예측 아키텍처로, LSTM 기반 시퀀스 인코더-디코더로 국소적 패턴을 처리하고 multi-head self-attention으로 장기 의존성을 포착하며, variable selection network와 gating 메커니즘(GRN)으로 어떤 입력이 예측에 중요한지 해석 가능성을 제공한다. 시계열별로 개별 학습되는 구조로, 사전학습 zero-shot foundation model이 아닌 supervised 학습 모델이다. GIFT-Eval에서 CRPS 0.6047, MASE 0.9153(97개 config 평균 rank_crps 67.9위)로 중하위권이며, fev-bench에서는 win_rate 0.418, skill_score 0.322를 기록했다.",
+   "arch_type": "Transformer FM",
+   "org": "Google Research",
+   "strengths": [
+    "variable selection network로 입력 중요도를 해석할 수 있는 대표적 interpretable 아키텍처",
+    "known/observed/static 등 다양한 covariate 타입을 명시적으로 구분해 처리"
+   ],
+   "weaknesses": [
+    "zero-shot foundation model이 아니라 데이터셋별 학습이 필요해 최근 pretrained TSFM 대비 GIFT-Eval 순위가 낮음(rank_crps 67.9위)",
+    "추론 자체는 3.26초로 빠르나 별도의 학습 비용이 발생"
+   ],
+   "paper_title": "Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/1912.09363",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "yinglong6m": {
   "name": "YingLong_6m",
@@ -691,8 +2035,26 @@
    "gift": "YingLong_6m"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Alibaba YingLong 패밀리 중 가장 경량인 6M 파라미터 버전",
+   "summary": "YingLong(Alibaba, Xue Wang·Tian Zhou 등, arXiv 2506.11029 'Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model')은 causal transformer(decoder-only, GPT 계열) 구조로 78B 시점(time points) 규모의 데이터로 사전학습된 생성형(generative) 시계열 foundation model이다. output scaling과 지연된 chain-of-thought 방식의 디코딩을 도입해 예측 품질을 높인 것이 핵심 기여다. 6M 파라미터 버전은 GIFT-Eval에서 CRPS 0.609/MASE 0.880, 평균 순위 약 71-78위로 패밀리 내 가장 낮은 성적을 보이며, 정확도보다는 초경량 배포에 초점을 맞춘 버전이다.",
+   "arch_type": "Transformer FM",
+   "org": "Alibaba",
+   "strengths": [
+    "6M의 매우 작은 파라미터 수로도 zero-shot 예측 가능",
+    "초경량 엣지/저자원 환경 배포에 적합"
+   ],
+   "weaknesses": [
+    "패밀리 내 가장 작은 모델로 GIFT-Eval 순위도 가장 낮음(rank ~71-78/97)",
+    "전용 논문의 정식 인용정보가 HF 모델카드 기준 'Coming soon'으로 표기됨"
+   ],
+   "paper_title": "Output Scaling: YingLong-Delayed Chain of Thought in a Large Pretrained Time Series Forecasting Model",
+   "paper_url": "https://arxiv.org/abs/2506.11029",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "moiraibase": {
   "name": "Moirai_base",
@@ -700,8 +2062,25 @@
    "gift": "Moirai_base"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Salesforce Moirai 1.1-R-base — masked encoder 기반 universal time series forecasting transformer의 중형 버전",
+   "summary": "Moirai(1.0/1.1)는 any-variate attention과 여러 patch size에 대응하는 multi patch size projection layer를 사용하는 masked encoder 기반 universal forecasting transformer. Moirai-1.1-R은 1.0 대비 Monash repository의 저빈도(Yearly/Quarterly) 데이터에서 NMAE 기준 약 20% 개선을 보고. base는 세 크기(small/base/large) 중 중간 크기이며 GIFT-Eval에서 zero-shot으로 평가. 리더보드 CRPS/MASE rank는 각각 61.9/69.7로 중하위권에 위치, 이후 세대인 Moirai2·MoiraiAgent 대비 상대적으로 낮은 성능.",
+   "arch_type": "Transformer FM",
+   "org": "Salesforce AI Research",
+   "strengths": [
+    "any-variate attention과 multi patch size로 다양한 주기·변수 구조에 대응",
+    "1.0 대비 저빈도 데이터 성능 개선"
+   ],
+   "weaknesses": [
+    "GIFT-Eval 리더보드 상 최신 FM 대비 중하위권 성능"
+   ],
+   "paper_title": "Unified Training of Universal Time Series Forecasting Transformers",
+   "paper_url": "https://arxiv.org/abs/2402.02592",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "reverso": {
   "name": "Reverso",
@@ -709,8 +2088,26 @@
    "gift": "Reverso"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "long convolution과 linear RNN(DeltaNet)을 결합한 초경량(2.6M) zero-shot forecasting FM, Reverso",
+   "summary": "Reverso는 FlashFFTConv 기반 long convolution과 gated short convolution, DeltaNet linear RNN layer, MLP channel-mixing, attention 기반 decoder head를 교차 배치한 hybrid 아키텍처. Patch 없이 시계열을 point-wise로 처리하며 48-step 단위로 autoregressive rollout을 수행, 2.6M 파라미터만으로 100배 이상 큰 transformer FM과 유사한 성능을 표방. HF 모델카드 기준 GIFT-Eval MASE 0.711(리더보드 값 0.7112와 일치)로 Xihe-Max(1.5B)와 동일 수준, TimesFM-2.5(200M)에는 소폭 못 미침. GIFT-Eval 리더보드 CRPS rank는 76.3으로 낮지만 MASE rank는 42.4로 상대적으로 양호.",
+   "arch_type": "SSM",
+   "org": "MIT",
+   "strengths": [
+    "2.6M의 매우 작은 파라미터로 대형 transformer FM과 유사한 MASE 달성",
+    "patch 없는 point-wise 처리로 아키텍처가 단순하고 효율적"
+   ],
+   "weaknesses": [
+    "CRPS(확률적 예측 보정) 리더보드 순위는 하위권으로 점추정 대비 분포 예측 품질이 상대적으로 약함",
+    "FlashFFTConv 등 특수 CUDA 커널 의존으로 배포 환경 제약"
+   ],
+   "paper_title": "Reverso: Efficient Time Series Foundation Models for Zero-shot Forecasting",
+   "paper_url": "https://arxiv.org/abs/2602.17634",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "itransformer": {
   "name": "iTransformer",
@@ -718,8 +2115,26 @@
    "gift": "iTransformer"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "변량(variate)을 토큰으로 취급해 attention을 적용하는 inverted Transformer 구조의 지도학습 시계열 예측 모델",
+   "summary": "iTransformer는 기존 Transformer가 시간축(timestep)을 토큰으로 삼던 방식을 뒤집어, 각 변량(variate)의 전체 시계열을 하나의 토큰으로 embedding하고 변량 간 attention을 적용하는 inverted 구조를 제안한다. 변량 차원에는 attention을, 시간 차원에는 feed-forward network를 적용해 다변량 상관관계를 더 잘 포착하도록 설계되었다. ICLR 2024에 발표되었으며 zero-shot foundation model이 아니라 데이터셋별로 처음부터 학습하는 supervised 모델이다. GIFT-Eval에서 rank_mase 76.8, rank_crps 69.7로 중하위권에 위치한다.",
+   "arch_type": "Transformer FM",
+   "org": "Tsinghua University",
+   "strengths": [
+    "변량 간 상관관계를 명시적으로 모델링하는 구조적 아이디어",
+    "장기 다변량 예측 벤치마크에서 강력한 supervised baseline"
+   ],
+   "weaknesses": [
+    "zero-shot 사전학습 모델이 아니라 태스크별 재학습이 필요",
+    "GIFT-Eval 최신 foundation model 대비 순위가 중하위권"
+   ],
+   "paper_title": "iTransformer: Inverted Transformers Are Effective for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2310.06625",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "lingjiang": {
   "name": "Lingjiang",
@@ -727,8 +2142,25 @@
    "gift": "Lingjiang"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Alibaba Cloud가 제출한 zero-shot 모델 — 공개 정보 없음",
+   "summary": "Lingjiang은 GIFT-Eval 리더보드에 Alibaba Cloud 소속으로 등록된 zero-shot 시계열 모델이나, 모델 링크와 코드 링크가 모두 비어 있고 외부 검색으로도 관련 논문이나 모델카드를 찾을 수 없다. bf16 정밀도로 평가되었다는 설정 정보 외에 아키텍처나 학습 데이터에 대한 공개 정보는 없다. GIFT-Eval 97개 config에서 rank_crps 63.8, rank_mase 68.6으로 중하위권에 위치한다.",
+   "arch_type": "Unknown",
+   "org": "Alibaba Cloud",
+   "strengths": [
+    "대형 클라우드 기업(Alibaba Cloud) 소속 제출"
+   ],
+   "weaknesses": [
+    "공개된 논문·코드·모델카드가 전무해 아키텍처 검증이 불가능",
+    "GIFT-Eval 순위가 중하위권(rank_mase 68.6)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "reversosmall": {
   "name": "Reverso-Small",
@@ -736,8 +2168,25 @@
    "gift": "Reverso-Small"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Reverso 패밀리 중간 크기(550K 파라미터) 버전, Reverso-Small",
+   "summary": "Reverso-Small은 Reverso와 동일한 long convolution+DeltaNet hybrid 아키텍처를 4 layer, d_model 64, 약 550K 파라미터로 구성한 중간 크기 버전. HF 모델카드 기준 GIFT-Eval MASE 0.726(리더보드 값 0.7263과 일치)으로 Reverso(0.711)와 Reverso-Nano(0.760) 사이에 위치. GIFT-Eval 리더보드 CRPS/MASE rank는 각각 78.8/48.4.",
+   "arch_type": "SSM",
+   "org": "MIT",
+   "strengths": [
+    "550K 파라미터로 Reverso 대비 경량화하면서도 Nano보다 나은 성능 유지"
+   ],
+   "weaknesses": [
+    "최대 크기 Reverso 대비 성능 열위",
+    "CRPS 리더보드 순위 하위권"
+   ],
+   "paper_title": "Reverso: Efficient Time Series Foundation Models for Zero-shot Forecasting",
+   "paper_url": "https://arxiv.org/abs/2602.17634",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronoslarge": {
   "name": "chronos_large",
@@ -745,8 +2194,26 @@
    "gift": "chronos_large"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "T5-large 규모로 확장된 원조 Chronos language-model 스타일 forecasting 모델",
+   "summary": "chronos_large는 T5-large 규모로 확장된 원조 Chronos 모델로, 시계열을 quantization한 토큰 시퀀스에 대해 language model을 학습시켜 샘플링 기반 확률적 예측을 생성한다. 파라미터를 키운 만큼 기대되는 성능 향상에도 불구하고 GIFT-Eval에서는 rank_crps 74.3, rank_mase 72.0으로 base 모델(74.9/72.5)과 거의 차이가 없다. testdata_leakage가 Yes로 명시되어 있어 이 결과도 test 노출 영향을 배제할 수 없다. Chronos-Bolt/Chronos-2 세대에서 이 구조적 한계(느린 sampling, 제한적 성능 확장)가 개선되었다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS AI Labs",
+   "strengths": [
+    "language-model 스타일 tokenization으로 범용적 확률 예측 지원"
+   ],
+   "weaknesses": [
+    "GIFT-Eval testdata leakage 명시(leak=Yes) — 보고된 정확도를 그대로 신뢰하기 어려움",
+    "파라미터를 키웠음에도 base 대비 성능 향상 미미",
+    "sampling 기반 decoding으로 inference 느림"
+   ],
+   "paper_title": "Chronos: Learning the Language of Time Series",
+   "paper_url": "https://arxiv.org/abs/2403.07815",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "moiraismall": {
   "name": "Moirai_small",
@@ -754,8 +2221,25 @@
    "gift": "Moirai_small"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Salesforce Moirai 1.1-R-small — Moirai 패밀리 중 최소 크기 버전",
+   "summary": "Moirai_small은 동일한 masked encoder 기반 universal forecasting transformer 구조를 가장 작은 파라미터 규모로 학습한 버전(리더보드 model_link는 large 체크포인트를 가리키고 있어 실제 평가 대상 표기에 확인이 필요). GIFT-Eval 리더보드 상 CRPS/MASE rank가 각각 72.4/81.6으로 Moirai 패밀리 3개 크기 중 가장 낮은 성능을 기록, 크기와 성능이 대체로 비례하는 경향을 보임.",
+   "arch_type": "Transformer FM",
+   "org": "Salesforce AI Research",
+   "strengths": [
+    "경량 크기로 추론 비용 절감 가능성"
+   ],
+   "weaknesses": [
+    "Moirai 패밀리 내 최저 성능(CRPS/MASE 모두 최하위)",
+    "리더보드 model_link가 large 체크포인트를 가리켜 표기 신뢰성에 의문"
+   ],
+   "paper_title": "Unified Training of Universal Time Series Forecasting Transformers",
+   "paper_url": "https://arxiv.org/abs/2402.02592",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronosbase": {
   "name": "chronos_base",
@@ -763,8 +2247,27 @@
    "gift": "chronos_base"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "시계열을 토큰화해 language model처럼 학습한 T5-base 규모 pretrained forecasting 모델",
+   "summary": "Chronos(T5-base)는 시계열 값을 scaling·quantization을 통해 discrete token으로 변환한 뒤, encoder-decoder language model(T5 아키텍처)을 cross-entropy loss로 학습시켜 확률적 예측을 샘플링하는 초기 세대 Chronos 모델이다. 실데이터와 Gaussian process 기반 synthetic 데이터를 함께 학습했다. GIFT-Eval에서 testdata_leakage가 Yes로 명시되어 있어 rank_crps 74.9, rank_mase 72.5의 성적이 test 데이터 노출 영향을 받았을 가능성이 있다. 이후 세대인 Chronos-Bolt, Chronos-2가 속도와 정확도 모두 이 모델을 능가한다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS AI Labs",
+   "strengths": [
+    "language-model 스타일 tokenization으로 다양한 도메인에 범용 적용",
+    "확률적(quantile) 예측 자연 지원"
+   ],
+   "weaknesses": [
+    "GIFT-Eval testdata leakage 명시(leak=Yes) — 보고된 정확도를 있는 그대로 신뢰하기 어려움",
+    "sampling 기반 decoding으로 Chronos-Bolt/Chronos-2 대비 inference 속도 느림",
+    "GIFT-Eval rank 하위권(rank_crps 74.9)"
+   ],
+   "paper_title": "Chronos: Learning the Language of Time Series",
+   "paper_url": "https://arxiv.org/abs/2403.07815",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "reversonano": {
   "name": "Reverso-Nano",
@@ -772,8 +2275,25 @@
    "gift": "Reverso-Nano"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Reverso 패밀리 중 최소 크기(200K 파라미터) 버전, Reverso-Nano",
+   "summary": "Reverso-Nano는 Reverso와 동일한 long convolution+DeltaNet hybrid 아키텍처를 2 layer, d_model 32, 약 200K 파라미터로 축소한 버전. HF 모델카드 기준 GIFT-Eval MASE 0.760(리더보드 값 0.7598과 일치)으로 Reverso(0.711)·Reverso-Small(0.726) 대비 성능이 낮아, 파라미터 축소에 따른 성능 저하가 뚜렷. GIFT-Eval 리더보드 CRPS/MASE rank는 각각 82.5/61.3.",
+   "arch_type": "SSM",
+   "org": "MIT",
+   "strengths": [
+    "200K 파라미터의 극단적으로 작은 모델 크기로 저자원 환경 배포에 유리"
+   ],
+   "weaknesses": [
+    "Reverso 패밀리 내 최저 성능",
+    "GIFT-Eval CRPS 리더보드 하위권"
+   ],
+   "paper_title": "Reverso: Efficient Time Series Foundation Models for Zero-shot Forecasting",
+   "paper_url": "https://arxiv.org/abs/2602.17634",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronossmall": {
   "name": "Chronos_small",
@@ -781,8 +2301,26 @@
    "gift": "Chronos_small"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "T5-small 규모의 경량 원조 Chronos language-model 스타일 forecasting 모델",
+   "summary": "Chronos_small은 원조 Chronos 계열 중 가장 작은 T5-small 규모 모델로, 동일한 tokenization·language-model 학습 방식을 사용하지만 파라미터가 적어 표현력이 제한적이다. GIFT-Eval에서 rank_crps 76.0, rank_mase 75.6으로 원조 Chronos 계열(base/large) 중에서도 가장 낮은 순위를 보인다. testdata_leakage가 Yes로 명시되어 있어 이 낮은 순위조차 test 노출 영향을 배제할 수 없다. 이후 세대인 Chronos-Bolt-small, Chronos-2가 크기 대비 정확도와 속도 모두를 크게 개선했다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS AI Labs",
+   "strengths": [
+    "작은 파라미터로 상대적으로 가벼운 배포 가능"
+   ],
+   "weaknesses": [
+    "GIFT-Eval testdata leakage 명시(leak=Yes) — 보고된 정확도를 그대로 신뢰하기 어려움",
+    "원조 Chronos 계열 중 가장 낮은 정확도(rank_crps 76.0)",
+    "sampling 기반 decoding으로 inference 느림"
+   ],
+   "paper_title": "Chronos: Learning the Language of Time Series",
+   "paper_url": "https://arxiv.org/abs/2403.07815",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "timesfm": {
   "name": "timesfm",
@@ -790,8 +2328,27 @@
    "gift": "timesfm"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Google Research의 decoder-only 사전학습 시계열 foundation model 초기 오픈 체크포인트(200M)",
+   "summary": "TimesFM은 Google Research가 ICML 2024에 발표한 decoder-only 시계열 foundation model로, patch 단위 입력을 attention 기반 decoder로 처리해 임의 길이의 horizon에 대한 point forecast를 생성한다. timesfm-1.0-200m은 최초 공개 체크포인트로 context length 512까지 지원하며 실험적 quantile head를 제공하나 사전학습 이후 별도로 calibration되지 않았다고 모델 카드에 명시돼 있다. 이 리더보드에서는 test data leakage(leak=Yes)로 플래그되어 있으며, GIFT-Eval에서 CRPS 0.6804, MASE 1.0771(97개 config 평균 rank_crps 74.1위, rank_mase 79.5위)로 seasonal naive baseline보다도 낮은 성능을 기록했다.",
+   "arch_type": "Transformer FM",
+   "org": "Google Research",
+   "strengths": [
+    "다양한 frequency indicator를 지원하는 범용 zero-shot point forecasting 구조",
+    "초기 오픈 시계열 FM 중 하나로 이후 다수 후속 연구의 비교 기준이 됨"
+   ],
+   "weaknesses": [
+    "test data leakage로 플래그됨(leak=Yes) — 보고된 성능이 과대평가됐을 가능성",
+    "MASE 1.0771로 seasonal naive baseline보다도 낮은 성능이며 quantile head도 비보정 상태",
+    "초기(1.0-200m) 체크포인트로 이후 공식 후속 버전 대비 성능이 낮음"
+   ],
+   "paper_title": "A decoder-only foundation model for time-series forecasting",
+   "paper_url": "https://arxiv.org/abs/2310.10688",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "ffm": {
   "name": "FFM",
@@ -799,8 +2356,25 @@
    "gift": "FFM"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "IBM Research가 GIFT-Eval에 제출한 딥러닝 기반 모델 — 공개 논문/코드 없음(TBD)",
+   "summary": "FFM은 IBM Research 소속으로 표기된 GIFT-Eval 제출 모델이나, 모델 링크와 코드 링크가 모두 'TBD'로 남아있어 아키텍처나 학습 방식에 대한 공개 정보가 없다. mixed-precision(float16/float32)으로 평가되었다는 설정 정보만 확인된다. GIFT-Eval 97개 config에서 rank_crps 76.7, rank_mase 82.9로 하위권에 속한다.",
+   "arch_type": "Unknown",
+   "org": "IBM Research",
+   "strengths": [
+    "IBM Research 소속 제출로 조직 신뢰도는 있음"
+   ],
+   "weaknesses": [
+    "공개된 논문·모델카드·코드가 전무해 아키텍처 검증이 불가능",
+    "GIFT-Eval 순위가 하위권(rank_mase 82.9)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "superlinear": {
   "name": "Super-Linear",
@@ -808,8 +2382,26 @@
    "gift": "Super-Linear"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "FFT 기반 gating으로 주파수별 linear expert를 라우팅하는 경량 MoE 시계열 foundation model",
+   "summary": "Super-Linear는 Ben-Gurion University of the Negev(Azencot Group)가 개발한 Mixture-of-Experts 구조의 pretrained 시계열 forecasting 모델이다. FFT 기반 gating network가 입력의 주파수 영역 특성을 분석해 주파수별로 특화된 linear expert 중 top-k를 선택적으로 라우팅하며, 2026년 구현 개선으로 추론 속도가 10배 이상 빨라졌다고 밝히고 있다. GIFT-Eval에서는 CRPS 0.7426, MASE 0.8568, 97개 config 평균 rank_crps 89.1위로 하위권 성능을 보였고, 이 리더보드에서는 test data leakage(leak=Yes)로 플래그되어 있어 점수 해석에 주의가 필요하다.",
+   "arch_type": "MoE FM",
+   "org": "Ben-Gurion University of the Negev",
+   "strengths": [
+    "FFT 기반 gating으로 주파수 특성에 따라 expert를 동적으로 선택하는 경량 MoE 구조",
+    "구현 개선 이후 추론 속도가 매우 빠름(공식 발표 기준 10배 이상 가속)"
+   ],
+   "weaknesses": [
+    "test data leakage로 플래그됨(leak=Yes) — 보고된 성능이 실제 zero-shot 일반화 성능보다 과대평가됐을 가능성",
+    "97개 config 평균 rank_crps 89.1위, rank_mase 77.8위로 이 배치 내 하위권 성능"
+   ],
+   "paper_title": "Super-Linear: A Lightweight Pretrained Mixture of Linear Experts for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2509.15105",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "visionts": {
   "name": "visionts",
@@ -817,8 +2409,27 @@
    "gift": "visionts"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "이미지 마스크드 오토인코더(MAE)를 그대로 재활용하는 zero-shot 시계열 예측 모델",
+   "summary": "VisionTS(Zhejiang University, ICML 2025)는 시계열을 이미지 패치로 변환해 사전학습된 Vision MAE(ViT 기반)를 별도의 시계열 특화 학습 없이 그대로 zero-shot 예측기로 활용하는 접근이다. 2024년 11월 공개 당시 GIFT-Eval 리더보드 1위를 기록했으나, Chronos-2·Moirai-2·TimesFM 등 후속 대형 foundation model들이 잇따라 등장하면서 현재는 CRPS 0.755/MASE 0.863, 평균 순위 약 82-90위(하위권)로 밀려났다. 후속 연구인 VisionTS++(2025년 8월, arXiv 2508.04379)도 별도로 존재한다.",
+   "arch_type": "Transformer FM",
+   "org": "Zhejiang University",
+   "strengths": [
+    "시계열 전용 사전학습 없이 vision MAE를 재사용하는 독창적 free-lunch zero-shot 접근",
+    "ICML 2025 게재로 학술적 검증 완료",
+    "공개 당시(2024년 11월) GIFT-Eval 1위 기록"
+   ],
+   "weaknesses": [
+    "현재 리더보드에서는 하위권(rank ~82-90/97)으로 최신 대형 FM 대비 정확도 열세",
+    "시계열 고유의 스케일/주기성 처리가 이미지 패치 변환에 의존해 구조적 한계 존재"
+   ],
+   "paper_title": "VisionTS: Visual Masked Autoencoders Are Free-Lunch Zero-Shot Time Series Forecasters",
+   "paper_url": "https://arxiv.org/abs/2408.17253",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tide": {
   "name": "tide",
@@ -826,8 +2437,26 @@
    "gift": "tide"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "attention·recurrence 없이 MLP만으로 장기 예측을 수행하는 Dense Encoder 구조",
+   "summary": "TiDE(Time-series Dense Encoder)는 Google Research가 제안한 장기 예측 모델로, Transformer의 attention이나 RNN의 recurrence 없이 단순한 MLP 기반 encoder-decoder만으로 과거 시계열과 covariate를 인코딩해 미래를 예측한다. 구조가 단순해 학습·추론 속도가 빠르면서도 여러 장기 예측 벤치마크에서 Transformer 계열과 견줄 만한 성능을 보인다고 원 논문에서 주장한다. 다만 GIFT-Eval에서는 CRPS 0.7715, MASE 1.0914(97개 config 평균 rank_crps 85.0위, rank_mase 90.4위)로 seasonal naive baseline보다도 낮은 성능을 기록했다.",
+   "arch_type": "MLP",
+   "org": "Google Research",
+   "strengths": [
+    "attention·recurrence 없는 단순 MLP 구조로 계산 효율이 높음",
+    "원 논문 기준 장기 예측(long-horizon) 벤치마크에서 우수한 성능 보고"
+   ],
+   "weaknesses": [
+    "GIFT-Eval의 다양한 도메인·horizon 혼합 벤치마크에서는 MASE 1.0914로 seasonal naive baseline보다도 낮은 성능",
+    "97개 config 평균 순위가 이 배치 내 최하위권(rank_crps 85.0위, rank_mase 90.4위)"
+   ],
+   "paper_title": "Long-term Forecasting with TiDE: Time-series Dense Encoder",
+   "paper_url": "https://arxiv.org/abs/2304.08424",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "nbeats": {
   "name": "N-BEATS",
@@ -835,8 +2464,26 @@
    "gift": "N-BEATS"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "완전연결층 기반 doubly residual stacking으로 해석 가능한 예측을 제공하는 N-BEATS",
+   "summary": "N-BEATS는 attention이나 RNN 없이 순수 fully-connected layer의 깊은 stack과 backward/forward residual link만으로 구성된 아키텍처. trend/seasonality basis expansion을 이용해 예측을 해석 가능한 성분으로 분해할 수 있으며, 원 논문에서는 M4 competition 우승 모델 대비 3% 개선을 보고. 원래 데이터셋별 supervised 학습을 전제로 설계된 모델로, GIFT-Eval에서는 zero-shot FM들과 함께 평가되어 CRPS/MASE rank가 각각 90.5/82.4로 하위권을 기록.",
+   "arch_type": "MLP",
+   "org": "ServiceNow",
+   "strengths": [
+    "basis expansion 기반 해석 가능한 예측(trend/seasonality 분해)",
+    "attention 없이 빠른 학습/추론"
+   ],
+   "weaknesses": [
+    "데이터셋별 학습이 필요해 zero-shot FM 대비 범용성 낮음",
+    "GIFT-Eval 리더보드 하위권 성능"
+   ],
+   "paper_title": "N-BEATS: Neural basis expansion analysis for interpretable time series forecasting",
+   "paper_url": "https://arxiv.org/abs/1905.10437",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "dlinear": {
   "name": "DLinear",
@@ -844,8 +2491,26 @@
    "gift": "DLinear"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Transformer 없이 단순 선형 레이어로 추세/계절성을 분해해 예측하는 가벼운 baseline 모델",
+   "summary": "DLinear는 시계열을 trend와 seasonal 성분으로 분해한 뒤 각각을 단일 선형 레이어(linear layer)로 예측하는 극단적으로 단순한 모델이다. 2022년 논문 'Are Transformers Effective for Time Series Forecasting?'에서 당시 SOTA Transformer 계열 모델들을 능가한다는 결과로 주목받았다. 사전학습 없이 개별 데이터셋마다 처음부터 학습하는 supervised 모델이라 zero-shot foundation model들과는 평가 성격이 다르다. GIFT-Eval 97개 config에서 rank_mase 89.1, rank_crps 93.6으로 리더보드 하위권에 위치한다.",
+   "arch_type": "Linear",
+   "org": "The Chinese University of Hong Kong",
+   "strengths": [
+    "구조가 매우 단순하고 학습/추론 비용이 낮음",
+    "Transformer 없이도 장기예측에서 경쟁력을 보여준 초기 사례"
+   ],
+   "weaknesses": [
+    "zero-shot 사전학습 모델이 아니라 데이터셋별 재학습이 필요",
+    "GIFT-Eval 최신 foundation model 대비 정확도가 크게 뒤처짐(하위권)"
+   ],
+   "paper_title": "Are Transformers Effective for Time Series Forecasting?",
+   "paper_url": "https://arxiv.org/abs/2205.13504",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "deepar": {
   "name": "deepar",
@@ -854,8 +2519,27 @@
    "fev": "DeepAR"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "autoregressive RNN으로 확률적 다단계 예측을 생성하는 고전 probabilistic forecasting 모델",
+   "summary": "DeepAR은 Amazon Research가 제안한 autoregressive recurrent network(RNN/LSTM 기반) 기반 확률적 시계열 예측 모델로, 여러 관련 시계열을 함께 학습해 negative-binomial/Gaussian 등의 likelihood를 통해 미래 분포를 직접 추정한다. Crossformer와 마찬가지로 zero-shot pretrained FM이 아닌 dataset별 학습이 필요한 supervised 딥러닝 baseline이다. GIFT-Eval에서 rank_crps 83.5, rank_mase 90.4로 이번 배치 내 최하위권에 속하고, fev-bench에서도 skill_score 0.291, win_rate 0.355로 중하위권 성적을 보인다. 최신 pretrained foundation model(Chronos-2 등)에 정확도와 zero-shot 적용성 모두에서 밀리는 모습이다.",
+   "arch_type": "RNN",
+   "org": "Amazon Research",
+   "strengths": [
+    "여러 관련 시계열을 공동 학습해 cold-start series에도 어느 정도 대응 가능",
+    "확률적(likelihood 기반) 예측을 자연스럽게 지원"
+   ],
+   "weaknesses": [
+    "GIFT-Eval에서 이번 배치 내 최하위권 정확도(rank_mase 90.4)",
+    "zero-shot FM이 아니라 dataset별 재학습 필요",
+    "일부 config에서 학습/추론 실패(3건) 발생"
+   ],
+   "paper_title": "DeepAR: Probabilistic Forecasting with Autoregressive Recurrent Networks",
+   "paper_url": "https://arxiv.org/abs/1704.04110",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "ttmr2pretrained": {
   "name": "TTM-R2-Pretrained",
@@ -863,8 +2547,26 @@
    "gift": "TTM-R2-Pretrained"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "IBM Research TinyTimeMixer 2세대 pretrained 체크포인트, 1세대보다 큰 사전학습 데이터 사용",
+   "summary": "TTM-R2-Pretrained는 TTM 계보 2세대로 약 700M~1B 샘플로 사전학습되어 1세대(R1, 약 250M 샘플) 대비 표준 벤치마크에서 15% 이상 성능이 개선됐다고 문서화되어 있다. 그러나 GIFT-Eval에서는 crps 0.8734/mase 1.0196(평균순위 93.61/85.38)으로 여전히 이 배치 내 최하위권에 머문다. leak=Yes로 표시되며, TTM 자체가 분~시간 단위 등 특정 조합에 특화된 focused pretrained model이라는 구조적 한계가 GIFT-Eval의 다양한 frequency/horizon 조합에서 불리하게 작용한 것으로 보인다.",
+   "arch_type": "MLP",
+   "org": "IBM Research",
+   "strengths": [
+    "1세대(R1) 대비 확장된 사전학습 데이터(약 700M~1B 샘플)로 표준 벤치마크에서 15% 이상 개선(공식 문서 명시)",
+    "MLP-Mixer 기반의 매우 가벼운 구조"
+   ],
+   "weaknesses": [
+    "사전학습 데이터가 GIFT-Eval 테스트셋과 겹치는 test data leakage 존재(leak=Yes)",
+    "GIFT-Eval 평균순위가 이 배치 내 최하위권(97개 config 중 85~94위)"
+   ],
+   "paper_title": "Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series",
+   "paper_url": "https://arxiv.org/abs/2401.03955",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "lagllama": {
   "name": "Lag-Llama",
@@ -872,8 +2574,25 @@
    "gift": "Lag-Llama"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "LLaMA 스타일 decoder-only Transformer로 확률적 단변량 예측을 수행하는 초기 시계열 foundation model, test leakage로 순위 신뢰도 낮음",
+   "summary": "Lag-Llama는 lagged feature들을 입력 토큰으로 사용하는 decoder-only Transformer 구조에 student-t 분포 출력 헤드를 얹어 확률적(probabilistic) 단변량 예측을 수행하는 초기 시계열 foundation model이다. Morgan Stanley, ServiceNow 등이 참여해 공개했으며 대규모 공개 시계열 데이터로 사전학습되었다. GIFT-Eval에서는 test data leakage(leak=Yes)가 표시되어 있어, 리더보드 rank_mase 93.6, rank_crps 90.7이라는 하위권 수치조차 실제 zero-shot 일반화 성능을 그대로 반영한다고 보기 어렵다.",
+   "arch_type": "Transformer FM",
+   "org": "Morgan Stanley & Service Now",
+   "strengths": [
+    "초기 시계열 foundation model 중 하나로 probabilistic decoder-only 구조를 제시한 선구적 사례"
+   ],
+   "weaknesses": [
+    "GIFT-Eval에서 test data leakage로 표시됨 — 평가 데이터가 사전학습에 노출되었을 가능성이 있어 리더보드 수치의 신뢰성이 낮음",
+    "leakage 여부와 별개로 rank_mase 93.6으로 절대 수치 자체도 하위권"
+   ],
+   "paper_title": "Lag-Llama: Towards Foundation Models for Probabilistic Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2310.08278",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "ttmr1pretrained": {
   "name": "TTM-R1-Pretrained",
@@ -881,8 +2600,26 @@
    "gift": "TTM-R1-Pretrained"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "IBM Research의 초경량 TinyTimeMixer 1세대 pretrained 체크포인트",
+   "summary": "TTM-R1-Pretrained는 IBM Research가 공개한 TinyTimeMixers(TTM) 계보의 1세대 모델로, attention 없이 MLP-Mixer 구조만으로 구성된 1M 미만 파라미터의 'focused pretrained model'이다. 약 250M 샘플로 사전학습됐으며 특정 context/forecast 길이 조합(분~시간 단위)에 특화된 branch별 체크포인트로 배포된다. GIFT-Eval에서 crps 0.8913/mase 1.0791(평균순위 93.82/87.35)로 이 배치 내 최하위권을 기록했고, leak=Yes로 표시된다.",
+   "arch_type": "MLP",
+   "org": "IBM Research",
+   "strengths": [
+    "attention 없는 MLP-Mixer 구조로 1GPU/노트북에서도 3-6시간 내 사전학습 가능한 극도의 경량성",
+    "1M 미만 파라미터로 zero/few-shot 다변량 예측 지원"
+   ],
+   "weaknesses": [
+    "사전학습 데이터가 GIFT-Eval 테스트셋과 겹치는 test data leakage 존재(leak=Yes)",
+    "GIFT-Eval 평균순위가 이 배치 내 최하위권(97개 config 중 87~94위)이며, 분~시간 단위에 특화된 focused 모델이라 GIFT-Eval의 다양한 frequency/horizon 조합에 취약"
+   ],
+   "paper_title": "Tiny Time Mixers (TTMs): Fast Pre-trained Models for Enhanced Zero/Few-Shot Forecasting of Multivariate Time Series",
+   "paper_url": "https://arxiv.org/abs/2401.03955",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "autoarima": {
   "name": "auto_arima",
@@ -891,8 +2628,27 @@
    "fev": "AutoARIMA"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "AIC 기반 그리드서치로 (p,d,q)를 자동 선택하는 classical ARIMA baseline",
+   "summary": "auto_arima는 Box-Jenkins ARIMA 모델의 차수(p,d,q)를 AIC 기준으로 자동 탐색하는 statsforecast 계열 statistical baseline이다. 사전학습이나 zero-shot 능력 없이 각 시계열마다 개별적으로 fitting하는 방식이며, GIFT-Eval의 통계적 하한선 역할을 한다. GIFT-Eval에서 rank_crps 89.1, rank_mase 84.2로 97개 config 평균 하위권이고 median inference time도 202초로 매우 느리다. fev-bench에서는 skill_score 0.213, win_rate 0.325로 최신 foundation model 대비 크게 뒤처진다.",
+   "arch_type": "Statistical",
+   "org": "",
+   "strengths": [
+    "해석 가능한 classical statistical 접근",
+    "사전학습 데이터 없이 즉시 적용 가능"
+   ],
+   "weaknesses": [
+    "최신 pretrained FM 대비 정확도 크게 열세",
+    "series당 개별 fitting으로 inference 속도 매우 느림(median 202s)",
+    "일부 config에서 fitting 실패(4건) 발생"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "seasonalnaive": {
   "name": "seasonal_naive",
@@ -901,8 +2657,27 @@
    "fev": "Seasonal Naive"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "직전 계절 주기의 값을 그대로 반복하는 seasonal naive 예측 — GIFT-Eval의 정규화 기준선(baseline) 모델",
+   "summary": "seasonal_naive는 각 시계열의 계절 주기(seasonal period)만큼 이전 값을 그대로 다음 예측값으로 사용하는 통계적 baseline이다. 별도의 학습 과정 없이 계절 주기만 알면 되므로 구현이 매우 간단하고 추론 속도가 빠르다. GIFT-Eval에서는 CRPS/MASE 정규화 기준점(=1.0)으로 쓰이며, 97개 config에 대한 평균 순위는 rank_crps 93.6위, rank_mase 88.2위로 대부분의 제출 모델보다 성능이 낮다. Salesforce의 GIFT-Eval 저장소에 공식 baseline 노트북으로 포함되어 있다.",
+   "arch_type": "Statistical",
+   "org": "Salesforce (GIFT-Eval baseline)",
+   "strengths": [
+    "학습 불필요, 구현이 극히 단순함",
+    "추론 속도가 빠르고 해석이 직관적임",
+    "다른 모델 성능을 비교하는 정규화 기준점으로 활용됨"
+   ],
+   "weaknesses": [
+    "계절 패턴 외 추세·비선형 변화를 전혀 반영하지 못함",
+    "97개 config 평균 순위가 하위권(rank_crps 93.6위)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "autotheta": {
   "name": "auto_theta",
@@ -911,8 +2686,26 @@
    "fev": "AutoTheta"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "M-competition 유래 Theta method 기반 automatic statistical baseline",
+   "summary": "auto_theta는 시계열을 장기 추세와 국소 곡률 성분(theta line)으로 분해해 결합하는 Theta method의 자동화 구현으로, M-competition 계열에서 강한 성능을 보였던 classical 기법이다. 사전학습 없이 시계열별 개별 fitting을 수행하며 GIFT-Eval/fev-bench의 statistical baseline군에 속한다. GIFT-Eval에서 rank_crps 90.0, rank_mase 87.7로 하위권이지만, fev-bench에서는 skill_score 0.055, win_rate 0.219로 auto_ets보다는 소폭 낫고 실패 사례가 없다(num_failures=0). Inference 속도는 median 9.5초로 세 statistical baseline 중 가장 빠르다.",
+   "arch_type": "Statistical",
+   "org": "",
+   "strengths": [
+    "세 statistical baseline 중 가장 안정적(실패 0건)이고 빠름",
+    "M-competition에서 검증된 classical 분해 기법"
+   ],
+   "weaknesses": [
+    "최신 pretrained FM 대비 정확도 크게 열세",
+    "GIFT-Eval rank 하위권(87-90위)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "naive": {
   "name": "naive",
@@ -921,8 +2714,25 @@
    "fev": "Naive"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "직전 값을 그대로 이월하는 naive baseline — GIFT-Eval/fev-bench 최하위권 기준선",
+   "summary": "가장 단순한 forecasting baseline으로 마지막 관측값을 예측치로 사용. 학습이나 patching, attention 등 어떠한 학습 구조도 없는 순수 statistical rule. GIFT-Eval 리더보드에서 CRPS/MASE rank가 각각 98.5/93.9로 사실상 최하위, fev-bench에서도 win_rate 0.096·skill_score -0.454로 참조 모델 대비 크게 열위. 다른 모델들의 상대 성능을 가늠하는 하한선(lower bound) 역할.",
+   "arch_type": "Statistical",
+   "org": "",
+   "strengths": [
+    "구현이 극도로 단순하고 연산 비용이 거의 없음",
+    "다른 모델 성능 비교를 위한 기준선 역할"
+   ],
+   "weaknesses": [
+    "예측 정확도가 리더보드 최하위권으로 실용성 없음"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "visit10": {
   "name": "VISIT-1.0",
@@ -930,8 +2740,26 @@
    "gift": "VISIT-1.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "GIFT-Eval 익명 제출 모델 — 공개 정보 없음, 성능은 seasonal-naive 대비 크게 열세",
+   "summary": "VISIT-1.0은 조직명, 모델 링크, 코드 링크가 모두 공개되지 않은 사실상 익명 제출로, 아키텍처나 학습 방식을 뒷받침할 논문·코드가 검색되지 않는다. GIFT-Eval 성적만 보면 CRPS 1.591/MASE 1.270으로 두 지표 모두 1.0을 크게 초과해 seasonal-naive baseline보다도 못한 예측력을 보이며, 평균 순위도 약 94-99위로 리더보드 최하위권에 해당한다.",
+   "arch_type": "Unknown",
+   "org": "",
+   "strengths": [
+    "GIFT-Eval 정식 리더보드에 결과가 공개되어 있어 정량적 비교는 가능"
+   ],
+   "weaknesses": [
+    "CRPS·MASE 모두 1.0을 초과해 seasonal-naive baseline보다 낮은 예측 정확도",
+    "조직·모델링크·코드가 전혀 공개되지 않은 익명 제출로 아키텍처 검증 불가",
+    "리더보드 최하위권(rank ~94-99/97)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "crossformer": {
   "name": "crossformer",
@@ -939,8 +2767,26 @@
    "gift": "crossformer"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "cross-time·cross-dimension attention으로 다변량 의존성을 모델링하는 supervised Transformer",
+   "summary": "Crossformer는 시계열을 dimension-segment-wise(DSW) 방식으로 patch embedding한 뒤, Cross-Time Stage와 Cross-Dimension Stage로 구성된 Two-Stage Attention(TSA) layer로 시간축·변수축 의존성을 각각 모델링하는 다변량 시계열 forecasting Transformer다(ICLR 2023, Shanghai Jiao Tong University). Chronos·Chronos-2류 pretrained foundation model과 달리 zero-shot이 아니라 각 데이터셋에 대해 개별적으로 학습(full-shot)하는 supervised 아키텍처다. GIFT-Eval에서 rank_crps 80.2, rank_mase 88.8로 이번 배치 내 최하위권 성적을 기록했다. fev-bench 결과는 이번 배치 데이터에 포함되어 있지 않다.",
+   "arch_type": "Transformer FM",
+   "org": "Shanghai Jiao Tong University",
+   "strengths": [
+    "cross-time/cross-dimension attention으로 다변량 의존성을 명시적으로 모델링하는 구조적 설계"
+   ],
+   "weaknesses": [
+    "GIFT-Eval에서 이번 배치 내 최하위권 정확도(rank_mase 88.8)",
+    "zero-shot FM이 아닌 dataset별 개별 학습이 필요해 GIFT-Eval의 zero-shot 프로토콜에 불리",
+    "논문이 ICLR/OpenReview 게재로 arXiv에는 없어 본 카드에서 링크 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "autoets": {
   "name": "auto_ets",
@@ -949,8 +2795,27 @@
    "fev": "AutoETS"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Error-Trend-Seasonality state-space 모델을 자동 선택하는 exponential smoothing baseline",
+   "summary": "auto_ets는 ETS(Error, Trend, Seasonality) state-space 모델의 구성요소를 정보기준으로 자동 선택하는 classical exponential smoothing 기법이다. ARIMA와 마찬가지로 사전학습 없이 시계열마다 개별 fitting하며 GIFT-Eval/fev-bench의 statistical baseline으로 사용된다. GIFT-Eval에서 rank_crps 92.4, rank_mase 87.6으로 이번 배치 내에서 가장 낮은 순위대에 속하고, fev-bench skill_score는 -0.268로 reference 대비 오히려 열등하다. 다만 median inference time은 16.8초로 auto_arima보다는 빠르다.",
+   "arch_type": "Statistical",
+   "org": "",
+   "strengths": [
+    "빠른 fitting 속도(auto_arima 대비)",
+    "추세/계절성 성분 해석 용이"
+   ],
+   "weaknesses": [
+    "GIFT-Eval/fev-bench 모두에서 최하위권 정확도",
+    "fev-bench skill_score 음수로 naive reference보다도 열등",
+    "일부 config fitting 실패(3건)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tirex2": {
   "name": "TiRex-2",
@@ -958,8 +2823,25 @@
    "fev": "TiRex-2"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "NXAI TiRex 계보의 2세대 모델, fev-bench 전용 제출 항목(메타데이터 일부 누락)",
+   "summary": "이 항목은 리더보드 데이터상 org/model_link 등 메타데이터가 비어 있으나, TiRex-2-Pretrained/TiRex-2-Zeroshot과 동일한 'TiRex-2' 명칭을 쓰는 NXAI TiRex 계보의 후속 세대로 추정된다. fev-bench에서 win_rate 0.803·skill_score 0.455를 기록해 이 배치의 fev-bench 제출 중 가장 높은 win_rate를 보였고, median inference time 1.37초로 매우 빠르다. GIFT-Eval 수치는 제공되지 않았다.",
+   "arch_type": "RNN",
+   "org": "NXAI",
+   "strengths": [
+    "fev-bench win_rate 0.803로 배치 내 최고 승률",
+    "median inference time 1.37초의 빠른 추론"
+   ],
+   "weaknesses": [
+    "이 리더보드 항목 자체의 org/코드/논문 링크 메타데이터가 누락되어 세부 구성 직접 검증이 불가능"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "flowstate": {
   "name": "FlowState",
@@ -967,8 +2849,26 @@
    "fev": "FlowState"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "State Space Model 인코더와 Functional Basis Decoder로 임의 샘플링 주기에 적응하는 IBM Research의 경량 시계열 foundation model",
+   "summary": "FlowState는 IBM Research가 공개한 시계열 foundation model로, SSM(State Space Model) 인코더가 입력을 시간축에 불변인 계수(coefficient) 공간으로 변환하면 Functional Basis Decoder가 연속 함수 형태로 예측을 생성한다. 이 구조 덕분에 학습 시 보지 못한 샘플링 주기에도 재학습 없이 대응할 수 있는 timescale-adjustable 모델이다. 10M 미만의 파라미터로 훨씬 큰 모델들과 경쟁하는 것이 특징이다. fev-bench에서 win_rate 65.6%, skill_score 0.416으로 이 배치 내 fev-bench 모델 중 가장 우수한 성능을 보인다.",
+   "arch_type": "SSM",
+   "org": "IBM Research",
+   "strengths": [
+    "10M 미만 파라미터로 fev-bench에서 win_rate 65.6%의 높은 성능",
+    "다양한 샘플링 주기에 재학습 없이 적응(timescale-adjustable)"
+   ],
+   "weaknesses": [
+    "training-data overlap 지표가 0.08로 존재해 완전한 zero-shot 여부 해석에는 주의가 필요",
+    "zero-shot 전용이라 파인튜닝 기반 커스터마이징 경로는 별도 제공되지 않음"
+   ],
+   "paper_title": "FlowState: Sampling-Rate-Equivariant Time-Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2508.05287",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "tabpfnts3": {
   "name": "TabPFN-TS-3",
@@ -976,8 +2876,26 @@
    "fev": "TabPFN-TS-3"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "TabPFN-3 report 기반으로 순수 synthetic data만으로 파인튜닝한 최신 TabPFN-TS 체크포인트",
+   "summary": "TabPFN-TS-3은 tabpfn-time-series 패키지 v1.1.0부터 기본으로 탑재된 파인튜닝 체크포인트로, PriorLabs의 TabPFN-3 report에서 제시된 tabular foundation model을 기반으로 한다. 순수 synthetic 데이터만으로 사전학습되었음에도 fev-bench에서 SOTA급 성능을 낸다고 소개되어 있으며, 기존 tabpfn_ts와 동일하게 시계열을 tabular regression 문제로 변환해 처리하는 접근을 계승한다. 이 배치에서는 fev-bench 결과만 확인되며 win_rate 0.650, skill_score 0.432로 배치 내 최상위권 skill_score를 기록했다.",
+   "arch_type": "Tabular FM",
+   "org": "PriorLabs",
+   "strengths": [
+    "순수 synthetic data로만 파인튜닝해 실제 벤치마크 데이터 leakage 위험이 낮음",
+    "fev-bench에서 이 배치 내 가장 높은 skill_score(0.432)와 win_rate(0.650) 기록"
+   ],
+   "weaknesses": [
+    "기술 세부사항이 arXiv 논문이 아닌 자사 report(priorlabs.ai) 형태로만 공개되어 있어 완전한 검증이 어려움",
+    "중간값 추론 시간이 1934.9초로 이 배치 내 가장 느린 축에 속함"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "toto10": {
   "name": "Toto-1.0",
@@ -985,8 +2903,26 @@
    "fev": "Toto-1.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Datadog Toto 1세대(Open-Base) 계보, fev-bench 전용 제출 항목",
+   "summary": "이 항목은 메타데이터가 비어 있으나 'Toto-1.0' 명칭과 fev-bench 수치 패턴으로 볼 때 Datadog의 Toto-Open-Base-1.0(2.0 세대 이전 모델)에 해당하는 것으로 추정된다. fev-bench에서 win_rate 0.627·skill_score 0.4111을 기록했고, median inference time이 93.24초로 이 배치의 다른 모델들에 비해 현저히 느리다. GIFT-Eval 수치는 이 항목에 제공되지 않았다.",
+   "arch_type": "Transformer FM",
+   "org": "Datadog",
+   "strengths": [
+    "Toto 계보 최초 공개 모델로 observability 특화 대규모(약 2조 포인트) 사전학습 데이터 확보"
+   ],
+   "weaknesses": [
+    "median inference time 93.24초로 Toto 2.0 계열(1~36초) 대비 현저히 느림",
+    "fev-bench win_rate(0.627)가 Toto 2.0 계열보다 낮은 구세대 성능",
+    "이 리더보드 항목 자체의 org/링크 메타데이터 누락"
+   ],
+   "paper_title": "Toto: Time Series Optimized Transformer for Observability",
+   "paper_url": "https://arxiv.org/abs/2407.07874",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "moirai20": {
   "name": "Moirai-2.0",
@@ -994,8 +2930,25 @@
    "fev": "Moirai-2.0"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Moirai 2.0(Salesforce)의 fev-bench 평가 엔트리 — decoder-only universal forecasting transformer",
+   "summary": "GIFT-Eval 엔트리(moirai2)와 동일한 Moirai 2.0 모델을 fev-bench(AutoGluon 계열 벤치마크)에서 평가한 결과. fev-bench 기준 win_rate 0.5874, skill_score 0.4025로 절반 이상의 비교 대상 대비 우위를 보이며, median inference time은 2.46초. overlap 0.28은 평가 데이터의 약 28%가 pretraining corpus와 겹칠 수 있음을 시사하는 지표로, 완전한 zero-shot 평가로 보기엔 유의가 필요.",
+   "arch_type": "Transformer FM",
+   "org": "Salesforce AI Research",
+   "strengths": [
+    "fev-bench에서 절반 이상 win_rate 확보",
+    "num_failures 0으로 안정적인 추론"
+   ],
+   "weaknesses": [
+    "overlap 0.28로 평가셋 일부가 pretraining 데이터와 겹칠 가능성 존재"
+   ],
+   "paper_title": "Moirai 2.0: When Less Is More for Time Series Forecasting",
+   "paper_url": "https://arxiv.org/abs/2511.11698",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "chronosbolt": {
   "name": "Chronos-Bolt",
@@ -1003,8 +2956,26 @@
    "fev": "Chronos-Bolt"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "T5 encoder-decoder를 direct multi-step quantile 예측용으로 distillation한 고속 Chronos 변형",
+   "summary": "Chronos-Bolt는 원조 Chronos 모델과 달리 patch 단위로 이력을 encoder에 입력하고 decoder가 여러 미래 시점의 quantile을 한 번에 직접 생성(direct multi-step forecasting)하도록 만든 경량 변형이다. 동일 크기의 원조 Chronos 대비 최대 250배 빠르고 20배 메모리 효율적이라고 공개되어 있다. 이 fev-bench 항목은 win_rate 0.554, skill_score 0.389, median inference time 1.02초로 이번 배치의 pretrained FM 중 빠른 축에 속하는 준수한 성능을 보인다. 다만 같은 계열의 chronos_bolt_base/small 개별 항목은 GIFT-Eval에서 leak=Yes로 표시되어 있어 참고가 필요하다.",
+   "arch_type": "Transformer FM",
+   "org": "AWS AI Labs",
+   "strengths": [
+    "원조 Chronos 대비 최대 250배 빠른 inference",
+    "fev-bench에서 준수한 skill_score(0.389)"
+   ],
+   "weaknesses": [
+    "동일 계열 chronos_bolt_base/small은 GIFT-Eval에서 test data leakage(leak=Yes) 표시가 있어 정확도 해석에 주의 필요",
+    "Chronos-Bolt 자체를 다루는 별도 논문은 공개되어 있지 않음(블로그/모델카드 수준)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "sundialbase": {
   "name": "Sundial-Base",
@@ -1012,8 +2983,26 @@
    "fev": "Sundial-Base"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Sundial 계열 decoder-only generative 시계열 foundation model — fev-bench 리더보드 등록 버전",
+   "summary": "Sundial-Base는 fev-bench 리더보드에 등록된 항목으로 별도의 모델·코드 링크는 부여돼 있지 않지만, 동일 배치 내 GIFT-Eval 항목인 sundial_base_128m(Tsinghua University, thuml/sundial-base-128m)과 이름이 일치해 같은 Sundial 계열 모델로 추정된다. Sundial은 패치 임베딩 기반 decoder-only Transformer가 토큰 표현을 학습하고, TimeFlow loss라는 flow-matching 기반 생성 loss로 조건부 분포에서 다수의 그럴듯한 미래 경로를 샘플링하는 generative 구조다. fev-bench에서 win_rate 0.384, skill_score 0.339를 기록했고 중간값 추론 시간은 36.9초다.",
+   "arch_type": "Transformer FM",
+   "org": "Tsinghua University",
+   "strengths": [
+    "point/probabilistic 예측을 모두 생성 가능한 generative 구조",
+    "fev-bench 기준 seasonal naive 대비 뚜렷한 양의 skill_score(0.339)"
+   ],
+   "weaknesses": [
+    "fev-bench 등록 항목 자체에 모델·코드 링크가 없어 정확히 어떤 체크포인트·설정인지 특정하기 어려움",
+    "GIFT-Eval에 등록된 동일 계열 128M 버전 대비 절대 순위가 중위권"
+   ],
+   "paper_title": "Sundial: A Family of Highly Capable Time Series Foundation Models",
+   "paper_url": "https://arxiv.org/abs/2502.00816",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "statensemble": {
   "name": "Stat. Ensemble",
@@ -1021,8 +3010,26 @@
    "fev": "Stat. Ensemble"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "fev-bench 리더보드에 등록된 통계적 baseline 앙상블 — 공개된 세부 스펙 확인 불가",
+   "summary": "Stat. Ensemble은 fev-bench 리더보드에 등장하는 항목으로, 모델 링크·코드 링크·개발 조직 정보가 전혀 공개되어 있지 않다. 이름으로 미루어 classical 통계 예측 기법들을 결합한 앙상블 baseline으로 추정되나, 구체적 구성 모델이나 결합 방식을 확인할 수 있는 공개 문서는 찾지 못했다. fev-bench 상에서 win_rate 0.368, skill_score 0.207을 기록했고, 중간값 추론 시간은 744.8초로 이 배치 내 다른 모델 대비 느린 편이며 num_failures=4로 일부 task에서 실패가 발생했다.",
+   "arch_type": "Statistical",
+   "org": "",
+   "strengths": [
+    "fev-bench 기준 seasonal naive 대비 양의 skill_score(0.207) 확보"
+   ],
+   "weaknesses": [
+    "공개된 모델 카드·논문·코드가 없어 구성을 검증할 수 없음",
+    "num_failures=4로 일부 task에서 예측 실패 발생",
+    "중간값 추론 시간이 744.8초로 상대적으로 느림"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "catboost": {
   "name": "CatBoost",
@@ -1030,8 +3037,27 @@
    "fev": "CatBoost"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "categorical feature에 강한 gradient boosted decision tree 라이브러리",
+   "summary": "CatBoost는 Yandex가 개발한 gradient boosting on decision trees 라이브러리로, ordered boosting과 oblivious tree 구조를 통해 categorical feature 처리와 target leakage 문제를 완화한다. 시계열 예측에서는 lag/rolling 등 시계열을 tabular feature로 변환해 supervised regression 문제로 다루는 tabular 접근이다. 이번 배치에는 fev-bench 결과만 존재하며 win_rate 0.269, skill_score 0.230으로 중간 수준의 성능을 보이고, median inference time은 1.6초로 매우 빠르다. GIFT-Eval 결과는 이번 데이터에 포함되어 있지 않다.",
+   "arch_type": "Boosted Trees",
+   "org": "Yandex",
+   "strengths": [
+    "매우 빠른 inference(median 1.6s)",
+    "categorical feature 처리에 강함",
+    "실패 사례 없음(num_failures=0)"
+   ],
+   "weaknesses": [
+    "시계열 전용 pretrained FM 대비 skill_score가 중간 수준에 그침",
+    "lag/rolling 등 feature engineering에 성능이 크게 의존"
+   ],
+   "paper_title": "CatBoost: unbiased boosting with categorical features",
+   "paper_url": "https://arxiv.org/abs/1706.09516",
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "lightgbm": {
   "name": "LightGBM",
@@ -1039,8 +3065,26 @@
    "fev": "LightGBM"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "Gradient Boosted Decision Tree 기반의 표준 tabular 학습 라이브러리를 시계열 예측에 적용한 baseline",
+   "summary": "LightGBM은 histogram 기반 gradient boosting decision tree(GBDT) 라이브러리로, leaf-wise 트리 성장 방식과 GOSS/EFB 등의 기법으로 대규모 tabular 데이터에서 빠른 학습 속도를 제공한다. 시계열 예측에서는 lag/rolling 등 수작업 feature engineering을 거쳐 회귀 문제로 변환한 뒤 적용하는 전형적인 트리 기반 baseline이다. fev-bench에서 skill_score 0.21, win_rate 24.9%로 참조 모델보다 나은 성능을 보이며 추론 시간도 1.25초로 짧은 편이다.",
+   "arch_type": "Boosted Trees",
+   "org": "",
+   "strengths": [
+    "대규모 tabular/시계열 feature에서 빠르고 안정적인 학습",
+    "fev-bench에서 참조 모델 대비 양(+)의 skill_score를 기록"
+   ],
+   "weaknesses": [
+    "시계열 특화 구조가 아니라 feature engineering에 의존",
+    "zero-shot 일반화 능력 없음(태스크별 재학습이 필요)"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  },
  "drift": {
   "name": "Drift",
@@ -1048,7 +3092,25 @@
    "fev": "Drift"
   },
   "first_seen": "2026-07-06",
-  "status": "pending",
-  "card": null
+  "status": "ok",
+  "card": {
+   "one_liner": "직전 관측값에 과거 평균 변화율(drift)을 더해 직선으로 외삽하는 고전 통계 baseline",
+   "summary": "Drift 방법은 시계열 예측의 고전적 통계 baseline으로, 마지막 관측값에서 시작해 과거 전체 구간의 평균 증가율(기울기)만큼 직선으로 외삽한다. 학습 파라미터나 딥러닝 구성요소가 전혀 없는 결정론적(deterministic) 방법으로 fev-bench에서 최하위 baseline 성능 비교용으로 쓰인다. fev-bench에서 win_rate 8.1%, skill_score -0.458로 참조 모델 대비 열위에 있다.",
+   "arch_type": "Statistical",
+   "org": "",
+   "strengths": [
+    "구현이 매우 단순하고 계산 비용이 거의 없음",
+    "추세가 뚜렷한 단순 시계열에서는 최소한의 baseline 역할 수행"
+   ],
+   "weaknesses": [
+    "fev-bench에서 win_rate 8.1%, skill_score -0.458로 대부분의 모델에 열세",
+    "계절성이나 비선형 패턴을 전혀 포착하지 못함"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": true
+  },
+  "generated_at": "2026-07-06",
+  "generated_by": "claude-code"
  }
 }

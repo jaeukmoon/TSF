@@ -95,6 +95,34 @@ def build_context(name, info):
     return "\n\n".join(parts)
 
 
+def template_card(name, info):
+    """Zero-LLM card for anonymous submissions with no public evidence."""
+    g = (info.get("stats") or {}).get("gift_eval") or {}
+    rank = g.get("rank_crps")
+    pos = f"GIFT-Eval 평균 rank(CRPS) {rank:.1f}" if rank else "리더보드 등재"
+    weaknesses = ["논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"]
+    if info.get("testdata_leakage") == "Yes":
+        weaknesses.append("제출자가 test data leakage를 인정한 모델")
+    return {
+        "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+        "summary": f"공개된 논문, 모델카드, 코드가 없는 제출. 현재 {pos}. "
+                   "성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+        "arch_type": "Unknown",
+        "org": info.get("org", ""),
+        "strengths": [],
+        "weaknesses": weaknesses,
+        "paper_title": None,
+        "paper_url": None,
+        "is_documented": False,
+    }
+
+
+def has_evidence(info):
+    """True if there is anything public to summarize from."""
+    return bool(info.get("model_link") or info.get("code_link")
+                or (info.get("stats") or {}).get("fev_bench"))
+
+
 def available():
     """True if the SDK and a credential are both present."""
     if not (os.environ.get("ANTHROPIC_API_KEY") or os.environ.get("ANTHROPIC_AUTH_TOKEN")):

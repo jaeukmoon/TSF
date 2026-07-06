@@ -67,7 +67,8 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
     <h1>TSF Leaderboard Tracker</h1>
     <p>시계열 예측 파운데이션 모델 리더보드 미러 ·
        <a href="https://huggingface.co/spaces/Salesforce/GIFT-Eval" target="_blank" rel="noopener">GIFT-Eval</a> +
-       <a href="https://github.com/autogluon/fev" target="_blank" rel="noopener">fev-bench</a> ·
+       <a href="https://github.com/autogluon/fev" target="_blank" rel="noopener">fev-bench</a> +
+       LTSF 논문성적(ETT·ILI 등) ·
        매일 자동 갱신 · <span id="upd">…</span></p>
   </div>
   <div class="nav">
@@ -82,7 +83,17 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
   <div class="chips">
     <button class="chip on" id="src-gift" onclick="setSrc('gift')">GIFT-Eval <span id="n-gift"></span></button>
     <button class="chip" id="src-fev" onclick="setSrc('fev')">fev-bench <span id="n-fev"></span></button>
+    <button class="chip" id="src-ltsf" onclick="setSrc('ltsf')">LTSF 논문성적 <span id="n-ltsf"></span></button>
     <input class="search" id="q-lb" placeholder="모델 / org 검색…" oninput="renderTable()">
+  </div>
+  <div class="chips" id="ltsf-opts" style="display:none">
+    <button class="chip on" id="h-0" onclick="setH(0)">h=96 · ILI 24</button>
+    <button class="chip" id="h-1" onclick="setH(1)">h=192 · ILI 36</button>
+    <button class="chip" id="h-2" onclick="setH(2)">h=336 · ILI 48</button>
+    <button class="chip" id="h-3" onclick="setH(3)">h=720 · ILI 60</button>
+    <span style="width:14px"></span>
+    <button class="chip on" id="m-mse" onclick="setMetric('mse')">MSE</button>
+    <button class="chip" id="m-mae" onclick="setMetric('mae')">MAE</button>
   </div>
   <div class="tblwrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
   <p class="note" id="note-lb"></p>
@@ -106,7 +117,8 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
   요약카드는 신규 모델 감지 시 Claude가 공개 근거(모델카드·arXiv)로 생성합니다.
 </footer>
 <script>
-let DB=null, CARDS=null, SRC='gift', SORT={key:null,asc:true}, CFILTER='all';
+let DB=null, CARDS=null, LTSF=null, SRC='gift', SORT={key:null,asc:true}, CFILTER='all';
+let HSLOT=0, METRIC='mse';
 const NEW_DAYS=14;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -144,16 +156,61 @@ function showTab(t){
  document.getElementById('tab-cards').classList.toggle('on',t==='cards');
 }
 function setSrc(s){SRC=s;SORT={key:null,asc:true};
- document.getElementById('src-gift').classList.toggle('on',s==='gift');
- document.getElementById('src-fev').classList.toggle('on',s==='fev');
+ for(const x of['gift','fev','ltsf'])document.getElementById('src-'+x).classList.toggle('on',x===s);
+ document.getElementById('ltsf-opts').style.display=s==='ltsf'?'':'none';
+ renderTable();}
+function setH(i){HSLOT=i;
+ for(let j=0;j<4;j++)document.getElementById('h-'+j).classList.toggle('on',j===i);
+ renderTable();}
+function setMetric(m){METRIC=m;
+ document.getElementById('m-mse').classList.toggle('on',m==='mse');
+ document.getElementById('m-mae').classList.toggle('on',m==='mae');
  renderTable();}
 function setCardFilter(f){CFILTER=f;
  for(const x of['all','new','pending'])document.getElementById('f-'+x).classList.toggle('on',x===f);
  renderCards();}
 function sortBy(k,num){SORT.asc=SORT.key===k?!SORT.asc:true;SORT.key=k;SORT.num=num;renderTable();}
 
+function ltsfVal(m,ds){
+ const h=ds==='ILI'?LTSF.horizons[HSLOT][1]:LTSF.horizons[HSLOT][0];
+ return m.results?.[ds]?.[h]?.[METRIC]??null;
+}
+function renderLtsf(){
+ const q=(document.getElementById('q-lb').value||'').toLowerCase();
+ const DS=LTSF.datasets;
+ let rows=LTSF.models.filter(m=>!q||(m.name+' '+(m.source?.paper||'')).toLowerCase().includes(q));
+ const avg=m=>{const vs=DS.map(d=>ltsfVal(m,d)).filter(v=>v!=null);
+  return vs.length?vs.reduce((a,b)=>a+b,0)/vs.length:null;};
+ const key=SORT.key;
+ rows.sort((a,b)=>{
+  const x=key?ltsfVal(a,key):avg(a), y=key?ltsfVal(b,key):avg(b);
+  if(x==null)return 1;if(y==null)return -1;return (x-y)*(SORT.asc?1:-1);});
+ document.querySelector('#tbl thead').innerHTML='<tr><th>Model</th><th>Lookback</th>'+
+  DS.map(d=>`<th onclick="sortBy('${d}',1)">${d}${SORT.key===d?`<span class="arr"> ${SORT.asc?'▲':'▼'}</span>`:''}</th>`).join('')+
+  '<th>Source</th></tr>';
+ const best={};for(const d of DS){
+  const vs=rows.map(m=>ltsfVal(m,d)).filter(v=>v!=null);
+  if(vs.length)best[d]=Math.min(...vs);}
+ document.querySelector('#tbl tbody').innerHTML=rows.map(m=>{
+  const src=m.source||{};
+  const link=src.url||(src.arxiv?`https://arxiv.org/abs/${src.arxiv}`:'');
+  return '<tr><td><span class="mdl">'+esc(m.name)+'</span></td>'+
+   `<td class="num">${m.lookback??'—'}</td>`+
+   DS.map(d=>{const v=ltsfVal(m,d);
+    return `<td class="num${v!=null&&v===best[d]?' best':''}">${v==null?'—':v.toFixed(3)}</td>`;}).join('')+
+   `<td>${link?`<a href="${esc(link)}" target="_blank" rel="noopener">${esc(src.short||src.arxiv||'paper')}</a>`:esc(src.short||'')}</td></tr>`;
+ }).join('');
+ document.getElementById('note-lb').textContent=
+  '논문 보고 수치(test '+METRIC.toUpperCase()+', 낮을수록 좋음). ILI horizon은 24/36/48/60, 나머지는 96/192/336/720. '
+  +'lookback·프로토콜이 소스마다 달라 행 간 직접 비교는 주의 (iTransformer protocol = 통일 lookback 96, paper = self-reported). 헤더 클릭으로 정렬.';
+}
 function renderTable(){
  if(!DB)return;
+ if(SRC==='ltsf'){
+  if(LTSF)renderLtsf();
+  else document.querySelector('#tbl tbody').innerHTML='<tr><td class="num">LTSF 데이터 없음</td></tr>';
+  return;
+ }
  const cols=COLS[SRC];
  const q=(document.getElementById('q-lb').value||'').toLowerCase();
  let rows=DB[SRC].map((e,i)=>({...e,_rank:i+1,_seen:seenOf(SRC,e.name)||''}));
@@ -235,11 +292,13 @@ function renderCards(){
 Promise.all([
  fetch('data/leaderboard.json').then(r=>r.json()),
  fetch('data/cards.json').then(r=>r.json()).catch(()=>({})),
-]).then(([db,cards])=>{
- DB=db;CARDS=cards;
+ fetch('data/ltsf.json').then(r=>r.json()).catch(()=>null),
+]).then(([db,cards,ltsf])=>{
+ DB=db;CARDS=cards;LTSF=ltsf;
  document.getElementById('upd').textContent='마지막 갱신 '+db.updated;
  document.getElementById('n-gift').textContent=`(${db.gift.length})`;
  document.getElementById('n-fev').textContent=`(${db.fev.length})`;
+ if(ltsf)document.getElementById('n-ltsf').textContent=`(${ltsf.models.length})`;
  renderTable();renderCards();
 }).catch(e=>{
  document.getElementById('upd').textContent='데이터 로드 실패: '+e;

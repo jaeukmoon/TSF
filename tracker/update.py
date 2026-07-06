@@ -81,13 +81,15 @@ def main():
             slot["sources"][source] = e["name"]
             slot["first_seen"] = min(slot["first_seen"], seen[source][e["name"]])
 
-    # generate cards for pending models (bounded per run)
+    # fill cards: anonymous models get a zero-LLM template card immediately;
+    # documented models use Sonnet if an API key is present, otherwise they
+    # stay pending until a local Claude Code session fills them (/tsf-cards)
     budget = MAX_CARDS
-    if not summarize.available():
-        print("[cards] anthropic SDK or ANTHROPIC_API_KEY missing; skipping card generation")
-        budget = 0
+    use_llm = summarize.available()
+    if not use_llm:
+        print("[cards] no API key/SDK; documented models stay pending for /tsf-cards")
     for key, slot in sorted(cards.items(), key=lambda kv: kv[1]["first_seen"], reverse=True):
-        if slot["status"] == "ok" or budget <= 0:
+        if slot["status"] == "ok":
             continue
         g, f = gift_by_key.get(key), fev_by_key.get(key)
         info = {
@@ -104,6 +106,14 @@ def main():
                                      "overlap", "num_failures")},
             },
         }
+        if not summarize.has_evidence(info):
+            slot["card"] = summarize.template_card(slot["name"], info)
+            slot["status"] = "ok"
+            slot["generated_at"] = today
+            slot["generated_by"] = "template"
+            continue
+        if not use_llm or budget <= 0:
+            continue
         print(f"[card] generating: {slot['name']}")
         card = summarize.make_card(slot["name"], info)
         if card is None:
@@ -111,6 +121,7 @@ def main():
         slot["card"] = card
         slot["status"] = "ok"
         slot["generated_at"] = today
+        slot["generated_by"] = "sonnet-ci"
         budget -= 1
         save("cards.json", cards)  # checkpoint so a crash keeps finished cards
 
