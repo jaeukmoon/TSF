@@ -184,7 +184,9 @@
       "mae": 0.347
      }
     }
-   }
+   },
+   "venue": "ICLR 2024 Spotlight",
+   "venue_confidence": "verified"
   },
   {
    "name": "RLinear",
@@ -340,7 +342,9 @@
       "mae": 0.353
      }
     }
-   }
+   },
+   "venue": "arXiv",
+   "venue_confidence": "verified"
   },
   {
    "name": "PatchTST",
@@ -496,7 +500,9 @@
       "mae": 0.348
      }
     }
-   }
+   },
+   "venue": "ICLR 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "Crossformer",
@@ -652,7 +658,9 @@
       "mae": 0.418
      }
     }
-   }
+   },
+   "venue": "ICLR 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "TiDE",
@@ -808,7 +816,9 @@
       "mae": 0.386
      }
     }
-   }
+   },
+   "venue": "TMLR 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "TimesNet",
@@ -964,7 +974,9 @@
       "mae": 0.359
      }
     }
-   }
+   },
+   "venue": "ICLR 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "DLinear",
@@ -1120,7 +1132,9 @@
       "mae": 0.381
      }
     }
-   }
+   },
+   "venue": "AAAI 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "SCINet",
@@ -1276,7 +1290,9 @@
       "mae": 0.427
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2022",
+   "venue_confidence": "verified"
   },
   {
    "name": "FEDformer",
@@ -1432,7 +1448,9 @@
       "mae": 0.428
      }
     }
-   }
+   },
+   "venue": "ICML 2022",
+   "venue_confidence": "verified"
   },
   {
    "name": "Stationary",
@@ -1588,7 +1606,9 @@
       "mae": 0.41
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2022",
+   "venue_confidence": "verified"
   },
   {
    "name": "Autoformer",
@@ -1744,7 +1764,9 @@
       "mae": 0.428
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2021",
+   "venue_confidence": "verified"
   },
   {
    "name": "TimesNet",
@@ -1921,7 +1943,9 @@
       "mae": 0.928
      }
     }
-   }
+   },
+   "venue": "ICLR 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "ETSformer",
@@ -2098,7 +2122,9 @@
       "mae": 1.016
      }
     }
-   }
+   },
+   "venue": "arXiv",
+   "venue_confidence": "verified"
   },
   {
    "name": "LightTS",
@@ -2275,7 +2301,9 @@
       "mae": 1.985
      }
     }
-   }
+   },
+   "venue": "arXiv",
+   "venue_confidence": "verified"
   },
   {
    "name": "DLinear",
@@ -2452,7 +2480,9 @@
       "mae": 1.146
      }
     }
-   }
+   },
+   "venue": "AAAI 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "FEDformer",
@@ -2629,7 +2659,9 @@
       "mae": 1.157
      }
     }
-   }
+   },
+   "venue": "ICML 2022",
+   "venue_confidence": "verified"
   },
   {
    "name": "Stationary",
@@ -2806,7 +2838,9 @@
       "mae": 0.963
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2022",
+   "venue_confidence": "verified"
   },
   {
    "name": "Autoformer",
@@ -2983,7 +3017,9 @@
       "mae": 1.125
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2021",
+   "venue_confidence": "verified"
   },
   {
    "name": "Pyraformer",
@@ -3160,7 +3196,9 @@
       "mae": 2.1
      }
     }
-   }
+   },
+   "venue": "ICLR 2022 Oral",
+   "venue_confidence": "verified"
   },
   {
    "name": "Informer",
@@ -3337,7 +3375,9 @@
       "mae": 1.564
      }
     }
-   }
+   },
+   "venue": "AAAI 2021 Best Paper",
+   "venue_confidence": "verified"
   },
   {
    "name": "LogTrans",
@@ -3514,7 +3554,9 @@
       "mae": 1.56
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2019",
+   "venue_confidence": "verified"
   },
   {
    "name": "Reformer",
@@ -3691,7 +3733,9 @@
       "mae": 1.483
      }
     }
-   }
+   },
+   "venue": "ICLR 2020",
+   "venue_confidence": "verified"
   },
   {
    "name": "LSSL",
@@ -3868,7 +3912,9 @@
       "mae": 1.474
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2021",
+   "venue_confidence": "verified"
   },
   {
    "name": "LSTM",
@@ -4045,7 +4091,9 @@
       "mae": 1.879
      }
     }
-   }
+   },
+   "venue": "Neural Computation 1997",
+   "venue_confidence": "verified"
   },
   {
    "name": "PatchTST/64",
@@ -4201,7 +4249,9 @@
       "mae": 0.385
      }
     }
-   }
+   },
+   "venue": "ICLR 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "PatchTST/42",
@@ -4357,7 +4407,9 @@
       "mae": 0.385
      }
     }
-   }
+   },
+   "venue": "ICLR 2023",
+   "venue_confidence": "verified"
   },
   {
    "name": "Time-LLM",
@@ -4513,7 +4565,9 @@
       "mae": 0.854
      }
     }
-   }
+   },
+   "venue": "ICLR 2024",
+   "venue_confidence": "verified"
   },
   {
    "name": "TimeMixer",
@@ -4651,7 +4705,9 @@
       "mae": 0.313
      }
     }
-   }
+   },
+   "venue": "ICLR 2024",
+   "venue_confidence": "verified"
   },
   {
    "name": "TimeXer",
@@ -4789,7 +4845,9 @@
       "mae": 0.307
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2024",
+   "venue_confidence": "verified"
   },
   {
    "name": "CycleNet/Linear",
@@ -4927,7 +4985,9 @@
       "mae": 0.345
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2024 Spotlight",
+   "venue_confidence": "verified"
   },
   {
    "name": "CycleNet/MLP",
@@ -5065,7 +5125,9 @@
       "mae": 0.344
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2024 Spotlight",
+   "venue_confidence": "verified"
   },
   {
    "name": "SOFTS",
@@ -5203,7 +5265,9 @@
       "mae": 0.351
      }
     }
-   }
+   },
+   "venue": "NeurIPS 2024",
+   "venue_confidence": "verified"
   },
   {
    "name": "S-Mamba",
@@ -5359,7 +5423,9 @@
       "mae": 0.703
      }
     }
-   }
+   },
+   "venue": "Neurocomputing 2025",
+   "venue_confidence": "verified"
   },
   {
    "name": "xPatch",
@@ -5515,7 +5581,9 @@
       "mae": 0.711
      }
     }
-   }
+   },
+   "venue": "AAAI 2025",
+   "venue_confidence": "verified"
   },
   {
    "name": "TimeKAN",
@@ -5635,7 +5703,9 @@
       "mae": 0.32
      }
     }
-   }
+   },
+   "venue": "ICLR 2025",
+   "venue_confidence": "verified"
   },
   {
    "name": "TQNet",
@@ -5773,7 +5843,9 @@
       "mae": 0.295
      }
     }
-   }
+   },
+   "venue": "ICML 2025",
+   "venue_confidence": "verified"
   },
   {
    "name": "TimePro",
@@ -5893,7 +5965,9 @@
       "mae": 0.299
      }
     }
-   }
+   },
+   "venue": "ICML 2025",
+   "venue_confidence": "verified"
   }
  ]
 }

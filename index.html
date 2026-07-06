@@ -43,6 +43,7 @@ a.mdl:hover{color:var(--accent);text-decoration:underline}
 .badge.arch{background:#eef2ff;color:#3b4ba8;border:1px solid #dfe3fb}
 .badge.org{background:#ffe3e3;color:#c92a2a}
 .badge.src{background:#e7f5ff;color:#1971c2}
+.badge.conf{background:#ebfbee;color:#2b8a3e}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:0 1px 2px rgba(16,24,40,.04);display:flex;flex-direction:column;gap:8px}
 .card.pending{border-left:4px solid #f59f00;background:#fffdf5}
@@ -185,7 +186,7 @@ function renderLtsf(){
  rows.sort((a,b)=>{
   const x=key?ltsfVal(a,key):avg(a), y=key?ltsfVal(b,key):avg(b);
   if(x==null)return 1;if(y==null)return -1;return (x-y)*(SORT.asc?1:-1);});
- document.querySelector('#tbl thead').innerHTML='<tr><th>Model</th><th>Lookback</th>'+
+ document.querySelector('#tbl thead').innerHTML='<tr><th>Model</th><th>Venue</th><th>Lookback</th>'+
   DS.map(d=>`<th onclick="sortBy('${d}',1)">${d}${SORT.key===d?`<span class="arr"> ${SORT.asc?'▲':'▼'}</span>`:''}</th>`).join('')+
   '<th>Source</th></tr>';
  const best={};for(const d of DS){
@@ -195,6 +196,7 @@ function renderLtsf(){
   const src=m.source||{};
   const link=src.url||(src.arxiv?`https://arxiv.org/abs/${src.arxiv}`:'');
   return '<tr><td><span class="mdl">'+esc(m.name)+'</span></td>'+
+   `<td>${m.venue?`<span class="badge conf">${esc(m.venue)}</span>`:'<span class="badge">arXiv</span>'}</td>`+
    `<td class="num">${m.lookback??'—'}</td>`+
    DS.map(d=>{const v=ltsfVal(m,d);
     return `<td class="num${v!=null&&v===best[d]?' best':''}">${v==null?'—':v.toFixed(3)}</td>`;}).join('')+

@@ -37,7 +37,8 @@ CI가 매주 arXiv에서 후보를 `data/ltsf_pending.json`에 쌓는다. 처리
    서베이/벤치마크/포지션 논문, FM zero-shot 논문, 표 없는 논문은 기각.
 2. 채택 논문: HTML(arxiv.org/html/<id>, 폴백 ar5iv)에서 **제안 모델 행만 직접 읽어 전사**
    (기억으로 채우지 않는다. 못 읽으면 null). 5편 이상이면 서브에이전트로 분할.
-3. `data/ltsf.json` models 배열에 `{name, lookback, source{paper,arxiv,table,short}, results{dataset:{horizon:{mse,mae}}}}` 추가.
+3. `data/ltsf.json` models 배열에 `{name, venue, lookback, source{paper,arxiv,table,short}, results{dataset:{horizon:{mse,mae}}}}` 추가.
+   `venue`는 원 논문의 게재 학회("ICML 2025" 등) — arXiv abs 페이지 Comments/OpenReview로 **검증 후** 기입, 미게재·미확인이면 "arXiv".
    ILI horizon은 24/36/48/60 슬롯(다른 데이터셋은 96/192/336/720). 데이터셋 키: ETTh1/ETTh2/ETTm1/ETTm2/Weather/ECL/Traffic/Exchange/ILI.
 4. 처리(채택/기각 불문)한 후보는 `ltsf_pending.json`에서 제거 (감지 이력은 `ltsf_seen.json`이 이미 보유 — 재감지 안 됨).
 5. 커밋 메시지에 채택/기각 내역 한 줄씩.
