@@ -69,7 +69,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
        <a href="https://huggingface.co/spaces/Salesforce/GIFT-Eval" target="_blank" rel="noopener">GIFT-Eval</a> +
        <a href="https://github.com/autogluon/fev" target="_blank" rel="noopener">fev-bench</a> +
        LTSF 논문성적(ETT·ILI 등) ·
-       매일 자동 갱신 · <span id="upd">…</span></p>
+       주 1회 자동 갱신(월 08:30 KST) · <span id="upd">…</span></p>
   </div>
   <div class="nav">
     <button class="btn on" id="tab-lb" onclick="showTab('lb')">🏆 리더보드</button>
@@ -118,7 +118,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
 </footer>
 <script>
 let DB=null, CARDS=null, LTSF=null, SRC='gift', SORT={key:null,asc:true}, CFILTER='all';
-let HSLOT=0, METRIC='mse';
+let HSLOT=0, METRIC='mse', PENDING_LTSF=0;
 const NEW_DAYS=14;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -202,7 +202,8 @@ function renderLtsf(){
  }).join('');
  document.getElementById('note-lb').textContent=
   '논문 보고 수치(test '+METRIC.toUpperCase()+', 낮을수록 좋음). ILI horizon은 24/36/48/60, 나머지는 96/192/336/720. '
-  +'lookback·프로토콜이 소스마다 달라 행 간 직접 비교는 주의 (iTransformer protocol = 통일 lookback 96, paper = self-reported). 헤더 클릭으로 정렬.';
+  +'lookback·프로토콜이 소스마다 달라 행 간 직접 비교는 주의 (iTransformer protocol = 통일 lookback 96, paper = self-reported). 헤더 클릭으로 정렬.'
+  +(PENDING_LTSF?` · 검토 대기 신규 논문 ${PENDING_LTSF}편(주간 arXiv 감지, /tsf-cards로 반영)`:'');
 }
 function renderTable(){
  if(!DB)return;
@@ -293,8 +294,9 @@ Promise.all([
  fetch('data/leaderboard.json').then(r=>r.json()),
  fetch('data/cards.json').then(r=>r.json()).catch(()=>({})),
  fetch('data/ltsf.json').then(r=>r.json()).catch(()=>null),
-]).then(([db,cards,ltsf])=>{
- DB=db;CARDS=cards;LTSF=ltsf;
+ fetch('data/ltsf_pending.json').then(r=>r.json()).catch(()=>[]),
+]).then(([db,cards,ltsf,lp])=>{
+ DB=db;CARDS=cards;LTSF=ltsf;PENDING_LTSF=(lp||[]).length;
  document.getElementById('upd').textContent='마지막 갱신 '+db.updated;
  document.getElementById('n-gift').textContent=`(${db.gift.length})`;
  document.getElementById('n-fev').textContent=`(${db.fev.length})`;

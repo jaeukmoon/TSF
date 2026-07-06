@@ -19,6 +19,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import fetch_fev
 import fetch_gift
 import summarize
+import watch_ltsf
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
@@ -51,6 +52,7 @@ def main():
 
     gift = fetch_gift.fetch()
     fev = fetch_fev.fetch()
+    watch_ltsf.run()
 
     seen = load("seen.json", {"gift": {}, "fev": {}})
     cards = load("cards.json", {})

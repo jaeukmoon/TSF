@@ -1,8 +1,8 @@
-name: daily-leaderboard-update
+name: weekly-leaderboard-update
 
 on:
   schedule:
-    - cron: "30 23 * * *"   # 08:30 KST daily
+    - cron: "30 23 * * 0"   # Monday 08:30 KST, weekly
   workflow_dispatch:
     inputs:
       max_cards:
@@ -38,7 +38,7 @@ jobs:
           git config user.email "actions@github.com"
           git add data/
           git diff --cached --quiet && echo "no changes" && exit 0
-          git commit -m "data: daily leaderboard update $(date -u +%F)"
+          git commit -m "data: weekly leaderboard update $(date -u +%F)"
           git push
 
       - name: Trigger Pages deploy

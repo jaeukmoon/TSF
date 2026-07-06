@@ -1,12 +1,13 @@
 ---
 name: tsf-cards
-description: TSF 리더보드 트래커의 pending 요약카드를 이 Claude Code 세션이 직접 채우고 푸시한다 (wm-survey 2-tier 패턴 — CI는 수집/감지만, 요약은 구독 토큰). "TSF 카드 채워줘", "pending 카드 요약해줘" 류 요청에 사용.
+description: TSF 리더보드 트래커의 pending 요약카드 + LTSF 신규 논문 큐(ltsf_pending)를 이 Claude Code 세션이 직접 처리하고 푸시한다 (wm-survey 2-tier 패턴 — CI는 수집/감지만, 요약·전사는 구독 토큰). "TSF 카드 채워줘", "LTSF 논문 반영해줘" 류 요청에 사용.
 ---
 
-# tsf-cards — pending 요약카드 채우기
+# tsf-cards — pending 요약카드 + LTSF 논문 큐 처리
 
-CI(daily.yml)는 리더보드 수집·신규 감지·익명 모델 템플릿 카드까지만 한다(0 API 토큰).
-공개 근거가 있는 신규 모델의 카드는 이 스킬로 로컬 Claude가 채운다.
+CI(weekly.yml, 월 08:30 KST)는 리더보드 수집·신규 감지·익명 모델 템플릿 카드·LTSF 신규 논문
+감지(watch_ltsf.py → data/ltsf_pending.json)까지만 한다(0 API 토큰).
+공개 근거가 있는 신규 모델 카드와 LTSF 표 전사는 이 스킬로 로컬 Claude가 처리한다.
 
 ## 절차
 
@@ -28,9 +29,15 @@ CI(daily.yml)는 리더보드 수집·신규 감지·익명 모델 템플릿 카
 5. 검증: `python3 -m json.tool data/cards.json > /dev/null` + 필수 필드 존재 확인.
 6. 커밋/푸시 (`data: fill N summary cards`) → Pages는 push 트리거로 자동 배포.
 
-## LTSF 탭 (data/ltsf.json) 갱신
+## LTSF 탭 (data/ltsf.json) 갱신 — ltsf_pending 큐 처리
 
-새 LTSF 논문(ETT/Weather/ECL/Traffic/Exchange/ILI 성적 보고) 추가 요청 시:
-- 논문 HTML(arxiv.org/html/<id>)에서 표를 **직접 읽어 전사**한다(기억으로 채우지 않는다. 못 읽으면 null).
-- `data/ltsf.json`의 models 배열에 `{name, lookback, source{paper,arxiv,table}, results{dataset:{horizon:{mse,mae}}}}` 형식으로 추가.
-- ILI horizon은 24/36/48/60 슬롯 사용(다른 데이터셋은 96/192/336/720).
+CI가 매주 arXiv에서 후보를 `data/ltsf_pending.json`에 쌓는다. 처리 절차:
+
+1. 각 후보를 **triage**: 새 예측 모델 제안 + ETT류 벤치마크 full 표 보고 논문만 채택.
+   서베이/벤치마크/포지션 논문, FM zero-shot 논문, 표 없는 논문은 기각.
+2. 채택 논문: HTML(arxiv.org/html/<id>, 폴백 ar5iv)에서 **제안 모델 행만 직접 읽어 전사**
+   (기억으로 채우지 않는다. 못 읽으면 null). 5편 이상이면 서브에이전트로 분할.
+3. `data/ltsf.json` models 배열에 `{name, lookback, source{paper,arxiv,table,short}, results{dataset:{horizon:{mse,mae}}}}` 추가.
+   ILI horizon은 24/36/48/60 슬롯(다른 데이터셋은 96/192/336/720). 데이터셋 키: ETTh1/ETTh2/ETTm1/ETTm2/Weather/ECL/Traffic/Exchange/ILI.
+4. 처리(채택/기각 불문)한 후보는 `ltsf_pending.json`에서 제거 (감지 이력은 `ltsf_seen.json`이 이미 보유 — 재감지 안 됨).
+5. 커밋 메시지에 채택/기각 내역 한 줄씩.
