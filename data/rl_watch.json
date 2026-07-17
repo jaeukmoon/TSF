@@ -1,0 +1,260 @@
+{
+ "generated_at": "2026-07-17 04:49 UTC",
+ "papers": [
+  {
+   "id": "2606.29526",
+   "title": "The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2606.29526",
+   "published": "2026-07-12",
+   "venue": "arXiv",
+   "oneliner": "LLM RL에서 학습엔진(training)과 추론엔진(inference/sampler)이 같은 trajectory에 서로 다른 확률을 부여하는 training-inference mismatch가 상시적 off-policyness로 학습을 오염시키는데, 기존 연구처럼 training policy를 안정화해도 실제 배포에 쓰이는 inference policy의 개선은 보장되지 않는다는 objective misalignment를 지적한다. 이를 위해 inference policy의 단조(monotonic) 개선을 목표로 삼는 MIPI(Monotonic Inference Policy Improvement) objective를 제안하고, sampler-referenced 후보 업데이트를 만든 뒤 inference-side gap proxy로 동기화된 후보를 선별 수락하는 2단계 프레임워크 MIPU를 제시한다. 두 모델 스케일의 고(高)mismatch 실험에서 평균 reasoning 성능과 학습 안정성 개선을 보고한다.",
+   "contribution": "최적화 대상을 training policy가 아닌 inference policy로 재정의한 MIPI objective와, 이를 구현하는 2단계 RL 프레임워크 MIPU(sampler-referenced candidate 생성 + inference-side gap proxy 기반 선별 수락)",
+   "strengths": [
+    "기존 mismatch 완화 연구들이 놓친 objective misalignment — training engine에서의 유효한 업데이트가 배포용 inference policy 개선을 보장하지 않는다는 점 — 을 명시적으로 문제화한 관점 전환",
+    "monotonic improvement 원칙(MIPI)을 후보 업데이트 생성 + gap proxy 기반 선별 수락이라는 실행 가능한 2단계 절차(MIPU)로 구체화",
+    "RL post-training의 실무적 고질병인 불안정/collapse 문제에 직결되며, high-mismatch 조건에서 성능과 안정성 동시 개선을 보고"
+   ],
+   "weaknesses": [
+    "abstract 기반 — 정량 수치와 비교 베이스라인(예: TIS류 importance-sampling 보정, GSPO 등 안정화 기법 대비)이 abstract에 없어 원문 확인 필요",
+    "두 모델 스케일 실험으로 검증 범위가 제한적이고, 코드 링크가 abstract/comment에 없으며 venue 미기재 preprint",
+    "선별 수락(accept/reject) 단계가 유발할 추가 계산·거부 시 롤백 비용 등 오버헤드에 대한 언급이 abstract에 없음"
+   ],
+   "category": "LLM RL 안정화 · training-inference mismatch · monotonic inference policy 개선",
+   "completeness": {
+    "grade": "B",
+    "why": "문제 설정과 방법론은 견실하나 venue·코드 링크 없는 preprint이고 검증이 두 모델 스케일 실험으로 제한적이다."
+   }
+  },
+  {
+   "id": "2607.08443",
+   "title": "ADORN: Adaptive Drift handling for Open RAN using Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2607.08443",
+   "published": "2026-07-09T13:05:42Z",
+   "venue": "arXiv",
+   "oneliner": "O-RAN 트래픽 예측 모델의 drift에 대응해 \"언제 재학습할지\"를 Q-learning으로 결정하는 adaptive retraining 프레임워크. 재학습 결정을 MDP로 정식화해 forecasting accuracy와 retraining cost를 trade-off하는 policy를 학습하고, multi-expert LSTM ensemble로 catastrophic forgetting을 완화한다.",
+   "contribution": "(1) 재학습 시점 결정을 MDP로 정식화한 Q-learning 기반 adaptive retraining 정책 — forecasting accuracy와 retraining cost를 균형(기존 일괄 재학습의 높은 연산 비용·SLA 위반 가능성이 동기). (2) 다양한 트래픽 조건에 대한 robustness와 catastrophic forgetting 완화를 위한 multi-expert LSTM ensemble. (3) greedy/random baseline 대비 retraining overhead 절감 + 사전 정의된 성능 한계 내 시스템 성능 유지를 실험으로 확인(abstract 기준 정성적 결과만 제시).",
+   "strengths": [
+    "retraining 결정을 명시적 MDP로 정식화해 accuracy-cost trade-off를 RL로 다룬 문제 설정이 깔끔함 — \"모델 유지보수 자체를 RL로 스케줄링\"하는 관점",
+    "multi-expert ensemble로 drift 환경에서의 catastrophic forgetting 완화와 다양한 트래픽 조건에 대한 robustness를 노림",
+    "\"사전 정의된 성능 한계 내 유지\"라는 운영 조건을 평가에 포함(SLA 위반 문제를 동기로 제시)"
+   ],
+   "weaknesses": [
+    "abstract에 언급된 비교군은 greedy/random뿐 — drift detection 기반 고전 기법(DDM/ADWIN 류)이나 continual learning baseline 포함 여부는 abstract에서 확인 불가",
+    "예측 백본이 LSTM ensemble로, LLM/foundation model 시대 기준 예측 모델 자체의 기여는 없음; Q-learning이 tabular 수준인지 등 policy 표현력은 abstract만으로 판단 불가",
+    "코드 공개 언급 없음, venue 미표기(preprint), abstract에 정량 수치 전무 — 개선 폭·실험 규모는 원문 확인 필요",
+    "abstract 기반 카드 — MDP state/reward 설계 세부는 본문 확인 필요"
+   ],
+   "category": "RL 기반 retraining 스케줄링 · drift 대응 (O-RAN 트래픽 예측)",
+   "completeness": {
+    "grade": "C",
+    "why": "preprint(venue 미표기)·코드 공개 언급 없음, abstract에 언급된 비교군이 greedy/random뿐인 단일 도메인 실험에 정량 수치도 없음."
+   }
+  },
+  {
+   "id": "2607.08409",
+   "title": "When Synthetic Speech Is All You Have: Better Call GRPO",
+   "url": "https://arxiv.org/abs/2607.08409",
+   "published": "2026-07-09T12:34:56Z",
+   "venue": "arXiv (SLT 2026 submitted)",
+   "oneliner": "Privacy 제약으로 실음성 수집이 어려운 banking 도메인 LLM-based ASR을 synthetic TTS 음성만으로 적응시킬 때, SFT 대신 critic-free GRPO(low-WER hypothesis에 보상)를 쓰면 동일 데이터에서 훨씬 많은 성능을 뽑아냄을 보인다. GRPO 단독으로 SFT 대비 WER 40% 상대 감소(36.71%→22.09%), SFT-then-GRPO 조합은 45%까지 확대. 이득의 원천을 representation이 아닌 behavior로 추적 — stopping calibration 개선으로 insertion error 감소, attention의 audio anchoring 강화로 speech-to-text alignment 개선, early-layer representation은 불변.",
+   "contribution": "synthetic speech만 있는 저자원·규제 도메인 ASR 적응에서 \"SFT가 아니라 RL(GRPO)을 써야 한다\"는 처방을 정량으로 제시(40~45% 상대 WER 감소)하고, 그 이득이 representation 변화가 아니라 stopping calibration·attention anchoring 같은 behavior 교정에서 온다는 기제 분석을 제공.",
+   "strengths": [
+    "동일 synthetic 데이터 조건에서 SFT 대비 GRPO의 이득을 명확한 수치로 제시: WER 36.71%→22.09%(상대 40%), SFT-then-GRPO는 상대 45% — 데이터가 아니라 학습 방식이 병목임을 분리해 보임",
+    "이득의 기제 분석이 구체적: insertion error 감소 = stopping calibration 개선, speech-to-text alignment = attention의 audio anchoring 강화, early-layer representation은 불변 — 'RL이 무엇을 바꾸는가'를 behavior 수준으로 못박음",
+    "task metric(WER)을 직접 reward로 쓰는 critic-free group RL의 실용 사례로, privacy 제약(banking) 시나리오라는 명확한 동기 부여"
+   ],
+   "weaknesses": [
+    "SLT 2026 '제출' 단계 preprint(수락 아님)이고 arXiv 페이지에 공식 코드 링크 없음 — 재현성 확인 불가",
+    "abstract 기준 단일 도메인(banking ASR) 시나리오로 보이며, 다른 도메인/모델/TTS 엔진으로의 일반화 근거는 abstract에서 확인 불가",
+    "비교 기준선인 SFT의 WER이 36.71%로 매우 높은 세팅 — 저오류 세팅에서도 GRPO 우위가 유지되는지 abstract만으로 불명",
+    "abstract 기반 — reward가 'low-WER hypothesis 보상'이라는 것 외 group size·KL·advantage 정규화 등 GRPO 세부 설계와 정량 분석은 원문 확인 필요"
+   ],
+   "category": "critic-free group RL (GRPO) · synthetic-data ASR 적응 · SFT vs RL",
+   "completeness": {
+    "grade": "B",
+    "why": "정량 개선(상대 WER 40~45%)과 기제 분석은 견실하나 SLT 2026 제출 단계 preprint에 코드 미공개, abstract상 단일 도메인 검증으로 보임."
+   }
+  },
+  {
+   "id": "2607.07674",
+   "title": "Max Out GRPO Signal: Adaptive Trace Prefix Control for Hard Reasoning Problems",
+   "url": "https://arxiv.org/abs/2607.07674",
+   "published": "2026-07-08T17:32:58Z",
+   "venue": "arXiv",
+   "oneliner": "GRPO가 가장 어려운 문제에서 group 내 rollout이 전부 실패하면 group-relative advantage가 0이 되어 gradient가 사라지는 문제를 겨냥한다. AdaPrefix-GRPO는 reference solution의 정답 prefix를 프롬프트에 붙여 난이도를 연속 조절하는 knob으로 삼고, 학습 내내 문제별 success rate를 GRPO gradient 신호가 최대인 ~50% 근처로 유지하는 feedback controller로 prefix 길이를 적응 조절한 뒤 이후 assistance를 완전히 철회한다. 구현은 data preparation + prefix token loss mask뿐이고 trainer는 stock 그대로다.",
+   "contribution": "고정 prefix 길이(concurrent 방법)를 문제별·시간별 feedback controller로 바꿔 GRPO의 zero-advantage frontier 예제에서 gradient 신호를 극대화하는 adaptive curriculum. matched training FLOPs에서 0.6B 모델 held-out 정확도 2.1x, Qwen3-1.7B 1.6x, AIME 1.7x, trace length 약 절반(모두 abstract 수치). 배포 시점에는 prefix 없이 문제를 풀도록 assistance를 완전히 철회하는 학습-추론 정합 설계 포함.",
+   "strengths": [
+    "GRPO의 구조적 맹점(전원 실패 group→advantage 소멸→hard example이 gradient에 기여 못함)을 정면으로 다루고, 해법을 one-shot 설정이 아닌 online feedback controller(success rate ~50% 유지)로 정식화",
+    "trainer 수정 없이 data preparation + prefix token loss mask만으로 구현되는 낮은 침습성 — abstract가 'trainer는 stock 그대로'임을 명시해 기존 GRPO 파이프라인에 얹기 쉬운 구조",
+    "matched FLOPs 비교에서 0.6B 2.1x, 1.7B 1.6x, AIME 1.7x + trace length 절반이라는 큰 폭 개선을 abstract에 명시, '모델이 작을수록 이득이 크다'는 스케일 경향도 보고",
+    "학습 중 제공한 assistance를 완전히 철회해 배포 모델이 unaided로 풀게 하는 train-test mismatch 해소 설계"
+   ],
+   "weaknesses": [
+    "binary correctness reward(수학 추론) 전제의 메커니즘 — 'prefix로 success rate 50% 유지'는 성공/실패가 이산적일 때 정의되며, WIS 같은 continuous reward에는 재정의 없이 직결되지 않음",
+    "reference solution(정답 trace)이 존재해야 prefix를 만들 수 있어, gold rationale이 없는 도메인(예: 역학 예측)에는 적용 전제부터 성립하지 않을 수 있음",
+    "arXiv preprint로 venue 수락 공지·공식 코드 공개가 없어(arXiv 페이지 확인) 재현성 확인 불가",
+    "abstract 기반 카드 — controller의 구체 갱신식, DAPO dynamic sampling 등 동류 기법과의 직접 비교 여부, 정량 수치의 세부 조건은 원문 확인 필요"
+   ],
+   "category": "GRPO adaptive curriculum · prefix-hint feedback control · zero-advantage 완화",
+   "completeness": {
+    "grade": "B",
+    "why": "2개 모델(0.6B, Qwen3-1.7B) + AIME 벤치마크에서 matched-FLOPs 비교라는 견실한 검증을 제시하나, venue 수락 공지와 공식 코드가 없는 preprint."
+   }
+  },
+  {
+   "id": "2607.07508",
+   "title": "Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2607.07508",
+   "published": "2026-07-08T15:02:19Z",
+   "venue": "arXiv",
+   "oneliner": "비동기(asynchronous) agentic RL에서 GRPO의 group-wise sampling이 구조적으로 맞지 않는다는 문제를 지적하고, prompt당 rollout 1개(single-rollout sampling) + 실용적 value-model 학습 설계로 group-wise sampling을 대체하는 SAO를 제안. 여기에 strict double-side token-level clipping으로 최적화 안정성을 확보해 1000 step 안정 학습을 달성하고, SWE-Bench Verified·BeyondAIME·IMOAnswerBench에서 GRPO 및 변형들을 일관되게 상회한다고 주장. open GLM-5.2 모델 (750B-A40B) 학습용 agentic RL 파이프라인에 실배포되었다.",
+   "contribution": "group-wise sampling을 버리고 single-rollout + value model로 advantage를 추정하는 비동기 RL 최적화 기법(SAO)과 strict double-side token-level clipping 안정화 전략, 그리고 open GLM-5.2 (750B-A40B) 규모 실배포 실증.",
+   "strengths": [
+    "GRPO류 group sampling이 asynchronous agentic 학습과 안 맞는다는 구조적 결함을 명시하고, single-rollout + value model이라는 명확한 대안을 제시 (critic 재도입 방향)",
+    "strict double-side token-level clipping으로 off-policy 하에서 1000 step 안정 학습 주장 — group RL 안정화 축에서 clipping 설계 참고 가치",
+    "SWE-Bench Verified·BeyondAIME·IMOAnswerBench에서 GRPO 및 변형 대비 일관된 우위 + open GLM-5.2 (750B-A40B) 실제 파이프라인 배포라는 대규모 실증",
+    "환경이 변화하는 simulated online learning 세팅에서 single-rollout RL의 적응 효과를 별도로 시연"
+   ],
+   "weaknesses": [
+    "abstract 기반 — GRPO 대비 개선 폭 등 정량 수치가 abstract에 없어 원문 확인 필요",
+    "공식 코드 링크·venue 미기재 (preprint); GLM-5.2는 open 모델로 언급되나 SAO 학습 파이프라인 자체의 코드 공개 여부는 불명이라 외부 재현이 제한적",
+    "value model 재도입은 critic-free group RL의 단순성·메모리 이점을 포기하는 트레이드오프 — 소규모 학습 셋업 이식성 불명",
+    "long-horizon 비동기 agentic 전제의 처방이라, 동기식·짧은 rollout의 예측형 RL에는 문제 설정 자체가 다를 수 있음"
+   ],
+   "category": "asynchronous agentic RL · single-rollout + value model (critic 재도입) · token-level clipping",
+   "completeness": {
+    "grade": "B",
+    "why": "open GLM-5.2 (750B-A40B) 실배포와 다중 벤치마크 검증을 주장하나 preprint에 코드·venue가 없어 외부 검증이 제한됨."
+   }
+  },
+  {
+   "id": "2607.06690",
+   "title": "tsbootstrap: Distribution-Free Uncertainty Quantification and Conformal Prediction for Time Series",
+   "url": "https://arxiv.org/abs/2607.06690",
+   "repo": "https://github.com/astrogilda/tsbootstrap",
+   "published": "2026-07-07T18:07:06Z",
+   "venue": "arXiv",
+   "oneliner": "시계열의 temporal dependence 하에서 IID 가정 기반 conformal prediction과 IID bootstrap이 깨지는 문제를 겨냥한 오픈소스 라이브러리 논문. block/residual/sieve/wild resampling과 classical bootstrap CI, adaptive conformal calibrator(EnbPI, ACI, NexCP, AgACI)를 specification object로 방법을 선택하는 단일 typed API에 통합했다. 통제된 coverage study에서 IID bootstrap은 의존성 하에서 심하게 undercover하고, dependence-aware 방법들이 coverage deficit을 줄이며 short-memory 선형 의존에서는 sieve가 nominal에 가장 근접함을 보인다.",
+   "contribution": "resampling 엔진과 conformal calibration을 따로만 제공하던 기존 라이브러리 지형을 하나의 typed API로 통합한 소프트웨어 기여. 공유 fixed-statistic 경로에서 compiled backend가 arch 대비 수 배 빠르고, streaming reduce로 O(Bn) replicate tensor를 실체화하지 않아 peak 추가 메모리를 O(B)로 제한. MIT 라이선스(v0.6.1) 공개.",
+   "strengths": [
+    "dependence-aware resampling(block/residual/sieve/wild)과 adaptive conformal(EnbPI/ACI/NexCP/AgACI)을 단일 API로 묶어, 시계열 UQ에서 '재표집 따로, 보정 따로'인 도구 파편화를 직접 해소",
+    "통제된 coverage study로 IID bootstrap의 undercoverage를 실증하고 방법별 coverage 거동(sieve가 short-memory 선형 의존에서 nominal 최근접)을 비교 — 라이브러리 논문임에도 경험적 근거 제시",
+    "엔지니어링 완성도: compiled backend 속도(arch 대비 수 배)와 streaming reduce의 O(B) 메모리 상한을 명시",
+    "MIT 라이선스 코드 공개(github.com/astrogilda/tsbootstrap, v0.6.1)로 즉시 사용 가능"
+   ],
+   "weaknesses": [
+    "방법론적 신규성은 없음 — EnbPI/ACI/NexCP/AgACI 등 기존 방법의 구현·통합이 기여의 본체인 software paper (4+2 pages)",
+    "coverage study가 '통제된' 설정으로 기술됨 — 실제 도메인(역학/ILI 등) 데이터에서의 검증은 abstract에 언급 없음",
+    "abstract 기반 — '수 배 빠름', coverage deficit 크기 등 정량 수치는 원문 확인 필요",
+    "미게재 preprint(venue 없음), 장기 기억(long-memory)이나 비선형 의존 하의 거동은 abstract에서 불명"
+   ],
+   "category": "시계열 conformal UQ 라이브러리 · dependence-aware bootstrap",
+   "completeness": {
+    "grade": "B",
+    "why": "MIT 코드 공개(v0.6.1)와 통제된 coverage study를 갖췄으나 4+2 page 미게재 preprint로 대규모/실데이터 검증과 venue 수락이 확인되지 않음."
+   }
+  },
+  {
+   "id": "2607.05100",
+   "title": "AIFS-SUBS: Extending Data-Driven Forecasting to Sub-Seasonal Timescales",
+   "url": "https://arxiv.org/abs/2607.05100",
+   "published": "2026-07-06T13:56:41Z",
+   "venue": "arXiv",
+   "oneliner": "ECMWF의 medium-range 데이터기반 모델 AIFS-CRPS를 sub-seasonal(weeks 2-6) 리드타임으로 확장한 AIFS-SUBS. 24h autoregressive time step으로 롤아웃 오차 누적을 줄이고, 성층권 레벨·top-of-atmosphere thermal radiation을 predictor로 추가하며 2007-2011을 독립 검증 윈도우로 분리. 운용 IFS와 probabilistic skill 동급이면서 systematic bias를 줄이고, MJO의 OLR 성분에서 skilful forecast(correlation > 0.5)를 IFS 대비 8일 연장.",
+   "contribution": "Sub-seasonal 리드타임에서만 발생하는 세 가지 문제(장기 autoregressive rollout의 오차 누적, 리드타임에 따라 커지는 systematic bias, 독립 검증을 위한 수년치 데이터 홀드아웃 vs 긴 학습기록의 상충)를 명시하고, medium-range 모델(AIFS-CRPS)의 설계 변경(24h step, 성층권 predictor 추가, 검증 윈도우 분리)만으로 운용 NWP(IFS) 수준의 sub-seasonal 확률예측에 도달함을 보인 것. operational analyses fine-tune 버전(AIFS-SUBS)과 ERA5 단독 학습 버전(AIFS-SUBS-ERA5) 두 구성을 평가하고, AI Weather Quest에서 ERA5 버전이 weeks 3-4 variable-averaged RPSS로 IFS를 소폭 상회.",
+   "strengths": [
+    "운용 IFS 대비 폭넓은 process-based 검증: weeks 2-6 probabilistic skill 동급 + bias 감소, MJO OLR skilful horizon 8일 연장, multivariate RMM index 동급 이상, MJO의 TC 활동 변조 재현, SSW 빈도·surface impact 재현",
+    "sub-seasonal 고유 난점(롤아웃 오차 누적·리드타임 bias 증가·검증 홀드아웃 vs 학습기록 트레이드오프)을 문제로 정의하고 각각 설계 요소(24h step, predictor 추가, 2007-2011 독립 윈도우)로 대응하는 구조가 명확",
+    "AI Weather Quest라는 외부 벤치마크에서 AIFS-SUBS-ERA5가 weeks 3-4 variable-averaged RPSS로 IFS를 소폭 상회 — 자체 평가에 그치지 않음",
+    "두 학습 구성(operational analyses vs ERA5-only) 비교로 학습데이터 소스 효과를 분리"
+   ],
+   "weaknesses": [
+    "preprint(2026-07-06 제출), venue 미정, arXiv 페이지에 공식 코드 링크 없음 — 재현성 확인 불가",
+    "abstract 기반 — RPSS 절대값, bias 감소 폭, 앙상블 크기 등 정량 세부는 원문 확인 필요",
+    "CRPS 기반 학습이지만 objective/보상 설계의 세부(AIFS-CRPS의 CRPS 최적화 방식을 sub-seasonal에서 어떻게 유지·수정했는지)는 abstract에 없음 — 방법론 이식 포인트는 원문 필요",
+    "기상 도메인 특화 검증(MJO·SSW·TC) 중심이라 역학예측(ILI)으로의 직접 전이는 제한적"
+   ],
+   "category": "data-driven sub-seasonal NWP · CRPS 학습 앙상블 확장",
+   "completeness": {
+    "grade": "B",
+    "why": "ECMWF의 운용급 비교검증(IFS 대비 + AI Weather Quest 외부평가)으로 견실하나, preprint이고 venue·코드 공개가 없음."
+   }
+  },
+  {
+   "id": "2607.04963",
+   "title": "STAPO: Selective Trajectory-Aware Policy Optimization for LLM Agent Training",
+   "url": "https://arxiv.org/abs/2607.04963",
+   "published": "2026-07-06T11:50:06Z",
+   "venue": "ACL 2026 Main Conference",
+   "oneliner": "Sparse/delayed reward의 long-horizon LLM agent 학습에서 중간 step이 task 목표·상호작용 히스토리를 놓치는 trajectory neglect 문제를 겨냥한 hierarchical group-based RL 프레임워크. Shannon entropy가 state 고유 복잡도와 agent confidence를 혼동한다는 점을 지적하고, 해당 state에서 agent의 평균 행동 대비 confidence 편차를 재는 normalized entropy로 trajectory neglect와 연관된 outlier step을 탐지한다. 탐지된 outlier step을 trajectory-aware reward + trajectory-independent penalty의 joint mechanism으로 최적화해 trajectory awareness를 높이면서 학습 안정성을 보존한다.",
+   "contribution": "(1) step-level 불확실성 신호로 쓰이던 Shannon entropy의 결함(state 복잡도와 confidence 혼동)을 규명하고 normalized entropy를 제안, (2) 이를 이용해 trajectory neglect와 연관된 outlier step을 골라내 trajectory-aware reward와 trajectory-independent penalty를 함께 적용하는 선택적 group-based RL(STAPO)을 제안, (3) ALFWorld·WebShop·Search-Augmented QA에서 SOTA 성능과 trajectory neglect 완화를 보고.",
+   "strengths": [
+    "ACL 2026 Main Conference 수락(arXiv comment 확인) — peer review 통과로 방법론 신뢰도 확보",
+    "step-level 신호 설계가 원리적: entropy 절대값이 아니라 agent의 state별 평균 행동 대비 confidence 편차(normalized entropy)로 정규화해 '어려운 state'와 '방심한 agent'를 분리하는 진단이 명확",
+    "outlier step만 골라 최적화하는 선택적 설계 + trajectory-aware reward/trajectory-independent penalty 이중 메커니즘으로 학습 안정성 보존을 명시적 설계 목표로 삼음 — group RL 안정화 관점에서 설계 철학이 뚜렷",
+    "ALFWorld·WebShop·Search-Augmented QA 3개 이질적 agentic 벤치마크에서 검증 주장"
+   ],
+   "weaknesses": [
+    "코드 미공개 — arXiv 페이지·abstract에 repo 링크 없음, 재현성 확인 불가",
+    "abstract에 정량 수치가 전혀 없음 — 개선 폭, 비교 baseline 구성과 대비 마진, ablation은 원문 확인 필요 (abstract 기반 한계)",
+    "normalized entropy의 실제 추정 방법(state별 '평균 행동'을 어떻게 계산하는지)과 그 추가 비용이 abstract만으로는 불명",
+    "sparse/delayed reward의 multi-step agent 설정에 특화 — 보상이 즉시 주어지는 단일턴 태스크에서는 trajectory neglect 자체가 성립하지 않아 적용 범위가 제한적"
+   ],
+   "category": "agentic LLM RL · step-level selective optimization · group-based · entropy 신호",
+   "completeness": {
+    "grade": "A",
+    "why": "ACL 2026 Main Conference 수락 공지(arXiv comment로 확인) + 3개 벤치마크 검증 주장 — 다만 코드는 미공개."
+   }
+  },
+  {
+   "id": "2607.04854",
+   "title": "CARL: Constraint-Aware Reinforcement Learning for Planning with LLMs",
+   "url": "https://arxiv.org/abs/2607.04854",
+   "published": "2026-07-06T09:29:57Z",
+   "venue": "ACL 2026 Findings",
+   "oneliner": "LLM이 planning 시 task constraint를 위반하는 문제를 외부 solver·task decomposition 없이 모델 내재적(intrinsic) constraint awareness 강화로 푸는 RL 프레임워크. 핵심 메커니즘은 constraint-aware reward로, 동일 문제를 constrained input과 unconstrained input으로 각각 넣었을 때의 출력 분포를 비교해 제약에 집중하면 보상하고 무시하면 페널티를 준다. 다양한 RL 프레임워크와 호환되며 외부 solver나 top model 없이 end-to-end 학습이 가능하다고 명시한다.",
+   "contribution": "constrained vs unconstrained 입력 간 출력 분포 비교로 만든 constraint-aware reward로 LLM의 내재적 constraint awareness를 직접 최적화하는, solver-free·framework-agnostic RL 프레임워크(CARL) 제안. BlocksWorld·TravelPlanner·T-Eval에서 표준 RFT baseline과 SOTA reasoning model 대비 우위 및 constraint focus 증가 주장.",
+   "strengths": [
+    "reward가 특정 RL 알고리즘에 종속되지 않는 설계 — 외부 solver나 top model 불필요, end-to-end 학습으로 확장성 확보 (abstract 명시)",
+    "constrained/unconstrained 입력의 출력 분포 비교라는 reward 설계가 '제약 집중'이라는 내재적 행동을 직접 보상 — violation 결과가 아니라 제약에 대한 주의 자체를 신호로 사용",
+    "BlocksWorld·TravelPlanner·T-Eval 3개 planning 벤치마크에서 RFT baseline 및 SOTA reasoning model 상회 주장 + constraint focus 증가를 별도로 확인했다고 보고",
+    "ACL 2026 Findings 수락(arXiv comment 확인)으로 피어리뷰 통과"
+   ],
+   "weaknesses": [
+    "abstract 기반 — 정량 수치가 abstract에 전혀 없어 개선 폭·통계적 유의성은 원문 확인 필요",
+    "arXiv 페이지 기준 공개 코드 없음 → 재현성 확인 불가",
+    "constrained/unconstrained 이중 조건에서 출력 분포를 비교하는 reward의 계산 비용, advantage 추정·group RL과의 결합 방식 등 학습 세부가 abstract에 드러나지 않음",
+    "벤치마크가 전부 심볼릭/에이전트 planning 도메인 — 수치·확률 예측 태스크로의 이식성은 미검증"
+   ],
+   "category": "constraint-aware reward shaping · RL for LLM planning",
+   "completeness": {
+    "grade": "B",
+    "why": "ACL 2026 Findings 수락(main track 아님)으로 피어리뷰는 통과했으나 arXiv 페이지에 공개 코드가 없고 abstract에 정량 수치가 없어 검증 확인이 제한적."
+   }
+  },
+  {
+   "id": "2607.04242",
+   "title": "Progress- and Reliability-Oriented Group Policy Optimization for Agentic Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2607.04242",
+   "published": "2026-07-05T11:41:46Z",
+   "venue": "arXiv",
+   "oneliner": "장기(long-horizon) 에이전트 태스크의 step-level group RL에서 group 구성 방식의 딜레마 — 넓은 state key로 묶으면 coverage는 늘지만 서로 다른 히스토리의 action을 비교하게 되고, 히스토리 일치를 강제하면 group이 파편화되어 peer-comparison 신호가 사라짐 — 를 정면으로 다루는 learned-critic-free 방법 ProGPO를 제안. exact-prefix action 비교를 유지하되, 희소해진 peer 비교를 rollout 기반 state potential에서 유도한 transition credit으로 보완하고, potential 추정은 semantic expansion + history depth 간 inverse-variance fusion으로 신뢰도를 확보한다. ALFWorld/WebShop에서 Qwen2.5-1.5B-Instruct로 matched agentic RL baseline 대비 개선(비슷한 계산 오버헤드)을 보고하고, Qwen2.5-3B-Instruct 추가 실험으로 확장성을 추가로 테스트했다고 서술.",
+   "contribution": "step-level group advantage 추정의 'grouping fairness vs coverage' 트레이드오프를 명시화하고, context-consistent(exact-prefix) 그룹을 유지하면서 부족한 group 신호를 potential 기반 transition credit(rollout 추정 + inverse-variance fusion)으로 채우는 critic-free 학습 프레임워크.",
+   "strengths": [
+    "group RL의 핵심 약점인 group 구성 민감성(다른 히스토리 간 불공정 비교 vs group 파편화로 인한 advantage 신호 소실)을 문제로 명시하고 양쪽을 동시에 잡는 설계",
+    "learned critic 없이 step-level credit assignment를 수행 — trajectory-level 최적화보다 세밀한 업데이트를 critic-free로 달성",
+    "state potential 추정에 semantic expansion + history depth 간 inverse-variance fusion이라는 통계적으로 원리 있는 융합을 사용해 추정 신뢰도 문제를 직접 다룸"
+   ],
+   "weaknesses": [
+    "검증이 Qwen2.5-1.5B/3B-Instruct 소형 모델 + ALFWorld/WebShop 2개 벤치마크로 제한적 — 대규모 모델·다양한 태스크 일반화는 미확인",
+    "abstract에 정량 수치가 전혀 없음 — 개선 폭, 'comparable computational overhead' 주장, rollout 기반 potential 추정의 추가 비용/분산은 원문 확인 필요 (abstract 기반 한계)",
+    "코드 미공개(arXiv 페이지에도 링크 없음), v1 preprint(2026-07-05)로 venue 없음"
+   ],
+   "category": "step-level group RL · critic-free · agentic credit assignment",
+   "completeness": {
+    "grade": "B",
+    "why": "두 표준 agentic 벤치마크에서 matched baseline 비교와 3B 확장 실험까지 갖췄으나, 소형 모델 한정·코드 미공개·venue 없는 v1 preprint."
+   }
+  }
+ ]
+}

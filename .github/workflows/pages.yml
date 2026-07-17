@@ -22,6 +22,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Leak guard (secret denylist)
+        env:
+          DENY: ${{ secrets.LAB_DENYLIST }}
+        run: |
+          # LAB_DENYLIST 시크릿(쉼표구분 금지어)이 설정된 경우에만 동작.
+          # 암호문(lab.enc.json)을 제외한 배포 대상에서 금지어가 평문으로 발견되면 배포 중단.
+          if [ -n "$DENY" ]; then
+            echo "$DENY" | tr ',' '\n' | sed '/^$/d' > /tmp/deny.txt
+            if grep -rFf /tmp/deny.txt --exclude=lab.enc.json index.html data/; then
+              echo "::error::leak guard: denylist term found in public payload"
+              exit 1
+            fi
+            echo "leak guard: clean"
+          else
+            echo "leak guard: LAB_DENYLIST secret not set — skipped"
+          fi
       - name: Assemble site
         run: |
           mkdir _site

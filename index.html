@@ -59,6 +59,26 @@ a.mdl:hover{color:var(--accent);text-decoration:underline}
 .links a{color:var(--accent);text-decoration:none}
 .links a:hover{text-decoration:underline}
 .empty{color:var(--mut);font-size:14px;padding:40px 0;text-align:center}
+.lab-lock{display:flex;justify-content:center;padding:60px 0}
+.lockbox{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 32px;max-width:400px;width:100%;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.lockbox h3{margin:0;font-size:17px}
+.lockbox input[type=password]{padding:9px 12px;border:1px solid var(--line);border-radius:8px;font-size:14px}
+.lockbox .go{padding:9px 14px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:700;font-size:13.5px;cursor:pointer}
+.dd{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:28px 34px;line-height:1.75;font-size:14.5px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+.dd h1{font-size:22px;margin-top:0}
+.dd h2{font-size:18px;margin-top:30px;border-bottom:1px solid var(--line);padding-bottom:6px}
+.dd h3{font-size:15.5px}
+.dd code{background:#f1f3f9;padding:1px 5px;border-radius:5px;font-size:12.5px}
+.dd pre{background:#0b1020;color:#dbe4f3;padding:14px 16px;border-radius:10px;overflow-x:auto;font-size:12.5px;line-height:1.6}
+.dd pre code{background:none;color:inherit;padding:0}
+.dd .tbl{overflow-x:auto}
+.dd table{border-collapse:collapse;font-size:13px}
+.dd th,.dd td{border:1px solid var(--line);padding:6px 10px}
+.dd th{background:#f1f3f9}
+.dd blockquote{border-left:3px solid var(--accent);margin:8px 0;padding:2px 14px;color:var(--mut)}
+.dd img{max-width:100%}
+details.pmwrap{font-size:12.5px}
+details.pmwrap summary{cursor:pointer;color:var(--mut);font-weight:700;user-select:none}
 footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-size:12px;line-height:1.7}
 @media(max-width:760px){header .wrap{flex-direction:column;align-items:flex-start}.search{width:100%;margin-left:0}}
 </style></head>
@@ -75,6 +95,8 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
   <div class="nav">
     <button class="btn on" id="tab-lb" onclick="showTab('lb')">🏆 리더보드</button>
     <button class="btn" id="tab-cards" onclick="showTab('cards')">📇 모델 요약</button>
+    <button class="btn" id="tab-watch" onclick="showTab('watch')">📡 RL Watch</button>
+    <button class="btn" id="tab-lab" onclick="showTab('lab')">🔒 Lab</button>
     <a class="btn" href="https://github.com/jaeukmoon/TSF" target="_blank" rel="noopener">GitHub</a>
   </div>
 </div></header>
@@ -111,6 +133,35 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
   <p class="empty" id="cards-empty" style="display:none">해당하는 카드가 없습니다.</p>
 </section>
 
+<section id="view-watch" style="display:none">
+  <div class="chips">
+    <button class="chip on" id="w-all" onclick="setWatchFilter('all')">전체 <span id="n-watch"></span></button>
+    <button class="chip" id="w-new" onclick="setWatchFilter('new')">최근 2주 NEW</button>
+    <input class="search" id="q-watch" placeholder="논문 / 키워드 검색…" oninput="renderWatch()">
+  </div>
+  <div class="grid" id="watch-cards"></div>
+  <p class="empty" id="watch-empty" style="display:none">카드가 없습니다.</p>
+  <p class="note" id="note-watch"></p>
+</section>
+
+<section id="view-lab" style="display:none">
+  <div id="lab-locked" class="lab-lock">
+    <div class="lockbox">
+      <h3>🔒 Lab — 연구 노트</h3>
+      <p class="note" style="margin:0">암호화된 비공개 노트입니다. 패스프레이즈를 입력하세요.</p>
+      <input type="password" id="lab-pass" placeholder="passphrase" autocomplete="current-password"
+             onkeydown="if(event.key==='Enter')labUnlock()">
+      <label class="note" style="margin:0"><input type="checkbox" id="lab-remember"> 이 기기에서 기억</label>
+      <button class="go" onclick="labUnlock()">열기</button>
+      <p class="note" id="lab-msg" style="margin:0"></p>
+    </div>
+  </div>
+  <div id="lab-open" style="display:none">
+    <div class="chips" id="lab-pages"></div>
+    <article class="dd" id="lab-body"></article>
+  </div>
+</section>
+
 </main>
 <footer>
   집계는 각 벤치마크의 공식 방법을 재현: GIFT-Eval은 config별 Seasonal-Naive 정규화 후 geometric mean(MASE·CRPS)과 평균 rank,
@@ -120,6 +171,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
 <script>
 let DB=null, CARDS=null, LTSF=null, SRC='gift', SORT={key:null,asc:true}, CFILTER='all';
 let HSLOT=0, METRIC='mse', PENDING_LTSF=0;
+let RLW=null, WFILTER='all', LAB=null, LABPAGE=0, MDLIBS=null;
 const NEW_DAYS=14;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -151,10 +203,11 @@ function isNew(d){if(!d)return false;return (Date.now()-new Date(d))/864e5<=NEW_
 function seenOf(src,name){return DB.first_seen?.[src]?.[name];}
 
 function showTab(t){
- document.getElementById('view-lb').style.display=t==='lb'?'':'none';
- document.getElementById('view-cards').style.display=t==='cards'?'':'none';
- document.getElementById('tab-lb').classList.toggle('on',t==='lb');
- document.getElementById('tab-cards').classList.toggle('on',t==='cards');
+ for(const x of['lb','cards','watch','lab']){
+  document.getElementById('view-'+x).style.display=x===t?'':'none';
+  document.getElementById('tab-'+x).classList.toggle('on',x===t);
+ }
+ if(t==='lab')labInit();
 }
 function setSrc(s){SRC=s;SORT={key:null,asc:true};
  for(const x of['gift','fev','ltsf'])document.getElementById('src-'+x).classList.toggle('on',x===s);
@@ -292,18 +345,131 @@ function renderCards(){
   `(${Object.values(CARDS).filter(v=>v.status!=='ok').length})`;
 }
 
+// ---------- RL Watch (XIF-RL rl-watch의 정제 공개 미러) ----------
+function setWatchFilter(f){WFILTER=f;
+ for(const x of['all','new'])document.getElementById('w-'+x).classList.toggle('on',x===f);
+ renderWatch();}
+function renderWatch(){
+ if(!RLW)return;
+ const q=(document.getElementById('q-watch').value||'').toLowerCase();
+ let items=RLW.papers.slice();
+ if(WFILTER==='new')items=items.filter(p=>isNew(p.published));
+ if(q)items=items.filter(p=>(p.title+' '+(p.oneliner||'')+' '+(p.category||'')).toLowerCase().includes(q));
+ document.getElementById('watch-cards').innerHTML=items.map(p=>{
+  const grade=p.completeness?.grade;
+  return `<div class="card">
+   <h3><a class="mdl" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a></h3>
+   <div class="stats">
+    ${isNew(p.published)?'<span class="badge new">NEW</span>':''}
+    ${p.venue?`<span class="badge conf">${esc(p.venue)}</span>`:''}
+    ${p.category?`<span class="badge arch">${esc(p.category)}</span>`:''}
+    ${grade?`<span class="badge">완성도 ${esc(grade)}</span>`:''}
+    <span class="stat">${esc((p.published||'').slice(0,10))}</span>
+   </div>
+   ${p.oneliner?`<p class="one">${esc(p.oneliner)}</p>`:''}
+   ${p.contribution?`<p class="sum">${esc(p.contribution)}</p>`:''}
+   ${p.strengths?.length?`<details class="pmwrap"><summary>강점 ${p.strengths.length}</summary><ul class="pm plus">${p.strengths.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></details>`:''}
+   ${p.weaknesses?.length?`<details class="pmwrap"><summary>약점/주의 ${p.weaknesses.length}</summary><ul class="pm minus">${p.weaknesses.map(s=>`<li>${esc(s)}</li>`).join('')}</ul></details>`:''}
+   <div class="links">
+    <a href="${esc(p.url)}" target="_blank" rel="noopener">📄 arXiv</a>
+    ${p.repo?`<a href="${esc(p.repo)}" target="_blank" rel="noopener">💻 code</a>`:''}
+   </div>
+  </div>`;}).join('');
+ document.getElementById('watch-empty').style.display=items.length?'none':'';
+ document.getElementById('note-watch').textContent=
+  '주간 arXiv 감지 → 요약카드. 논문 사실 요약만 공개됩니다. 갱신: '+(RLW.generated_at||'');
+}
+
+// ---------- 🔒 Lab (AES-256-GCM, WebCrypto 복호화) ----------
+function loadScript(src){return new Promise((ok,err)=>{const s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=err;document.head.appendChild(s);});}
+async function loadMdLibs(){
+ if(MDLIBS)return MDLIBS;
+ const l=document.createElement('link');l.rel='stylesheet';
+ l.href='https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css';
+ document.head.appendChild(l);
+ MDLIBS=(async()=>{
+  await loadScript('https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js');
+  try{
+   await loadScript('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js');
+   await loadScript('https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js');
+  }catch(e){/* 수식 없이 진행 */}
+ })();
+ return MDLIBS;
+}
+function labInit(){
+ if(LAB)return;
+ const saved=sessionStorage.getItem('labpass')||localStorage.getItem('labpass');
+ if(saved){document.getElementById('lab-pass').value=saved;labUnlock(true);}
+}
+async function labUnlock(auto){
+ const pass=document.getElementById('lab-pass').value;
+ const msg=document.getElementById('lab-msg');
+ if(!pass)return;
+ msg.textContent='복호화 중…';
+ try{
+  const enc=await fetch('data/lab.enc.json').then(r=>{if(!r.ok)throw new Error('payload 없음');return r.json();});
+  const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+  const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);
+  const key=await crypto.subtle.deriveKey(
+   {name:'PBKDF2',salt:b64(enc.salt),iterations:enc.iter,hash:'SHA-256'},
+   km,{name:'AES-GCM',length:256},false,['decrypt']);
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(enc.nonce)},key,b64(enc.ct));
+  LAB=JSON.parse(new TextDecoder().decode(pt));
+  (document.getElementById('lab-remember').checked?localStorage:sessionStorage).setItem('labpass',pass);
+  msg.textContent='';
+  document.getElementById('lab-locked').style.display='none';
+  document.getElementById('lab-open').style.display='';
+  await loadMdLibs();
+  showLabPage(0);
+ }catch(e){
+  LAB=null;
+  sessionStorage.removeItem('labpass');localStorage.removeItem('labpass');
+  msg.textContent=auto===true?'':'복호화 실패 — 패스프레이즈를 확인하세요.';
+ }
+}
+function renderLabNav(){
+ document.getElementById('lab-pages').innerHTML=LAB.pages.map((p,i)=>
+  `<button class="chip${i===LABPAGE?' on':''}" onclick="showLabPage(${i})">${esc(p.title)}</button>`).join('')
+  +`<button class="chip" style="margin-left:auto" onclick="labLock()">🔒 잠그기</button>`;
+}
+function showLabPage(i){
+ LABPAGE=i;renderLabNav();
+ const el=document.getElementById('lab-body');
+ const md=LAB.pages[i].md;
+ if(window.marked){
+  el.innerHTML=marked.parse(md);
+  el.querySelectorAll('table').forEach(t=>{const w=document.createElement('div');w.className='tbl';t.parentNode.insertBefore(w,t);w.appendChild(t);});
+  if(window.renderMathInElement)renderMathInElement(el,{
+   delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+   throwOnError:false});
+ }else{
+  el.innerHTML='<pre style="white-space:pre-wrap">'+esc(md)+'</pre>';
+ }
+ window.scrollTo(0,0);
+}
+function labLock(){
+ LAB=null;
+ sessionStorage.removeItem('labpass');localStorage.removeItem('labpass');
+ document.getElementById('lab-pass').value='';
+ document.getElementById('lab-open').style.display='none';
+ document.getElementById('lab-locked').style.display='';
+ document.getElementById('lab-msg').textContent='';
+}
+
 Promise.all([
  fetch('data/leaderboard.json').then(r=>r.json()),
  fetch('data/cards.json').then(r=>r.json()).catch(()=>({})),
  fetch('data/ltsf.json').then(r=>r.json()).catch(()=>null),
  fetch('data/ltsf_pending.json').then(r=>r.json()).catch(()=>[]),
-]).then(([db,cards,ltsf,lp])=>{
- DB=db;CARDS=cards;LTSF=ltsf;PENDING_LTSF=(lp||[]).length;
+ fetch('data/rl_watch.json').then(r=>r.json()).catch(()=>null),
+]).then(([db,cards,ltsf,lp,rlw])=>{
+ DB=db;CARDS=cards;LTSF=ltsf;PENDING_LTSF=(lp||[]).length;RLW=rlw;
  document.getElementById('upd').textContent='마지막 갱신 '+db.updated;
  document.getElementById('n-gift').textContent=`(${db.gift.length})`;
  document.getElementById('n-fev').textContent=`(${db.fev.length})`;
  if(ltsf)document.getElementById('n-ltsf').textContent=`(${ltsf.models.length})`;
- renderTable();renderCards();
+ if(rlw)document.getElementById('n-watch').textContent=`(${rlw.papers.length})`;
+ renderTable();renderCards();renderWatch();
 }).catch(e=>{
  document.getElementById('upd').textContent='데이터 로드 실패: '+e;
 });
