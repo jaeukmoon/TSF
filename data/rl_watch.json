@@ -1,6 +1,266 @@
 {
- "generated_at": "2026-07-17 04:49 UTC",
+ "generated_at": "2026-07-18 09:50 UTC",
  "papers": [
+  {
+   "id": "2607.11886",
+   "title": "Read It Back: Pretrained MLLMs Are Zero-Shot Reward Models for Text-to-Image Generation",
+   "url": "https://arxiv.org/abs/2607.11886",
+   "published": "2026-07-18",
+   "venue": "arXiv",
+   "oneliner": "사전학습 MLLM을 학습 없이 text-to-image 생성 RL의 보상모델로 쓰는 SpectraReward — 생성이미지를 판정하게 하는 대신, 원 프롬프트가 이미지로부터 얼마나 복원되는지(image-conditioned teacher-forced log-likelihood)를 보상으로 사용.",
+   "contribution": "선호라벨·보상모델 미세조정 없이 MLLM의 이미지-텍스트 정렬능력을 그대로 재활용하는 training-free 보상함수.",
+   "strengths": [
+    "reward hacking을 줄이는 training-free·재현가능 보상 설계",
+    "판정형 대신 복원가능도(log-likelihood)라는 대안 보상 신호"
+   ],
+   "weaknesses": [
+    "T2I 생성 도메인 — 시계열 예측과 완전 다른 modality",
+    "abstract 기반 정량 미확인",
+    "미게재 preprint"
+   ],
+   "category": "training-free 보상모델 · T2I RL",
+   "completeness": {
+    "grade": "B",
+    "why": "보상설계 아이디어는 흥미로우나 미게재이고 modality가 무관."
+   }
+  },
+  {
+   "id": "2607.14886",
+   "title": "Reachability-Aware Pretraining for Efficient Target-Oriented Path Exploration in Temporal Knowledge Graph Reasoning",
+   "url": "https://arxiv.org/abs/2607.14886",
+   "published": "2026-07-16T11:59:01Z",
+   "venue": "arXiv",
+   "oneliner": "시간지식그래프(TKG)의 외삽 추론(미래 시점 사건 예측)에서 RL 기반 multi-hop 경로추론의 sparse 보상·비효율 탐색 문제를, 도달가능성(reachability) 인지 사전학습으로 완화하는 RAPTOR.",
+   "contribution": "TKG 추론 RL의 sparse 보상·거대 시변 행동공간 탐색 비효율을 reachability-aware pretraining으로 개선.",
+   "strengths": [
+    "해석가능한 multi-hop 경로(설명가능성)를 산출하는 RL — 우리 '설명가능' 관심과 느슨히 인접",
+    "sparse reward 탐색 문제를 사전학습으로 완화"
+   ],
+   "weaknesses": [
+    "지식그래프 경로추론 — 수치 시계열 예측과 태스크·표현이 완전 다름",
+    "abstract 기반 정량 미확인",
+    "미게재 preprint"
+   ],
+   "category": "TKG 외삽추론 · multi-hop RL",
+   "completeness": {
+    "grade": "B",
+    "why": "방법은 구체적이나 미게재이고 태스크가 무관."
+   }
+  },
+  {
+   "id": "2607.14777",
+   "title": "SEED: Self-Evolving On-Policy Distillation for Agentic Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2607.14777",
+   "published": "2026-07-16T09:57:18Z",
+   "venue": "arXiv",
+   "oneliner": "장기지평 에이전트 LLM의 outcome-RL이 sparse trajectory 보상으로 중간결정 지도가 빈약한 문제를, 완료된 on-policy 궤적을 '사후통찰 스킬'로 변환해 정책에 되증류(distill)하는 자기진화 프레임워크 SEED.",
+   "contribution": "궤적을 hindsight skill로 바꿔 정책에 재주입하는 self-evolving on-policy distillation으로 sparse 보상의 supervision gap을 메움.",
+   "strengths": [
+    "sparse outcome 보상의 중간지도 부족 문제를 정면으로 다룸(우리 그룹RL 안정성 관심과 인접)",
+    "on-policy distillation의 자기진화 루프가 구체적"
+   ],
+   "weaknesses": [
+    "에이전트·툴사용·다턴 태스크 특화 — 예측/역학과 거리",
+    "abstract 기반 정량·baseline 미확인",
+    "미게재 preprint"
+   ],
+   "category": "agentic RL · on-policy distillation",
+   "completeness": {
+    "grade": "B",
+    "why": "아이디어는 구체적이나 미게재이고 에이전트 태스크 특정."
+   }
+  },
+  {
+   "id": "2607.12856",
+   "title": "Verifier-Based Reinforcement Fine-Tuning of Reasoning Models for Thermal Energy Storage Control",
+   "url": "https://arxiv.org/abs/2607.12856",
+   "published": "2026-07-14T15:08:39Z",
+   "venue": "arXiv",
+   "oneliner": "빌딩 열에너지 저장(TES) 스케줄링을, 오프라인 동적계획(DP)의 정확한 action-value를 조밀 보상으로 변환해 open-weight 추론모델을 RLVR(verifiable reward)로 미세조정하고, 단 30개 프롬프트로 상위 스케줄러를 학습.",
+   "contribution": "정확한 DP 해를 dense verifiable reward로 바꿔 소수 프롬프트로 추론모델을 RL 미세조정하는 보상 설계.",
+   "strengths": [
+    "RLVR·검증가능 보상·dense reward 설계",
+    "DP 최적해를 보상 신호로 쓰는 아이디어가 명확",
+    "소표본(30 prompts) RFT 사례"
+   ],
+   "weaknesses": [
+    "제어(control) 태스크라 확률예측/보정과는 목표가 다름",
+    "abstract 기반 — 일반화·비교 baseline 미확인",
+    "미게재 preprint(29p)"
+   ],
+   "category": "RLVR 보상설계 · 에너지 제어",
+   "completeness": {
+    "grade": "B",
+    "why": "보상설계 사례로 흥미로우나 미게재이고 태스크가 제어로 상이."
+   }
+  },
+  {
+   "id": "2607.12730",
+   "title": "Learning-based Probabilistic Load Forecasting with Post-hoc and In-model Uncertainty",
+   "url": "https://arxiv.org/abs/2607.12730",
+   "published": "2026-07-14T13:02:18Z",
+   "venue": "arXiv",
+   "oneliner": "스마트빌딩 부하예측에서 배포 시 입력이 저해상도·특징결손이라 재구성 오차가 전파되는 문제를 겨냥해, 시간해상도 정렬·결손입력 재구성·인과특징 도출을 통합한 하루전 확률예측 프레임워크를 제시하고 post-hoc 잔차분위수 vs in-model 불확실성 배치를 비교.",
+   "contribution": "추론 입력 재구성 이후 '불확실성을 어디에 둘 것인가'(사후 vs 모델내)를 통합틀에서 비교한 확률 부하예측 연구.",
+   "strengths": [
+    "확률예측·분위수·구간 보정을 정면으로 다룸(우리 예측 축과 동일 관심)",
+    "입력 결손·재구성 오차가 구간 보정을 망치는 실전 문제를 공략",
+    "post-hoc vs in-model UQ 비교는 설계 시사점"
+   ],
+   "weaknesses": [
+    "에너지 부하 도메인 — 역학과 데이터 체제 다름",
+    "LLM/추론 RL이 아니라 전통 확률예측 파이프라인",
+    "abstract 기반 정량 미확인"
+   ],
+   "category": "확률 부하예측 · 분위수 UQ",
+   "completeness": {
+    "grade": "B",
+    "why": "확률예측 실무 프레임이나 미게재(저널 게재 여부 불명), 도메인 상이."
+   }
+  },
+  {
+   "id": "2607.12640",
+   "title": "A Learning-Rate-Gated Failure of GRPO in a Small Language and Vision-Language Model Web Agent: A Controlled Null and Its Mechanism",
+   "url": "https://arxiv.org/abs/2607.12640",
+   "published": "2026-07-14T11:17:35Z",
+   "venue": "arXiv",
+   "oneliner": "감독학습 체크포인트 위에 GRPO(RLVR)를 돌리는 관행이 소형(4B~8B) 언어·비전언어 웹에이전트에서 실제로 skill을 더하는지를, 학습률·KL·seed·초기화·clip을 바꾼 18개 통제 그리드로 검증 — 어떤 설정도 강한 SFT baseline을 신뢰성 있게 넘지 못했고, 중고학습률은 오히려 악화시키는 controlled null 결과.",
+   "contribution": "'SFT+GRPO=이득'이라는 통념에 대한 통제된 반례(null)와 그 메커니즘(행동 재편일 뿐 skill 추가 아님) 제시.",
+   "strengths": [
+    "GRPO의 이득이 조건부·과장될 수 있음을 통제 실험으로 실증 — 우리 정직화 태도와 정렬",
+    "학습률 게이팅 메커니즘 규명",
+    "negative result의 방법론적 엄밀성(18-run 그리드)"
+   ],
+   "weaknesses": [
+    "웹에이전트·소형모델 특정 — 우리 9B 예측 태스크로 직접 전이 불명",
+    "abstract 기반 — 대형·다른 태스크 일반화는 미지수",
+    "미게재 preprint"
+   ],
+   "category": "GRPO null result · SFT 위 RL 이득 검증",
+   "completeness": {
+    "grade": "B",
+    "why": "엄밀한 통제 실험이나 미게재이고 소형·웹에이전트로 범위 제한."
+   }
+  },
+  {
+   "id": "2607.12248",
+   "title": "When Directional Accuracy Lies: A Base-Rate-Honest Benchmark for LoRA-Adapted TimesFM on Equity Forecasting",
+   "url": "https://arxiv.org/abs/2607.12248",
+   "published": "2026-07-14T01:23:51Z",
+   "venue": "arXiv",
+   "oneliner": "TimesFM을 LoRA로 적응해 주식 방향예측에서 ~80% 정확도를 얻은 것이 사실은 상승장에서 'always-up' 규칙과 다를 바 없는 base-rate 착시임을 보이고, walk-forward·held-out-ticker·정직한 baseline(zero-shot TimesFM/always-up/random-walk/persistence/AR(1))으로 진짜 skill을 분리하는 재현가능 벤치마크.",
+   "contribution": "시계열 파운데이션 모델(TimesFM) 적응의 성능 주장에서 base-rate 착시를 걷어내는 '정직한' 평가 프로토콜 제시.",
+   "strengths": [
+    "평가 정직성(base-rate·trivial baseline) 강조 — 우리 §9 정직화·평가 프로토콜과 문제의식 일치",
+    "TimesFM LoRA 적응의 함정을 실증",
+    "walk-forward·held-out split 등 방법론이 우리 temporal split 설계에 참고"
+   ],
+   "weaknesses": [
+    "금융(equity) 도메인 — 역학과 다름",
+    "방향정확도 중심으로 확률예측/보정 축은 약함",
+    "abstract 기반 정량 미확인"
+   ],
+   "category": "평가 정직성 · TSF FM 적응 base-rate",
+   "completeness": {
+    "grade": "B",
+    "why": "재현가능 벤치마크로 실용적이나 미게재이고 도메인 특수."
+   }
+  },
+  {
+   "id": "2607.11720",
+   "title": "Active Offline-to-Online Reinforcement Learning",
+   "url": "https://arxiv.org/abs/2607.11720",
+   "published": "2026-07-13T15:46:11Z",
+   "venue": "arXiv",
+   "oneliner": "오프라인 RL로 학습한 정책을 제한된 온라인 상호작용으로 개선하는 offline-to-online(O2O) 파이프라인에서, 여러 후보 정책 중 하나를 고르는 위험을 줄이기 위해 능동적(active) 선택·미세조정을 도입.",
+   "contribution": "O2O-RL의 알고리즘·하이퍼파라미터 민감성으로 인한 정책 선택 위험을 능동적 평가·미세조정으로 완화.",
+   "strengths": [
+    "정책 선택의 민감성·위험을 명시적으로 다룸",
+    "비정상·고비용 상호작용 도메인 지향"
+   ],
+   "weaknesses": [
+    "제어형 offline RL — 시계열 예측·역학과 무관",
+    "abstract 기반 정량 미확인",
+    "미게재 preprint"
+   ],
+   "category": "offline-to-online RL · 정책선택",
+   "completeness": {
+    "grade": "B",
+    "why": "제어 RL 방법이나 미게재이고 우리 예측 문제와 무관."
+   }
+  },
+  {
+   "id": "2607.11653",
+   "title": "Bet on Features: Anytime-Valid and Feature-Aware Auditing of Conditional Quantile Forecasters",
+   "url": "https://arxiv.org/abs/2607.11653",
+   "published": "2026-07-13T15:04:24Z",
+   "venue": "arXiv",
+   "oneliner": "블랙박스 조건부 분위수 예측기(conditional quantile forecaster)를, 데이터 스트림이 드리프트하는 상황에서 연속적으로 감시(audit)하는 distribution-free·게임이론적(anytime-valid, betting) 검정 프레임워크. 보정 여부가 감사자의 정보수준에 의존한다는 점(feature-aware)을 명시적으로 다룸.",
+   "contribution": "고정지평(fixed-horizon) backtest가 드리프트에서 무효화되는 문제를, 시점 무관 유효(anytime-valid)·특징 인지 방식의 연속 보정 감사로 대체.",
+   "strengths": [
+    "분위수 예측의 '보정'을 엄밀히(anytime-valid, distribution-free) 감시",
+    "정보의존적 calibration 개념은 우리 평가 프로토콜 설계에 시사점",
+    "실전 배포 후 드리프트 모니터링을 다뤄 실용적"
+   ],
+   "weaknesses": [
+    "abstract 기반 — 실험 도메인·정량 결과는 원문 확인 필요",
+    "예측기 학습이 아니라 사후 감사(auditing) 프레임 — 보상 설계와는 층위가 다름",
+    "미게재 preprint"
+   ],
+   "category": "분위수 예측 보정 감사 · anytime-valid",
+   "completeness": {
+    "grade": "B",
+    "why": "이론틀은 견고하나 미게재이고 경험적 검증 범위가 abstract만으로는 제한적."
+   }
+  },
+  {
+   "id": "2607.11470",
+   "title": "Climate-Invariant Conformal Prediction Intervals for Multi-Horizon Solar and Wind Forecasting",
+   "url": "https://arxiv.org/abs/2607.11470",
+   "published": "2026-07-13T12:23:11Z",
+   "venue": "arXiv",
+   "oneliner": "태양광·풍력 다지평 예측의 불확실성 정량화를, 이분산·비대칭·군집조건부 split-conformal + bootstrap 다양화 XGBoost 앙상블로 구성해, 지역별 재보정 없이 단일 모델이 다양한 기후에 전이되도록 하는 conformal prediction interval 프레임워크.",
+   "contribution": "유한표본 유효성(conformal)과 지역 전이성(재보정 불필요)을 동시에 확보하는 group-conditional split-conformal 구성.",
+   "strengths": [
+    "conformal의 distribution-free coverage 보장",
+    "지역 재보정 없이 전이(우리 US↔Japan 일반화 목표와 문제의식 유사)",
+    "구간 폭이 국소 난이도에 적응"
+   ],
+   "weaknesses": [
+    "에너지 도메인(태양광/풍력) — 역학과 데이터 특성 다름",
+    "point→interval 사후 보정 계열로, 추론/설명 RL과는 방법 축이 다름",
+    "abstract 기반 정량 미확인"
+   ],
+   "category": "conformal prediction · 다지평 에너지 예측",
+   "completeness": {
+    "grade": "B",
+    "why": "방법 구성은 견고하나 미게재이고 도메인이 에너지로 우리와 다름."
+   }
+  },
+  {
+   "id": "2607.11272",
+   "title": "Long-Memory Reservoir Computing for Data-Scarce Dengue Forecasting",
+   "url": "https://arxiv.org/abs/2607.11272",
+   "published": "2026-07-13T08:56:24Z",
+   "venue": "arXiv",
+   "oneliner": "데이터가 짧고 노이즈가 크며 long-memory를 갖는 뎅기열 발생 시계열을, fractional differencing(ARFIMA)의 장기기억 처리와 Echo State Network(reservoir computing)의 비선형 모델링을 결합해 예측하는 프레임워크.",
+   "contribution": "데이터 희소·비정상·장기의존이 겹친 역학 예측에 reservoir computing을 적용해 소표본에서도 비선형 동역학과 통계적 장기기억을 함께 담으려는 시도.",
+   "strengths": [
+    "ILI와 같은 data-scarce 역학 예측의 핵심 난점(짧은·비정상·장기의존 시계열)을 정면으로 다룸",
+    "ARFIMA의 장기기억 + ESN의 비선형성을 결합한 구조적 동기가 분명",
+    "소표본 학습이 필요한 설정이라 우리 문제와 데이터 체제가 유사"
+   ],
+   "weaknesses": [
+    "abstract 기반 — 정량 성능·비교 baseline 구성은 원문 확인 필요",
+    "점예측 중심으로 보이며 확률예측/보정(WIS·coverage) 관점은 불명",
+    "미게재 preprint(venue 없음)"
+   ],
+   "category": "역학 예측 · reservoir computing · 장기기억",
+   "completeness": {
+    "grade": "B",
+    "why": "동기·구조는 분명하나 미게재 preprint이고 정량 검증 범위가 abstract만으로는 불확실."
+   }
+  },
   {
    "id": "2606.29526",
    "title": "The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning",
@@ -23,6 +283,145 @@
    "completeness": {
     "grade": "B",
     "why": "문제 설정과 방법론은 견실하나 venue·코드 링크 없는 preprint이고 검증이 두 모델 스케일 실험으로 제한적이다."
+   }
+  },
+  {
+   "id": "2607.10169",
+   "title": "Beyond Euclidean Clipping: Overcoming Exploration Collapse in LLM RL via Riemannian Isometric Policy Optimization",
+   "url": "https://arxiv.org/abs/2607.10169",
+   "published": "2026-07-11T07:19:59Z",
+   "venue": "ICML 2026",
+   "oneliner": "LLM RL의 PPO-Clip이 정책 불일치를 Euclidean 거리로 측정해 정책 다양체의 내재기하와 불일치 → 저확률 영역은 과보수·고확률 영역은 과격하게 갱신되어 exploration collapse를 일으킨다고 진단하고, Riemannian 등거리(isometric) 정책최적화로 교정.",
+   "contribution": "PPO-Clip 붕괴의 근본 원인을 정책 다양체의 기하 불일치로 규명하고 Riemannian isometric 갱신으로 대체.",
+   "strengths": [
+    "GRPO/PPO-clip 계열의 exploration collapse를 이론적으로 파고듦",
+    "clip의 기하적 결함이라는 새 진단틀",
+    "ICML 2026 게재(comment 근거)"
+   ],
+   "weaknesses": [
+    "일반 LLM reasoning RL 대상 — 시계열/역학 특화 아님",
+    "abstract 기반 — 시계열 태스크 전이 여부 불명",
+    "구현 복잡도(Riemannian 갱신) 원문 확인 필요"
+   ],
+   "category": "정책최적화 기하 · PPO-clip 붕괴",
+   "completeness": {
+    "grade": "A",
+    "why": "ICML 2026 게재로 검증된 이론 기여(comment에 명시)."
+   }
+  },
+  {
+   "id": "2607.09921",
+   "title": "Global Merger-Arbitrage Forecasting with Language Models",
+   "url": "https://arxiv.org/abs/2607.09921",
+   "published": "2026-07-10T19:16:03Z",
+   "venue": "ICML 2026",
+   "oneliner": "발표된 M&A 딜의 성사 여부를 예측하는 LLM 예측 시스템 — 수백 페이지 기술문서에 대한 long-context 추론이 필요한 고위험 설정에서, 전문가 유도 문맥공학 + 사후통찰 추론궤적 미세조정으로 세 배타적 결과에 대한 확률분포를 출력.",
+   "contribution": "짧은 뉴스 스니펫 위주였던 LLM 판단예측을, 장문서 long-context·확률분포 출력의 고위험 예측으로 확장.",
+   "strengths": [
+    "LLM으로 '확률분포'를 출력(점예측 아님)",
+    "hindsight 추론궤적 미세조정 방식이 구체적",
+    "ICML 2026 게재(comment 'Accepted')"
+   ],
+   "weaknesses": [
+    "금융 M&A 도메인 — 역학과 다름",
+    "분류형(3-outcome) 확률로 연속 분위수/구간과는 형태 차이",
+    "abstract 기반 정량 미확인"
+   ],
+   "category": "LLM 확률예측 · long-context",
+   "completeness": {
+    "grade": "A",
+    "why": "ICML 2026 게재(comment에 Accepted 명시)."
+   }
+  },
+  {
+   "id": "2607.09537",
+   "title": "GatedLinear: Adaptive Routing of Complementary Linear Bases for Time Series Forecasting",
+   "url": "https://arxiv.org/abs/2607.09537",
+   "published": "2026-07-10T15:42:01Z",
+   "venue": "arXiv",
+   "oneliner": "시계열 예측에서 매끄러운 추세·비정상 드리프트·엄격한 위상정렬 반복 등 상호배타적 동역학을, 단일 백본(self-attention/스펙트럴 필터)이 아니라 상보적 선형 기저(linear bases)를 적응적으로 라우팅해 처리하는 경량 프레임워크 GatedLinear.",
+   "contribution": "이질적 시계열 패턴을 단일 메커니즘에 밀어넣지 않고 상보적 선형 기저의 게이팅 라우팅으로 처리하는 경량 TSF 모델.",
+   "strengths": [
+    "DLinear 계열 경량 모델의 확장 — 우리 TSF baseline 트래킹 대상과 동선상",
+    "이질 패턴을 변수·지평별로 다르게 처리하는 동기가 분명"
+   ],
+   "weaknesses": [
+    "점예측 정확도 중심으로 보이며 확률예측/보정 축은 불명",
+    "abstract 기반 — SOTA 대비 마진 미확인",
+    "미게재 preprint"
+   ],
+   "category": "TSF 경량 예측 · 선형기저 라우팅",
+   "completeness": {
+    "grade": "B",
+    "why": "모델 아이디어는 명확하나 미게재이고 확률예측 관점 부재."
+   }
+  },
+  {
+   "id": "2607.09490",
+   "title": "Terminal Dimension Reduction for Time Series with Applications",
+   "url": "https://arxiv.org/abs/2607.09490",
+   "published": "2026-07-10T15:05:30Z",
+   "venue": "ICML 2026",
+   "oneliner": "차원축소용 terminal embedding을 시계열에 적용해, 점집합의 쌍거리를 작은 왜곡으로 보존하면서 k-means/k-median coreset 등에 활용하는 이론적 terminal dimension reduction.",
+   "contribution": "시계열에 대한 terminal embedding 기반 차원축소와 coreset 응용의 이론.",
+   "strengths": [
+    "엄밀한 거리보존 이론(coreset)",
+    "ICML 2026 게재(comment 'ICML 2026')"
+   ],
+   "weaknesses": [
+    "예측이 아니라 차원축소/클러스터링 이론 — 우리 forecasting과 무관",
+    "abstract 기반, 응용 예측 성능과 무관"
+   ],
+   "category": "시계열 차원축소 이론 · coreset",
+   "completeness": {
+    "grade": "A",
+    "why": "ICML 2026 게재(comment 명시)이나 우리 관점에선 무관한 이론."
+   }
+  },
+  {
+   "id": "2607.09137",
+   "title": "Comprehensive identifiability analysis and reliable parameter estimation for an SEIR model",
+   "url": "https://arxiv.org/abs/2607.09137",
+   "published": "2026-07-10T06:47:03Z",
+   "venue": "arXiv",
+   "oneliner": "역학의 표준 SEIR 모델의 파라미터(전파·잠복·감염률)가 globally identifiable하지 않아 최적화가 잘못된 국소해로 수렴하는 문제를, 구조적 identifiability 분석과 globally identifiable한 재정식화로 해결.",
+   "contribution": "SEIR 파라미터 추정의 식별가능성(identifiability)을 구조적으로 분석하고 안정적으로 추정 가능한 정식화를 제시.",
+   "strengths": [
+    "기계적(mechanistic) 역학 모델의 추정 신뢰성을 이론적으로 다룸",
+    "파라미터 추정의 수치 안정성 문제를 명시적으로 공략"
+   ],
+   "weaknesses": [
+    "ML/RL 예측이 아니라 compartmental ODE 모델 추정 — 우리 LLM 예측 파이프라인과 방법론 거리가 멂",
+    "abstract 기반 — 예측 성능 자체보다 파라미터 식별에 초점"
+   ],
+   "category": "기계적 역학모델 · SEIR identifiability",
+   "completeness": {
+    "grade": "B",
+    "why": "이론 기여는 명확하나 우리 관점의 예측 검증과는 무관한 파라미터 추정 논문."
+   }
+  },
+  {
+   "id": "2607.08940",
+   "title": "TSRouter: Dynamic Modality-Model Selection for Time Series Reasoning",
+   "url": "https://arxiv.org/abs/2607.08940",
+   "published": "2026-07-09T21:09:05Z",
+   "venue": "COLM 2026",
+   "oneliner": "시계열 추론에서 LLM(정확한 수치 이해)과 VLM(전역 패턴 포착)의 상보성을 활용해, 질의마다 최적의 modality·모델을 동적으로 선택하는 라우터 TSRouter.",
+   "contribution": "시계열 추론 질의별로 modality-모델을 동적 선택하는 라우팅 프레임워크.",
+   "strengths": [
+    "시계열 '추론(reasoning)'을 LLM/VLM 관점에서 다룸 — 우리 LLM 예측+설명 문맥과 인접",
+    "비용·전문성 차이를 라우팅으로 절충",
+    "COLM 2026 게재(comment 'Accepted')"
+   ],
+   "weaknesses": [
+    "예측(forecasting) 자체보다 modality 선택에 초점",
+    "역학·확률예측 특화 아님",
+    "abstract 기반 정량 미확인"
+   ],
+   "category": "시계열 추론 라우팅 · LLM/VLM",
+   "completeness": {
+    "grade": "A",
+    "why": "COLM 2026 게재(comment에 Accepted 명시)."
    }
   },
   {
@@ -125,6 +524,29 @@
    "completeness": {
     "grade": "B",
     "why": "open GLM-5.2 (750B-A40B) 실배포와 다중 벤치마크 검증을 주장하나 preprint에 코드·venue가 없어 외부 검증이 제한됨."
+   }
+  },
+  {
+   "id": "2607.07284",
+   "title": "Visualizing and forecasting subnational life-table death counts: Gap forecasting methods",
+   "url": "https://arxiv.org/abs/2607.07284",
+   "published": "2026-07-08T11:21:39Z",
+   "venue": "arXiv",
+   "oneliner": "하위국가(subnational) 생명표 사망자수를, 성별·지역 간 상관을 공동모델링하고 국가-지역 격차(gap)를 명시적으로 예측하는 프레임워크로 예측·시각화하며 구간(interval) 예측을 제공.",
+   "contribution": "성별·지역 격차를 분해·공동모델링해 사망 예측과 불평등 이해를 동시에 제공하는 인구통계 예측틀.",
+   "strengths": [
+    "구간(interval) 예측을 제공 — 불확실성 정량화 관심",
+    "공간·성별 상관 공동모델링"
+   ],
+   "weaknesses": [
+    "인구통계(사망) 도메인 — 역학 발생예측과 다르고 ML/RL 아님",
+    "고전 통계 예측 계열",
+    "미게재 preprint(32p)"
+   ],
+   "category": "인구통계 예측 · 생명표 gap",
+   "completeness": {
+    "grade": "B",
+    "why": "완결된 통계 예측틀이나 미게재이고 우리 도메인과 상이."
    }
   },
   {
@@ -254,6 +676,30 @@
    "completeness": {
     "grade": "B",
     "why": "두 표준 agentic 벤치마크에서 matched baseline 비교와 3B 확장 실험까지 갖췄으나, 소형 모델 한정·코드 미공개·venue 없는 v1 preprint."
+   }
+  },
+  {
+   "id": "2607.03957",
+   "title": "NormWorlds-CF: Solver-Verified Counterfactual Normative Reasoning with Metamorphic-Relation GRPO",
+   "url": "https://arxiv.org/abs/2607.03957",
+   "published": "2026-07-04T17:11:21Z",
+   "venue": "arXiv",
+   "oneliner": "LLM이 '맞는 답을 틀린 근거로' 내는 문제를 겨냥해, 실행가능 규칙세계에서 solver가 정답·증명·반증 인증서를 생성하는 counterfactual normative reasoning 환경 NormWorlds-CF와, LLM judge 없이 metamorphic-relation 기반으로 검증하는 GRPO를 제시.",
+   "contribution": "solver-검증(정답+증명+반증)으로 LLM judge 없이 근거 충실성을 지도·평가하는 GRPO 환경.",
+   "strengths": [
+    "'정답만 맞추는 SFT는 근거에서 0점'을 실증",
+    "LLM judge 없는 결정적 검증(solver·metamorphic)이 우리 평가 신뢰성 고민과 통함",
+    "answer-only 감독의 위험을 진단"
+   ],
+   "weaknesses": [
+    "규범추론(normative reasoning) 도메인 — 시계열 예측과 태스크 상이",
+    "abstract 기반 — 성능·일반화 미확인",
+    "미게재 preprint"
+   ],
+   "category": "solver-검증 GRPO · 근거 충실성",
+   "completeness": {
+    "grade": "B",
+    "why": "동기·환경 설계는 우리와 정합하나 미게재이고 도메인 상이."
    }
   }
  ]
