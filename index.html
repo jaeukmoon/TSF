@@ -2,6 +2,15 @@
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TSF Leaderboard Tracker</title>
+<meta name="description" content="시계열 예측 파운데이션 모델 리더보드 — GIFT-Eval + fev-bench + LTSF 논문성적 주간 미러, RL Watch, 모델 요약 카드.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏆%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TSF Leaderboard Tracker">
+<meta property="og:description" content="시계열 예측 파운데이션 모델 리더보드 — GIFT-Eval + fev-bench + LTSF + RL Watch.">
+<meta property="og:url" content="https://jaeukmoon.github.io/TSF/">
+<meta property="og:image" content="https://jaeukmoon.github.io/TSF/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://jaeukmoon.github.io/TSF/assets/og.png">
 <style>
 :root{--panel:#fff;--ink:#1a1f2e;--mut:#6b7280;--line:#e6e8ee;--accent:#3b5bdb}
 *{box-sizing:border-box}
@@ -80,7 +89,9 @@ a.mdl:hover{color:var(--accent);text-decoration:underline}
 details.pmwrap{font-size:12.5px}
 details.pmwrap summary{cursor:pointer;color:var(--mut);font-weight:700;user-select:none}
 footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-size:12px;line-height:1.7}
-@media(max-width:760px){header .wrap{flex-direction:column;align-items:flex-start}.search{width:100%;margin-left:0}}
+@media(max-width:760px){header .wrap{flex-direction:column;align-items:flex-start}.search{width:100%;margin-left:0}
+  main{padding:16px 14px 48px}header{padding:18px 14px}header h1{font-size:20px}
+  .card{padding:14px}.grid{grid-template-columns:1fr}}
 </style></head>
 <body>
 <header><div class="wrap">
@@ -172,6 +183,7 @@ footer{max-width:1200px;margin:0 auto;padding:0 20px 40px;color:var(--mut);font-
 let DB=null, CARDS=null, LTSF=null, SRC='gift', SORT={key:null,asc:true}, CFILTER='all';
 let HSLOT=0, METRIC='mse', PENDING_LTSF=0;
 let RLW=null, WFILTER='all', LAB=null, LABPAGE=0, MDLIBS=null;
+let SEED=null;  // 창립 배치일(가장 이른 first_seen) — 이 날짜는 NEW 에서 제외
 const NEW_DAYS=14;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -199,7 +211,7 @@ const COLS={
   {k:'_seen',label:'First seen'}]
 };
 
-function isNew(d){if(!d)return false;return (Date.now()-new Date(d))/864e5<=NEW_DAYS;}
+function isNew(d){if(!d||d===SEED)return false;return (Date.now()-new Date(d))/864e5<=NEW_DAYS;}
 function seenOf(src,name){return DB.first_seen?.[src]?.[name];}
 
 function showTab(t){
@@ -464,6 +476,10 @@ Promise.all([
  fetch('data/rl_watch.json').then(r=>r.json()).catch(()=>null),
 ]).then(([db,cards,ltsf,lp,rlw])=>{
  DB=db;CARDS=cards;LTSF=ltsf;PENDING_LTSF=(lp||[]).length;RLW=rlw;
+ const seenAll=[];
+ Object.values(CARDS||{}).forEach(v=>{if(v.first_seen)seenAll.push(v.first_seen);});
+ for(const s of ['gift','fev']){const m=(DB.first_seen&&DB.first_seen[s])||{};for(const k in m)seenAll.push(m[k]);}
+ SEED=seenAll.length?seenAll.slice().sort()[0]:null;
  document.getElementById('upd').textContent='마지막 갱신 '+db.updated;
  document.getElementById('n-gift').textContent=`(${db.gift.length})`;
  document.getElementById('n-fev').textContent=`(${db.fev.length})`;
