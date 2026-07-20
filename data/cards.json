@@ -3112,5 +3112,69 @@
   },
   "generated_at": "2026-07-06",
   "generated_by": "claude-code"
+ },
+ "falconagent": {
+  "name": "Falcon-Agent",
+  "sources": {
+   "gift": "Falcon-Agent"
+  },
+  "first_seen": "2026-07-20",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 16.5. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "ant-intl",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-20",
+  "generated_by": "template"
+ },
+ "racinecast1nc": {
+  "name": "RacineCast-1-NC",
+  "sources": {
+   "gift": "RacineCast-1-NC"
+  },
+  "first_seen": "2026-07-20",
+  "status": "pending",
+  "card": null
+ },
+ "racinecast1": {
+  "name": "RacineCast-1",
+  "sources": {
+   "gift": "RacineCast-1"
+  },
+  "first_seen": "2026-07-20",
+  "status": "pending",
+  "card": null
+ },
+ "histroutecv": {
+  "name": "HistRoute-CV",
+  "sources": {
+   "gift": "HistRoute-CV"
+  },
+  "first_seen": "2026-07-20",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 23.2. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "Hitsz iLearn-ML",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-20",
+  "generated_by": "template"
  }
 }

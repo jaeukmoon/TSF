@@ -103,7 +103,11 @@
   "naive": "2026-07-06",
   "VISIT-1.0": "2026-07-06",
   "crossformer": "2026-07-06",
-  "auto_ets": "2026-07-06"
+  "auto_ets": "2026-07-06",
+  "Falcon-Agent": "2026-07-20",
+  "RacineCast-1-NC": "2026-07-20",
+  "RacineCast-1": "2026-07-20",
+  "HistRoute-CV": "2026-07-20"
  },
  "fev": {
   "Chronos-2": "2026-07-06",
