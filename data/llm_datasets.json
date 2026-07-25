@@ -1,0 +1,214 @@
+{
+  "updated": "2026-07-26",
+  "note": "LLM을 시계열 예측용으로 SFT/RL 학습할 때 쓰는 공개 데이터셋. instruction/reasoning 항목은 3-vote 적대적 검증 통과분, corpus 항목은 HF 카드 primary-source로 fetch 확인(대형 표준셋). preference/reward-pair 형식 데이터셋은 확인되지 않음 — Time-R1/TimeMaster의 RL 보상은 별도 데이터가 아니라 예측 정확도에서 프로그램적으로 계산됨.",
+  "datasets": [
+    {
+      "name": "TSQA (Time-MQA)",
+      "id": "Time-MQA/TSQA",
+      "category": "instruction",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "hf": "https://huggingface.co/datasets/Time-MQA/TSQA",
+        "paper": "https://arxiv.org/abs/2503.01875"
+      },
+      "size": "~193K QA쌍 (실측 192,843)",
+      "license": "Apache-2.0 (gated)",
+      "format": "instruction/QA pair",
+      "used_by": ["Mistral-7B", "Qwen2.5-7B", "Llama-3-8B (continued PT/FT)"],
+      "summary": "12개 실세계 도메인(헬스케어/금융/에너지/IoT/환경/교통/AIOps 등)을 아우르는 대규모 시계열 QA 데이터셋으로, forecasting·imputation·anomaly·classification·open-ended QA 5과제를 통일 QA 포맷으로 묶었다. Mistral/Qwen/Llama 계열의 continued pretraining·fine-tuning에 사용(ACL 2025).",
+      "notes": "HF gated(클릭스루)라 즉시 다운로드 불가. 원본 카드의 답변형식 서브카운트 합(30,710)이 open-ended 총계(37,629)와 불일치하는 집계 오류 존재."
+    },
+    {
+      "name": "ChatTS-Training-Dataset",
+      "id": "ChatTSRepo/ChatTS-Training-Dataset",
+      "category": "instruction",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "hf": "https://huggingface.co/datasets/ChatTSRepo/ChatTS-Training-Dataset",
+        "github": "https://github.com/NetManAIOps/ChatTS",
+        "paper": "https://vldb.org/pvldb/vol18/p2385-xie.pdf"
+      },
+      "size": "262,295 샘플 (7.67 GB)",
+      "license": "Apache-2.0 / MIT (표기 상충)",
+      "format": "instruction pair (input/timeseries/output 3필드 JSON)",
+      "used_by": ["ChatTS-14B (Qwen2.5-14B-Instruct FT)", "ChatTS-8B"],
+      "summary": "ByteDance의 ChatTS-14B/8B를 학습시킨 합성 instruction 데이터셋. input(텍스트 프롬프트, <ts> 플레이스홀더)·timeseries(1-20개 수치 시퀀스)·output(분석 응답) 3필드로, 5개 서브셋(align_256 105k, align_random 105k, sft 44.8k, ift 6.37k, dev 1k). 원시 수치를 보존하는 native 다변량 이해·추론 학습용(VLDB 2025).",
+      "notes": "페이지 메타데이터는 Apache-2.0, README 푸터는 MIT로 라이선스 표기 상충."
+    },
+    {
+      "name": "ChatTime-1-Finetune-100K",
+      "id": "ChengsenWang/ChatTime-1-Finetune-100K",
+      "category": "instruction",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "hf": "https://huggingface.co/datasets/ChengsenWang/ChatTime-1-Finetune-100K",
+        "paper": "https://arxiv.org/abs/2412.11376"
+      },
+      "size": "100K (4과제 × 25K)",
+      "license": "—",
+      "format": "instruction pair",
+      "used_by": ["ChatTime-1-7B-Chat"],
+      "summary": "ChatTime-1-7B-Chat 파인튜닝용 10만 샘플 instruction 데이터셋으로, text QA·unimodal TS forecasting·context-guided forecasting·TS QA 4과제에 각 25K씩 균등 분배. Llama-2-7B를 ChatTime-1-Pretrain-1M로 continual pretrain한 Base 모델에 이 데이터로 instruction tuning해 Chat 모델을 만듦.",
+      "notes": "짝을 이루는 사전학습 코퍼스 ChatTime-1-Pretrain-1M은 별도(미검증 리드)."
+    },
+    {
+      "name": "Time-MMD",
+      "id": "AdityaLab/Time-MMD",
+      "category": "corpus",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "github": "https://github.com/AdityaLab/Time-MMD",
+        "paper": "https://arxiv.org/abs/2406.08627"
+      },
+      "size": "9개 primary 도메인, raw numeric+text CSV",
+      "license": "CC BY 4.0",
+      "format": "raw paired numeric+text (QA 아님)",
+      "used_by": ["Time-MQA (QA 가공 원료)"],
+      "summary": "9개 도메인을 아우르는 '최초의' multi-domain multimodal 시계열 데이터셋(NeurIPS 2024 D&B). numeric CSV(start/end/OT…)와 text CSV(report/search, fact/pred)를 타임스탬프로 정렬한 raw pair 포맷 — instruction/QA쌍이 아니라, Time-MQA 등 후속 논문이 single-turn prompting으로 QA를 생성하는 원료로 쓴다.",
+      "notes": "그 자체는 학습용 instruction이 아니라 가공 소스. QA 파이프라인을 직접 붙여야 SFT 데이터가 됨."
+    },
+    {
+      "name": "Context-is-Key (CiK)",
+      "id": "ServiceNow/context-is-key",
+      "category": "instruction",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "hf": "https://huggingface.co/datasets/ServiceNow/context-is-key",
+        "github": "https://github.com/ServiceNow/context-is-key-forecasting",
+        "paper": "https://arxiv.org/abs/2410.18959"
+      },
+      "size": "355 test 샘플",
+      "license": "Apache-2.0",
+      "format": "text-context + series 예측 태스크",
+      "used_by": [],
+      "summary": "5개 텍스트 컨텍스트 카테고리(Intemporal/Historical/Future/Covariate/Causal)를 시계열과 페어링한, 자연어 컨텍스트 내장 생성형 예측 벤치마크(ICML 2025). raw series나 단순 QA가 아니라 컨텍스트 활용 능력을 재는 태스크.",
+      "notes": "규모가 355 test 샘플로 작아 학습 코퍼스보다 평가 벤치마크 성격. SFT 학습보단 컨텍스트-예측 평가에 적합."
+    },
+    {
+      "name": "Time-Bench (Time-R1 · ulab)",
+      "id": "ulab-ai/Time-Bench",
+      "category": "reasoning",
+      "sft": true,
+      "rl": true,
+      "links": {
+        "hf": "https://huggingface.co/datasets/ulab-ai/Time-Bench",
+        "github": "https://github.com/ulab-uiuc/Time-R1",
+        "paper": "https://arxiv.org/abs/2505.13508"
+      },
+      "size": "실측 ~67K rows (README는 200K+ 주장)",
+      "license": "CC BY 4.0",
+      "format": "텍스트/이벤트 시간추론 QA",
+      "used_by": ["Time-R1 (ulab, 3단계 RL 커리큘럼)"],
+      "summary": "NYT 기사에서 파생한 텍스트/이벤트 기반 시간추론 데이터셋(timestamp inference·time-gap estimation·event ordering·masked time entity completion). ulab-uiuc의 Time-R1이 3단계 RL 커리큘럼으로 학습에 사용. 숫자 시계열 예측이 아니라 뉴스 텍스트 기반 시간추론.",
+      "notes": "★동명 논문 주의: lqzxt/ustc의 '숫자예측 Time-R1'(2506.10630)과 완전히 다름. README '200K+'와 실제 공개본 66,979 rows 불일치(200K 공개 주장은 검증 기각)."
+    },
+    {
+      "name": "Time-R1 (GRIP) 학습 셋업",
+      "id": "github: lqzxt/time-r1 (=ustc-time-series/Time-R1)",
+      "category": "reasoning",
+      "sft": true,
+      "rl": true,
+      "links": {
+        "github": "https://github.com/lqzxt/time-r1",
+        "paper": "https://arxiv.org/abs/2506.10630"
+      },
+      "size": "SFT 3K 자가증류 CoT + 9개 raw LTSF 벤치",
+      "license": "—",
+      "format": "raw 벤치 + 프로그램적 보상 (전용 데이터셋 없음)",
+      "used_by": ["Time-R1 (숫자예측 reasoning, GRIP)"],
+      "summary": "숫자 시계열 예측을 reasoning으로 푸는 2단계 파이프라인. Stage1 SFT는 별도 공개 코퍼스 없이 DeepSeek-R1에서 자가증류한 3,000개 합성 CoT만 사용, Stage2 RL은 multi-objective 보상 GRIP. SFT·RL 모두 9개 표준 raw LTSF 벤치마크(ETTh1/2, ETTm1/2, Exchange, Wind, AQWan, AQShunyi, NASDAQ) 위에서 수행.",
+      "notes": "전용 시계열+텍스트 데이터셋이 아니라 raw 벤치+프로그램 보상. 다운로드 가능한 학습 데이터셋 링크는 없음(스크립트로 준비)."
+    },
+    {
+      "name": "TimeMaster (CTU)",
+      "id": "langfeng01/TimeMaster-SFT-Qwen2.5-VL-3B-CTU",
+      "category": "reasoning",
+      "sft": true,
+      "rl": true,
+      "links": {
+        "hf": "https://huggingface.co/langfeng01/TimeMaster-SFT-Qwen2.5-VL-3B-CTU",
+        "github": "https://github.com/langfengQ/TimeMaster",
+        "paper": "https://arxiv.org/abs/2506.13705"
+      },
+      "size": "CTU 데이터만 전처리 공개",
+      "license": "Apache-2.0",
+      "format": "SFT 체크포인트 + GRPO(RL) 파이프라인",
+      "used_by": ["TimeMaster (Qwen2.5-VL-3B)"],
+      "summary": "시각화된 시계열을 입력으로 구조적 reasoning을 학습하는 SFT→RL(GRPO) 2단계 프레임워크. SFT 체크포인트가 HF에 공개돼 RL 부트스트랩 예시를 제공한다.",
+      "notes": "공개 코드는 CTU 전처리만 제공(example/data_preprocess/ctu.sh). 논문의 나머지 5개(EMG/ECG/HAR/RCW/TEE)는 사용자가 파이프라인 직접 이식 필요."
+    },
+    {
+      "name": "LOTSA",
+      "id": "Salesforce/lotsa_data",
+      "category": "corpus",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "hf": "https://huggingface.co/datasets/Salesforce/lotsa_data",
+        "paper": "https://arxiv.org/abs/2402.02592"
+      },
+      "size": "174 configs · 925 GB (Arrow)",
+      "license": "Apache-2.0",
+      "format": "raw series (id/timestamp/target)",
+      "used_by": ["Moirai", "Sundial-base-128m", "Timer", "TiRex-2"],
+      "summary": "Large-scale Open Time Series Archive — 대형 시계열 파운데이션 모델 사전학습용으로 모은 174개 서브셋(교통/기상/에너지/인프라/COVID/판매 등) raw 시계열 코퍼스. Moirai 사전학습셋으로, 여러 다운스트림 FM(Sundial/Timer/TiRex-2)이 학습 데이터로 선언.",
+      "notes": "instruction/QA 아님 — 순수 시계열 사전학습·SFT 소스. HF 카드 primary-source로 확인(3-vote 검증셋에는 미포함)."
+    },
+    {
+      "name": "chronos_datasets",
+      "id": "autogluon/chronos_datasets",
+      "category": "corpus",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "hf": "https://huggingface.co/datasets/autogluon/chronos_datasets",
+        "github": "https://github.com/amazon-science/chronos-forecasting",
+        "paper": "https://arxiv.org/abs/2403.07815"
+      },
+      "size": "67 configs + 합성 KernelSynth 875k · TSMixup 8.56M rows",
+      "license": "other",
+      "format": "raw series (Parquet id/timestamp/target)",
+      "used_by": ["Chronos"],
+      "summary": "Chronos 학습에 쓰인 시계열 컬렉션(67개 config: electricity/taxi/uber_tlc/bikes/weatherbench/M4·M5·NN5/Monash 20+). 두 합성 사전학습 코퍼스 training_corpus_kernel_synth_1m(~875k)·training_corpus_tsmixup_10m(~8.56M)를 포함(KernelSynth·TSMixup). 원 Chronos 학습셋은 28데이터셋 890K 시리즈 84B observation.",
+      "notes": "라이선스가 비표준 'other'라 다운스트림 재사용 시 확인 필요. 순수 시계열(QA 아님)."
+    },
+    {
+      "name": "GiftEvalPretrain",
+      "id": "Salesforce/GiftEvalPretrain",
+      "category": "corpus",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "hf": "https://huggingface.co/datasets/Salesforce/GiftEvalPretrain",
+        "paper": "https://arxiv.org/abs/2410.10393"
+      },
+      "size": "4.5M 시리즈 · 230B 데이터포인트 (71 uni + 17 multi)",
+      "license": "Apache-2.0",
+      "format": "raw series (Parquet)",
+      "used_by": ["Chronos-2 등 25+ 모델"],
+      "summary": "GIFT-Eval 벤치마크의 leakage-free 사전학습 split. 71개 단변량 + 17개 다변량 데이터셋, 7개 도메인·13개 주기에 걸쳐 4.5M 시리즈·230B 포인트. 평가셋(GIFT-Eval)과 분리된 대규모 순수 시계열 사전학습 코퍼스로 25개 이상 모델(Chronos-2 포함) 학습에 사용.",
+      "notes": "instruction/QA 아님 — foundation model 사전학습·SFT 소스. HF 카드 primary-source로 확인."
+    },
+    {
+      "name": "Kaggle Web-Traffic Forecasting",
+      "id": "kaggle: web-traffic-time-series-forecasting",
+      "category": "corpus",
+      "sft": true,
+      "rl": false,
+      "links": {
+        "kaggle": "https://www.kaggle.com/c/web-traffic-time-series-forecasting/data"
+      },
+      "size": "~145K 시리즈 (Wikipedia 일별 조회수, 2015-07~2017-09)",
+      "license": "미확인 (Zenodo/Monash 미러는 CC BY 4.0)",
+      "format": "raw series (자연어/QA 없음)",
+      "used_by": [],
+      "summary": "Wikipedia 문서별 일별 조회수 약 14.5만 시리즈(문서명·트래픽 유형만 태깅, 자연어 설명·QA 없음). 대형 raw 시계열 사전학습/SFT 소스로 쓸 수 있는 캐글 컬렉션의 대표 사례.",
+      "notes": "원본 캐글 라이선스는 SPA라 미확인, Zenodo/Monash 미러만 CC BY 4.0 명시. M4/M5 등 다른 캐글 대형 컬렉션도 유사하게 raw-series 성격."
+    }
+  ]
+}

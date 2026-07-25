@@ -2,7 +2,7 @@
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TSF Leaderboard Tracker</title>
-<meta name="description" content="시계열 예측 파운데이션 모델 리더보드 — GIFT-Eval + fev-bench + LTSF 논문성적 주간 미러, RL Watch, 모델 요약 카드.">
+<meta name="description" content="시계열 예측 파운데이션 모델 리더보드 — GIFT-Eval + fev-bench + LTSF 논문성적 주간 미러, 확률예측 리더보드, LLM 학습 데이터셋, RL Watch, 모델 요약 카드.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🏆%3C/text%3E%3C/svg%3E">
 <meta property="og:type" content="website">
 <meta property="og:title" content="TSF Leaderboard Tracker">
@@ -114,6 +114,8 @@ footer{max-width:min(2560px,98vw);margin:0 auto;padding:0 20px 40px;color:var(--
   <div class="nav">
     <button class="btn on" id="tab-lb" onclick="showTab('lb')">🏆 리더보드</button>
     <button class="btn" id="tab-cards" onclick="showTab('cards')">📇 모델 요약</button>
+    <button class="btn" id="tab-prob" onclick="showTab('prob')">🎲 확률예측</button>
+    <button class="btn" id="tab-llmdata" onclick="showTab('llmdata')">🧬 LLM 데이터</button>
     <button class="btn" id="tab-watch" onclick="showTab('watch')">📡 RL Watch</button>
     <button class="btn" id="tab-lab" onclick="showTab('lab')">🔒 Lab</button>
     <a class="btn" href="https://github.com/jaeukmoon/TSF" target="_blank" rel="noopener">GitHub</a>
@@ -150,6 +152,34 @@ footer{max-width:min(2560px,98vw);margin:0 auto;padding:0 20px 40px;color:var(--
   </div>
   <div class="grid" id="cards"></div>
   <p class="empty" id="cards-empty" style="display:none">해당하는 카드가 없습니다.</p>
+</section>
+
+<section id="view-prob" style="display:none">
+  <div class="chips">
+    <button class="chip on" id="p-lb" onclick="setProbView('lb')">리더보드 <span id="n-prob"></span></button>
+    <button class="chip" id="p-cards" onclick="setProbView('cards')">모델 카드</button>
+    <span style="width:14px"></span>
+    <span id="prob-metrics" style="display:contents"></span>
+    <input class="search" id="q-prob" placeholder="모델 / 계열 검색…" oninput="renderProb()">
+  </div>
+  <div class="tblwrap" id="prob-tblwrap"><table id="prob-tbl"><thead></thead><tbody></tbody></table></div>
+  <div class="grid" id="prob-grid" style="display:none"></div>
+  <p class="empty" id="prob-empty" style="display:none">데이터가 없습니다.</p>
+  <p class="note" id="note-prob"></p>
+</section>
+
+<section id="view-llmdata" style="display:none">
+  <div class="chips">
+    <button class="chip on" id="ld-all" onclick="setLdFilter('all')">전체 <span id="n-ld"></span></button>
+    <button class="chip" id="ld-instruction" onclick="setLdFilter('instruction')">🗣 Instruction/QA</button>
+    <button class="chip" id="ld-reasoning" onclick="setLdFilter('reasoning')">🧠 Reasoning·RL</button>
+    <button class="chip" id="ld-corpus" onclick="setLdFilter('corpus')">📦 사전학습 코퍼스</button>
+    <button class="chip" id="ld-rlok" onclick="setLdFilter('rlok')">RL 적합만</button>
+    <input class="search" id="q-ld" placeholder="데이터셋 / 모델 검색…" oninput="renderLd()">
+  </div>
+  <div class="grid" id="ld-cards"></div>
+  <p class="empty" id="ld-empty" style="display:none">해당하는 데이터셋이 없습니다.</p>
+  <p class="note" id="note-ld"></p>
 </section>
 
 <section id="view-watch" style="display:none">
@@ -191,6 +221,8 @@ footer{max-width:min(2560px,98vw);margin:0 auto;padding:0 20px 40px;color:var(--
 let DB=null, CARDS=null, LTSF=null, SRC='gift', SORT={key:null,asc:true}, CFILTER='all';
 let HSLOT=0, METRIC='mse', PENDING_LTSF=0;
 let RLW=null, WFILTER='all', LAB=null, LABPAGE=0, MDLIBS=null;
+let PROB=null, PROBVIEW='lb', PROBMETRIC=null, PSORT={key:null,asc:true};
+let LLMD=null, LDFILTER='all';
 let SEED=null;  // 창립 배치일(가장 이른 first_seen) — 이 날짜는 NEW 에서 제외
 const NEW_DAYS=14;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -223,7 +255,7 @@ function isNew(d){if(!d||d===SEED)return false;return (Date.now()-new Date(d))/8
 function seenOf(src,name){return DB.first_seen?.[src]?.[name];}
 
 function showTab(t){
- for(const x of['lb','cards','watch','lab']){
+ for(const x of['lb','cards','prob','llmdata','watch','lab']){
   document.getElementById('view-'+x).style.display=x===t?'':'none';
   document.getElementById('tab-'+x).classList.toggle('on',x===t);
  }
@@ -365,6 +397,119 @@ function renderCards(){
   `(${Object.values(CARDS).filter(v=>v.status!=='ok').length})`;
 }
 
+// ---------- 🎲 확률예측 (probabilistic forecasting 리더보드+카드) ----------
+function setProbView(v){PROBVIEW=v;
+ document.getElementById('p-lb').classList.toggle('on',v==='lb');
+ document.getElementById('p-cards').classList.toggle('on',v==='cards');
+ renderProb();}
+function setProbMetric(m){PROBMETRIC=m;
+ for(const x of PROB.metrics)document.getElementById('pm-'+x.key)?.classList.toggle('on',x.key===m);
+ renderProb();}
+function probSort(k){PSORT.asc=PSORT.key===k?!PSORT.asc:true;PSORT.key=k;renderProb();}
+function probVal(m,ds){return m.results?.[ds]?.[PROBMETRIC]??null;}
+function renderProb(){
+ if(!PROB)return;
+ const q=(document.getElementById('q-prob').value||'').toLowerCase();
+ const isLb=PROBVIEW==='lb';
+ document.getElementById('prob-tblwrap').style.display=isLb?'':'none';
+ document.getElementById('prob-grid').style.display=isLb?'none':'';
+ let ms=PROB.models.filter(m=>!q||(m.name+' '+(m.arch||'')+' '+(m.org||'')+' '+(m.venue||'')).toLowerCase().includes(q));
+ document.getElementById('prob-empty').style.display=ms.length?'none':'';
+ if(isLb){
+  const DS=PROB.datasets;
+  if(PSORT.key){
+   const k=PSORT.key,d=PSORT.asc?1:-1;
+   ms=ms.slice().sort((a,b)=>{const x=probVal(a,k),y=probVal(b,k);
+    if(x==null)return 1;if(y==null)return -1;return (x-y)*d;});
+  }
+  document.querySelector('#prob-tbl thead').innerHTML='<tr><th>Model</th><th>계열</th><th>Venue</th>'+
+   DS.map(d=>`<th onclick="probSort('${d}')">${d}${PSORT.key===d?`<span class="arr"> ${PSORT.asc?'▲':'▼'}</span>`:''}</th>`).join('')+
+   '<th>Source</th></tr>';
+  const best={};
+  for(const d of DS){const vs=ms.map(m=>probVal(m,d)).filter(v=>v!=null);if(vs.length)best[d]=Math.min(...vs);}
+  document.querySelector('#prob-tbl tbody').innerHTML=ms.map(m=>{
+   const s=m.source||{};
+   const link=m.code||m.hf||(s.arxiv?`https://arxiv.org/abs/${s.arxiv}`:'');
+   const plink=s.url||(s.arxiv?`https://arxiv.org/abs/${s.arxiv}`:'');
+   return '<tr>'+
+    `<td>${link?`<a class="mdl" href="${esc(link)}" target="_blank" rel="noopener">${esc(m.name)}</a>`:`<span class="mdl">${esc(m.name)}</span>`}${isNew(m.first_seen)?' <span class="badge new">NEW</span>':''}</td>`+
+    `<td>${m.arch?`<span class="badge arch">${esc(m.arch)}</span>`:''}</td>`+
+    `<td>${m.venue?`<span class="badge conf">${esc(m.venue)}</span>`:'<span class="badge">arXiv</span>'}</td>`+
+    DS.map(d=>{const v=probVal(m,d);
+     return `<td class="num${v!=null&&v===best[d]?' best':''}">${v==null?'—':v.toFixed(3)}</td>`;}).join('')+
+    `<td>${plink?`<a href="${esc(plink)}" target="_blank" rel="noopener">${esc(s.short||'paper')}</a>`:esc(s.short||'')}</td></tr>`;
+  }).join('');
+  const mlabel=(PROB.metrics.find(x=>x.key===PROBMETRIC)||{}).label||PROBMETRIC;
+  document.getElementById('note-prob').textContent=
+   `논문 보고 수치(${mlabel}, 낮을수록 좋음). 논문마다 프로토콜(lookback·전처리·데이터셋 변형)이 달라 행 간 직접 비교는 주의 — Source 칼럼에 출처 테이블 표기. 빈 셀(—)은 해당 지표 미보고. 헤더 클릭 정렬.`+(PROB.note?' '+PROB.note:'');
+ }else{
+  document.getElementById('prob-grid').innerHTML=ms.map(m=>{
+   const c=m.card||{}, s=m.source||{};
+   const plink=s.url||(s.arxiv?`https://arxiv.org/abs/${s.arxiv}`:'');
+   const bench=Object.entries(m.results||{}).flatMap(([d,r])=>
+    Object.entries(r).map(([mk,v])=>`<span class="stat">${esc(d)} ${esc(mk)} ${v.toFixed(3)}</span>`)).join('');
+   return `<div class="card">
+    <h3>${esc(m.name)}
+     ${isNew(m.first_seen)?'<span class="badge new">NEW</span>':''}
+     ${m.arch?`<span class="badge arch">${esc(m.arch)}</span>`:''}
+     ${m.org?`<span class="badge org">${esc(m.org)}</span>`:''}
+     ${m.venue?`<span class="badge conf">${esc(m.venue)}</span>`:''}
+    </h3>
+    ${c.one_liner?`<p class="one">${esc(c.one_liner)}</p>`:''}
+    ${c.summary?`<p class="sum">${esc(c.summary)}</p>`:''}
+    ${c.strengths?.length?`<ul class="pm plus">${c.strengths.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+    ${c.weaknesses?.length?`<ul class="pm minus">${c.weaknesses.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+    ${bench?`<div class="stats">${bench}</div>`:''}
+    <div class="links">
+     ${plink?`<a href="${esc(plink)}" target="_blank" rel="noopener">📄 paper</a>`:''}
+     ${m.code?`<a href="${esc(m.code)}" target="_blank" rel="noopener">💻 code</a>`:''}
+     ${m.hf?`<a href="${esc(m.hf)}" target="_blank" rel="noopener">🤗 HF</a>`:''}
+    </div>
+   </div>`;}).join('');
+ }
+}
+
+// ---------- 🧬 LLM 데이터 (TSF SFT/RL 학습 데이터셋) ----------
+function setLdFilter(f){LDFILTER=f;
+ for(const x of['all','instruction','reasoning','corpus','rlok'])document.getElementById('ld-'+x).classList.toggle('on',x===f);
+ renderLd();}
+const LD_CAT={instruction:'🗣 Instruction/QA',reasoning:'🧠 Reasoning·RL',corpus:'📦 코퍼스'};
+function renderLd(){
+ if(!LLMD)return;
+ const q=(document.getElementById('q-ld').value||'').toLowerCase();
+ let items=LLMD.datasets.slice();
+ if(LDFILTER==='rlok')items=items.filter(d=>d.rl);
+ else if(LDFILTER!=='all')items=items.filter(d=>d.category===LDFILTER);
+ if(q)items=items.filter(d=>(d.name+' '+(d.id||'')+' '+(d.summary||'')+' '+(d.used_by||[]).join(' ')).toLowerCase().includes(q));
+ document.getElementById('ld-cards').innerHTML=items.map(d=>{
+  const L=d.links||{};
+  const links=[
+   L.hf?`<a href="${esc(L.hf)}" target="_blank" rel="noopener">🤗 HF</a>`:'',
+   L.kaggle?`<a href="${esc(L.kaggle)}" target="_blank" rel="noopener">📊 Kaggle</a>`:'',
+   L.github?`<a href="${esc(L.github)}" target="_blank" rel="noopener">💻 GitHub</a>`:'',
+   L.paper?`<a href="${esc(L.paper)}" target="_blank" rel="noopener">📄 paper</a>`:'',
+  ].filter(Boolean).join('');
+  return `<div class="card">
+   <h3>${esc(d.name)}
+    ${d.category&&LD_CAT[d.category]?`<span class="badge arch">${LD_CAT[d.category]}</span>`:''}
+    ${d.sft?'<span class="badge t-finetuned">SFT</span>':''}
+    ${d.rl?'<span class="badge t-agentic">RL</span>':''}
+    ${d.license?`<span class="badge">${esc(d.license)}</span>`:''}
+   </h3>
+   ${d.id?`<p class="one" style="font-family:monospace;font-size:12px">${esc(d.id)}</p>`:''}
+   ${d.summary?`<p class="sum">${esc(d.summary)}</p>`:''}
+   <div class="stats">
+    ${d.size?`<span class="stat">규모 ${esc(d.size)}</span>`:''}
+    ${d.format?`<span class="stat">${esc(d.format)}</span>`:''}
+    ${(d.used_by||[]).map(u=>`<span class="stat">used by ${esc(u)}</span>`).join('')}
+   </div>
+   ${d.notes?`<p class="note" style="margin:0">${esc(d.notes)}</p>`:''}
+   <div class="links">${links}</div>
+  </div>`;}).join('');
+ document.getElementById('ld-empty').style.display=items.length?'none':'';
+ document.getElementById('note-ld').textContent=(LLMD.note||'')+(LLMD.updated?' · 갱신 '+LLMD.updated:'');
+}
+
 // ---------- RL Watch (XIF-RL rl-watch의 정제 공개 미러) ----------
 function setWatchFilter(f){WFILTER=f;
  for(const x of['all','new'])document.getElementById('w-'+x).classList.toggle('on',x===f);
@@ -482,8 +627,17 @@ Promise.all([
  fetch('data/ltsf.json').then(r=>r.json()).catch(()=>null),
  fetch('data/ltsf_pending.json').then(r=>r.json()).catch(()=>[]),
  fetch('data/rl_watch.json').then(r=>r.json()).catch(()=>null),
-]).then(([db,cards,ltsf,lp,rlw])=>{
- DB=db;CARDS=cards;LTSF=ltsf;PENDING_LTSF=(lp||[]).length;RLW=rlw;
+ fetch('data/prob.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).catch(()=>null),
+ fetch('data/llm_datasets.json?t='+Date.now(),{cache:'no-store'}).then(r=>r.json()).catch(()=>null),
+]).then(([db,cards,ltsf,lp,rlw,prob,llmd])=>{
+ DB=db;CARDS=cards;LTSF=ltsf;PENDING_LTSF=(lp||[]).length;RLW=rlw;PROB=prob;LLMD=llmd;
+ if(PROB){
+  PROBMETRIC=PROB.metrics?.[0]?.key||'crps_sum';
+  document.getElementById('prob-metrics').innerHTML=(PROB.metrics||[]).map((x,i)=>
+   `<button class="chip${i===0?' on':''}" id="pm-${x.key}" onclick="setProbMetric('${x.key}')">${esc(x.label)}</button>`).join('');
+  document.getElementById('n-prob').textContent=`(${PROB.models.length})`;
+ }
+ if(LLMD)document.getElementById('n-ld').textContent=`(${LLMD.datasets.length})`;
  const seenAll=[];
  Object.values(CARDS||{}).forEach(v=>{if(v.first_seen)seenAll.push(v.first_seen);});
  for(const s of ['gift','fev']){const m=(DB.first_seen&&DB.first_seen[s])||{};for(const k in m)seenAll.push(m[k]);}
@@ -493,7 +647,7 @@ Promise.all([
  document.getElementById('n-fev').textContent=`(${db.fev.length})`;
  if(ltsf)document.getElementById('n-ltsf').textContent=`(${ltsf.models.length})`;
  if(rlw)document.getElementById('n-watch').textContent=`(${rlw.papers.length})`;
- renderTable();renderCards();renderWatch();
+ renderTable();renderCards();renderWatch();renderProb();renderLd();
 }).catch(e=>{
  document.getElementById('upd').textContent='데이터 로드 실패: '+e;
 });

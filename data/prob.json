@@ -1,0 +1,220 @@
+{
+  "updated": "2026-07-26",
+  "note": "Foundation model 계열(Chronos-2·Moirai 2.0)은 확률예측을 quantile-head로 지원하나 GIFT-Eval/fev-bench 등 별도 대규모 스위트로 평가 — 표 값 없이 '모델 카드'에 수치를 담음. LDT(AAAI24)·ProbTS(NeurIPS24 D&B) 등도 카드 참조. TimeGrad/CSDI는 이번 조사에서 원논문 표를 직접 재검증하지 않고 MG-TSD/TSDiff의 baseline 컬럼으로 간접 확인.",
+  "metrics": [
+    {"key": "crps_sum", "label": "CRPS-sum (다변량)"},
+    {"key": "crps", "label": "CRPS (단변량)"}
+  ],
+  "datasets": ["Solar", "Solar-10min", "Electricity", "Traffic", "Taxi", "Wikipedia", "Exchange", "KDD-Cup", "Fred-MD"],
+  "models": [
+    {
+      "name": "MG-TSD",
+      "arch": "Diffusion",
+      "venue": "ICLR 2024",
+      "org": "Ant Group",
+      "source": {"arxiv": "2403.05751", "short": "MG-TSD Tab.1 (CRPS-sum)", "table": "Table 1"},
+      "code": "https://github.com/Hundredl/MG-TSD",
+      "results": {
+        "Solar": {"crps_sum": 0.3081},
+        "Electricity": {"crps_sum": 0.0149}
+      },
+      "card": {
+        "one_liner": "여러 granularity(거친→세밀) 표적으로 denoising을 유도하는 multi-granularity guided diffusion.",
+        "summary": "MG-TSD는 데이터의 서로 다른 시간 해상도(coarse-grained)를 확산 과정 중간 목표로 삼아 denoising을 안내하는 guided-learning diffusion 모델이다. 표준 다변량 CRPS-sum 스위트에서 TimeGrad 등 기존 확산 모델을 능가한다(6셋: Solar/Electricity/Traffic/Taxi/KDD-cup/Wikipedia, KDD-cup이 Exchange 대체).",
+        "strengths": [
+          "10회 재학습 평균에서 TimeGrad 대비 CRPS-sum 우위 (Solar 0.3081 vs 0.3335, Electricity 0.0149 vs 0.0232)",
+          "외부 데이터 없이 데이터 자체의 다중 해상도만으로 guidance 구성"
+        ],
+        "weaknesses": [
+          "Exchange 대신 KDD-cup을 쓰는 변형 벤치마크라 일부 논문과 열 정렬이 어긋남",
+          "AR 확산 계열 특유의 다단계 샘플링 비용"
+        ]
+      }
+    },
+    {
+      "name": "TACTiS-2",
+      "arch": "Copula/Transformer",
+      "venue": "ICLR 2024",
+      "org": "ServiceNow Research",
+      "source": {"arxiv": "2310.01327", "short": "TACTiS-2 Tab.1 (Monash)", "table": "Table 1 (Mean CRPS-Sum, Monash suite)"},
+      "code": "https://github.com/ServiceNow/TACTiS",
+      "results": {
+        "Solar-10min": {"crps_sum": 0.240},
+        "Electricity": {"crps_sum": 0.020},
+        "Traffic": {"crps_sum": 0.078},
+        "KDD-Cup": {"crps_sum": 0.234},
+        "Fred-MD": {"crps_sum": 0.035}
+      },
+      "card": {
+        "one_liner": "attentional copula의 분포 파라미터를 변수 수에 대해 factorial→linear로 줄인 2세대 TACTiS.",
+        "summary": "TACTiS(ICML 2022)의 attention 기반 non-parametric copula 디코더를 개선해, 분포 파라미터 수를 변수 수에 대해 O(n!)에서 O(n)으로 축소하고 새 학습 커리큘럼을 도입했다. Monash 기반 5개 벤치마크(Electricity/Fred-MD/KDD-Cup/Solar-10min/Traffic)에서 4개 최저 CRPS-sum, 평균순위 1.9로 원조 TACTiS(2.4)·GPVar(3.8)·TimeGrad(5.0)를 앞선다.",
+        "strengths": [
+          "copula 파라미터 선형 스케일링으로 고차원 다변량에 확장 용이",
+          "평균순위 1.9로 헤드라인 벤치마크 최상위, 불규칙 샘플링/결측에도 대응"
+        ],
+        "weaknesses": [
+          "표준 Taxi/Wikipedia/Exchange가 아닌 Monash(Solar-10min 등) 변형 스위트라 타 논문과 직접 비교 주의",
+          "Traffic에서는 최저치 아님(데이터 종속)"
+        ]
+      }
+    },
+    {
+      "name": "TimeGrad",
+      "arch": "Diffusion (AR)",
+      "venue": "ICML 2021",
+      "org": "Zalando Research",
+      "source": {"arxiv": "2101.12072", "short": "MG-TSD Tab.1 baseline", "table": "MG-TSD Table 1 (baseline column)"},
+      "code": "https://github.com/zalandoresearch/pytorch-ts",
+      "results": {
+        "Solar": {"crps_sum": 0.3335},
+        "Electricity": {"crps_sum": 0.0232}
+      },
+      "card": {
+        "one_liner": "RNN hidden state로 조건화하는 autoregressive DDPM — 다변량 확률예측 확산의 원조.",
+        "summary": "TimeGrad는 각 시점을 RNN 은닉상태로 조건화해 노이즈를 역확산으로 되돌리는 autoregressive diffusion 모델로, 이후 CSDI·MG-TSD·TACTiS 계열의 공통 baseline이다. 여기 수치는 MG-TSD Table 1의 baseline 컬럼에서 확인된 것이며 원논문 표 재검증은 별도 필요.",
+        "strengths": ["다변량 확률예측 확산의 표준 baseline", "구조가 단순하고 재현 코드가 널리 존재"],
+        "weaknesses": ["AR 샘플링으로 긴 horizon에서 느리고 오차 누적", "최신 guided/copula 모델에 CRPS-sum 열세"]
+      }
+    },
+    {
+      "name": "TSDiff",
+      "arch": "Diffusion",
+      "venue": "NeurIPS 2023",
+      "org": "AWS AI Labs",
+      "source": {"arxiv": "2307.11494", "short": "TSDiff Tab.1 (CRPS)", "table": "Table 1 (univariate CRPS)"},
+      "code": "https://github.com/amazon-science/unconditional-time-series-diffusion",
+      "results": {
+        "Solar": {"crps": 0.358},
+        "Electricity": {"crps": 0.049},
+        "Traffic": {"crps": 0.098},
+        "Wikipedia": {"crps": 0.221}
+      },
+      "card": {
+        "one_liner": "무조건부로 학습하고 inference 시 self-guidance로 예측/보정/합성에 조건화하는 task-agnostic 확산.",
+        "summary": "TSDiff는 조건 없이 사전학습한 뒤, self-guidance 메커니즘으로 보조 네트워크나 재학습 없이 inference 시점에 예측·보정·합성 과제에 조건화한다. 단변량 GluonTS 8셋 CRPS에서 조건부 CSDI/DeepAR/TFT 등과 경쟁력을 보이며 5/8에서 최저·차저(Electricity 0.049 vs CSDI 0.054, Traffic 0.098 vs 0.159, Wikipedia 0.221 vs 0.289).",
+        "strengths": [
+          "하나의 무조건부 모델로 여러 다운스트림 과제 커버(task-agnostic)",
+          "조건부 SOTA와 경쟁하면서 과제별 재학습 불필요"
+        ],
+        "weaknesses": [
+          "논문 스코프가 단변량이라 다변량 CRPS-sum 리더보드에 직접 편입 불가",
+          "Solar에서는 CSDI(0.352)에 근소 열세(0.358)"
+        ]
+      }
+    },
+    {
+      "name": "CSDI",
+      "arch": "Diffusion (cond)",
+      "venue": "NeurIPS 2021",
+      "org": "Univ. of Tokyo",
+      "source": {"arxiv": "2107.03502", "short": "TSDiff Tab.1 baseline", "table": "TSDiff Table 1 (baseline column)"},
+      "code": "https://github.com/ermongroup/CSDI",
+      "results": {
+        "Solar": {"crps": 0.352},
+        "Electricity": {"crps": 0.054},
+        "Traffic": {"crps": 0.159},
+        "Wikipedia": {"crps": 0.289}
+      },
+      "card": {
+        "one_liner": "conditional masking으로 관측/보간 지점을 조건화하는 score-based 확산(보간·예측).",
+        "summary": "CSDI는 마스킹된 조건부 score-based diffusion으로 imputation·forecasting을 함께 다루는 대표 조건부 확산 모델이다. 여기 CRPS 수치는 TSDiff Table 1의 baseline 컬럼 기준이며, TSDiff-Q 대비 Traffic/Wikipedia에서 열세.",
+        "strengths": ["보간·예측을 한 프레임워크로 처리", "확산 계열의 강한 조건부 baseline"],
+        "weaknesses": ["조건부 마스킹 학습이라 과제별 세팅 필요", "일부 셋에서 무조건부 TSDiff에 열세"]
+      }
+    },
+    {
+      "name": "Chronos-2",
+      "arch": "Foundation (quantile)",
+      "venue": "arXiv 2025-10",
+      "org": "Amazon/AWS",
+      "source": {"arxiv": "2510.15821", "short": "Chronos-2 Tab.3/4a/5a", "table": "Tables 3, 4a, 5a"},
+      "code": "https://github.com/amazon-science/chronos-forecasting",
+      "hf": "https://huggingface.co/amazon/chronos-2",
+      "results": {},
+      "card": {
+        "one_liner": "encoder-only 트랜스포머가 patch당 21개 고정 quantile을 pinball loss로 직접 회귀 — zero-shot 다변량/공변량 예측.",
+        "summary": "Chronos-2(120M, T5 encoder-only)는 time-attention(시계열 내 패치 간)과 group-attention(그룹 내 시계열 간)을 교대로 쌓아 단일 아키텍처로 univariate·multivariate·covariate-informed 예측을 zero-shot in-context로 지원한다. 확률예측은 diffusion/copula가 아니라 21개 quantile을 pinball(quantile regression)로 직접 회귀한다. fev-bench SQL 90.7%/GIFT-Eval WQL 81.9%/Chronos-Benchmark-II WQL 79.8%로 세 리더보드 전부 1위(TiRex·TimesFM-2.5·Toto·TabPFN-TS 상회).",
+        "strengths": [
+          "fev-bench·GIFT-Eval·Chronos-Benchmark-II 세 스위트 모두 현재 최고 성적",
+          "group-attention으로 공변량·다변량을 in-context로 zero-shot 처리"
+        ],
+        "weaknesses": [
+          "diffusion/copula 계열의 CRPS-sum 다변량 스위트(Solar/Electricity 등)와 공통 벤치마크가 없어 직접 비교 불가",
+          "고정 21-quantile 헤드라 임의 분위수/전체 밀도는 보간 필요"
+        ]
+      }
+    },
+    {
+      "name": "Moirai 2.0",
+      "arch": "Foundation (quantile)",
+      "venue": "arXiv 2025-11",
+      "org": "Salesforce AI Research",
+      "source": {"arxiv": "2511.11698", "short": "Moirai 2.0 Tab.1/2", "table": "Tables 1, 2 (GIFT-Eval)"},
+      "code": "https://github.com/SalesforceAIResearch/uni2ts",
+      "hf": "https://huggingface.co/Salesforce/moirai-2.0-R-small",
+      "results": {},
+      "card": {
+        "one_liner": "distributional loss를 quantile loss로 바꾼 decoder-only Moirai — 최대 성능 향상 요인은 구조 전환.",
+        "summary": "Moirai 2.0은 v1의 distributional loss를 quantile loss로 교체하고 decoder-only로 전환했으며(ablation에서 이 손실 변경이 단일 최대 개선), 새 코퍼스로 학습했다. GIFT-Eval 리더보드에서 normalized MASE 5위/CRPS 6위(Chronos-2>TimesFM-2.5>TiRex>FlowState>Moirai2 순). 특이하게 파라미터 스케일업(11.4M→305M)이 성능을 개선하지 않았다(MASE 0.728→0.743).",
+        "strengths": [
+          "quantile loss 전환만으로 v1 대비 GIFT-Eval MASE 0.85→0.744로 크게 개선",
+          "작은 11.4M 모델이 큰 모델과 동등 이상 — 경량 배포 유리"
+        ],
+        "weaknesses": [
+          "스케일업이 성능을 못 올림(스케일링 이점 부재) — 데이터/구조 병목 시사",
+          "GIFT-Eval 순위는 동적이라 논문 스냅샷(2026-02)일 뿐, Chronos-2 등에 밀림"
+        ]
+      }
+    },
+    {
+      "name": "Correlated-Errors (GPVar/Transformer)",
+      "arch": "Copula/plug-in",
+      "venue": "NeurIPS 2024",
+      "org": "McGill Univ.",
+      "source": {"arxiv": "2402.01000", "short": "Corr-Err Tab.1", "table": "Table 1 (CRPS-sum)"},
+      "code": "https://github.com/vincent-zkc/Correlated-Errors",
+      "results": {},
+      "card": {
+        "one_liner": "autoregressive 확률예측기에 저랭크+대각 오차 공분산 + 잠재 시간과정을 얹는 plug-and-play 모듈.",
+        "summary": "GPVar(RNN)·Transformer-decoder 확률예측기 위에 오차의 상관구조를 모델링하는 plug-and-play 모듈(저랭크+대각 공분산 파라미터화 + 독립 잠재 시간과정 cross-covariance). 효과는 데이터셋 종속으로 혼재 — Table 1(9개 표준셋)에서 solar 0.496→0.413·wikipedia 0.084→0.050 개선이지만 electricity 0.049→0.064·traffic 0.072→0.098 악화.",
+        "strengths": [
+          "기존 백본을 바꾸지 않고 오차 상관만 추가하는 경량 확장",
+          "일부 셋(solar/wikipedia)에서 뚜렷한 CRPS-sum 개선"
+        ],
+        "weaknesses": [
+          "개선/악화가 데이터셋마다 갈려 균일 우위 아님",
+          "새 아키텍처가 아니라 add-on이라 단독 SOTA 주장 어려움"
+        ]
+      }
+    },
+    {
+      "name": "LDT",
+      "arch": "Latent Diffusion",
+      "venue": "AAAI 2024",
+      "org": "—",
+      "source": {"url": "https://ojs.aaai.org/index.php/AAAI/article/view/29085", "short": "AAAI 2024 (수치 미검증)"},
+      "results": {},
+      "card": {
+        "one_liner": "대칭 statistics-aware autoencoder + 확산 조건부 생성기로 다변량 예측을 잠재공간 생성으로 환원.",
+        "summary": "LDT(Latent Diffusion Transformer)는 고차원 다변량 예측을 잠재공간 시계열 생성 문제로 바꿔, 대칭 statistics-aware autoencoder와 diffusion 기반 조건부 생성기를 결합한다. 논문은 여러 고차원 다변량 셋에서 SOTA를 주장하나, 확보한 abstract 페이지에 CRPS/CRPS-sum 표·데이터셋명이 노출되지 않아 수치는 미검증(리더보드 편입 보류).",
+        "strengths": ["잠재공간 압축으로 고차원 다변량 확산 비용 절감", "AAAI 2024 정식 게재"],
+        "weaknesses": ["검증된 벤치마크 수치를 이번 조사에서 확보하지 못함(전문 PDF 재추출 필요)"]
+      }
+    },
+    {
+      "name": "ProbTS",
+      "arch": "Benchmark",
+      "venue": "NeurIPS 2024 D&B",
+      "org": "—",
+      "source": {"arxiv": "2310.07446", "short": "ProbTS (벤치 플랫폼)"},
+      "code": "https://github.com/microsoft/ProbTS",
+      "results": {},
+      "card": {
+        "one_liner": "point + distributional 예측을 다양한 horizon에 걸쳐 통합 평가하는 벤치마크 플랫폼(모델 아님).",
+        "summary": "ProbTS는 그간 장기 point 예측과 단기 확률예측이 따로 벤치마킹돼 온 문제의식에서, 두 축을 여러 horizon에 걸쳐 한 플랫폼에서 통합 평가한다. 확률예측 모델을 서로 다른 데이터/지표로 교차비교할 때 참조할 표준화 도구 — 개별 모델이 아니라 평가 프레임워크로 분류.",
+        "strengths": ["point·distributional·단기·장기를 한 프레임워크로 비교", "서로 다른 계열 교차비교의 표준 후보"],
+        "weaknesses": ["모델이 아닌 벤치마크라 리더보드 '행'으로는 부적합(참조용)"]
+      }
+    }
+  ]
+}
