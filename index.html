@@ -427,7 +427,7 @@ async function labUnlock(auto){
  if(!pass)return;
  msg.textContent='복호화 중…';
  try{
-  const enc=await fetch('data/lab.enc.json').then(r=>{if(!r.ok)throw new Error('payload 없음');return r.json();});
+  const enc=await fetch('data/lab.enc.json?t='+Date.now(),{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('payload 없음');return r.json();});
   const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
   const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pass),'PBKDF2',false,['deriveKey']);
   const key=await crypto.subtle.deriveKey(
