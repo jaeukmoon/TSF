@@ -25,6 +25,9 @@ venv/
 .vscode/
 Thumbs.db
 
+# Claude Code harness scratch (verify caches, per-dir skills) — never commit
+.claude/
+
 # Stray
 NVIDIA Corporation/
 *.bak

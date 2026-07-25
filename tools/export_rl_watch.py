@@ -55,6 +55,7 @@ PUBLIC_FIELDS = [
 DENYLIST = ["CRPO", "crpo", "XIF", "xif", "relevance", "우리 연구", "우리의", "본 연구"]
 
 LAB_PAGE_ORDER = [
+    "TSF_baselines_leaderboard.md",
     "CRPO_deepdive.md", "RL_algos.md", "comparison.md",
     "Time-R1_deepdive.md", "TimeMaster_deepdive.md",
 ]
