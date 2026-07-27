@@ -3176,5 +3176,78 @@
   },
   "generated_at": "2026-07-20",
   "generated_by": "template"
+ },
+ "zeus": {
+  "name": "Zeus",
+  "sources": {
+   "gift": "Zeus"
+  },
+  "first_seen": "2026-07-27",
+  "status": "pending",
+  "card": null
+ },
+ "efgbase": {
+  "name": "EFG-base",
+  "sources": {
+   "gift": "EFG-base"
+  },
+  "first_seen": "2026-07-27",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 38.7. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "LAIR",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-27",
+  "generated_by": "template"
+ },
+ "metamorph10": {
+  "name": "Metamorph1.0",
+  "sources": {
+   "gift": "Metamorph1.0"
+  },
+  "first_seen": "2026-07-27",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 65.6. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "SRI International",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-07-27",
+  "generated_by": "template"
+ },
+ "litespecformer": {
+  "name": "litespecformer",
+  "sources": {
+   "gift": "litespecformer"
+  },
+  "first_seen": "2026-07-27",
+  "status": "pending",
+  "card": null
+ },
+ "citrasfm": {
+  "name": "citras-fm",
+  "sources": {
+   "fev": "citras-fm"
+  },
+  "first_seen": "2026-07-27",
+  "status": "pending",
+  "card": null
  }
 }

@@ -107,7 +107,11 @@
   "Falcon-Agent": "2026-07-20",
   "RacineCast-1-NC": "2026-07-20",
   "RacineCast-1": "2026-07-20",
-  "HistRoute-CV": "2026-07-20"
+  "HistRoute-CV": "2026-07-20",
+  "Zeus": "2026-07-27",
+  "EFG-base": "2026-07-27",
+  "Metamorph1.0": "2026-07-27",
+  "litespecformer": "2026-07-27"
  },
  "fev": {
   "Chronos-2": "2026-07-06",
@@ -137,6 +141,7 @@
   "AutoTheta": "2026-07-06",
   "Seasonal Naive": "2026-07-06",
   "Naive": "2026-07-06",
-  "Drift": "2026-07-06"
+  "Drift": "2026-07-06",
+  "citras-fm": "2026-07-27"
  }
 }
