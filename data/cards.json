@@ -3249,5 +3249,179 @@
   "first_seen": "2026-07-27",
   "status": "pending",
   "card": null
+ },
+ "exaoneforecastagent": {
+  "name": "EXAONE-Forecast-Agent",
+  "sources": {
+   "gift": "EXAONE-Forecast-Agent"
+  },
+  "first_seen": "2026-08-09",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 17.1. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "LG AI Research",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-08-09",
+  "generated_by": "template"
+ },
+ "stridewsynapse": {
+  "name": "STRIDE_w_Synapse",
+  "sources": {
+   "gift": "STRIDE_w_Synapse"
+  },
+  "first_seen": "2026-08-09",
+  "status": "pending",
+  "card": null
+ },
+ "lsagent": {
+  "name": "LS-Agent",
+  "sources": {
+   "gift": "LS-Agent"
+  },
+  "first_seen": "2026-08-09",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 19.6. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "LongShine AI Research",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-08-09",
+  "generated_by": "template"
+ },
+ "limixmoe": {
+  "name": "limix_moe",
+  "sources": {
+   "gift": "limix_moe"
+  },
+  "first_seen": "2026-08-09",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 21.8. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-08-09",
+  "generated_by": "template"
+ },
+ "fastcastrage": {
+  "name": "FastCastrage",
+  "sources": {
+   "gift": "FastCastrage"
+  },
+  "first_seen": "2026-08-09",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 24.0. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "sme",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-08-09",
+  "generated_by": "template"
+ },
+ "exaoneforecast": {
+  "name": "EXAONE-Forecast",
+  "sources": {
+   "gift": "EXAONE-Forecast"
+  },
+  "first_seen": "2026-08-09",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 26.1. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "LG AI Research",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-08-09",
+  "generated_by": "template"
+ },
+ "recursivemoirai2": {
+  "name": "recursive-moirai-2",
+  "sources": {
+   "gift": "recursive-moirai-2"
+  },
+  "first_seen": "2026-08-09",
+  "status": "pending",
+  "card": null
+ },
+ "goiaforecastnanov0": {
+  "name": "goia-forecast-nano-v0",
+  "sources": {
+   "gift": "goia-forecast-nano-v0"
+  },
+  "first_seen": "2026-08-09",
+  "status": "pending",
+  "card": null
+ },
+ "metamorph1045m": {
+  "name": "Metamorph1.0-4.5M",
+  "sources": {
+   "gift": "Metamorph1.0-4.5M"
+  },
+  "first_seen": "2026-08-09",
+  "status": "ok",
+  "card": {
+   "one_liner": "익명/미문서 제출 모델 — 공개 정보 없음",
+   "summary": "공개된 논문, 모델카드, 코드가 없는 제출. 현재 GIFT-Eval 평균 rank(CRPS) 75.6. 성적 외 검증 가능한 정보가 없어 리더보드 수치로만 관찰한다.",
+   "arch_type": "Unknown",
+   "org": "SRI International",
+   "strengths": [],
+   "weaknesses": [
+    "논문/모델카드/코드 미공개 — 아키텍처·학습 방식 검증 불가"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-08-09",
+  "generated_by": "template"
+ },
+ "tsicl": {
+  "name": "TS-ICL",
+  "sources": {
+   "fev": "TS-ICL"
+  },
+  "first_seen": "2026-08-09",
+  "status": "pending",
+  "card": null
  }
 }
