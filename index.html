@@ -29,6 +29,9 @@ main{max-width:min(2560px,98vw);margin:0 auto;padding:24px 20px 64px}
 .chip{padding:7px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--mut);font-size:13px;font-weight:700;cursor:pointer}
 .chip:hover{border-color:var(--accent);color:var(--accent)}
 .chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.labgrp{margin:0 0 12px}
+.labgrp-h{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--mut);text-transform:uppercase;margin:0 0 6px}
+.labgrp-r{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .search{margin-left:auto;width:240px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-size:13px;background:#fff}
 .note{font-size:12px;color:var(--mut);margin:10px 0 0;line-height:1.6}
 .tblwrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
@@ -593,9 +596,22 @@ async function labUnlock(auto){
  }
 }
 function renderLabNav(){
- document.getElementById('lab-pages').innerHTML=LAB.pages.map((p,i)=>
-  `<button class="chip${i===LABPAGE?' on':''}" onclick="showLabPage(${i})">${esc(p.title)}</button>`).join('')
-  +`<button class="chip" style="margin-left:auto" onclick="labLock()">🔒 잠그기</button>`;
+ const groups=LAB.groups||[];
+ const idx=LAB.pages.map((p,i)=>({p,i}));
+ const seen=new Set();
+ let html='';
+ const row=items=>items.map(({p,i})=>
+  `<button class="chip${i===LABPAGE?' on':''}" onclick="showLabPage(${i})">${esc(p.title)}</button>`).join('');
+ for(const g of groups){
+  const items=idx.filter(({p})=>p.group===g.id);
+  if(!items.length)continue;
+  items.forEach(({i})=>seen.add(i));
+  html+=`<div class="labgrp"><div class="labgrp-h">${esc(g.label)}</div><div class="labgrp-r">${row(items)}</div></div>`;
+ }
+ const rest=idx.filter(({i})=>!seen.has(i));
+ if(rest.length)html+=`<div class="labgrp"><div class="labgrp-h">기타</div><div class="labgrp-r">${row(rest)}</div></div>`;
+ html+=`<div class="labgrp-r" style="margin-top:6px"><button class="chip" onclick="labLock()">🔒 잠그기</button></div>`;
+ document.getElementById('lab-pages').innerHTML=html;
 }
 function showLabPage(i){
  LABPAGE=i;renderLabNav();
