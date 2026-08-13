@@ -1,0 +1,55 @@
+# RL-Watch — 주간 논문 수집 (2026-08-14 TSFX에서 이관; 배포 기계는 전부 TSF 소유)
+# 공개 카드(data/rl_watch.json)·Lab payload 재생성은 비공개 노트가 필요해 로컬 수동:
+#   python tools/export_rl_watch.py   (형제 ../TSFX 체크아웃에서 노트를 읽음)
+name: rl-watch
+on:
+  schedule:
+    - cron: '30 0 * * 1'   # 월 09:30 KST
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: rl-watch
+  cancel-in-progress: false
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch papers (8-day window, dedup handles overlap)
+        run: python watch/fetch_papers.py --hours 192
+      - name: Commit state
+        run: |
+          git config user.name "rl-watch-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add watch/state
+          git diff --cached --quiet || git commit -m "rl-watch: weekly update"
+          git push
+      - name: Telegram notify (baseline/epi hits)
+        if: always()
+        env:
+          TG_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_CHAT: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          python - <<'PY'
+          import json, os, urllib.request, urllib.parse
+          tok, chat = os.environ.get("TG_TOKEN"), os.environ.get("TG_CHAT")
+          if not tok or not chat:
+              print("telegram secrets not set; skip"); raise SystemExit
+          try:
+              with open("watch/state/notify.json", encoding="utf-8") as f:
+                  hits = json.load(f).get("hits", [])
+          except Exception:
+              hits = []
+          if not hits:
+              print("no hits; skip"); raise SystemExit
+          lines = ["TSF RL-Watch: baseline/epi hit %d건" % len(hits)]
+          for h in hits[:10]:
+              lines.append("- [%s] %s\n  %s" % (h["watch_type"], h["title"][:80], h["url"]))
+          data = urllib.parse.urlencode({"chat_id": chat, "text": "\n".join(lines)}).encode()
+          urllib.request.urlopen("https://api.telegram.org/bot%s/sendMessage" % tok, data=data, timeout=30)
+          print("sent %d" % len(hits))
+          PY

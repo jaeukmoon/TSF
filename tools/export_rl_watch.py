@@ -35,7 +35,9 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent          # TSF/tools/
 TSF_REPO = HERE.parent                           # TSF/
 # 비공개 소스: 형제 XIF-RL 클론의 research_site (Win/Mac 공통 Desktop/Github 레이아웃)
-DEFAULT_XIF_SITE = TSF_REPO.parent / "XIF-RL" / "research_site"
+DEFAULT_XIF_SITE = TSF_REPO.parent / "TSFX" / "research_site"
+# watch 는 2026-08-14 부로 이 repo(TSF/watch)가 소유한다 — state 도 로컬
+LOCAL_WATCH_STATE = TSF_REPO / "watch" / "state"
 # 공용 ~/.lab_pass (lab-kit 표준, 모든 Lab 사이트 공유) 우선, 구 파일 fallback
 PASS_FILES = [Path.home() / ".lab_pass", Path.home() / ".xif_lab_pass"]
 
@@ -163,7 +165,7 @@ def main():
     args = ap.parse_args()
 
     xif = Path(args.xif)
-    papers_path = xif / "watch" / "state" / "papers.json"
+    papers_path = (LOCAL_WATCH_STATE / "papers.json") if (LOCAL_WATCH_STATE / "papers.json").exists() else xif / "watch" / "state" / "papers.json"
     content_dir = xif / "content"
     if not papers_path.exists():
         sys.exit(f"[err] 소스 papers.json 없음: {papers_path} (XIF-RL 클론이 형제 위치에 있어야 함)")

@@ -1,0 +1,38 @@
+{
+ "deltas": [
+  {
+   "at": "2026-07-27 04:12",
+   "changes": [
+    "[GIFT-Eval] 신규: EFG-base",
+    "[GIFT-Eval] 신규: Metamorph1.0",
+    "[GIFT-Eval] 신규: Zeus",
+    "[GIFT-Eval] 신규: litespecformer",
+    "[GIFT-Eval] 순위: CastStar 4→1위",
+    "[GIFT-Eval] 순위: Falcon-Agent 1→2위",
+    "[GIFT-Eval] 순위: RacineCast-1-NC 2→3위",
+    "[GIFT-Eval] 순위: RacineCast-1 3→4위",
+    "[fev-bench] 신규: citras-fm"
+   ]
+  },
+  {
+   "at": "2026-07-20 04:14",
+   "changes": [
+    "[GIFT-Eval] 신규: Falcon-Agent",
+    "[GIFT-Eval] 신규: HistRoute-CV",
+    "[GIFT-Eval] 신규: RacineCast-1",
+    "[GIFT-Eval] 신규: RacineCast-1-NC",
+    "[GIFT-Eval] top10 진입: Falcon-Agent (1위)",
+    "[GIFT-Eval] top10 진입: RacineCast-1-NC (2위)",
+    "[GIFT-Eval] top10 진입: RacineCast-1 (3위)",
+    "[GIFT-Eval] 순위: CastStar 1→4위",
+    "[GIFT-Eval] 순위: Cobra-Agent 2→5위",
+    "[GIFT-Eval] 순위: metis-autocast 3→6위",
+    "[GIFT-Eval] 순위: Toto-2.0-FnF 4→7위",
+    "[GIFT-Eval] 순위: Prism 5→8위",
+    "[GIFT-Eval] 순위: RAES-Conductance-Ensemble 6→9위",
+    "[GIFT-Eval] 순위: TSOrchestra 7→10위",
+    "[LTSF 논문] 신규: EvoTS (arXiv)"
+   ]
+  }
+ ]
+}
