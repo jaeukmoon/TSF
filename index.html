@@ -92,6 +92,20 @@ a.mdl:hover{color:var(--accent);text-decoration:underline}
 .dd img{max-width:100%}
 details.pmwrap{font-size:12.5px}
 details.pmwrap summary{cursor:pointer;color:var(--mut);font-weight:700;user-select:none}
+.resgrid{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.rescard{cursor:pointer}
+.rescard:hover{border-color:var(--accent);box-shadow:0 2px 10px rgba(59,91,219,.14)}
+.reader{display:grid;grid-template-columns:230px minmax(0,1fr);gap:16px;align-items:start}
+.reader.no-toc{grid-template-columns:1fr}
+.toc{position:sticky;top:12px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:12.5px;display:flex;flex-direction:column;gap:7px;max-height:calc(100vh - 24px);overflow:auto}
+.toc-h{font-size:11px;font-weight:800;letter-spacing:.06em;color:var(--mut);text-transform:uppercase}
+.toc a{color:var(--mut);text-decoration:none;line-height:1.45;cursor:pointer}
+.toc a:hover{color:var(--accent)}
+.dd details.sec{border-top:1px solid var(--line);margin:10px 0 0;padding:2px 0 0}
+.dd details.sec>summary{cursor:pointer;user-select:none;padding:8px 0}
+.dd details.sec>summary:hover h2{color:var(--accent)}
+.dd summary h2{display:inline;border:0;margin:0;padding:0;font-size:17.5px}
+@media(max-width:900px){.reader{grid-template-columns:1fr}.toc{position:static;max-height:220px}}
 footer{max-width:min(2560px,98vw);margin:0 auto;padding:0 20px 40px;color:var(--mut);font-size:12px;line-height:1.7}
 @media(max-width:760px){header .wrap{flex-direction:column;align-items:flex-start}.search{width:100%;margin-left:0}
   main{padding:16px 14px 48px}header{padding:18px 14px}header h1{font-size:20px}
@@ -120,6 +134,7 @@ footer{max-width:min(2560px,98vw);margin:0 auto;padding:0 20px 40px;color:var(--
     <button class="btn" id="tab-prob" onclick="showTab('prob')">🎲 확률예측</button>
     <button class="btn" id="tab-llmdata" onclick="showTab('llmdata')">🧬 LLM 데이터</button>
     <button class="btn" id="tab-watch" onclick="showTab('watch')">📡 RL Watch</button>
+    <button class="btn" id="tab-res" onclick="showTab('res')">🔒 관련연구</button>
     <button class="btn" id="tab-lab" onclick="showTab('lab')">🔒 Lab</button>
     <a class="btn" href="https://github.com/jaeukmoon/TSF" target="_blank" rel="noopener">GitHub</a>
   </div>
@@ -196,15 +211,43 @@ footer{max-width:min(2560px,98vw);margin:0 auto;padding:0 20px 40px;color:var(--
   <p class="note" id="note-watch"></p>
 </section>
 
+<section id="view-res" style="display:none">
+  <div id="res-locked" class="lab-lock">
+    <div class="lockbox">
+      <h3>🔒 관련연구 — 딥다이브 · 구현노트</h3>
+      <p class="note" style="margin:0">암호화된 비공개 노트입니다. 패스프레이즈를 입력하세요.</p>
+      <input type="password" id="res-pass" placeholder="passphrase" autocomplete="current-password"
+             onkeydown="if(event.key==='Enter')labUnlock('res')">
+      <label class="note" style="margin:0"><input type="checkbox" id="res-remember"> 이 기기에서 기억</label>
+      <button class="go" onclick="labUnlock('res')">열기</button>
+      <p class="note" id="res-msg" style="margin:0"></p>
+    </div>
+  </div>
+  <div id="res-open" style="display:none">
+    <div id="res-index"></div>
+    <div id="res-reader" style="display:none">
+      <div class="chips">
+        <button class="chip" onclick="renderResIndex()">← 목록</button>
+        <button class="chip" onclick="setAllSecs(true)">모두 펼치기</button>
+        <button class="chip" onclick="setAllSecs(false)">모두 접기</button>
+      </div>
+      <div class="reader" id="res-reader-grid">
+        <nav class="toc" id="res-toc"></nav>
+        <article class="dd" id="res-body"></article>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="view-lab" style="display:none">
   <div id="lab-locked" class="lab-lock">
     <div class="lockbox">
-      <h3>🔒 Lab — 연구 노트</h3>
-      <p class="note" style="margin:0">암호화된 비공개 노트입니다. 패스프레이즈를 입력하세요.</p>
+      <h3>🔒 Lab — 실험 결과</h3>
+      <p class="note" style="margin:0">암호화된 비공개 실험 결과입니다. 패스프레이즈를 입력하세요.</p>
       <input type="password" id="lab-pass" placeholder="passphrase" autocomplete="current-password"
-             onkeydown="if(event.key==='Enter')labUnlock()">
+             onkeydown="if(event.key==='Enter')labUnlock('lab')">
       <label class="note" style="margin:0"><input type="checkbox" id="lab-remember"> 이 기기에서 기억</label>
-      <button class="go" onclick="labUnlock()">열기</button>
+      <button class="go" onclick="labUnlock('lab')">열기</button>
       <p class="note" id="lab-msg" style="margin:0"></p>
     </div>
   </div>
@@ -258,11 +301,11 @@ function isNew(d){if(!d||d===SEED)return false;return (Date.now()-new Date(d))/8
 function seenOf(src,name){return DB.first_seen?.[src]?.[name];}
 
 function showTab(t){
- for(const x of['lb','cards','prob','llmdata','watch','lab']){
+ for(const x of['lb','cards','prob','llmdata','watch','res','lab']){
   document.getElementById('view-'+x).style.display=x===t?'':'none';
   document.getElementById('tab-'+x).classList.toggle('on',x===t);
  }
- if(t==='lab')labInit();
+ if(t==='lab'||t==='res')labInit();
 }
 function setSrc(s){SRC=s;SORT={key:null,asc:true};
  for(const x of['gift','fev','ltsf'])document.getElementById('src-'+x).classList.toggle('on',x===s);
@@ -567,11 +610,12 @@ async function loadMdLibs(){
 function labInit(){
  if(LAB)return;
  const saved=sessionStorage.getItem('labpass')||localStorage.getItem('labpass');
- if(saved){document.getElementById('lab-pass').value=saved;labUnlock(true);}
+ if(saved){document.getElementById('lab-pass').value=saved;labUnlock('lab',true);}
 }
-async function labUnlock(auto){
- const pass=document.getElementById('lab-pass').value;
- const msg=document.getElementById('lab-msg');
+async function labUnlock(src,auto){
+ src=src||'lab';
+ const pass=document.getElementById(src+'-pass').value;
+ const msg=document.getElementById(src+'-msg');
  if(!pass)return;
  msg.textContent='복호화 중…';
  try{
@@ -583,58 +627,117 @@ async function labUnlock(auto){
    km,{name:'AES-GCM',length:256},false,['decrypt']);
   const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64(enc.nonce)},key,b64(enc.ct));
   LAB=JSON.parse(new TextDecoder().decode(pt));
-  (document.getElementById('lab-remember').checked?localStorage:sessionStorage).setItem('labpass',pass);
+  (document.getElementById(src+'-remember').checked?localStorage:sessionStorage).setItem('labpass',pass);
   msg.textContent='';
   document.getElementById('lab-locked').style.display='none';
   document.getElementById('lab-open').style.display='';
+  document.getElementById('res-locked').style.display='none';
+  document.getElementById('res-open').style.display='';
   await loadMdLibs();
-  showLabPage(0);
+  renderLabResults();renderResIndex();
  }catch(e){
   LAB=null;
   sessionStorage.removeItem('labpass');localStorage.removeItem('labpass');
   msg.textContent=auto===true?'':'복호화 실패 — 패스프레이즈를 확인하세요.';
  }
 }
-function renderLabNav(){
- const groups=LAB.groups||[];
- const idx=LAB.pages.map((p,i)=>({p,i}));
- const seen=new Set();
- let html='';
- const row=items=>items.map(({p,i})=>
-  `<button class="chip${i===LABPAGE?' on':''}" onclick="showLabPage(${i})">${esc(p.title)}</button>`).join('');
- for(const g of groups){
-  const items=idx.filter(({p})=>p.group===g.id);
-  if(!items.length)continue;
-  items.forEach(({i})=>seen.add(i));
-  html+=`<div class="labgrp"><div class="labgrp-h">${esc(g.label)}</div><div class="labgrp-r">${row(items)}</div></div>`;
- }
- const rest=idx.filter(({i})=>!seen.has(i));
- if(rest.length)html+=`<div class="labgrp"><div class="labgrp-h">기타</div><div class="labgrp-r">${row(rest)}</div></div>`;
- html+=`<div class="labgrp-r" style="margin-top:6px"><button class="chip" onclick="labLock()">🔒 잠그기</button></div>`;
- document.getElementById('lab-pages').innerHTML=html;
-}
-function showLabPage(i){
- LABPAGE=i;renderLabNav();
- const el=document.getElementById('lab-body');
- const md=LAB.pages[i].md;
+function renderMd(el,md){
  if(window.marked){
   el.innerHTML=marked.parse(md);
   el.querySelectorAll('table').forEach(t=>{const w=document.createElement('div');w.className='tbl';t.parentNode.insertBefore(w,t);w.appendChild(t);});
-  if(window.renderMathInElement)renderMathInElement(el,{
-   delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
-   throwOnError:false});
- }else{
-  el.innerHTML='<pre style="white-space:pre-wrap">'+esc(md)+'</pre>';
+  return true;
  }
+ el.innerHTML='<pre style="white-space:pre-wrap">'+esc(md)+'</pre>';
+ return false;
+}
+function renderKatex(el){
+ if(window.renderMathInElement)renderMathInElement(el,{
+  delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}],
+  throwOnError:false});
+}
+// 🔒 Lab 탭 = 실험 결과(cat 'results') 페이지만 통짜 렌더
+function renderLabResults(){
+ const items=LAB.pages.map((p,i)=>({p,i})).filter(({p})=>p.cat==='results');
+ const nav=document.getElementById('lab-pages');
+ const el=document.getElementById('lab-body');
+ if(!items.length){nav.innerHTML='';el.innerHTML='<p class="empty">실험 결과 페이지가 없습니다.</p>';return;}
+ if(LABPAGE>=items.length)LABPAGE=0;
+ nav.innerHTML=items.map(({p},j)=>
+  `<button class="chip${j===LABPAGE?' on':''}" onclick="LABPAGE=${j};renderLabResults()">${esc(p.title)}</button>`).join('')
+  +`<button class="chip" onclick="labLock()">🔒 잠그기</button>`;
+ if(renderMd(el,items[LABPAGE].p.md))renderKatex(el);
+}
+// 🔒 관련연구 탭 = 카드 색인 → 리더 뷰
+function renderResIndex(){
+ const idx=LAB.pages.map((p,i)=>({p,i})).filter(({p})=>p.cat!=='results');
+ const seen=new Set();
+ const cards=items=>`<div class="grid resgrid">`+items.map(({p,i})=>
+  `<div class="card rescard" onclick="showResPage(${i})">
+    <h3>${esc(p.title)}</h3>
+    ${p.summary?`<p class="sum">${esc(p.summary)}</p>`:''}
+    <div class="stats"><span class="stat">${p.kb||'?'} KB</span><span class="stat">~${p.min||'?'}분</span></div>
+   </div>`).join('')+`</div>`;
+ let html='';
+ for(const c of (LAB.cats||[]).filter(c=>c.id!=='results')){
+  const items=idx.filter(({p})=>p.cat===c.id);
+  if(!items.length)continue;
+  items.forEach(({i})=>seen.add(i));
+  html+=`<div class="labgrp"><div class="labgrp-h">${esc(c.label)}</div>${cards(items)}</div>`;
+ }
+ const rest=idx.filter(({i})=>!seen.has(i));
+ if(rest.length)html+=`<div class="labgrp"><div class="labgrp-h">기타</div>${cards(rest)}</div>`;
+ html+=`<div class="labgrp-r" style="margin-top:10px"><button class="chip" onclick="labLock()">🔒 잠그기</button></div>`;
+ document.getElementById('res-index').innerHTML=html;
+ document.getElementById('res-index').style.display='';
+ document.getElementById('res-reader').style.display='none';
+}
+// h2 단위로 <details> 접기 — 첫 h2 이전(제목·서두)은 항상 노출
+function sectionize(el){
+ const kids=[...el.childNodes];
+ const out=document.createDocumentFragment();
+ let body=null,n=0;
+ for(const node of kids){
+  if(node.nodeName==='H2'){
+   n++;
+   const det=document.createElement('details');det.className='sec';det.id='sec-'+n;
+   const sum=document.createElement('summary');sum.appendChild(node);det.appendChild(sum);
+   body=document.createElement('div');det.appendChild(body);
+   out.appendChild(det);
+  }else if(body){body.appendChild(node);}
+  else out.appendChild(node);
+ }
+ el.innerHTML='';el.appendChild(out);
+ return n;
+}
+function showResPage(i){
+ const p=LAB.pages[i];
+ document.getElementById('res-index').style.display='none';
+ document.getElementById('res-reader').style.display='';
+ const el=document.getElementById('res-body');
+ const toc=document.getElementById('res-toc');
+ let n=0;
+ if(renderMd(el,p.md)){n=sectionize(el);renderKatex(el);}
+ toc.innerHTML=n?'<div class="toc-h">목차</div>'+[...el.querySelectorAll('details.sec')].map((d,j)=>
+  `<a onclick="gotoSec(${j+1})">${esc(d.querySelector('h2')?.textContent||'섹션 '+(j+1))}</a>`).join(''):'';
+ toc.style.display=n?'':'none';
+ document.getElementById('res-reader-grid').classList.toggle('no-toc',!n);
  window.scrollTo(0,0);
 }
+function gotoSec(n){
+ const d=document.getElementById('sec-'+n);
+ if(!d)return;
+ d.open=true;d.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function setAllSecs(open){document.querySelectorAll('#res-body details.sec').forEach(d=>d.open=open);}
 function labLock(){
  LAB=null;
  sessionStorage.removeItem('labpass');localStorage.removeItem('labpass');
- document.getElementById('lab-pass').value='';
- document.getElementById('lab-open').style.display='none';
- document.getElementById('lab-locked').style.display='';
- document.getElementById('lab-msg').textContent='';
+ for(const s of['lab','res']){
+  document.getElementById(s+'-pass').value='';
+  document.getElementById(s+'-open').style.display='none';
+  document.getElementById(s+'-locked').style.display='';
+  document.getElementById(s+'-msg').textContent='';
+ }
 }
 
 Promise.all([

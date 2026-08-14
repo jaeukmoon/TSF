@@ -62,6 +62,50 @@ LAB_PAGE_ORDER = [
     "Time-R1_deepdive.md", "TimeMaster_deepdive.md",
 ]
 
+# Lab 페이지 카테고리 — results 는 🔒 Lab(실험 결과) 탭, 나머지는 🔒 관련연구 탭의
+# 카드 색인으로 렌더된다 (index.html renderLabResults/renderResIndex).
+LAB_CATS = [
+    {"id": "results",  "label": "실험 결과"},
+    {"id": "deepdive", "label": "논문 딥다이브"},
+    {"id": "impl",     "label": "구현 노트"},
+    {"id": "notes",    "label": "정리·비교"},
+]
+
+
+def page_cat(name: str) -> str:
+    if name == "TSF_baselines_leaderboard.md":
+        return "results"
+    if name.endswith("_deepdive.md"):
+        return "deepdive"
+    if "implementation" in name:
+        return "impl"
+    return "notes"
+
+
+def page_summary(md: str) -> str:
+    """카드 한줄 요약 = 헤딩·인용·코드·표·수식·피규어 태그를 제외한 첫 본문 단락 (150자 컷)."""
+    in_code = in_math = False
+    for line in md.splitlines():
+        s = line.strip()
+        if s.startswith("```"):
+            in_code = not in_code
+            continue
+        if s == "$$":
+            in_math = not in_math
+            continue
+        if in_code or in_math or not s:
+            continue
+        if s.startswith(("#", ">", "|", "-", "*", "!", "$", "\\", "<", "[[")):
+            continue
+        return s[:150] + ("…" if len(s) > 150 else "")
+    return ""
+
+
+def page_meta(md: str) -> dict:
+    b = len(md.encode("utf-8"))
+    return {"summary": page_summary(md), "kb": max(1, round(b / 1024)),
+            "min": max(1, round(len(md) / 1100))}
+
 
 def _read_passphrase():
     env = os.environ.get("XIF_LAB_PASSPHRASE")
@@ -143,7 +187,8 @@ def build_lab_pages(papers: list, content: Path) -> list:
     names += sorted(p.name for p in content.glob("*.md") if p.name not in names)
     for name in names:
         md = (content / name).read_text(encoding="utf-8")
-        pages.append({"id": name[:-3], "title": page_title(md, name[:-3]), "md": md})
+        pages.append({"id": name[:-3], "title": page_title(md, name[:-3]),
+                      "cat": page_cat(name), **page_meta(md), "md": md})
     # watch relevance 노트 — 공개 카드에서 제거된 연구 연결 코멘트를 여기로
     rel = [p for p in papers if p.get("relevance")]
     if rel:
@@ -153,8 +198,9 @@ def build_lab_pages(papers: list, content: Path) -> list:
             lines += [f"## {p['title']}",
                       f"[{p.get('id','')}]({p.get('url','')}) · {p.get('published','')[:10]}",
                       "", p["relevance"], ""]
+        md = "\n".join(lines)
         pages.append({"id": "watch_relevance", "title": "Watch 연구 릴레번스",
-                      "md": "\n".join(lines)})
+                      "cat": "notes", **page_meta(md), "md": md})
     return pages
 
 
@@ -187,6 +233,7 @@ def main():
     passphrase = _read_passphrase()
     payload = {
         "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+        "cats": LAB_CATS,
         "pages": build_lab_pages(papers, content_dir),
     }
     enc = encrypt(payload, passphrase)
