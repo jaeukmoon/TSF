@@ -19,6 +19,18 @@ RL_PHRASES = [
 # 단어경계 + 대소문자 구분 (fetch 쪽에서 \b 붙임) — "grpo" 소문자 일반단어 오탐 없음
 RL_ACRONYMS = ["RL", "GRPO", "PPO", "RLVR", "RLHF", "DPO", "RLAIF"]
 
+# --- Gate A0: LLM+TSFM 하이브리드 (2026-08-14 사용자 확정 — 공개 Watch의 주 수집 대상) ---
+# LLM이 수치 예측기(TSFM/통계모델)와 결합해 예측하는 계열 (PostTime·CastFlow·KairosAgent류).
+# ts_hits ∧ HYBRID_LLM ∧ HYBRID_COMBINE 전부 매치해야 통과. rl_tsf 보다 먼저 판정 —
+# 배경: 직계 경쟁 라인이 SFT+RLVR 하이브리드로 이동했는데 구 게이트(RL 필수)가 0/27 놓침.
+HYBRID_LLM = ["llm", "large language model", "language model"]
+HYBRID_COMBINE = [
+    "foundation model", "tsfm", "forecaster", "numerical model",
+    "revise", "revisor", "refine", "refinement",
+    "agentic", "multi-agent", "workflow", "multi-turn",
+    "tool use", "tool-use", "tool call", "ensemble",
+]
+
 # --- Gate B: RL 알고리즘 트렌드 (LLM/reasoning 문맥 + 신호 게이트) ---
 # 제목에 RL 핵심구가 있어야 함 (abstract 만 매치 = 응용논문이 대부분이라 노이즈)
 ALGO_TITLE_PHRASES = [
@@ -110,6 +122,7 @@ TOP_CONF = [
 WATCH_TYPES = {
     "baseline": "⚡ 비교군 인용 (Time-R1/TimeMaster)",
     "epi": "역학/ILI 예측",
+    "hybrid": "🔗 LLM+TSFM 하이브리드",
     "rl_tsf": "RL × 시계열",
     "algo": "RL 알고리즘 트렌드",
     "tsf_trend": "예측 트렌드 (non-RL)",
@@ -117,6 +130,6 @@ WATCH_TYPES = {
 
 # 2열 레이아웃 — watch 페이지의 축 배치 (build_site.py가 참조)
 WATCH_AXES = [
-    ("RL 축", ["baseline", "rl_tsf", "algo"]),
+    ("RL 축", ["baseline", "hybrid", "rl_tsf", "algo"]),
     ("예측 축", ["epi", "tsf_trend"]),
 ]

@@ -97,6 +97,13 @@ def classify(title, abstract, comment, hf_upvotes, top_conf, bigtech, from_hf):
     ts_hits = _any_sub(text_lc, sources.TS_PHRASES)
     rl_hits = _any_sub(text_lc, sources.RL_PHRASES) + _any_acr(text_raw, sources.RL_ACRONYMS)
 
+    # Gate A0: LLM+TSFM 하이브리드 — 공개 Watch 주 스코프, rl_tsf 보다 우선
+    if ts_hits:
+        llm_hits = _any_sub(text_lc, sources.HYBRID_LLM)
+        combine_hits = _any_sub(text_lc, sources.HYBRID_COMBINE)
+        if llm_hits and combine_hits:
+            return "hybrid", ts_hits + llm_hits[:1] + combine_hits
+
     # Gate A: RL × 시계열
     if ts_hits and rl_hits:
         return "rl_tsf", ts_hits + rl_hits
@@ -445,7 +452,7 @@ def main():
         counts[wtype] += 1
         candidates.append(rec)
 
-    prio = {"baseline": 4, "epi": 3, "rl_tsf": 2, "algo": 1, "tsf_trend": 0}
+    prio = {"baseline": 5, "epi": 4, "hybrid": 3, "rl_tsf": 2, "algo": 1, "tsf_trend": 0}
     candidates.sort(key=lambda r: (prio[r["watch_type"]], r["bigtech"], bool(r["top_conf"]),
                                    r.get("hf_upvotes") or 0, r["id"]), reverse=True)
 

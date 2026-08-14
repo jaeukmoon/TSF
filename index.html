@@ -616,7 +616,7 @@ function renderWatch(){
   </div>`;}).join('');
  document.getElementById('watch-empty').style.display=items.length?'none':'';
  document.getElementById('note-watch').textContent=
-  '주간 arXiv 감지 → 요약카드. 논문 사실 요약만 공개됩니다. 갱신: '+(RLW.generated_at||'');
+  '주간 arXiv 감지 → 요약카드 — 스코프: LLM+TSFM 하이브리드 · RL×시계열. 논문 사실 요약만 공개됩니다. 갱신: '+(RLW.generated_at||'');
 }
 
 // ---------- 🔒 Lab (AES-256-GCM, WebCrypto 복호화) ----------

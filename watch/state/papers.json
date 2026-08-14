@@ -1,146 +1,6 @@
 {
  "papers": [
   {
-   "id": "2607.27853",
-   "version": "v1",
-   "title": "FinanceHarness: Autonomous Financial Deep Research Framework",
-   "abstract": "Powered by advances in LLMs and autonomous agents, deep research has become one of the most widely adopted agentic products. However, most deep research systems write general-purpose reports, which are inadequate for financial deep research. Financial research demands specialized knowledge to analyze historical patterns and forecast upcoming events. Automating financial deep research therefore requires both a layered harness to drive the research agent and a verifiable, point-in-time benchmark that prevents leakage of future information. We present FinanceHarness, a harness that runs finance-oriented tools and practitioner-guided workflows, automating financial deep research end to end: environment and data construction, the agent execution loop, and reward modeling. We further propose FinanceGym, comprising thesis-driven research questions and rubrics that combine pre-cutoff and post-cutoff criteria. Professional expert validation yields an 82% pass rate. Even leading LLMs and agents score below 40% on the rubrics, showing that FinanceGym is challenging and leaves substantial headroom. With the same open-weight backbone, FinanceHarness improves the overall rubric score from 25.3% to 32.4%. FinanceHarness is available at https://github.com/Yijia-Xiao/FinanceHarness.",
-   "authors": [
-    "Yijia Xiao",
-    "Rujun Han",
-    "Yanfei Chen",
-    "Zifeng Wang",
-    "Ke Jiang",
-    "Zhongying CuiZhu",
-    "Vishy Tirumalashetty",
-    "Wei Wang",
-    "Burak Gokturk",
-    "Tomas Pfister",
-    "Chen-Yu Lee"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.27853",
-   "pdf": "https://arxiv.org/pdf/2607.27853",
-   "published": "2026-07-30T08:32:04Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "rl_tsf",
-   "matched": [
-    "forecast",
-    "reward model"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-08-03"
-  },
-  {
-   "id": "2607.25956",
-   "version": "v1",
-   "title": "Large Language Model for Operations Research Formulation Selection in Multi-Warehouse Inventory Allocation",
-   "abstract": "Multi-warehouse inventory allocation is typically formulated as a mixed-integer programming (MIP) problem, yet no single formulation consistently matches heterogeneous instance-level regimes induced by demand concentration, inventory imbalance, replenishment scale, service constraints, and forecast volatility. We study this issue as instance-wise operations research (OR) formulation selection, where each allocation instance is assigned to a solver-executable formulation from a candidate OR expert library. We propose a solver-guided large language model (LLM) framework for OR formulation selection, in which each OR expert corresponds to a MIP formulation encoding a distinct allocation priority. To train the selector, the framework first constructs balanced expert-conditioned supervised fine-tuning (SFT) records for schema learning, and then uses MIP solver evaluation on historical instances to convert solver-evaluated allocation-quality gaps into margin-weighted identity preference optimization (IPO) preferences and per-instance expert-score metadata for reward lookup during group relative policy optimization (GRPO) to assign rewards to sampled responses. Experiments on multi-warehouse inventory allocation instances from JD$\\mathord{.}$com, one of China's largest e-retailers, demonstrate that GRPO substantially improves expert-selection accuracy relative to the SFT+IPO selector and, more importantly, produces higher realized allocation quality than both the preference-trained selector and the best fixed formulation. With GRPO, Hit Ratio@1 and Hit Ratio@2 increase from 21.45% to 50.42% and from 70.47% to 82.31%. The resulting selector achieves an allocation accuracy gain of 12.57 percentage points over the incumbent baseline, outperforming both the SFT+IPO selector and the best fixed OR expert, and reduces the gap to the ex-post oracle to 4.85 percentage points.",
-   "authors": [
-    "Jintao Xu",
-    "Yingzheng Ma",
-    "Jiong Dong",
-    "Yongzhi Qi",
-    "Jianshen Zhang"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.25956",
-   "pdf": "https://arxiv.org/pdf/2607.25956",
-   "published": "2026-07-28T16:41:54Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "rl_tsf",
-   "matched": [
-    "GRPO",
-    "forecast",
-    "policy optimization"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-08-03"
-  },
-  {
-   "id": "2607.24569",
-   "version": "v1",
-   "title": "The balance between compactness and forecast accuracy of data-driven latent-space reduced-order models in controlled wake flows",
-   "abstract": "Model-based active flow control requires predictive models that are accurate, stable, and fast enough for real-time optimisation. In controlled wake flows, this is often achieved through Reduced-Order Models (ROMs) that first compress high-dimensional velocity snapshots into a latent space and then learn a time- stepping predictor for the dynamics in the latent space. Here, we study how the choice of the spatial encoder affects the predictability of the resulting latent coordinates for wake flows under control inputs. Using two actuated 2D wake configurations, a simplified truck wake and the fluidic pinball, we compare Proper Orthogonal Decomposition (POD) against nonlinear Convolutional Autoencoders (CAEs) and two types of variational autoencoders for compression, and evaluate several temporal predictors based on Long Short-Term Memory networks. CAEs achieve higher compression efficiency and sharper short-term reconstructions, but they produce latent dynamics that are more irregular and with broadband spectral content. As a consequence, long-horizon forecasts degrade faster and show a higher probability of catastrophic divergence than POD-based models. POD yields smoother latent trajectories that are easier to learn and extrapolate, leading to more reliable predictions beyond the short- term regime. These results reveal a clear trade-off between compactness and forecast accuracy, and suggest that the stability of the latent dynamics prediction can outweigh maximal compression. This is particularly relevant for control strategies rooted in forecasts of the dynamics, such as model predictive control and reinforcement learning. The findings provide practical guidance for designing actuation-aware, hardware-feasible predictive ROMs for real-time flow control.",
-   "authors": [
-    "Alberto Solera-Rico",
-    "Patricia García-Caspueñas",
-    "Carlos Sanmiguel Vila",
-    "Stefano Discetti"
-   ],
-   "comment": "32 pages, 20 figures",
-   "url": "https://arxiv.org/abs/2607.24569",
-   "pdf": "https://arxiv.org/pdf/2607.24569",
-   "published": "2026-07-27T15:36:18Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "rl_tsf",
-   "matched": [
-    "forecast",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-08-03"
-  },
-  {
-   "id": "2607.23802",
-   "version": "v2",
-   "title": "From RLVR to RLSVR: Task Transformation Induces Self-Verifiable Rewards for Open-Ended LLM Self-Improvement",
-   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has driven recent progress in reasoning-oriented large language models (LLMs) by enabling large-scale optimization. However, its applicability remains largely limited to domains such as mathematics and coding, where correctness can be deterministically verifiable. Open-ended tasks instead often rely on human preferences, reward models, or LLM-based judges, introducing evaluation bias, judge capability bottlenecks, and additional inference costs. Drawing on the principle of self-supervised learning, which constructs pretext tasks to derive supervision from the data itself, we propose Reinforcement Learning with Self-Verifiable Rewards (RLSVR), a task-transformation-based training paradigm for extending RLVR to open-ended tasks. RLSVR transforms open-ended tasks into verifiable proxy environments whose internal rules and interaction outcomes automatically generate reward signals. We instantiate RLSVR with SpyRL, a Self-PlaY Reinforcement Learning method inspired by social deduction game Who Is the Spy?. Agents receive asymmetric information, complete the same target task, and vote to identify a designated spy. Because the spy identity is predetermined, voting outcomes provide fully verifiable rewards, while successful identification remains closely related to output quality. Experiments on text summarization, creative writing, and mathematical reasoning show that SpyRL outperforms existing self-improvement methods on non-verifiable tasks and yields consistent gains on verifiable reasoning tasks. These results demonstrate that task transformation can extend scalable RLVR-based self-improvement beyond inherently verifiable domains. Models and code have been released at https://github.com/wangqinsi1/RLSVR/tree/SpyRL.",
-   "authors": [
-    "Qinsi Wang",
-    "Jing Shi",
-    "Huazheng Wang",
-    "Kun Wan",
-    "Yiran Wu",
-    "Bo Liu",
-    "Qingyun Wu",
-    "Hai Helen Li",
-    "Yiran Chen",
-    "Handong Zhao",
-    "Wentian Zhao"
-   ],
-   "comment": "COLM 2026",
-   "url": "https://arxiv.org/abs/2607.23802",
-   "pdf": "https://arxiv.org/pdf/2607.23802",
-   "published": "2026-07-26T19:04:33Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 17,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "llm",
-    "reasoning",
-    "rlvr",
-    "verifiable reward"
-   ],
-   "baseline_watch": [],
-   "top_conf": "COLM",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-08-03"
-  },
-  {
    "id": "2607.29287",
    "version": "v1",
    "title": "Translation with Thought: Difficulty-Adaptive Reasoning via Reinforcement Learning for Multi-Domain Machine Translation",
@@ -168,85 +28,6 @@
    ],
    "baseline_watch": [],
    "top_conf": "ACL",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-08-03"
-  },
-  {
-   "id": "2607.25659",
-   "version": "v1",
-   "title": "CoRT: Counterfactual Replay for Token-Level Rubric-Guided Policy Optimization",
-   "abstract": "Rubric-based reinforcement learning enriches language model training by evaluating model outputs against explicit criteria. Yet in GRPO-style pipelines, these structured judgments are reduced to a scalar response-level reward and converted into a response-level advantage, which is broadcast uniformly to all generated tokens. This leaves no explicit mechanism for allocating credit within a response, even when different criteria are grounded in different spans, formatting decisions, or semantic choices. We propose CoRT, a token-level credit weighting method for rubric-conditioned GRPO. Instead of training an auxiliary token scoring model, CoRT uses counterfactual replay to rescore the same sampled response under the original rubric-conditioned prompt and a matched criteria-free prompt. The resulting tokenwise log-likelihood contrasts serve as a proxy for dependence on the rubric context. CoRT maps these contrasts to bounded, response-normalized weights and uses them to redistribute the signed GRPO advantage across tokens, without introducing an auxiliary scorer or changing the response-level reward. Experiments across instruction-tuned models and reward granularities show that CoRT improves over matched response-level GRPO in the vast majority of comparisons, with an average gain of 4.4 percentage points. The method remains competitive with learned token-level credit baselines while avoiding a separate relevance-learning stage. These results suggest that policy-internal counterfactual likelihood contrasts provide an effective training signal for within-response credit allocation while retaining the simplicity and stability of GRPO.",
-   "authors": [
-    "Bo-Wen Zhang",
-    "Junwei He",
-    "Wen Wang",
-    "Song-Lin Lv",
-    "Wentao Ma",
-    "Rongyi Lin",
-    "Shuhan Zhong",
-    "Lan-Zhe Guo"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.25659",
-   "pdf": "https://arxiv.org/pdf/2607.25659",
-   "published": "2026-07-28T12:45:19Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 80,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "policy optimization"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-08-03"
-  },
-  {
-   "id": "2607.26784",
-   "version": "v1",
-   "title": "SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution",
-   "abstract": "Large language model agents often encounter related yet distinct tasks that share reusable solution patterns. Yet standard agentic reinforcement learning treats tasks as independent episodes, while existing approaches to skill learning either focus on repeated attempts of one task or use pipelines with multiple stages that entangle extraction, retrieval, and execution. We introduce SkillRise, a unified reinforcement learning framework for learning skills across tasks. SkillRise organizes related instances into progressively challenging sequences and uses a single policy to alternate between task solving and curating an evolving skill document passed directly to the next task. Decoupled credit assignment across tasks supervises solving with the current task outcome and curation with discounted downstream outcomes. Experiments on ALFWorld, WebShop, and ScienceWorld show that SkillRise achieves the strongest Pass@1 performance among the compared methods, with gains over the strongest baseline ranging from 2.3 to 8.5 percentage points. Although trained across distinct tasks, its learned curation policy remains effective for repeated attempts on the same task. Further analysis reveals scaling at test time across tasks: performance improves with longer sequences of related tasks even when each task is attempted only once. This trend suggests that SkillRise reuses transferable skills across tasks rather than benefiting from repeated sampling of the same task. SkillRise further retains strong performance while substantially reducing the runtime overhead of skill learning pipelines with multiple stages. Together, these results provide a simple and efficient training paradigm for LLM agents to extract, refine, and reuse transferable skills across tasks.",
-   "authors": [
-    "Zhiyuan Yao",
-    "Yuxin Chen",
-    "Zhengxi Lu",
-    "Zishan Xu",
-    "Yueqing Sun",
-    "Yifu Guo",
-    "Yuquan Lu",
-    "Zhengzhou Cai",
-    "Kangning Zhang",
-    "Zhuowen Han",
-    "Zi-Han Wang",
-    "Ziang Ye",
-    "Qi Gu",
-    "Xunliang Cai",
-    "Weiwen Liu",
-    "Yongliang Shen"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.26784",
-   "pdf": "https://arxiv.org/pdf/2607.26784",
-   "published": "2026-07-29T11:26:33Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 25,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "llm",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
    "bigtech": false,
    "bigtech_orgs": [],
    "ingested": "2026-08-03"
@@ -285,29 +66,38 @@
    "ingested": "2026-08-03"
   },
   {
-   "id": "2607.25091",
+   "id": "2607.27853",
    "version": "v1",
-   "title": "Towards Robust Reinforcement Learning for Small-Scale Language Model Agents",
-   "abstract": "The alignment of Small Language Models (SLMs) in the 70--500M parameter range using reinforcement learning is often considered unstable, though the underlying failure mechanisms have not been systematically investigated. In the State-of-the-Art (SOTA) research, fifteen (model, corpus) configurations were trained using Proximal Policy Optimization (PPO). The experiments included Pythia-70M, 160M, 410M and SmolLM2-135M, 360M on the TinyStories, CNN/DailyMail, and Wikitext-103 corpora. Three reproducible failure modes were identified in small-scale language models: silent LoRA parameter freezing in standard PEFT/TRL pipelines, numerical overflow in importance ratios when using bfloat16, and catastrophic policy collapse due to reward-model error. These issues were addressed using a merge-and-reinitialize adapter technique, float32 precision during PPO updates, and a three-layer safety mechanism comprising reward whitening, importance-ratio guarding, and weight rollback. In this paper, a capacity-headroom hypothesis is proposed, which states that PPO performance at the SLM scale depends on both a fluent supervised model ($\\text{PPL}<20$) and a discriminative reward signal, rather than on the number of model parameters. The proposed system converged stably in all experiments and improved preference win rate over the SFT baseline in configurations with a fluent prior and an informative reward signal. Furthermore, it outperformed instruction-tuned baselines while requiring significantly less training data. All checkpoints, preference datasets, and training scripts are publicly released$^§$.",
+   "title": "FinanceHarness: Autonomous Financial Deep Research Framework",
+   "abstract": "Powered by advances in LLMs and autonomous agents, deep research has become one of the most widely adopted agentic products. However, most deep research systems write general-purpose reports, which are inadequate for financial deep research. Financial research demands specialized knowledge to analyze historical patterns and forecast upcoming events. Automating financial deep research therefore requires both a layered harness to drive the research agent and a verifiable, point-in-time benchmark that prevents leakage of future information. We present FinanceHarness, a harness that runs finance-oriented tools and practitioner-guided workflows, automating financial deep research end to end: environment and data construction, the agent execution loop, and reward modeling. We further propose FinanceGym, comprising thesis-driven research questions and rubrics that combine pre-cutoff and post-cutoff criteria. Professional expert validation yields an 82% pass rate. Even leading LLMs and agents score below 40% on the rubrics, showing that FinanceGym is challenging and leaves substantial headroom. With the same open-weight backbone, FinanceHarness improves the overall rubric score from 25.3% to 32.4%. FinanceHarness is available at https://github.com/Yijia-Xiao/FinanceHarness.",
    "authors": [
-    "Md Rezwanul Haque",
-    "Md. Milon Islam",
-    "Fakhri Karray"
+    "Yijia Xiao",
+    "Rujun Han",
+    "Yanfei Chen",
+    "Zifeng Wang",
+    "Ke Jiang",
+    "Zhongying CuiZhu",
+    "Vishy Tirumalashetty",
+    "Wei Wang",
+    "Burak Gokturk",
+    "Tomas Pfister",
+    "Chen-Yu Lee"
    ],
-   "comment": "Proceedings of the 2026 IEEE International Conference on Systems, Man, and Cybernetics (SMC), Bellevue, WA, USA",
-   "url": "https://arxiv.org/abs/2607.25091",
-   "pdf": "https://arxiv.org/pdf/2607.25091",
-   "published": "2026-07-27T21:30:44Z",
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.27853",
+   "pdf": "https://arxiv.org/pdf/2607.27853",
+   "published": "2026-07-30T08:32:04Z",
    "source": [
-    "arxiv",
-    "hf"
+    "arxiv"
    ],
-   "hf_upvotes": 6,
-   "watch_type": "algo",
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
    "matched": [
-    "language model",
+    "agentic",
+    "forecast",
     "llm",
-    "reinforcement learning"
+    "reward model",
+    "workflow"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -433,6 +223,178 @@
    "matched": [
     "forecast",
     "quantile forecast"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-03"
+  },
+  {
+   "id": "2607.26784",
+   "version": "v1",
+   "title": "SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution",
+   "abstract": "Large language model agents often encounter related yet distinct tasks that share reusable solution patterns. Yet standard agentic reinforcement learning treats tasks as independent episodes, while existing approaches to skill learning either focus on repeated attempts of one task or use pipelines with multiple stages that entangle extraction, retrieval, and execution. We introduce SkillRise, a unified reinforcement learning framework for learning skills across tasks. SkillRise organizes related instances into progressively challenging sequences and uses a single policy to alternate between task solving and curating an evolving skill document passed directly to the next task. Decoupled credit assignment across tasks supervises solving with the current task outcome and curation with discounted downstream outcomes. Experiments on ALFWorld, WebShop, and ScienceWorld show that SkillRise achieves the strongest Pass@1 performance among the compared methods, with gains over the strongest baseline ranging from 2.3 to 8.5 percentage points. Although trained across distinct tasks, its learned curation policy remains effective for repeated attempts on the same task. Further analysis reveals scaling at test time across tasks: performance improves with longer sequences of related tasks even when each task is attempted only once. This trend suggests that SkillRise reuses transferable skills across tasks rather than benefiting from repeated sampling of the same task. SkillRise further retains strong performance while substantially reducing the runtime overhead of skill learning pipelines with multiple stages. Together, these results provide a simple and efficient training paradigm for LLM agents to extract, refine, and reuse transferable skills across tasks.",
+   "authors": [
+    "Zhiyuan Yao",
+    "Yuxin Chen",
+    "Zhengxi Lu",
+    "Zishan Xu",
+    "Yueqing Sun",
+    "Yifu Guo",
+    "Yuquan Lu",
+    "Zhengzhou Cai",
+    "Kangning Zhang",
+    "Zhuowen Han",
+    "Zi-Han Wang",
+    "Ziang Ye",
+    "Qi Gu",
+    "Xunliang Cai",
+    "Weiwen Liu",
+    "Yongliang Shen"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.26784",
+   "pdf": "https://arxiv.org/pdf/2607.26784",
+   "published": "2026-07-29T11:26:33Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 25,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-03"
+  },
+  {
+   "id": "2607.25956",
+   "version": "v1",
+   "title": "Large Language Model for Operations Research Formulation Selection in Multi-Warehouse Inventory Allocation",
+   "abstract": "Multi-warehouse inventory allocation is typically formulated as a mixed-integer programming (MIP) problem, yet no single formulation consistently matches heterogeneous instance-level regimes induced by demand concentration, inventory imbalance, replenishment scale, service constraints, and forecast volatility. We study this issue as instance-wise operations research (OR) formulation selection, where each allocation instance is assigned to a solver-executable formulation from a candidate OR expert library. We propose a solver-guided large language model (LLM) framework for OR formulation selection, in which each OR expert corresponds to a MIP formulation encoding a distinct allocation priority. To train the selector, the framework first constructs balanced expert-conditioned supervised fine-tuning (SFT) records for schema learning, and then uses MIP solver evaluation on historical instances to convert solver-evaluated allocation-quality gaps into margin-weighted identity preference optimization (IPO) preferences and per-instance expert-score metadata for reward lookup during group relative policy optimization (GRPO) to assign rewards to sampled responses. Experiments on multi-warehouse inventory allocation instances from JD$\\mathord{.}$com, one of China's largest e-retailers, demonstrate that GRPO substantially improves expert-selection accuracy relative to the SFT+IPO selector and, more importantly, produces higher realized allocation quality than both the preference-trained selector and the best fixed formulation. With GRPO, Hit Ratio@1 and Hit Ratio@2 increase from 21.45% to 50.42% and from 70.47% to 82.31%. The resulting selector achieves an allocation accuracy gain of 12.57 percentage points over the incumbent baseline, outperforming both the SFT+IPO selector and the best fixed OR expert, and reduces the gap to the ex-post oracle to 4.85 percentage points.",
+   "authors": [
+    "Jintao Xu",
+    "Yingzheng Ma",
+    "Jiong Dong",
+    "Yongzhi Qi",
+    "Jianshen Zhang"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.25956",
+   "pdf": "https://arxiv.org/pdf/2607.25956",
+   "published": "2026-07-28T16:41:54Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "GRPO",
+    "forecast",
+    "policy optimization"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-03"
+  },
+  {
+   "id": "2607.25659",
+   "version": "v1",
+   "title": "CoRT: Counterfactual Replay for Token-Level Rubric-Guided Policy Optimization",
+   "abstract": "Rubric-based reinforcement learning enriches language model training by evaluating model outputs against explicit criteria. Yet in GRPO-style pipelines, these structured judgments are reduced to a scalar response-level reward and converted into a response-level advantage, which is broadcast uniformly to all generated tokens. This leaves no explicit mechanism for allocating credit within a response, even when different criteria are grounded in different spans, formatting decisions, or semantic choices. We propose CoRT, a token-level credit weighting method for rubric-conditioned GRPO. Instead of training an auxiliary token scoring model, CoRT uses counterfactual replay to rescore the same sampled response under the original rubric-conditioned prompt and a matched criteria-free prompt. The resulting tokenwise log-likelihood contrasts serve as a proxy for dependence on the rubric context. CoRT maps these contrasts to bounded, response-normalized weights and uses them to redistribute the signed GRPO advantage across tokens, without introducing an auxiliary scorer or changing the response-level reward. Experiments across instruction-tuned models and reward granularities show that CoRT improves over matched response-level GRPO in the vast majority of comparisons, with an average gain of 4.4 percentage points. The method remains competitive with learned token-level credit baselines while avoiding a separate relevance-learning stage. These results suggest that policy-internal counterfactual likelihood contrasts provide an effective training signal for within-response credit allocation while retaining the simplicity and stability of GRPO.",
+   "authors": [
+    "Bo-Wen Zhang",
+    "Junwei He",
+    "Wen Wang",
+    "Song-Lin Lv",
+    "Wentao Ma",
+    "Rongyi Lin",
+    "Shuhan Zhong",
+    "Lan-Zhe Guo"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.25659",
+   "pdf": "https://arxiv.org/pdf/2607.25659",
+   "published": "2026-07-28T12:45:19Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 80,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "policy optimization"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-03"
+  },
+  {
+   "id": "2607.25091",
+   "version": "v1",
+   "title": "Towards Robust Reinforcement Learning for Small-Scale Language Model Agents",
+   "abstract": "The alignment of Small Language Models (SLMs) in the 70--500M parameter range using reinforcement learning is often considered unstable, though the underlying failure mechanisms have not been systematically investigated. In the State-of-the-Art (SOTA) research, fifteen (model, corpus) configurations were trained using Proximal Policy Optimization (PPO). The experiments included Pythia-70M, 160M, 410M and SmolLM2-135M, 360M on the TinyStories, CNN/DailyMail, and Wikitext-103 corpora. Three reproducible failure modes were identified in small-scale language models: silent LoRA parameter freezing in standard PEFT/TRL pipelines, numerical overflow in importance ratios when using bfloat16, and catastrophic policy collapse due to reward-model error. These issues were addressed using a merge-and-reinitialize adapter technique, float32 precision during PPO updates, and a three-layer safety mechanism comprising reward whitening, importance-ratio guarding, and weight rollback. In this paper, a capacity-headroom hypothesis is proposed, which states that PPO performance at the SLM scale depends on both a fluent supervised model ($\\text{PPL}<20$) and a discriminative reward signal, rather than on the number of model parameters. The proposed system converged stably in all experiments and improved preference win rate over the SFT baseline in configurations with a fluent prior and an informative reward signal. Furthermore, it outperformed instruction-tuned baselines while requiring significantly less training data. All checkpoints, preference datasets, and training scripts are publicly released$^§$.",
+   "authors": [
+    "Md Rezwanul Haque",
+    "Md. Milon Islam",
+    "Fakhri Karray"
+   ],
+   "comment": "Proceedings of the 2026 IEEE International Conference on Systems, Man, and Cybernetics (SMC), Bellevue, WA, USA",
+   "url": "https://arxiv.org/abs/2607.25091",
+   "pdf": "https://arxiv.org/pdf/2607.25091",
+   "published": "2026-07-27T21:30:44Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 6,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-03"
+  },
+  {
+   "id": "2607.24569",
+   "version": "v1",
+   "title": "The balance between compactness and forecast accuracy of data-driven latent-space reduced-order models in controlled wake flows",
+   "abstract": "Model-based active flow control requires predictive models that are accurate, stable, and fast enough for real-time optimisation. In controlled wake flows, this is often achieved through Reduced-Order Models (ROMs) that first compress high-dimensional velocity snapshots into a latent space and then learn a time- stepping predictor for the dynamics in the latent space. Here, we study how the choice of the spatial encoder affects the predictability of the resulting latent coordinates for wake flows under control inputs. Using two actuated 2D wake configurations, a simplified truck wake and the fluidic pinball, we compare Proper Orthogonal Decomposition (POD) against nonlinear Convolutional Autoencoders (CAEs) and two types of variational autoencoders for compression, and evaluate several temporal predictors based on Long Short-Term Memory networks. CAEs achieve higher compression efficiency and sharper short-term reconstructions, but they produce latent dynamics that are more irregular and with broadband spectral content. As a consequence, long-horizon forecasts degrade faster and show a higher probability of catastrophic divergence than POD-based models. POD yields smoother latent trajectories that are easier to learn and extrapolate, leading to more reliable predictions beyond the short- term regime. These results reveal a clear trade-off between compactness and forecast accuracy, and suggest that the stability of the latent dynamics prediction can outweigh maximal compression. This is particularly relevant for control strategies rooted in forecasts of the dynamics, such as model predictive control and reinforcement learning. The findings provide practical guidance for designing actuation-aware, hardware-feasible predictive ROMs for real-time flow control.",
+   "authors": [
+    "Alberto Solera-Rico",
+    "Patricia García-Caspueñas",
+    "Carlos Sanmiguel Vila",
+    "Stefano Discetti"
+   ],
+   "comment": "32 pages, 20 figures",
+   "url": "https://arxiv.org/abs/2607.24569",
+   "pdf": "https://arxiv.org/pdf/2607.24569",
+   "published": "2026-07-27T15:36:18Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "forecast",
+    "reinforcement learning"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -611,88 +573,100 @@
    "ingested": "2026-07-27"
   },
   {
-   "id": "2607.14886",
-   "version": "v1",
-   "title": "Reachability-Aware Pretraining for Efficient Target-Oriented Path Exploration in Temporal Knowledge Graph Reasoning",
-   "abstract": "Temporal Knowledge Graph (TKG) reasoning under the extrapolation setting focuses on forecasting future time-stamped events (facts) from historical data in a temporal knowledge graph. Existing approaches, reinforcement learning (RL)-based multi-hop reasoning methods are prominent for TKG reasoning because they produce human-interpretable predictions via explicit multi-hop path tracing. However, during RL training, rewards are typically sparse, and exploration is highly inefficient due to the vast, time-evolving action space. These issues hinder efficient training and often limit overall performance. To address these challenges, we propose RAPTOR (Reachability-Aware Pretraining for Efficient Target-Oriented Path Exploration), a self-supervised pretraining method that injects a reachability-aware inductive bias to the agent. By learning to estimate the reachability of candidate actions to the target entity, RAPTOR reduces exploration over unpromising paths and provides a strong initialization for downstream RL fine-tuning. Experimental results on the ICEWS14, ICEWS05-15, and ICEWS18 datasets demonstrate that RAPTOR pretraining markedly improves the training efficiency and consistently outperforms conventional baselines, establishing it as an effective approach for enhancing RL-based multi-hop reasoning methods for TKG reasoning.",
+   "id": "2607.23802",
+   "version": "v2",
+   "title": "From RLVR to RLSVR: Task Transformation Induces Self-Verifiable Rewards for Open-Ended LLM Self-Improvement",
+   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has driven recent progress in reasoning-oriented large language models (LLMs) by enabling large-scale optimization. However, its applicability remains largely limited to domains such as mathematics and coding, where correctness can be deterministically verifiable. Open-ended tasks instead often rely on human preferences, reward models, or LLM-based judges, introducing evaluation bias, judge capability bottlenecks, and additional inference costs. Drawing on the principle of self-supervised learning, which constructs pretext tasks to derive supervision from the data itself, we propose Reinforcement Learning with Self-Verifiable Rewards (RLSVR), a task-transformation-based training paradigm for extending RLVR to open-ended tasks. RLSVR transforms open-ended tasks into verifiable proxy environments whose internal rules and interaction outcomes automatically generate reward signals. We instantiate RLSVR with SpyRL, a Self-PlaY Reinforcement Learning method inspired by social deduction game Who Is the Spy?. Agents receive asymmetric information, complete the same target task, and vote to identify a designated spy. Because the spy identity is predetermined, voting outcomes provide fully verifiable rewards, while successful identification remains closely related to output quality. Experiments on text summarization, creative writing, and mathematical reasoning show that SpyRL outperforms existing self-improvement methods on non-verifiable tasks and yields consistent gains on verifiable reasoning tasks. These results demonstrate that task transformation can extend scalable RLVR-based self-improvement beyond inherently verifiable domains. Models and code have been released at https://github.com/wangqinsi1/RLSVR/tree/SpyRL.",
    "authors": [
-    "Chien-Liang Liu",
-    "Tsao-Lun Chen"
+    "Qinsi Wang",
+    "Jing Shi",
+    "Huazheng Wang",
+    "Kun Wan",
+    "Yiran Wu",
+    "Bo Liu",
+    "Qingyun Wu",
+    "Hai Helen Li",
+    "Yiran Chen",
+    "Handong Zhao",
+    "Wentian Zhao"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.14886",
-   "pdf": "https://arxiv.org/pdf/2607.14886",
-   "published": "2026-07-16T11:59:01Z",
+   "comment": "COLM 2026",
+   "url": "https://arxiv.org/abs/2607.23802",
+   "pdf": "https://arxiv.org/pdf/2607.23802",
+   "published": "2026-07-26T19:04:33Z",
    "source": [
-    "arxiv"
+    "arxiv",
+    "hf"
    ],
-   "hf_upvotes": null,
-   "watch_type": "rl_tsf",
+   "hf_upvotes": 17,
+   "watch_type": "algo",
    "matched": [
-    "RL",
-    "forecast",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-07-20"
-  },
-  {
-   "id": "2607.12856",
-   "version": "v1",
-   "title": "Verifier-Based Reinforcement Fine-Tuning of Reasoning Models for Thermal Energy Storage Control",
-   "abstract": "Buildings are expected to shift cooling loads in response to grid conditions. Thermal energy storage (TES) enables this shift, but scheduling it well requires planning hours ahead under storage constraints. Model predictive control (MPC) and reinforcement learning are difficult to scale across buildings. This study instead adapts an open-weight reasoning model through reinforcement learning with verifiable rewards (RLVR). We convert exact offline dynamic-programming (DP) action values into dense rewards for every candidate action. Using only 30 training prompts, reinforcement fine-tuning (RFT) trains the model as an upper-level scheduler that outputs hourly heat-pump setpoints from text-based states and forecasts. Evaluation uses a deliberately simple office-building TES benchmark where exact DP is tractable and the optimum is known. RFT reduces the open-weight model's emissions from 70.5 to 61.2 kg-CO2, close to the DP optimum of 60.8 kg-CO2. GPT-5 nearly matches DP and MPC without task-specific training, while GPT-4o, a non-reasoning LLM, produces higher emissions than the no-storage baseline, so inference-time reasoning appears important. Trace analysis shows that RFT mainly stabilizes observable planning patterns (candidate comparison, look-ahead, and feasibility checking) rather than creating a new strategy. Robustness and generalization tests clarify what transfers: the reinforced planning patterns persist under forecast errors and an unseen TES condition and carry over to a battery task, but its different structure limits the gains. DP-based verifiable rewards offer a practical way to adapt open-weight reasoning models to building storage scheduling. These results motivate higher-fidelity tests of whole-building control and scalable verifiers for city-scale energy management.",
-   "authors": [
-    "Takumi Shioda",
-    "Kohei Terashima",
-    "Tatsuo Nagai"
-   ],
-   "comment": "29 pages, 8 figures",
-   "url": "https://arxiv.org/abs/2607.12856",
-   "pdf": "https://arxiv.org/pdf/2607.12856",
-   "published": "2026-07-14T15:08:39Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "rl_tsf",
-   "matched": [
-    "RLVR",
-    "forecast",
-    "reinforcement learning",
+    "language model",
+    "llm",
+    "reasoning",
+    "rlvr",
     "verifiable reward"
    ],
    "baseline_watch": [],
+   "top_conf": "COLM",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-03"
+  },
+  {
+   "id": "2607.11886",
+   "version": "",
+   "title": "Read It Back: Pretrained MLLMs Are Zero-Shot Reward Models for Text-to-Image Generation",
+   "abstract": "In this paper, we propose SpectraReward, a training-free reward function that turns pretrained MLLMs into off-the-shelf reward models for image-generation reinforcement learning. Instead of asking the MLLM to judge a generated image or answer decomposed verification questions, SpectraReward measures how well the original prompt can be recovered from the generated image through a single image-conditioned, teacher-forced forward pass. We use the average image-conditioned prompt log-likelihood as the reward, directly reusing the MLLM's pretrained image-text alignment ability without preference labels, reward-model fine-tuning. We further introduce Self-SpectraReward, a special case for unified multimodal models where the policy's own understanding branch serves as the reward model for its generation branch, forming a closed-loop self-improving framework without external reward models or external knowledge. Extensive experiments validate SpectraReward through a broad image-generation RL study covering two diffusion models, three RL algorithms, nine reward MLLM backbones from four MLLM families spanning 4B to 235B parameters, and five out-of-distribution text-to-image benchmarks. Results show that both SpectraReward and Self-SpectraReward significantly and consistently improve generation performance and outperform prior MLLM-derived reward training methods. Further analysis reveals that larger reward MLLMs are not always better, while Self-SpectraReward can match or surpass much larger external reward models, suggesting that reward-policy alignment is a key factor for effective image-generation RL. Project Page: https://huangrh99.github.io/SpectraReward/",
+   "authors": [
+    "Runhui Huang",
+    "Qihui Zhang",
+    "Zhe Liu",
+    "Yu Gao",
+    "Jie Wu",
+    "Hengshuang Zhao"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.11886",
+   "pdf": "https://arxiv.org/pdf/2607.11886",
+   "published": "2026-07-20",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 80,
+   "watch_type": "algo",
+   "matched": [
+    "llm",
+    "reward model"
+   ],
+   "baseline_watch": [],
    "top_conf": "",
    "bigtech": false,
    "bigtech_orgs": [],
    "ingested": "2026-07-20"
   },
   {
-   "id": "2607.11720",
+   "id": "2607.16168",
    "version": "v1",
-   "title": "Active Offline-to-Online Reinforcement Learning",
-   "abstract": "Background: Offline reinforcement learning (RL) enables effective policies to be trained from large, previously collected datasets and subsequently improved through limited online interaction. This offline-to-online RL (O2O-RL) paradigm is particularly promising in nonstationary domains where interaction is costly or potentially hazardous. Standard O2O-RL pipelines train multiple candidate policies offline, evaluate them using off-policy or online evaluation, and then deploy and fine-tune the policy with the highest estimated value. However, as in offline pretraining, fine-tuning performance is highly sensitive to the choice of algorithm and hyperparameters, making it risky to commit to a single policy. Objectives: We study active policy selection for fine-tuning under a limited interaction budget in O2O-RL settings. To our knowledge, this is the first work to address this problem. Methods: We formulate the problem by identifying a fundamental trade-off between allocating online interactions to policy evaluation, which helps identify high-performing policies, and allocating them to fine-tuning, which improves policy performance. We then propose an approach that balances this trade-off by actively selecting policies for fine-tuning based on upper-confidence bounds on their future performance. These bounds are derived from locally linear performance forecasts fitted to observations obtained through online evaluation. Results: Across a diverse range of experiments, the proposed approach consistently outperforms existing O2O-RL baselines. Conclusions: Actively selecting and fine-tuning policies uses limited online interaction budgets more effectively than either committing to a single policy or dividing the budget equally among all policies. Our framework also advances offline RL toward practical deployment in real-world systems where online interaction is costly or risky.",
+   "title": "Behaviour-Conditioned Neural Processes for Adaptive Residential Short-Term Load Forecasting",
+   "abstract": "Residential short-term load forecasting (STLF) is challenging because household demand is heterogeneous, temporally variable, and shaped by diverse behavioural routines. This work investigates whether inferred behavioural structure can be embedded within the forecasting mechanism of a Neural Process-based probabilistic model, rather than used only as an external grouping signal, for context-conditioned residential STLF. We propose a behaviour-conditioned Attentive Neural Process framework that treats each load profile as a forecasting task. Behavioural structure is represented by a discrete latent variable inferred from the available context and used for behaviour-conditioned decoder conditioning, while a continuous latent variable captures shared functional uncertainty across heterogeneous profiles. To enable conditioning without ground-truth behavioural labels, clustering-derived information provides weak supervision during training, whereas test-time conditioning relies only on context-inferred class distributions. Experiments on the Smart Grid, Smart City (SGSC) dataset use user-disjoint train/validation/test splits, variable context lengths, and multi-step forecast horizons, with comparisons against a label-agnostic ANP baseline and fixed-window deterministic STLF baselines. The proposed variants improve MAE and CRPS over ANP across horizons and context settings, with the largest gains under limited context. The best-performing variant achieves average reductions of 7.9% in MAE and 6.9% in CRPS relative to ANP. Compared with fixed-window baselines, this variant achieves lower RMSE across all evaluated horizons while maintaining competitive MAE, suggesting fewer large prediction deviations under heterogeneous consumption patterns. These results support single-model, uncertainty-aware forecasting across heterogeneous households, contexts, and horizons.",
    "authors": [
-    "Alper Kamil Bozkurt",
-    "Shangtong Zhang",
-    "Yuichi Motai"
+    "Ramin Soleimani",
+    "Andrea Visentin",
+    "Dirk Pesch"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.11720",
-   "pdf": "https://arxiv.org/pdf/2607.11720",
-   "published": "2026-07-13T15:46:11Z",
+   "comment": "Preprint. 45 pages, 6 figures",
+   "url": "https://arxiv.org/abs/2607.16168",
+   "pdf": "https://arxiv.org/pdf/2607.16168",
+   "published": "2026-07-17T17:48:22Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
-   "watch_type": "rl_tsf",
+   "watch_type": "tsf_trend",
    "matched": [
-    "RL",
-    "forecast",
-    "reinforcement learning"
+    "crps",
+    "forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -729,6 +703,35 @@
    "bigtech_orgs": [
     "Meta FAIR"
    ],
+   "ingested": "2026-07-20"
+  },
+  {
+   "id": "2607.14886",
+   "version": "v1",
+   "title": "Reachability-Aware Pretraining for Efficient Target-Oriented Path Exploration in Temporal Knowledge Graph Reasoning",
+   "abstract": "Temporal Knowledge Graph (TKG) reasoning under the extrapolation setting focuses on forecasting future time-stamped events (facts) from historical data in a temporal knowledge graph. Existing approaches, reinforcement learning (RL)-based multi-hop reasoning methods are prominent for TKG reasoning because they produce human-interpretable predictions via explicit multi-hop path tracing. However, during RL training, rewards are typically sparse, and exploration is highly inefficient due to the vast, time-evolving action space. These issues hinder efficient training and often limit overall performance. To address these challenges, we propose RAPTOR (Reachability-Aware Pretraining for Efficient Target-Oriented Path Exploration), a self-supervised pretraining method that injects a reachability-aware inductive bias to the agent. By learning to estimate the reachability of candidate actions to the target entity, RAPTOR reduces exploration over unpromising paths and provides a strong initialization for downstream RL fine-tuning. Experimental results on the ICEWS14, ICEWS05-15, and ICEWS18 datasets demonstrate that RAPTOR pretraining markedly improves the training efficiency and consistently outperforms conventional baselines, establishing it as an effective approach for enhancing RL-based multi-hop reasoning methods for TKG reasoning.",
+   "authors": [
+    "Chien-Liang Liu",
+    "Tsao-Lun Chen"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.14886",
+   "pdf": "https://arxiv.org/pdf/2607.14886",
+   "published": "2026-07-16T11:59:01Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "RL",
+    "forecast",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
    "ingested": "2026-07-20"
   },
   {
@@ -770,30 +773,58 @@
    "ingested": "2026-07-20"
   },
   {
-   "id": "2607.11886",
-   "version": "",
-   "title": "Read It Back: Pretrained MLLMs Are Zero-Shot Reward Models for Text-to-Image Generation",
-   "abstract": "In this paper, we propose SpectraReward, a training-free reward function that turns pretrained MLLMs into off-the-shelf reward models for image-generation reinforcement learning. Instead of asking the MLLM to judge a generated image or answer decomposed verification questions, SpectraReward measures how well the original prompt can be recovered from the generated image through a single image-conditioned, teacher-forced forward pass. We use the average image-conditioned prompt log-likelihood as the reward, directly reusing the MLLM's pretrained image-text alignment ability without preference labels, reward-model fine-tuning. We further introduce Self-SpectraReward, a special case for unified multimodal models where the policy's own understanding branch serves as the reward model for its generation branch, forming a closed-loop self-improving framework without external reward models or external knowledge. Extensive experiments validate SpectraReward through a broad image-generation RL study covering two diffusion models, three RL algorithms, nine reward MLLM backbones from four MLLM families spanning 4B to 235B parameters, and five out-of-distribution text-to-image benchmarks. Results show that both SpectraReward and Self-SpectraReward significantly and consistently improve generation performance and outperform prior MLLM-derived reward training methods. Further analysis reveals that larger reward MLLMs are not always better, while Self-SpectraReward can match or surpass much larger external reward models, suggesting that reward-policy alignment is a key factor for effective image-generation RL. Project Page: https://huangrh99.github.io/SpectraReward/",
+   "id": "2607.12856",
+   "version": "v1",
+   "title": "Verifier-Based Reinforcement Fine-Tuning of Reasoning Models for Thermal Energy Storage Control",
+   "abstract": "Buildings are expected to shift cooling loads in response to grid conditions. Thermal energy storage (TES) enables this shift, but scheduling it well requires planning hours ahead under storage constraints. Model predictive control (MPC) and reinforcement learning are difficult to scale across buildings. This study instead adapts an open-weight reasoning model through reinforcement learning with verifiable rewards (RLVR). We convert exact offline dynamic-programming (DP) action values into dense rewards for every candidate action. Using only 30 training prompts, reinforcement fine-tuning (RFT) trains the model as an upper-level scheduler that outputs hourly heat-pump setpoints from text-based states and forecasts. Evaluation uses a deliberately simple office-building TES benchmark where exact DP is tractable and the optimum is known. RFT reduces the open-weight model's emissions from 70.5 to 61.2 kg-CO2, close to the DP optimum of 60.8 kg-CO2. GPT-5 nearly matches DP and MPC without task-specific training, while GPT-4o, a non-reasoning LLM, produces higher emissions than the no-storage baseline, so inference-time reasoning appears important. Trace analysis shows that RFT mainly stabilizes observable planning patterns (candidate comparison, look-ahead, and feasibility checking) rather than creating a new strategy. Robustness and generalization tests clarify what transfers: the reinforced planning patterns persist under forecast errors and an unseen TES condition and carry over to a battery task, but its different structure limits the gains. DP-based verifiable rewards offer a practical way to adapt open-weight reasoning models to building storage scheduling. These results motivate higher-fidelity tests of whole-building control and scalable verifiers for city-scale energy management.",
    "authors": [
-    "Runhui Huang",
-    "Qihui Zhang",
-    "Zhe Liu",
-    "Yu Gao",
-    "Jie Wu",
-    "Hengshuang Zhao"
+    "Takumi Shioda",
+    "Kohei Terashima",
+    "Tatsuo Nagai"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.11886",
-   "pdf": "https://arxiv.org/pdf/2607.11886",
-   "published": "2026-07-20",
+   "comment": "29 pages, 8 figures",
+   "url": "https://arxiv.org/abs/2607.12856",
+   "pdf": "https://arxiv.org/pdf/2607.12856",
+   "published": "2026-07-14T15:08:39Z",
    "source": [
-    "hf"
+    "arxiv"
    ],
-   "hf_upvotes": 80,
-   "watch_type": "algo",
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
    "matched": [
-    "llm",
-    "reward model"
+    "RLVR",
+    "forecast",
+    "reinforcement learning",
+    "verifiable reward"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-07-20"
+  },
+  {
+   "id": "2607.12730",
+   "version": "v1",
+   "title": "Learning-based Probabilistic Load Forecasting with Post-hoc and In-model Uncertainty",
+   "abstract": "Smart-building load forecasters are often trained offline on dense, multivariate, high-frequency data, but deployment may provide only hourly, feature-limited inputs. Missing features must then be reconstructed, and their errors can propagate through the model. If this input uncertainty is not reflected, prediction intervals may become miscalibrated, affecting demand-response scheduling. Our work examines where uncertainty should be placed once inference inputs are reconstructed. We develop a unified one-day-ahead probabilistic forecasting framework that aligns temporal resolution, reconstructs the unavailable inputs, and derives causal features, and we compare a modular post-hoc residual-quantile scheme with an integrated in-model quantile-learning scheme. The comparison uses three mid-scale Deep Learning (DL) backbones: recurrent, hybrid recurrent, and attention-based Temporal Fusion Transformer (TFT) models, under identical inputs, forecasting horizon, preprocessing rules, and training budgets. Results show that uncertainty placement is backbone-dependent. Integrated quantile learning is most reliable with the TFT, yielding 2.2-3.6% MAPE and 28-83W RMSE on the labeled test window, while producing intervals about 5x narrower than the modular intervals at the closest-to-nominal coverage level. Diebold-Mariano tests support the TFT ranking and the mixed behavior of the recurrent backbones. A reconstruction-sensitivity test shows that reconstructed inputs increase the Quantile Score (QS) by 106% while interval width remains nearly unchanged, indicating that the model does not automatically absorb reconstruction-induced uncertainty. Robustness checks against non-DL baselines and seasonal hold-out weeks support this ranking. Our results expose the limits of post-hoc residual quantiles when inference depends on reconstructed inputs.",
+   "authors": [
+    "Sarah Al-Shareeda",
+    "Gulcihan Ozdemir",
+    "Heung Seok Jeon"
+   ],
+   "comment": "30 pages, 9 figures, EPSR Elsevier Article",
+   "url": "https://arxiv.org/abs/2607.12730",
+   "pdf": "https://arxiv.org/pdf/2607.12730",
+   "published": "2026-07-14T13:02:18Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "forecast",
+    "probabilistic forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -861,56 +892,28 @@
    "ingested": "2026-07-20"
   },
   {
-   "id": "2607.16168",
+   "id": "2607.11720",
    "version": "v1",
-   "title": "Behaviour-Conditioned Neural Processes for Adaptive Residential Short-Term Load Forecasting",
-   "abstract": "Residential short-term load forecasting (STLF) is challenging because household demand is heterogeneous, temporally variable, and shaped by diverse behavioural routines. This work investigates whether inferred behavioural structure can be embedded within the forecasting mechanism of a Neural Process-based probabilistic model, rather than used only as an external grouping signal, for context-conditioned residential STLF. We propose a behaviour-conditioned Attentive Neural Process framework that treats each load profile as a forecasting task. Behavioural structure is represented by a discrete latent variable inferred from the available context and used for behaviour-conditioned decoder conditioning, while a continuous latent variable captures shared functional uncertainty across heterogeneous profiles. To enable conditioning without ground-truth behavioural labels, clustering-derived information provides weak supervision during training, whereas test-time conditioning relies only on context-inferred class distributions. Experiments on the Smart Grid, Smart City (SGSC) dataset use user-disjoint train/validation/test splits, variable context lengths, and multi-step forecast horizons, with comparisons against a label-agnostic ANP baseline and fixed-window deterministic STLF baselines. The proposed variants improve MAE and CRPS over ANP across horizons and context settings, with the largest gains under limited context. The best-performing variant achieves average reductions of 7.9% in MAE and 6.9% in CRPS relative to ANP. Compared with fixed-window baselines, this variant achieves lower RMSE across all evaluated horizons while maintaining competitive MAE, suggesting fewer large prediction deviations under heterogeneous consumption patterns. These results support single-model, uncertainty-aware forecasting across heterogeneous households, contexts, and horizons.",
+   "title": "Active Offline-to-Online Reinforcement Learning",
+   "abstract": "Background: Offline reinforcement learning (RL) enables effective policies to be trained from large, previously collected datasets and subsequently improved through limited online interaction. This offline-to-online RL (O2O-RL) paradigm is particularly promising in nonstationary domains where interaction is costly or potentially hazardous. Standard O2O-RL pipelines train multiple candidate policies offline, evaluate them using off-policy or online evaluation, and then deploy and fine-tune the policy with the highest estimated value. However, as in offline pretraining, fine-tuning performance is highly sensitive to the choice of algorithm and hyperparameters, making it risky to commit to a single policy. Objectives: We study active policy selection for fine-tuning under a limited interaction budget in O2O-RL settings. To our knowledge, this is the first work to address this problem. Methods: We formulate the problem by identifying a fundamental trade-off between allocating online interactions to policy evaluation, which helps identify high-performing policies, and allocating them to fine-tuning, which improves policy performance. We then propose an approach that balances this trade-off by actively selecting policies for fine-tuning based on upper-confidence bounds on their future performance. These bounds are derived from locally linear performance forecasts fitted to observations obtained through online evaluation. Results: Across a diverse range of experiments, the proposed approach consistently outperforms existing O2O-RL baselines. Conclusions: Actively selecting and fine-tuning policies uses limited online interaction budgets more effectively than either committing to a single policy or dividing the budget equally among all policies. Our framework also advances offline RL toward practical deployment in real-world systems where online interaction is costly or risky.",
    "authors": [
-    "Ramin Soleimani",
-    "Andrea Visentin",
-    "Dirk Pesch"
+    "Alper Kamil Bozkurt",
+    "Shangtong Zhang",
+    "Yuichi Motai"
    ],
-   "comment": "Preprint. 45 pages, 6 figures",
-   "url": "https://arxiv.org/abs/2607.16168",
-   "pdf": "https://arxiv.org/pdf/2607.16168",
-   "published": "2026-07-17T17:48:22Z",
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.11720",
+   "pdf": "https://arxiv.org/pdf/2607.11720",
+   "published": "2026-07-13T15:46:11Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
-   "watch_type": "tsf_trend",
+   "watch_type": "rl_tsf",
    "matched": [
-    "crps",
-    "forecast"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-07-20"
-  },
-  {
-   "id": "2607.12730",
-   "version": "v1",
-   "title": "Learning-based Probabilistic Load Forecasting with Post-hoc and In-model Uncertainty",
-   "abstract": "Smart-building load forecasters are often trained offline on dense, multivariate, high-frequency data, but deployment may provide only hourly, feature-limited inputs. Missing features must then be reconstructed, and their errors can propagate through the model. If this input uncertainty is not reflected, prediction intervals may become miscalibrated, affecting demand-response scheduling. Our work examines where uncertainty should be placed once inference inputs are reconstructed. We develop a unified one-day-ahead probabilistic forecasting framework that aligns temporal resolution, reconstructs the unavailable inputs, and derives causal features, and we compare a modular post-hoc residual-quantile scheme with an integrated in-model quantile-learning scheme. The comparison uses three mid-scale Deep Learning (DL) backbones: recurrent, hybrid recurrent, and attention-based Temporal Fusion Transformer (TFT) models, under identical inputs, forecasting horizon, preprocessing rules, and training budgets. Results show that uncertainty placement is backbone-dependent. Integrated quantile learning is most reliable with the TFT, yielding 2.2-3.6% MAPE and 28-83W RMSE on the labeled test window, while producing intervals about 5x narrower than the modular intervals at the closest-to-nominal coverage level. Diebold-Mariano tests support the TFT ranking and the mixed behavior of the recurrent backbones. A reconstruction-sensitivity test shows that reconstructed inputs increase the Quantile Score (QS) by 106% while interval width remains nearly unchanged, indicating that the model does not automatically absorb reconstruction-induced uncertainty. Robustness checks against non-DL baselines and seasonal hold-out weeks support this ranking. Our results expose the limits of post-hoc residual quantiles when inference depends on reconstructed inputs.",
-   "authors": [
-    "Sarah Al-Shareeda",
-    "Gulcihan Ozdemir",
-    "Heung Seok Jeon"
-   ],
-   "comment": "30 pages, 9 figures, EPSR Elsevier Article",
-   "url": "https://arxiv.org/abs/2607.12730",
-   "pdf": "https://arxiv.org/pdf/2607.12730",
-   "published": "2026-07-14T13:02:18Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "tsf_trend",
-   "matched": [
+    "RL",
     "forecast",
-    "probabilistic forecast"
+    "reinforcement learning"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -1006,6 +1009,278 @@
    "bigtech": false,
    "bigtech_orgs": [],
    "ingested": "2026-07-20"
+  },
+  {
+   "id": "2606.29526",
+   "version": "",
+   "title": "The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning",
+   "abstract": "Reinforcement learning (RL) has gained growing attention in large language model (LLM) post-training, yet RL training remains fragile and can suffer from instability or collapse. One vital cause is training-inference mismatch: LLM adopts separate inference and training engines for generation efficiency and training precision, which in practice exhibits inconsistent probabilities for the same trajectories on training and inference sides, even with synchronized model parameters. This naturally induces a special type of off-policyness ever existing and poisoning the training. Prior works have made various efforts in addressing the off-policyness to stabilize the training policies under the mismatch. In this paper, we point out the objective misalignment neglected by existing works that an effective update to the policy in the training engine not necessarily ensures the improvement of the inference policy, i.e., the one used in deployment. To this end, we propose a new policy optimization objective for LLM RL, named Monotonic Inference Policy Improvement (MIPI). Following this principle, we introduce Monotonic Inference Policy Update (MIPU), a two-step LLM RL framework that constructs sampler-referenced candidate updates and selectively accepts synchronized candidates using an inference-side gap proxy. Experiments conducted on two model scales under high mismatch show that MIPU improves average reasoning performance and training stability.",
+   "authors": [
+    "Jing Liang",
+    "Hongyao Tang",
+    "Yi Ma",
+    "Yancheng He",
+    "Weixun Wang",
+    "Xiaoyang Li",
+    "Ju Huang",
+    "Wenbo Su",
+    "Jinyi Liu",
+    "Yan Zheng",
+    "Jianye Hao",
+    "Bo Zheng"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2606.29526",
+   "pdf": "https://arxiv.org/pdf/2606.29526",
+   "published": "2026-07-12",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 161,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "post-train",
+    "reasoning",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-07-12",
+   "oneliner": "LLM RL에서 학습엔진(training)과 추론엔진(inference/sampler)이 같은 trajectory에 서로 다른 확률을 부여하는 training-inference mismatch가 상시적 off-policyness로 학습을 오염시키는데, 기존 연구처럼 training policy를 안정화해도 실제 배포에 쓰이는 inference policy의 개선은 보장되지 않는다는 objective misalignment를 지적한다. 이를 위해 inference policy의 단조(monotonic) 개선을 목표로 삼는 MIPI(Monotonic Inference Policy Improvement) objective를 제안하고, sampler-referenced 후보 업데이트를 만든 뒤 inference-side gap proxy로 동기화된 후보를 선별 수락하는 2단계 프레임워크 MIPU를 제시한다. 두 모델 스케일의 고(高)mismatch 실험에서 평균 reasoning 성능과 학습 안정성 개선을 보고한다.",
+   "contribution": "최적화 대상을 training policy가 아닌 inference policy로 재정의한 MIPI objective와, 이를 구현하는 2단계 RL 프레임워크 MIPU(sampler-referenced candidate 생성 + inference-side gap proxy 기반 선별 수락)",
+   "strengths": [
+    "기존 mismatch 완화 연구들이 놓친 objective misalignment — training engine에서의 유효한 업데이트가 배포용 inference policy 개선을 보장하지 않는다는 점 — 을 명시적으로 문제화한 관점 전환",
+    "monotonic improvement 원칙(MIPI)을 후보 업데이트 생성 + gap proxy 기반 선별 수락이라는 실행 가능한 2단계 절차(MIPU)로 구체화",
+    "RL post-training의 실무적 고질병인 불안정/collapse 문제에 직결되며, high-mismatch 조건에서 성능과 안정성 동시 개선을 보고"
+   ],
+   "weaknesses": [
+    "abstract 기반 — 정량 수치와 비교 베이스라인(예: TIS류 importance-sampling 보정, GSPO 등 안정화 기법 대비)이 abstract에 없어 원문 확인 필요",
+    "두 모델 스케일 실험으로 검증 범위가 제한적이고, 코드 링크가 abstract/comment에 없으며 venue 미기재 preprint",
+    "선별 수락(accept/reject) 단계가 유발할 추가 계산·거부 시 롤백 비용 등 오버헤드에 대한 언급이 abstract에 없음"
+   ],
+   "relevance": "CRPO는 verl 기반이라 학습엔진(FSDP)과 롤아웃엔진(vLLM)의 확률 불일치가 그대로 존재하며, 이 논문은 우리 관심축 중 '학습-추론 불일치'에 정확히 해당한다. GSPO/Dr.GRPO가 다루는 group RL 안정화의 상위 프레임으로서 '진짜 목적함수는 inference policy 개선'이라는 진단은 CRPO 학습 안정화·평가 정합성 점검에 직접 참고 가치가 있다 (WIS 보상 설계 자체와는 무관).",
+   "category": "LLM RL 안정화 · training-inference mismatch · monotonic inference policy 개선",
+   "completeness": {
+    "grade": "B",
+    "why": "문제 설정과 방법론은 견실하나 venue·코드 링크 없는 preprint이고 검증이 두 모델 스케일 실험으로 제한적이다."
+   },
+   "venue": "arXiv"
+  },
+  {
+   "id": "2607.08443",
+   "version": "v1",
+   "title": "ADORN: Adaptive Drift handling for Open RAN using Reinforcement Learning",
+   "abstract": "Dynamic traffic variations in Open Radio Access Networks (O-RAN) lead to drift, which degrades the performance of Artificial Intelligence/Machine Learning (AI/ML) models. Traditional retraining approaches maintain forecasting accuracy but incur high computational cost and may lead to violations of Service Level Agreements (SLAs). This work proposes a Q-learning-based adaptive retraining approach that formulates the retraining decision as a Markov Decision Process (MDP), where a Reinforcement Learning (RL) agent learns a policy that balances forecasting accuracy and retraining cost. The proposed approach incorporates a multi-expert Long Short-Term Memory (LSTM) ensemble to mitigate catastrophic forgetting and improve robustness across diverse traffic conditions. Experimental results show that the proposed approach effectively reduces retraining overhead compared to greedy and random baselines, while maintaining system performance within predefined limits.",
+   "authors": [
+    "Ashit Kumar Subudhi",
+    "Bhargav Chirumamilla",
+    "Shubham Vaishnav",
+    "Mduduzi C. Hlophe",
+    "Praveen Kumar Donta",
+    "Andrea Fumagalli",
+    "Venkateswarlu Gudepu",
+    "Koteswararao Kondepu"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.08443",
+   "pdf": "https://arxiv.org/pdf/2607.08443",
+   "published": "2026-07-09T13:05:42Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "RL",
+    "forecast",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-07-12",
+   "oneliner": "O-RAN 트래픽 예측 모델의 drift에 대응해 \"언제 재학습할지\"를 Q-learning으로 결정하는 adaptive retraining 프레임워크. 재학습 결정을 MDP로 정식화해 forecasting accuracy와 retraining cost를 trade-off하는 policy를 학습하고, multi-expert LSTM ensemble로 catastrophic forgetting을 완화한다.",
+   "contribution": "(1) 재학습 시점 결정을 MDP로 정식화한 Q-learning 기반 adaptive retraining 정책 — forecasting accuracy와 retraining cost를 균형(기존 일괄 재학습의 높은 연산 비용·SLA 위반 가능성이 동기). (2) 다양한 트래픽 조건에 대한 robustness와 catastrophic forgetting 완화를 위한 multi-expert LSTM ensemble. (3) greedy/random baseline 대비 retraining overhead 절감 + 사전 정의된 성능 한계 내 시스템 성능 유지를 실험으로 확인(abstract 기준 정성적 결과만 제시).",
+   "strengths": [
+    "retraining 결정을 명시적 MDP로 정식화해 accuracy-cost trade-off를 RL로 다룬 문제 설정이 깔끔함 — \"모델 유지보수 자체를 RL로 스케줄링\"하는 관점",
+    "multi-expert ensemble로 drift 환경에서의 catastrophic forgetting 완화와 다양한 트래픽 조건에 대한 robustness를 노림",
+    "\"사전 정의된 성능 한계 내 유지\"라는 운영 조건을 평가에 포함(SLA 위반 문제를 동기로 제시)"
+   ],
+   "weaknesses": [
+    "abstract에 언급된 비교군은 greedy/random뿐 — drift detection 기반 고전 기법(DDM/ADWIN 류)이나 continual learning baseline 포함 여부는 abstract에서 확인 불가",
+    "예측 백본이 LSTM ensemble로, LLM/foundation model 시대 기준 예측 모델 자체의 기여는 없음; Q-learning이 tabular 수준인지 등 policy 표현력은 abstract만으로 판단 불가",
+    "코드 공개 언급 없음, venue 미표기(preprint), abstract에 정량 수치 전무 — 개선 폭·실험 규모는 원문 확인 필요",
+    "abstract 기반 카드 — MDP state/reward 설계 세부는 본문 확인 필요"
+   ],
+   "relevance": "직접 관련 낮음. CRPO의 관심축(WIS 보상 설계, group RL advantage 추정, 학습-추론 불일치)이나 확률예측/보정과 무관하고, RL은 예측 모델 학습이 아니라 재학습 스케줄링 메타 결정에 쓰임. 굳이 연결하면 ILI 시즌 간 distribution drift 시 재학습 시점 결정이라는 운영 관점 아이디어 정도.",
+   "category": "RL 기반 retraining 스케줄링 · drift 대응 (O-RAN 트래픽 예측)",
+   "completeness": {
+    "grade": "C",
+    "why": "preprint(venue 미표기)·코드 공개 언급 없음, abstract에 언급된 비교군이 greedy/random뿐인 단일 도메인 실험에 정량 수치도 없음."
+   },
+   "venue": "arXiv"
+  },
+  {
+   "id": "2607.08409",
+   "version": "v1",
+   "title": "When Synthetic Speech Is All You Have: Better Call GRPO",
+   "abstract": "LLM-based ASR adapted to regulated domains such as banking is bottlenecked by privacy: real speech is costly and legally constrained to collect, making synthetic text-to-speech (TTS) an attractive substitute. Yet synthetic speech stays acoustically mismatched with real recordings, and work on this gap has stayed within supervised fine-tuning (SFT). We instead turn to reinforcement learning, and show that Group Relative Policy Optimization (GRPO) extracts far more from the same synthetic speech than SFT. Synthetic-only adaptation of the model with GRPO, a critic-free method rewarding low-WER hypotheses, reduces WER by 40\\% relative to SFT (36.71\\%$\\to$22.09\\%), and an SFT-then-GRPO combination pushes this further to 45\\%. We trace the gain to behavior rather than representation: GRPO reduces insertion errors by improving stopping calibration and speech-to-text alignment by better anchoring attention to audio, leaving early-layer representations intact. When synthetic speech is the main resource, reinforcement learning should be preferred over supervised fine-tuning.",
+   "authors": [
+    "Shashi Kumar",
+    "Yanis Labrak",
+    "Hasindri Watawana",
+    "Sergio Burdisso",
+    "Esaú Villatoro-Tello",
+    "Kadri Hacioğlu",
+    "Petr Motlicek",
+    "Andreas Stolcke"
+   ],
+   "comment": "Submitted to SLT 2026",
+   "url": "https://arxiv.org/abs/2607.08409",
+   "pdf": "https://arxiv.org/pdf/2607.08409",
+   "published": "2026-07-09T12:34:56Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "GRPO",
+    "llm"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-07-12",
+   "oneliner": "Privacy 제약으로 실음성 수집이 어려운 banking 도메인 LLM-based ASR을 synthetic TTS 음성만으로 적응시킬 때, SFT 대신 critic-free GRPO(low-WER hypothesis에 보상)를 쓰면 동일 데이터에서 훨씬 많은 성능을 뽑아냄을 보인다. GRPO 단독으로 SFT 대비 WER 40% 상대 감소(36.71%→22.09%), SFT-then-GRPO 조합은 45%까지 확대. 이득의 원천을 representation이 아닌 behavior로 추적 — stopping calibration 개선으로 insertion error 감소, attention의 audio anchoring 강화로 speech-to-text alignment 개선, early-layer representation은 불변.",
+   "contribution": "synthetic speech만 있는 저자원·규제 도메인 ASR 적응에서 \"SFT가 아니라 RL(GRPO)을 써야 한다\"는 처방을 정량으로 제시(40~45% 상대 WER 감소)하고, 그 이득이 representation 변화가 아니라 stopping calibration·attention anchoring 같은 behavior 교정에서 온다는 기제 분석을 제공.",
+   "strengths": [
+    "동일 synthetic 데이터 조건에서 SFT 대비 GRPO의 이득을 명확한 수치로 제시: WER 36.71%→22.09%(상대 40%), SFT-then-GRPO는 상대 45% — 데이터가 아니라 학습 방식이 병목임을 분리해 보임",
+    "이득의 기제 분석이 구체적: insertion error 감소 = stopping calibration 개선, speech-to-text alignment = attention의 audio anchoring 강화, early-layer representation은 불변 — 'RL이 무엇을 바꾸는가'를 behavior 수준으로 못박음",
+    "task metric(WER)을 직접 reward로 쓰는 critic-free group RL의 실용 사례로, privacy 제약(banking) 시나리오라는 명확한 동기 부여"
+   ],
+   "weaknesses": [
+    "SLT 2026 '제출' 단계 preprint(수락 아님)이고 arXiv 페이지에 공식 코드 링크 없음 — 재현성 확인 불가",
+    "abstract 기준 단일 도메인(banking ASR) 시나리오로 보이며, 다른 도메인/모델/TTS 엔진으로의 일반화 근거는 abstract에서 확인 불가",
+    "비교 기준선인 SFT의 WER이 36.71%로 매우 높은 세팅 — 저오류 세팅에서도 GRPO 우위가 유지되는지 abstract만으로 불명",
+    "abstract 기반 — reward가 'low-WER hypothesis 보상'이라는 것 외 group size·KL·advantage 정규화 등 GRPO 세부 설계와 정량 분석은 원문 확인 필요"
+   ],
+   "relevance": "RL축 간접 관련: 우리처럼 task metric(WER↔WIS)을 직접 reward로 쓰는 critic-free group RL이 동일 데이터에서 SFT보다 무엇을 더 얻는지 보여주며, 특히 GRPO-only vs SFT-then-GRPO 비교(40% vs 45%)는 CRPO의 NO_SFT(base cold-start RL) 옵션의 기대 이득/한계를 가늠하는 외부 근거가 된다. 다만 도메인이 ASR이라 확률예측·보정축(WIS/conformal/ILI)과는 무관하고, 'behavior(정지·정렬) 교정이 RL 이득의 원천'이라는 분석 프레임만 참고 가치.",
+   "category": "critic-free group RL (GRPO) · synthetic-data ASR 적응 · SFT vs RL",
+   "completeness": {
+    "grade": "B",
+    "why": "정량 개선(상대 WER 40~45%)과 기제 분석은 견실하나 SLT 2026 제출 단계 preprint에 코드 미공개, abstract상 단일 도메인 검증으로 보임."
+   },
+   "venue": "arXiv (SLT 2026 submitted)"
+  },
+  {
+   "id": "2607.07674",
+   "version": "v1",
+   "title": "Max Out GRPO Signal: Adaptive Trace Prefix Control for Hard Reasoning Problems",
+   "abstract": "Group Relative Policy Optimization (GRPO) stalls on a model's hardest problems: when no rollout in a group succeeds, the group-relative advantages vanish and the problem contributes no gradient, wasting the frontier examples we most want to learn from. Prepending a correct prefix of a reference solution raises the success rate, making prefix length a continuous knob on difficulty. Concurrent methods set the knob once; AdaPrefix-GRPO turns it into a feedback controller: throughout training it adjusts how much of the solution each problem gets, holding its success rate near 50%, where GRPO's gradient signal is largest, then withdraws the assistance entirely, so the deployed model solves problems unaided. On hard math, at matched training FLOPs, it more than doubles GRPO's accuracy on held-out problems from the training distribution for a 0.6B model (2.1x), with 1.6x on Qwen3-1.7B and 1.7x on AIME, while roughly halving trace length. The method is implemented in data preparation plus a loss mask on prefix tokens; the trainer is otherwise stock. The smaller the model, the larger the gain.",
+   "authors": [
+    "Vladislav Beliaev"
+   ],
+   "comment": "13 pages, 5 figures, 3 tables",
+   "url": "https://arxiv.org/abs/2607.07674",
+   "pdf": "https://arxiv.org/pdf/2607.07674",
+   "published": "2026-07-08T17:32:58Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "GRPO",
+    "reasoning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-07-12",
+   "oneliner": "GRPO가 가장 어려운 문제에서 group 내 rollout이 전부 실패하면 group-relative advantage가 0이 되어 gradient가 사라지는 문제를 겨냥한다. AdaPrefix-GRPO는 reference solution의 정답 prefix를 프롬프트에 붙여 난이도를 연속 조절하는 knob으로 삼고, 학습 내내 문제별 success rate를 GRPO gradient 신호가 최대인 ~50% 근처로 유지하는 feedback controller로 prefix 길이를 적응 조절한 뒤 이후 assistance를 완전히 철회한다. 구현은 data preparation + prefix token loss mask뿐이고 trainer는 stock 그대로다.",
+   "contribution": "고정 prefix 길이(concurrent 방법)를 문제별·시간별 feedback controller로 바꿔 GRPO의 zero-advantage frontier 예제에서 gradient 신호를 극대화하는 adaptive curriculum. matched training FLOPs에서 0.6B 모델 held-out 정확도 2.1x, Qwen3-1.7B 1.6x, AIME 1.7x, trace length 약 절반(모두 abstract 수치). 배포 시점에는 prefix 없이 문제를 풀도록 assistance를 완전히 철회하는 학습-추론 정합 설계 포함.",
+   "strengths": [
+    "GRPO의 구조적 맹점(전원 실패 group→advantage 소멸→hard example이 gradient에 기여 못함)을 정면으로 다루고, 해법을 one-shot 설정이 아닌 online feedback controller(success rate ~50% 유지)로 정식화",
+    "trainer 수정 없이 data preparation + prefix token loss mask만으로 구현되는 낮은 침습성 — abstract가 'trainer는 stock 그대로'임을 명시해 기존 GRPO 파이프라인에 얹기 쉬운 구조",
+    "matched FLOPs 비교에서 0.6B 2.1x, 1.7B 1.6x, AIME 1.7x + trace length 절반이라는 큰 폭 개선을 abstract에 명시, '모델이 작을수록 이득이 크다'는 스케일 경향도 보고",
+    "학습 중 제공한 assistance를 완전히 철회해 배포 모델이 unaided로 풀게 하는 train-test mismatch 해소 설계"
+   ],
+   "weaknesses": [
+    "binary correctness reward(수학 추론) 전제의 메커니즘 — 'prefix로 success rate 50% 유지'는 성공/실패가 이산적일 때 정의되며, WIS 같은 continuous reward에는 재정의 없이 직결되지 않음",
+    "reference solution(정답 trace)이 존재해야 prefix를 만들 수 있어, gold rationale이 없는 도메인(예: 역학 예측)에는 적용 전제부터 성립하지 않을 수 있음",
+    "arXiv preprint로 venue 수락 공지·공식 코드 공개가 없어(arXiv 페이지 확인) 재현성 확인 불가",
+    "abstract 기반 카드 — controller의 구체 갱신식, DAPO dynamic sampling 등 동류 기법과의 직접 비교 여부, 정량 수치의 세부 조건은 원문 확인 필요"
+   ],
+   "relevance": "CRPO의 RL축(group RL 안정화·advantage 추정)과 직접 맞닿는 논문 — DAPO가 zero-gradient group을 dynamic sampling으로 버리는 반면, 이 논문은 그 frontier 예제를 난이도 제어로 살려낸다는 대조점이 관련 연구 논의에 유용하고, data prep+loss mask 구조라 우리 GSPO+DAPO+Dr.GRPO 스택에도 이식 가능할 것으로 추정된다(abstract에서 검증된 바는 아님). 다만 CRPO의 WIS 보상은 continuous라 all-fail group에서 advantage가 정확히 소멸하는 degenerate case 자체가 드물어, 기법의 직수입보다는 'hard example의 gradient 신호 극대화'라는 설계 관점 참조에 가깝다.",
+   "category": "GRPO adaptive curriculum · prefix-hint feedback control · zero-advantage 완화",
+   "completeness": {
+    "grade": "B",
+    "why": "2개 모델(0.6B, Qwen3-1.7B) + AIME 벤치마크에서 matched-FLOPs 비교라는 견실한 검증을 제시하나, venue 수락 공지와 공식 코드가 없는 preprint."
+   },
+   "venue": "arXiv"
+  },
+  {
+   "id": "2607.07508",
+   "version": "v1",
+   "title": "Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning",
+   "abstract": "Reinforcement learning (RL) is becoming increasingly important for post-training large language models (LLMs). Previous RL pipelines for LLMs were mostly synchronous and batch-interleaved, which is inefficient for long-horizon agentic tasks. Recently, asynchronous RL has emerged as a more efficient alternative by updating the model as rollouts arrive. However, existing asynchronous RL systems often emphasize throughput, while leaving training stability and task effectiveness largely underexplored. For example, a key challenge is that group-wise sampling in the widely-used GRPO framework does not naturally fit asynchronous agentic training. In this paper, we present Single-rollout Asynchronous Optimization (SAO) to address the stability and off-policy challenges in asynchronous RL. To reduce off-policy effects and improve generalization, we replace group-wise sampling with single-rollout sampling, that is, using one rollout per prompt. We further improve this single-rollout strategy with practical value-model training designs. To improve optimization stability, we introduce a strict double-side token-level clipping strategy. SAO is able to train stably for one thousand steps and consistently outperform GRPO and its variants on agentic coding and reasoning benchmarks, such as SWE-Bench Verified, BeyondAIME, and IMOAnswerBench. We also demonstrate that single-rollout RL is particularly effective in a simulated online learning setting, where the model must adapt to changing evolving environments. To this end, SAO is successfully deployed in the agentic RL pipeline for training the open GLM-5.2 model (750B-A40B).",
+   "authors": [
+    "Zhenyu Hou",
+    "Yujiang Li",
+    "Jie Tang",
+    "Yuxiao Dong"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2607.07508",
+   "pdf": "https://arxiv.org/pdf/2607.07508",
+   "published": "2026-07-08T15:02:19Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 13,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "post-train",
+    "reasoning",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-07-12",
+   "oneliner": "비동기(asynchronous) agentic RL에서 GRPO의 group-wise sampling이 구조적으로 맞지 않는다는 문제를 지적하고, prompt당 rollout 1개(single-rollout sampling) + 실용적 value-model 학습 설계로 group-wise sampling을 대체하는 SAO를 제안. 여기에 strict double-side token-level clipping으로 최적화 안정성을 확보해 1000 step 안정 학습을 달성하고, SWE-Bench Verified·BeyondAIME·IMOAnswerBench에서 GRPO 및 변형들을 일관되게 상회한다고 주장. open GLM-5.2 모델 (750B-A40B) 학습용 agentic RL 파이프라인에 실배포되었다.",
+   "contribution": "group-wise sampling을 버리고 single-rollout + value model로 advantage를 추정하는 비동기 RL 최적화 기법(SAO)과 strict double-side token-level clipping 안정화 전략, 그리고 open GLM-5.2 (750B-A40B) 규모 실배포 실증.",
+   "strengths": [
+    "GRPO류 group sampling이 asynchronous agentic 학습과 안 맞는다는 구조적 결함을 명시하고, single-rollout + value model이라는 명확한 대안을 제시 (critic 재도입 방향)",
+    "strict double-side token-level clipping으로 off-policy 하에서 1000 step 안정 학습 주장 — group RL 안정화 축에서 clipping 설계 참고 가치",
+    "SWE-Bench Verified·BeyondAIME·IMOAnswerBench에서 GRPO 및 변형 대비 일관된 우위 + open GLM-5.2 (750B-A40B) 실제 파이프라인 배포라는 대규모 실증",
+    "환경이 변화하는 simulated online learning 세팅에서 single-rollout RL의 적응 효과를 별도로 시연"
+   ],
+   "weaknesses": [
+    "abstract 기반 — GRPO 대비 개선 폭 등 정량 수치가 abstract에 없어 원문 확인 필요",
+    "공식 코드 링크·venue 미기재 (preprint); GLM-5.2는 open 모델로 언급되나 SAO 학습 파이프라인 자체의 코드 공개 여부는 불명이라 외부 재현이 제한적",
+    "value model 재도입은 critic-free group RL의 단순성·메모리 이점을 포기하는 트레이드오프 — 소규모 학습 셋업 이식성 불명",
+    "long-horizon 비동기 agentic 전제의 처방이라, 동기식·짧은 rollout의 예측형 RL에는 문제 설정 자체가 다를 수 있음"
+   ],
+   "relevance": "CRPO 백본(GSPO+DAPO+Dr.GRPO)이 의존하는 group-wise sampling의 off-policy 취약성을 정면 비판하는 논문이라 RL축(advantage 추정·group RL 안정화·학습-추론 불일치)의 반례 근거로 볼 가치가 있음. 단 CRPO는 동기식 짧은 rollout이므로 비동기 전제는 해당 없고, double-side token-level clipping 설계 정도가 선택적 이식 후보.",
+   "category": "asynchronous agentic RL · single-rollout + value model (critic 재도입) · token-level clipping",
+   "completeness": {
+    "grade": "B",
+    "why": "open GLM-5.2 (750B-A40B) 실배포와 다중 벤치마크 검증을 주장하나 preprint에 코드·venue가 없어 외부 검증이 제한됨."
+   },
+   "venue": "arXiv"
   },
   {
    "id": "2607.06690",
@@ -1109,111 +1384,6 @@
    "completeness": {
     "grade": "B",
     "why": "ECMWF의 운용급 비교검증(IFS 대비 + AI Weather Quest 외부평가)으로 견실하나, preprint이고 venue·코드 공개가 없음."
-   },
-   "venue": "arXiv"
-  },
-  {
-   "id": "2607.08443",
-   "version": "v1",
-   "title": "ADORN: Adaptive Drift handling for Open RAN using Reinforcement Learning",
-   "abstract": "Dynamic traffic variations in Open Radio Access Networks (O-RAN) lead to drift, which degrades the performance of Artificial Intelligence/Machine Learning (AI/ML) models. Traditional retraining approaches maintain forecasting accuracy but incur high computational cost and may lead to violations of Service Level Agreements (SLAs). This work proposes a Q-learning-based adaptive retraining approach that formulates the retraining decision as a Markov Decision Process (MDP), where a Reinforcement Learning (RL) agent learns a policy that balances forecasting accuracy and retraining cost. The proposed approach incorporates a multi-expert Long Short-Term Memory (LSTM) ensemble to mitigate catastrophic forgetting and improve robustness across diverse traffic conditions. Experimental results show that the proposed approach effectively reduces retraining overhead compared to greedy and random baselines, while maintaining system performance within predefined limits.",
-   "authors": [
-    "Ashit Kumar Subudhi",
-    "Bhargav Chirumamilla",
-    "Shubham Vaishnav",
-    "Mduduzi C. Hlophe",
-    "Praveen Kumar Donta",
-    "Andrea Fumagalli",
-    "Venkateswarlu Gudepu",
-    "Koteswararao Kondepu"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.08443",
-   "pdf": "https://arxiv.org/pdf/2607.08443",
-   "published": "2026-07-09T13:05:42Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "rl_tsf",
-   "matched": [
-    "RL",
-    "forecast",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-07-12",
-   "oneliner": "O-RAN 트래픽 예측 모델의 drift에 대응해 \"언제 재학습할지\"를 Q-learning으로 결정하는 adaptive retraining 프레임워크. 재학습 결정을 MDP로 정식화해 forecasting accuracy와 retraining cost를 trade-off하는 policy를 학습하고, multi-expert LSTM ensemble로 catastrophic forgetting을 완화한다.",
-   "contribution": "(1) 재학습 시점 결정을 MDP로 정식화한 Q-learning 기반 adaptive retraining 정책 — forecasting accuracy와 retraining cost를 균형(기존 일괄 재학습의 높은 연산 비용·SLA 위반 가능성이 동기). (2) 다양한 트래픽 조건에 대한 robustness와 catastrophic forgetting 완화를 위한 multi-expert LSTM ensemble. (3) greedy/random baseline 대비 retraining overhead 절감 + 사전 정의된 성능 한계 내 시스템 성능 유지를 실험으로 확인(abstract 기준 정성적 결과만 제시).",
-   "strengths": [
-    "retraining 결정을 명시적 MDP로 정식화해 accuracy-cost trade-off를 RL로 다룬 문제 설정이 깔끔함 — \"모델 유지보수 자체를 RL로 스케줄링\"하는 관점",
-    "multi-expert ensemble로 drift 환경에서의 catastrophic forgetting 완화와 다양한 트래픽 조건에 대한 robustness를 노림",
-    "\"사전 정의된 성능 한계 내 유지\"라는 운영 조건을 평가에 포함(SLA 위반 문제를 동기로 제시)"
-   ],
-   "weaknesses": [
-    "abstract에 언급된 비교군은 greedy/random뿐 — drift detection 기반 고전 기법(DDM/ADWIN 류)이나 continual learning baseline 포함 여부는 abstract에서 확인 불가",
-    "예측 백본이 LSTM ensemble로, LLM/foundation model 시대 기준 예측 모델 자체의 기여는 없음; Q-learning이 tabular 수준인지 등 policy 표현력은 abstract만으로 판단 불가",
-    "코드 공개 언급 없음, venue 미표기(preprint), abstract에 정량 수치 전무 — 개선 폭·실험 규모는 원문 확인 필요",
-    "abstract 기반 카드 — MDP state/reward 설계 세부는 본문 확인 필요"
-   ],
-   "relevance": "직접 관련 낮음. CRPO의 관심축(WIS 보상 설계, group RL advantage 추정, 학습-추론 불일치)이나 확률예측/보정과 무관하고, RL은 예측 모델 학습이 아니라 재학습 스케줄링 메타 결정에 쓰임. 굳이 연결하면 ILI 시즌 간 distribution drift 시 재학습 시점 결정이라는 운영 관점 아이디어 정도.",
-   "category": "RL 기반 retraining 스케줄링 · drift 대응 (O-RAN 트래픽 예측)",
-   "completeness": {
-    "grade": "C",
-    "why": "preprint(venue 미표기)·코드 공개 언급 없음, abstract에 언급된 비교군이 greedy/random뿐인 단일 도메인 실험에 정량 수치도 없음."
-   },
-   "venue": "arXiv"
-  },
-  {
-   "id": "2607.04242",
-   "version": "v1",
-   "title": "Progress- and Reliability-Oriented Group Policy Optimization for Agentic Reinforcement Learning",
-   "abstract": "Group-based reinforcement learning (RL) has become an effective paradigm for improving large language model agents on long-horizon interactive tasks. To obtain finer-grained policy updates than trajectory-level optimization, recent work has moved toward step-level group-based RL, where intermediate steps are grouped and compared within a rollout batch. However, step-level advantage estimation is sensitive to how groups are formed: grouping by broad state keys improves coverage but may compare actions taken under different histories, while enforcing historical consistency yields fairer comparisons at the cost of fragmented groups and missing peer-comparison signal. In this paper, we propose ProGPO (Progress- and Reliability-Oriented Group Policy Optimization), a learned-critic-free method for context-consistent step-level learning. ProGPO keeps exact-prefix action comparison, and complements sparse peer comparisons with transition credit derived from rollout-based state potentials. To estimate these potentials reliably, ProGPO combines semantic expansion with inverse-variance fusion across history depths. We evaluate ProGPO on two challenging agentic tasks, ALFWorld and WebShop, with Qwen2.5-1.5B-Instruct. Results show that ProGPO improves over matched agentic RL baselines under comparable computational overhead, and additional Qwen2.5-3B-Instruct experiments further test the scalability of the proposed method.",
-   "authors": [
-    "Mingxuan Fan",
-    "Peiyang Liu"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.04242",
-   "pdf": "https://arxiv.org/pdf/2607.04242",
-   "published": "2026-07-05T11:41:46Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "policy optimization",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": true,
-   "bigtech_orgs": [
-    "Meta FAIR"
-   ],
-   "ingested": "2026-07-12",
-   "oneliner": "장기(long-horizon) 에이전트 태스크의 step-level group RL에서 group 구성 방식의 딜레마 — 넓은 state key로 묶으면 coverage는 늘지만 서로 다른 히스토리의 action을 비교하게 되고, 히스토리 일치를 강제하면 group이 파편화되어 peer-comparison 신호가 사라짐 — 를 정면으로 다루는 learned-critic-free 방법 ProGPO를 제안. exact-prefix action 비교를 유지하되, 희소해진 peer 비교를 rollout 기반 state potential에서 유도한 transition credit으로 보완하고, potential 추정은 semantic expansion + history depth 간 inverse-variance fusion으로 신뢰도를 확보한다. ALFWorld/WebShop에서 Qwen2.5-1.5B-Instruct로 matched agentic RL baseline 대비 개선(비슷한 계산 오버헤드)을 보고하고, Qwen2.5-3B-Instruct 추가 실험으로 확장성을 추가로 테스트했다고 서술.",
-   "contribution": "step-level group advantage 추정의 'grouping fairness vs coverage' 트레이드오프를 명시화하고, context-consistent(exact-prefix) 그룹을 유지하면서 부족한 group 신호를 potential 기반 transition credit(rollout 추정 + inverse-variance fusion)으로 채우는 critic-free 학습 프레임워크.",
-   "strengths": [
-    "group RL의 핵심 약점인 group 구성 민감성(다른 히스토리 간 불공정 비교 vs group 파편화로 인한 advantage 신호 소실)을 문제로 명시하고 양쪽을 동시에 잡는 설계",
-    "learned critic 없이 step-level credit assignment를 수행 — trajectory-level 최적화보다 세밀한 업데이트를 critic-free로 달성",
-    "state potential 추정에 semantic expansion + history depth 간 inverse-variance fusion이라는 통계적으로 원리 있는 융합을 사용해 추정 신뢰도 문제를 직접 다룸"
-   ],
-   "weaknesses": [
-    "검증이 Qwen2.5-1.5B/3B-Instruct 소형 모델 + ALFWorld/WebShop 2개 벤치마크로 제한적 — 대규모 모델·다양한 태스크 일반화는 미확인",
-    "abstract에 정량 수치가 전혀 없음 — 개선 폭, 'comparable computational overhead' 주장, rollout 기반 potential 추정의 추가 비용/분산은 원문 확인 필요 (abstract 기반 한계)",
-    "코드 미공개(arXiv 페이지에도 링크 없음), v1 preprint(2026-07-05)로 venue 없음"
-   ],
-   "relevance": "RL축 관련: group 구성이 advantage 추정에 미치는 민감성과 group 내 보상 동질화로 peer-comparison 신호가 사라지는 문제는 CRPO의 group advantage(Dr.GRPO/DAPO dynamic sampling) 안정화 이슈와 개념적으로 맞닿고, sparse group을 보조 신호(potential 기반 credit)로 보완한다는 아이디어는 참고 가치가 있음. 다만 multi-turn agentic step-level 설정이라 single-turn 분위수 예측인 CRPO에 직접 이식성은 낮음.",
-   "category": "step-level group RL · critic-free · agentic credit assignment",
-   "completeness": {
-    "grade": "B",
-    "why": "두 표준 agentic 벤치마크에서 matched baseline 비교와 3B 확장 실험까지 갖췄으나, 소형 모델 한정·코드 미공개·venue 없는 v1 preprint."
    },
    "venue": "arXiv"
   },
@@ -1338,219 +1508,224 @@
    "venue": "ACL 2026 Findings"
   },
   {
-   "id": "2606.29526",
-   "version": "",
-   "title": "The Mirage of Optimizing Training Policies: Monotonic Inference Policies as the Real Objective for LLM Reinforcement Learning",
-   "abstract": "Reinforcement learning (RL) has gained growing attention in large language model (LLM) post-training, yet RL training remains fragile and can suffer from instability or collapse. One vital cause is training-inference mismatch: LLM adopts separate inference and training engines for generation efficiency and training precision, which in practice exhibits inconsistent probabilities for the same trajectories on training and inference sides, even with synchronized model parameters. This naturally induces a special type of off-policyness ever existing and poisoning the training. Prior works have made various efforts in addressing the off-policyness to stabilize the training policies under the mismatch. In this paper, we point out the objective misalignment neglected by existing works that an effective update to the policy in the training engine not necessarily ensures the improvement of the inference policy, i.e., the one used in deployment. To this end, we propose a new policy optimization objective for LLM RL, named Monotonic Inference Policy Improvement (MIPI). Following this principle, we introduce Monotonic Inference Policy Update (MIPU), a two-step LLM RL framework that constructs sampler-referenced candidate updates and selectively accepts synchronized candidates using an inference-side gap proxy. Experiments conducted on two model scales under high mismatch show that MIPU improves average reasoning performance and training stability.",
+   "id": "2607.04242",
+   "version": "v1",
+   "title": "Progress- and Reliability-Oriented Group Policy Optimization for Agentic Reinforcement Learning",
+   "abstract": "Group-based reinforcement learning (RL) has become an effective paradigm for improving large language model agents on long-horizon interactive tasks. To obtain finer-grained policy updates than trajectory-level optimization, recent work has moved toward step-level group-based RL, where intermediate steps are grouped and compared within a rollout batch. However, step-level advantage estimation is sensitive to how groups are formed: grouping by broad state keys improves coverage but may compare actions taken under different histories, while enforcing historical consistency yields fairer comparisons at the cost of fragmented groups and missing peer-comparison signal. In this paper, we propose ProGPO (Progress- and Reliability-Oriented Group Policy Optimization), a learned-critic-free method for context-consistent step-level learning. ProGPO keeps exact-prefix action comparison, and complements sparse peer comparisons with transition credit derived from rollout-based state potentials. To estimate these potentials reliably, ProGPO combines semantic expansion with inverse-variance fusion across history depths. We evaluate ProGPO on two challenging agentic tasks, ALFWorld and WebShop, with Qwen2.5-1.5B-Instruct. Results show that ProGPO improves over matched agentic RL baselines under comparable computational overhead, and additional Qwen2.5-3B-Instruct experiments further test the scalability of the proposed method.",
    "authors": [
-    "Jing Liang",
-    "Hongyao Tang",
-    "Yi Ma",
-    "Yancheng He",
-    "Weixun Wang",
-    "Xiaoyang Li",
-    "Ju Huang",
-    "Wenbo Su",
-    "Jinyi Liu",
-    "Yan Zheng",
-    "Jianye Hao",
-    "Bo Zheng"
+    "Mingxuan Fan",
+    "Peiyang Liu"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2606.29526",
-   "pdf": "https://arxiv.org/pdf/2606.29526",
-   "published": "2026-07-12",
-   "source": [
-    "hf"
-   ],
-   "hf_upvotes": 161,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "llm",
-    "post-train",
-    "reasoning",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-07-12",
-   "oneliner": "LLM RL에서 학습엔진(training)과 추론엔진(inference/sampler)이 같은 trajectory에 서로 다른 확률을 부여하는 training-inference mismatch가 상시적 off-policyness로 학습을 오염시키는데, 기존 연구처럼 training policy를 안정화해도 실제 배포에 쓰이는 inference policy의 개선은 보장되지 않는다는 objective misalignment를 지적한다. 이를 위해 inference policy의 단조(monotonic) 개선을 목표로 삼는 MIPI(Monotonic Inference Policy Improvement) objective를 제안하고, sampler-referenced 후보 업데이트를 만든 뒤 inference-side gap proxy로 동기화된 후보를 선별 수락하는 2단계 프레임워크 MIPU를 제시한다. 두 모델 스케일의 고(高)mismatch 실험에서 평균 reasoning 성능과 학습 안정성 개선을 보고한다.",
-   "contribution": "최적화 대상을 training policy가 아닌 inference policy로 재정의한 MIPI objective와, 이를 구현하는 2단계 RL 프레임워크 MIPU(sampler-referenced candidate 생성 + inference-side gap proxy 기반 선별 수락)",
-   "strengths": [
-    "기존 mismatch 완화 연구들이 놓친 objective misalignment — training engine에서의 유효한 업데이트가 배포용 inference policy 개선을 보장하지 않는다는 점 — 을 명시적으로 문제화한 관점 전환",
-    "monotonic improvement 원칙(MIPI)을 후보 업데이트 생성 + gap proxy 기반 선별 수락이라는 실행 가능한 2단계 절차(MIPU)로 구체화",
-    "RL post-training의 실무적 고질병인 불안정/collapse 문제에 직결되며, high-mismatch 조건에서 성능과 안정성 동시 개선을 보고"
-   ],
-   "weaknesses": [
-    "abstract 기반 — 정량 수치와 비교 베이스라인(예: TIS류 importance-sampling 보정, GSPO 등 안정화 기법 대비)이 abstract에 없어 원문 확인 필요",
-    "두 모델 스케일 실험으로 검증 범위가 제한적이고, 코드 링크가 abstract/comment에 없으며 venue 미기재 preprint",
-    "선별 수락(accept/reject) 단계가 유발할 추가 계산·거부 시 롤백 비용 등 오버헤드에 대한 언급이 abstract에 없음"
-   ],
-   "relevance": "CRPO는 verl 기반이라 학습엔진(FSDP)과 롤아웃엔진(vLLM)의 확률 불일치가 그대로 존재하며, 이 논문은 우리 관심축 중 '학습-추론 불일치'에 정확히 해당한다. GSPO/Dr.GRPO가 다루는 group RL 안정화의 상위 프레임으로서 '진짜 목적함수는 inference policy 개선'이라는 진단은 CRPO 학습 안정화·평가 정합성 점검에 직접 참고 가치가 있다 (WIS 보상 설계 자체와는 무관).",
-   "category": "LLM RL 안정화 · training-inference mismatch · monotonic inference policy 개선",
-   "completeness": {
-    "grade": "B",
-    "why": "문제 설정과 방법론은 견실하나 venue·코드 링크 없는 preprint이고 검증이 두 모델 스케일 실험으로 제한적이다."
-   },
-   "venue": "arXiv"
-  },
-  {
-   "id": "2607.07508",
-   "version": "v1",
-   "title": "Single-Rollout Asynchronous Optimization for Agentic Reinforcement Learning",
-   "abstract": "Reinforcement learning (RL) is becoming increasingly important for post-training large language models (LLMs). Previous RL pipelines for LLMs were mostly synchronous and batch-interleaved, which is inefficient for long-horizon agentic tasks. Recently, asynchronous RL has emerged as a more efficient alternative by updating the model as rollouts arrive. However, existing asynchronous RL systems often emphasize throughput, while leaving training stability and task effectiveness largely underexplored. For example, a key challenge is that group-wise sampling in the widely-used GRPO framework does not naturally fit asynchronous agentic training. In this paper, we present Single-rollout Asynchronous Optimization (SAO) to address the stability and off-policy challenges in asynchronous RL. To reduce off-policy effects and improve generalization, we replace group-wise sampling with single-rollout sampling, that is, using one rollout per prompt. We further improve this single-rollout strategy with practical value-model training designs. To improve optimization stability, we introduce a strict double-side token-level clipping strategy. SAO is able to train stably for one thousand steps and consistently outperform GRPO and its variants on agentic coding and reasoning benchmarks, such as SWE-Bench Verified, BeyondAIME, and IMOAnswerBench. We also demonstrate that single-rollout RL is particularly effective in a simulated online learning setting, where the model must adapt to changing evolving environments. To this end, SAO is successfully deployed in the agentic RL pipeline for training the open GLM-5.2 model (750B-A40B).",
-   "authors": [
-    "Zhenyu Hou",
-    "Yujiang Li",
-    "Jie Tang",
-    "Yuxiao Dong"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.07508",
-   "pdf": "https://arxiv.org/pdf/2607.07508",
-   "published": "2026-07-08T15:02:19Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 13,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "llm",
-    "post-train",
-    "reasoning",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
-   "ingested": "2026-07-12",
-   "oneliner": "비동기(asynchronous) agentic RL에서 GRPO의 group-wise sampling이 구조적으로 맞지 않는다는 문제를 지적하고, prompt당 rollout 1개(single-rollout sampling) + 실용적 value-model 학습 설계로 group-wise sampling을 대체하는 SAO를 제안. 여기에 strict double-side token-level clipping으로 최적화 안정성을 확보해 1000 step 안정 학습을 달성하고, SWE-Bench Verified·BeyondAIME·IMOAnswerBench에서 GRPO 및 변형들을 일관되게 상회한다고 주장. open GLM-5.2 모델 (750B-A40B) 학습용 agentic RL 파이프라인에 실배포되었다.",
-   "contribution": "group-wise sampling을 버리고 single-rollout + value model로 advantage를 추정하는 비동기 RL 최적화 기법(SAO)과 strict double-side token-level clipping 안정화 전략, 그리고 open GLM-5.2 (750B-A40B) 규모 실배포 실증.",
-   "strengths": [
-    "GRPO류 group sampling이 asynchronous agentic 학습과 안 맞는다는 구조적 결함을 명시하고, single-rollout + value model이라는 명확한 대안을 제시 (critic 재도입 방향)",
-    "strict double-side token-level clipping으로 off-policy 하에서 1000 step 안정 학습 주장 — group RL 안정화 축에서 clipping 설계 참고 가치",
-    "SWE-Bench Verified·BeyondAIME·IMOAnswerBench에서 GRPO 및 변형 대비 일관된 우위 + open GLM-5.2 (750B-A40B) 실제 파이프라인 배포라는 대규모 실증",
-    "환경이 변화하는 simulated online learning 세팅에서 single-rollout RL의 적응 효과를 별도로 시연"
-   ],
-   "weaknesses": [
-    "abstract 기반 — GRPO 대비 개선 폭 등 정량 수치가 abstract에 없어 원문 확인 필요",
-    "공식 코드 링크·venue 미기재 (preprint); GLM-5.2는 open 모델로 언급되나 SAO 학습 파이프라인 자체의 코드 공개 여부는 불명이라 외부 재현이 제한적",
-    "value model 재도입은 critic-free group RL의 단순성·메모리 이점을 포기하는 트레이드오프 — 소규모 학습 셋업 이식성 불명",
-    "long-horizon 비동기 agentic 전제의 처방이라, 동기식·짧은 rollout의 예측형 RL에는 문제 설정 자체가 다를 수 있음"
-   ],
-   "relevance": "CRPO 백본(GSPO+DAPO+Dr.GRPO)이 의존하는 group-wise sampling의 off-policy 취약성을 정면 비판하는 논문이라 RL축(advantage 추정·group RL 안정화·학습-추론 불일치)의 반례 근거로 볼 가치가 있음. 단 CRPO는 동기식 짧은 rollout이므로 비동기 전제는 해당 없고, double-side token-level clipping 설계 정도가 선택적 이식 후보.",
-   "category": "asynchronous agentic RL · single-rollout + value model (critic 재도입) · token-level clipping",
-   "completeness": {
-    "grade": "B",
-    "why": "open GLM-5.2 (750B-A40B) 실배포와 다중 벤치마크 검증을 주장하나 preprint에 코드·venue가 없어 외부 검증이 제한됨."
-   },
-   "venue": "arXiv"
-  },
-  {
-   "id": "2607.08409",
-   "version": "v1",
-   "title": "When Synthetic Speech Is All You Have: Better Call GRPO",
-   "abstract": "LLM-based ASR adapted to regulated domains such as banking is bottlenecked by privacy: real speech is costly and legally constrained to collect, making synthetic text-to-speech (TTS) an attractive substitute. Yet synthetic speech stays acoustically mismatched with real recordings, and work on this gap has stayed within supervised fine-tuning (SFT). We instead turn to reinforcement learning, and show that Group Relative Policy Optimization (GRPO) extracts far more from the same synthetic speech than SFT. Synthetic-only adaptation of the model with GRPO, a critic-free method rewarding low-WER hypotheses, reduces WER by 40\\% relative to SFT (36.71\\%$\\to$22.09\\%), and an SFT-then-GRPO combination pushes this further to 45\\%. We trace the gain to behavior rather than representation: GRPO reduces insertion errors by improving stopping calibration and speech-to-text alignment by better anchoring attention to audio, leaving early-layer representations intact. When synthetic speech is the main resource, reinforcement learning should be preferred over supervised fine-tuning.",
-   "authors": [
-    "Shashi Kumar",
-    "Yanis Labrak",
-    "Hasindri Watawana",
-    "Sergio Burdisso",
-    "Esaú Villatoro-Tello",
-    "Kadri Hacioğlu",
-    "Petr Motlicek",
-    "Andreas Stolcke"
-   ],
-   "comment": "Submitted to SLT 2026",
-   "url": "https://arxiv.org/abs/2607.08409",
-   "pdf": "https://arxiv.org/pdf/2607.08409",
-   "published": "2026-07-09T12:34:56Z",
+   "url": "https://arxiv.org/abs/2607.04242",
+   "pdf": "https://arxiv.org/pdf/2607.04242",
+   "published": "2026-07-05T11:41:46Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "algo",
    "matched": [
-    "GRPO",
-    "llm"
+    "language model",
+    "policy optimization",
+    "reinforcement learning"
    ],
    "baseline_watch": [],
    "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": [],
+   "bigtech": true,
+   "bigtech_orgs": [
+    "Meta FAIR"
+   ],
    "ingested": "2026-07-12",
-   "oneliner": "Privacy 제약으로 실음성 수집이 어려운 banking 도메인 LLM-based ASR을 synthetic TTS 음성만으로 적응시킬 때, SFT 대신 critic-free GRPO(low-WER hypothesis에 보상)를 쓰면 동일 데이터에서 훨씬 많은 성능을 뽑아냄을 보인다. GRPO 단독으로 SFT 대비 WER 40% 상대 감소(36.71%→22.09%), SFT-then-GRPO 조합은 45%까지 확대. 이득의 원천을 representation이 아닌 behavior로 추적 — stopping calibration 개선으로 insertion error 감소, attention의 audio anchoring 강화로 speech-to-text alignment 개선, early-layer representation은 불변.",
-   "contribution": "synthetic speech만 있는 저자원·규제 도메인 ASR 적응에서 \"SFT가 아니라 RL(GRPO)을 써야 한다\"는 처방을 정량으로 제시(40~45% 상대 WER 감소)하고, 그 이득이 representation 변화가 아니라 stopping calibration·attention anchoring 같은 behavior 교정에서 온다는 기제 분석을 제공.",
+   "oneliner": "장기(long-horizon) 에이전트 태스크의 step-level group RL에서 group 구성 방식의 딜레마 — 넓은 state key로 묶으면 coverage는 늘지만 서로 다른 히스토리의 action을 비교하게 되고, 히스토리 일치를 강제하면 group이 파편화되어 peer-comparison 신호가 사라짐 — 를 정면으로 다루는 learned-critic-free 방법 ProGPO를 제안. exact-prefix action 비교를 유지하되, 희소해진 peer 비교를 rollout 기반 state potential에서 유도한 transition credit으로 보완하고, potential 추정은 semantic expansion + history depth 간 inverse-variance fusion으로 신뢰도를 확보한다. ALFWorld/WebShop에서 Qwen2.5-1.5B-Instruct로 matched agentic RL baseline 대비 개선(비슷한 계산 오버헤드)을 보고하고, Qwen2.5-3B-Instruct 추가 실험으로 확장성을 추가로 테스트했다고 서술.",
+   "contribution": "step-level group advantage 추정의 'grouping fairness vs coverage' 트레이드오프를 명시화하고, context-consistent(exact-prefix) 그룹을 유지하면서 부족한 group 신호를 potential 기반 transition credit(rollout 추정 + inverse-variance fusion)으로 채우는 critic-free 학습 프레임워크.",
    "strengths": [
-    "동일 synthetic 데이터 조건에서 SFT 대비 GRPO의 이득을 명확한 수치로 제시: WER 36.71%→22.09%(상대 40%), SFT-then-GRPO는 상대 45% — 데이터가 아니라 학습 방식이 병목임을 분리해 보임",
-    "이득의 기제 분석이 구체적: insertion error 감소 = stopping calibration 개선, speech-to-text alignment = attention의 audio anchoring 강화, early-layer representation은 불변 — 'RL이 무엇을 바꾸는가'를 behavior 수준으로 못박음",
-    "task metric(WER)을 직접 reward로 쓰는 critic-free group RL의 실용 사례로, privacy 제약(banking) 시나리오라는 명확한 동기 부여"
+    "group RL의 핵심 약점인 group 구성 민감성(다른 히스토리 간 불공정 비교 vs group 파편화로 인한 advantage 신호 소실)을 문제로 명시하고 양쪽을 동시에 잡는 설계",
+    "learned critic 없이 step-level credit assignment를 수행 — trajectory-level 최적화보다 세밀한 업데이트를 critic-free로 달성",
+    "state potential 추정에 semantic expansion + history depth 간 inverse-variance fusion이라는 통계적으로 원리 있는 융합을 사용해 추정 신뢰도 문제를 직접 다룸"
    ],
    "weaknesses": [
-    "SLT 2026 '제출' 단계 preprint(수락 아님)이고 arXiv 페이지에 공식 코드 링크 없음 — 재현성 확인 불가",
-    "abstract 기준 단일 도메인(banking ASR) 시나리오로 보이며, 다른 도메인/모델/TTS 엔진으로의 일반화 근거는 abstract에서 확인 불가",
-    "비교 기준선인 SFT의 WER이 36.71%로 매우 높은 세팅 — 저오류 세팅에서도 GRPO 우위가 유지되는지 abstract만으로 불명",
-    "abstract 기반 — reward가 'low-WER hypothesis 보상'이라는 것 외 group size·KL·advantage 정규화 등 GRPO 세부 설계와 정량 분석은 원문 확인 필요"
+    "검증이 Qwen2.5-1.5B/3B-Instruct 소형 모델 + ALFWorld/WebShop 2개 벤치마크로 제한적 — 대규모 모델·다양한 태스크 일반화는 미확인",
+    "abstract에 정량 수치가 전혀 없음 — 개선 폭, 'comparable computational overhead' 주장, rollout 기반 potential 추정의 추가 비용/분산은 원문 확인 필요 (abstract 기반 한계)",
+    "코드 미공개(arXiv 페이지에도 링크 없음), v1 preprint(2026-07-05)로 venue 없음"
    ],
-   "relevance": "RL축 간접 관련: 우리처럼 task metric(WER↔WIS)을 직접 reward로 쓰는 critic-free group RL이 동일 데이터에서 SFT보다 무엇을 더 얻는지 보여주며, 특히 GRPO-only vs SFT-then-GRPO 비교(40% vs 45%)는 CRPO의 NO_SFT(base cold-start RL) 옵션의 기대 이득/한계를 가늠하는 외부 근거가 된다. 다만 도메인이 ASR이라 확률예측·보정축(WIS/conformal/ILI)과는 무관하고, 'behavior(정지·정렬) 교정이 RL 이득의 원천'이라는 분석 프레임만 참고 가치.",
-   "category": "critic-free group RL (GRPO) · synthetic-data ASR 적응 · SFT vs RL",
+   "relevance": "RL축 관련: group 구성이 advantage 추정에 미치는 민감성과 group 내 보상 동질화로 peer-comparison 신호가 사라지는 문제는 CRPO의 group advantage(Dr.GRPO/DAPO dynamic sampling) 안정화 이슈와 개념적으로 맞닿고, sparse group을 보조 신호(potential 기반 credit)로 보완한다는 아이디어는 참고 가치가 있음. 다만 multi-turn agentic step-level 설정이라 single-turn 분위수 예측인 CRPO에 직접 이식성은 낮음.",
+   "category": "step-level group RL · critic-free · agentic credit assignment",
    "completeness": {
     "grade": "B",
-    "why": "정량 개선(상대 WER 40~45%)과 기제 분석은 견실하나 SLT 2026 제출 단계 preprint에 코드 미공개, abstract상 단일 도메인 검증으로 보임."
+    "why": "두 표준 agentic 벤치마크에서 matched baseline 비교와 3B 확장 실험까지 갖췄으나, 소형 모델 한정·코드 미공개·venue 없는 v1 preprint."
    },
-   "venue": "arXiv (SLT 2026 submitted)"
+   "venue": "arXiv"
   },
   {
-   "id": "2607.07674",
+   "id": "2605.30002",
    "version": "v1",
-   "title": "Max Out GRPO Signal: Adaptive Trace Prefix Control for Hard Reasoning Problems",
-   "abstract": "Group Relative Policy Optimization (GRPO) stalls on a model's hardest problems: when no rollout in a group succeeds, the group-relative advantages vanish and the problem contributes no gradient, wasting the frontier examples we most want to learn from. Prepending a correct prefix of a reference solution raises the success rate, making prefix length a continuous knob on difficulty. Concurrent methods set the knob once; AdaPrefix-GRPO turns it into a feedback controller: throughout training it adjusts how much of the solution each problem gets, holding its success rate near 50%, where GRPO's gradient signal is largest, then withdraws the assistance entirely, so the deployed model solves problems unaided. On hard math, at matched training FLOPs, it more than doubles GRPO's accuracy on held-out problems from the training distribution for a 0.6B model (2.1x), with 1.6x on Qwen3-1.7B and 1.7x on AIME, while roughly halving trace length. The method is implemented in data preparation plus a loss mask on prefix tokens; the trainer is otherwise stock. The smaller the model, the larger the gain.",
+   "title": "KairosAgent: Agentic Time Series Forecasting with Fused Semantic Reasoning",
    "authors": [
-    "Vladislav Beliaev"
+    "Kun Feng",
+    "Ziwei Shan",
+    "Yuchen Fang",
+    "Yiyang Tan",
+    "Sihan Lu",
+    "Shuqi Gu",
+    "Lintao Ma",
+    "Xingyu Lu",
+    "Kan Ren"
    ],
-   "comment": "13 pages, 5 figures, 3 tables",
-   "url": "https://arxiv.org/abs/2607.07674",
-   "pdf": "https://arxiv.org/pdf/2607.07674",
-   "published": "2026-07-08T17:32:58Z",
+   "comment": "",
+   "url": "https://arxiv.org/abs/2605.30002",
+   "pdf": "https://arxiv.org/pdf/2605.30002",
+   "published": "2026-05-28T14:32:48Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
-   "watch_type": "algo",
+   "watch_type": "hybrid",
    "matched": [
-    "GRPO",
-    "reasoning"
+    "agentic",
+    "forecast",
+    "forecaster",
+    "foundation model",
+    "llm",
+    "multi-turn",
+    "refine",
+    "refinement",
+    "time series",
+    "tsfm"
    ],
    "baseline_watch": [],
    "top_conf": "",
    "bigtech": false,
    "bigtech_orgs": [],
-   "ingested": "2026-07-12",
-   "oneliner": "GRPO가 가장 어려운 문제에서 group 내 rollout이 전부 실패하면 group-relative advantage가 0이 되어 gradient가 사라지는 문제를 겨냥한다. AdaPrefix-GRPO는 reference solution의 정답 prefix를 프롬프트에 붙여 난이도를 연속 조절하는 knob으로 삼고, 학습 내내 문제별 success rate를 GRPO gradient 신호가 최대인 ~50% 근처로 유지하는 feedback controller로 prefix 길이를 적응 조절한 뒤 이후 assistance를 완전히 철회한다. 구현은 data preparation + prefix token loss mask뿐이고 trainer는 stock 그대로다.",
-   "contribution": "고정 prefix 길이(concurrent 방법)를 문제별·시간별 feedback controller로 바꿔 GRPO의 zero-advantage frontier 예제에서 gradient 신호를 극대화하는 adaptive curriculum. matched training FLOPs에서 0.6B 모델 held-out 정확도 2.1x, Qwen3-1.7B 1.6x, AIME 1.7x, trace length 약 절반(모두 abstract 수치). 배포 시점에는 prefix 없이 문제를 풀도록 assistance를 완전히 철회하는 학습-추론 정합 설계 포함.",
+   "abstract": "Cross-domain multimodal time series forecasting is a challenging task, requiring models to integrate precise numerical comprehension, cross-domain semantic understanding, and effective multimodal fusion. Existing approaches either build Time Series Foundation Models (TSFMs) from scratch or leverage pretrained Large Language Models (LLMs). However, TSFMs often overlook semantic understanding and lack the ability to perform future-oriented semantic reasoning, and LLMs struggle with numerical comprehension and accurate quantitative forecasting. To overcome these limitations, we propose KairosAgent, a novel agentic framework for multimodal time series forecasting, including an LLM-based reasoner and a TSFM-based forecaster. KairosAgent unifies textual reasoning and numerical forecasting by dynamically invoking analytical tools to enhance the numerical understanding and semantic reasoning capabilities of LLMs. The reasoning results are subsequently fused into the TSFM pipeline, enabling more accurate and reliable future predictions. To further improve the reasoning, we curate a large-scale corpus of high-quality trajectories, alongside a reinforcement learning from forecasting paradigm with multi-turn refinement and turn-level credit assignment. Experiments demonstrate that KairosAgent achieves superior zero-shot forecasting performance while maximizing the utility of pretrained LLMs and TSFMs, presenting a promising direction for efficient and interpretable time series agents. The project page is at https://foundation-model-research.github.io/KairosAgent .",
+   "ingested": "2026-08-14",
+   "oneliner": "LLM reasoner와 TSFM forecaster를 융합한 agentic 예측 — multi-turn refinement를 turn 단위 credit assignment로 RL 학습.",
+   "contribution": "수치 이해(TSFM)와 의미 추론(LLM)의 상보성을 multi-turn 에이전트 구조로 결합하고 turn-level 보상 분배를 도입 (cross-domain 멀티모달 예측).",
    "strengths": [
-    "GRPO의 구조적 맹점(전원 실패 group→advantage 소멸→hard example이 gradient에 기여 못함)을 정면으로 다루고, 해법을 one-shot 설정이 아닌 online feedback controller(success rate ~50% 유지)로 정식화",
-    "trainer 수정 없이 data preparation + prefix token loss mask만으로 구현되는 낮은 침습성 — abstract가 'trainer는 stock 그대로'임을 명시해 기존 GRPO 파이프라인에 얹기 쉬운 구조",
-    "matched FLOPs 비교에서 0.6B 2.1x, 1.7B 1.6x, AIME 1.7x + trace length 절반이라는 큰 폭 개선을 abstract에 명시, '모델이 작을수록 이득이 크다'는 스케일 경향도 보고",
-    "학습 중 제공한 assistance를 완전히 철회해 배포 모델이 unaided로 풀게 하는 train-test mismatch 해소 설계"
+    "TSFM=수치, LLM=의미 추론으로 역할 분리가 명시적인 융합 구조",
+    "turn 단위 credit assignment로 다회전 상호작용의 학습 신호를 분해"
    ],
    "weaknesses": [
-    "binary correctness reward(수학 추론) 전제의 메커니즘 — 'prefix로 success rate 50% 유지'는 성공/실패가 이산적일 때 정의되며, WIS 같은 continuous reward에는 재정의 없이 직결되지 않음",
-    "reference solution(정답 trace)이 존재해야 prefix를 만들 수 있어, gold rationale이 없는 도메인(예: 역학 예측)에는 적용 전제부터 성립하지 않을 수 있음",
-    "arXiv preprint로 venue 수락 공지·공식 코드 공개가 없어(arXiv 페이지 확인) 재현성 확인 불가",
-    "abstract 기반 카드 — controller의 구체 갱신식, DAPO dynamic sampling 등 동류 기법과의 직접 비교 여부, 정량 수치의 세부 조건은 원문 확인 필요"
+    "cross-domain 멀티모달 벤치 중심 — 표준 단일모달 리더보드와의 직접 비교는 제한적",
+    "arXiv 단독, venue 미정",
+    "abstract 기반 카드 — turn 보상 설계·벤치 구성 세부는 본문 확인 필요"
    ],
-   "relevance": "CRPO의 RL축(group RL 안정화·advantage 추정)과 직접 맞닿는 논문 — DAPO가 zero-gradient group을 dynamic sampling으로 버리는 반면, 이 논문은 그 frontier 예제를 난이도 제어로 살려낸다는 대조점이 관련 연구 논의에 유용하고, data prep+loss mask 구조라 우리 GSPO+DAPO+Dr.GRPO 스택에도 이식 가능할 것으로 추정된다(abstract에서 검증된 바는 아님). 다만 CRPO의 WIS 보상은 continuous라 all-fail group에서 advantage가 정확히 소멸하는 degenerate case 자체가 드물어, 기법의 직수입보다는 'hard example의 gradient 신호 극대화'라는 설계 관점 참조에 가깝다.",
-   "category": "GRPO adaptive curriculum · prefix-hint feedback control · zero-advantage 완화",
+   "category": "LLM+TSFM 하이브리드 · multi-turn 에이전트",
+   "completeness": {
+    "grade": "C",
+    "why": "abstract 기반 카드, venue 미정 — 융합 구조의 정량 이득은 본문 확인 필요."
+   },
+   "venue": "arXiv"
+  },
+  {
+   "id": "2605.29401",
+   "version": "v1",
+   "title": "Rethinking Post-Training Recipes for Multimodal Time-Series Forecasting",
+   "authors": [
+    "Haoxin Liu",
+    "Yichen Zhou",
+    "Rajat Sen",
+    "B. Aditya Prakash",
+    "Abhimanyu Das"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2605.29401",
+   "pdf": "https://arxiv.org/pdf/2605.29401",
+   "published": "2026-05-28T05:52:28Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "foundation model",
+    "llm",
+    "revise",
+    "revisor",
+    "time-series",
+    "tsfm"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "abstract": "Time-Series Foundation Models (TSFMs) excel at zero-shot unimodal forecasting using numerical data, but unlike LLMs they cannot consume multimodal, non-numerical context that often shape real-world trajectories. In this work, we bridge this gap and argue for a multimodal time-series forecasting approach that post-trains LLMs to act as context-guided revisors over strong numerical TSFM priors. We introduce PostTime, a post-training recipe combining Supervised Fine-Tuning (SFT) and Reinforcement Learning with Verifiable Rewards (RLVR), along with a methodology to generate automated reasoning traces for forecast revisions. PostTime teaches an LLM to generate context-conditioned forecast interventions -- decisions to revise, preserve, or ignore the TSFM prior based on the multimodal context. We evaluate this approach on the TimesX multimodal forecasting benchmark using a Gemma-3-4B LLM and TimesFM-2.5 TSFM, and show that it significantly outperforms standalone TSFMs, LLM-only baselines, and existing multimodal forecasting approaches.",
+   "ingested": "2026-08-14",
+   "oneliner": "TSFM의 수치 prior 궤적을 LLM이 문맥 근거로 revise/preserve/ignore 하도록 SFT+RLVR로 사후학습하는 레시피 (Gemma-3-4B + TimesFM-2.5, TimesX 벤치).",
+   "contribution": "LLM을 '컨텍스트 기반 교정기(revisor)'로 규정하고 SFT→RLVR 2단계 사후학습과 자동 reasoning trace 생성 방법론을 제시 — TSFM이 못 먹는 비수치 컨텍스트를 예측에 반영.",
+   "strengths": [
+    "TSFM prior 유지/개입(revise·preserve·ignore)을 명시적 행동으로 분리한 설계",
+    "검증 가능한 보상(RLVR)으로 수치 정확도를 직접 최적화하는 사후학습 레시피",
+    "TimesFM 저자진(Google) 참여 — TSFM 쪽 설계 이해가 반영된 하이브리드"
+   ],
+   "weaknesses": [
+    "학습 데이터·코드 비공개('released upon acceptance') — 보고 수치가 현재 공개 자원으로 재현 불가",
+    "일부 지표에서 training-free 앙상블(Gemini+TimesFM 단순 평균)에 열세",
+    "arXiv v1 단독, venue 미정 — 비교 벤치(TimesX)도 같은 그룹 산출물"
+   ],
+   "category": "LLM+TSFM 하이브리드 · TSFM prior 사후 교정",
    "completeness": {
     "grade": "B",
-    "why": "2개 모델(0.6B, Qwen3-1.7B) + AIME 벤치마크에서 matched-FLOPs 비교라는 견실한 검증을 제시하나, venue 수락 공지와 공식 코드가 없는 preprint."
+    "why": "실험 보고는 광범위하나 데이터·코드 비공개로 재현 불가, venue 미정(arXiv v1)."
+   },
+   "venue": "arXiv"
+  },
+  {
+   "id": "2604.27840",
+   "version": "v2",
+   "title": "CastFlow: Learning Role-Specialized Agentic Workflows for Time Series Forecasting",
+   "authors": [
+    "Bokai Pan",
+    "Mingyue Cheng",
+    "Zhiding Liu",
+    "Shuo Yu",
+    "Xiaoyu Tao",
+    "Yuchong Wu",
+    "Qi Liu",
+    "Defu Lian",
+    "Enhong Chen"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2604.27840",
+   "pdf": "https://arxiv.org/pdf/2604.27840",
+   "published": "2026-04-30T13:24:42Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "agentic",
+    "ensemble",
+    "forecast",
+    "llm",
+    "refine",
+    "refinement",
+    "time series",
+    "workflow"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "abstract": "Recently, large language models (LLMs) have shown great promise in time series forecasting. However, most existing LLM-based forecasting methods still follow a static generative paradigm that directly maps historical observations to future values in a single pass. Under this paradigm, forecasting is constrained by limited temporal pattern extraction, single-round acquisition of contextual features, one-shot forecast generation, and lack of support from ensemble forecasts. To address these limitations, in this work, we propose CastFlow, a dynamic agentic forecasting framework that enables multi-view temporal pattern extraction, multi-round contextual features acquisition, iterative forecast refinement, and forecasting with ensemble forecasts. First, CastFlow organizes the forecasting process into planning, action, forecasting, and reflection, establishing an agentic workflow. Second, this workflow is supported by a memory module that retrieves prior experience and a multi-view toolkit that constructs diagnostic evidence and provides a reliable ensemble forecast baseline. Third, CastFlow adopts a role-specialized design that combines general-purpose reasoning with specialized numerical forecasting. Under this design, a frozen LLM preserves general-purpose reasoning, while a fine-tuned domain-specific LLM performs evidence-guided numerical forecasting based on the ensemble forecast baseline, rather than from scratch. To optimize a fine-tuned domain-specific LLM, we further develop a two-stage workflow-oriented training that combines supervised fine-tuning (SFT) and reinforcement learning with verifiable rewards (RLVR). To evaluate the effectiveness of CastFlow, we conduct extensive experiments on diverse datasets and show that it achieves superior overall results against strong baselines. We hope that this work can serve as a step toward more adaptive and accurate time series forecasting.",
+   "ingested": "2026-08-14",
+   "oneliner": "단발 생성 패러다임을 벗어나 역할 분화 agentic 워크플로(plan→act→forecast→reflect)로 LLM 예측을 다회전·앙상블 구조로 확장, 2단계 SFT+RLVR로 워크플로 자체를 학습.",
+   "contribution": "예측 과정을 역할별 단계로 조직화하고 그 워크플로를 학습 대상으로 삼음 — Time-R1 저자진(USTC)의 후속 라인.",
+   "strengths": [
+    "다회 컨텍스트 수집·앙상블 예측으로 단발 생성(one-pass)의 구조적 한계를 정면 겨냥",
+    "워크플로 단계별 역할 분화로 학습 신호를 분해"
+   ],
+   "weaknesses": [
+    "다회전 워크플로만큼 추론 비용 증가 — 비용 대비 이득 정량은 본문 확인 필요",
+    "arXiv 단독, venue 미정",
+    "abstract 기반 카드 — 단계별 보상 설계 세부는 본문 확인 필요"
+   ],
+   "category": "LLM+TSFM 하이브리드 · agentic 워크플로",
+   "completeness": {
+    "grade": "C",
+    "why": "abstract 기반 카드, venue 미정 — 워크플로 학습의 정량 이득은 본문 확인 필요."
    },
    "venue": "arXiv"
   }

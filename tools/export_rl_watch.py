@@ -7,7 +7,8 @@ XIF-RL/research_site 의 export_public.py 에서 복사해 온 것(원본은 XIF
 
 동작(둘 다 이 레포 data/ 에 기록):
   data/rl_watch.json   triage 카드의 '정제' 공개 버전 — 논문 사실 필드만.
-                       공개 스코프 = watch_type == 'rl_tsf' (TSF에 적용된 RL) 만.
+                       공개 스코프 = watch_type in {'hybrid','rl_tsf'} (2026-08-14 재편:
+                       LLM+TSFM 하이브리드 + TSF 적용 RL).
                        연구 연결 필드(relevance/matched/watch_type/bigtech*)는 미노출.
   data/lab.enc.json    연구 노트(XIF-RL content/*.md + watch relevance 노트)를
                        PBKDF2-SHA256(600k) → AES-256-GCM 으로 암호화한 페이로드.
@@ -43,8 +44,9 @@ PASS_FILES = [Path.home() / ".lab_pass", Path.home() / ".xif_lab_pass"]
 
 PBKDF2_ITER = 600_000
 
-# 공개 RL Watch 스코프: TSF에 적용된 RL 만. algo/tsf_trend/epi 는 제외.
-PUBLIC_WATCH_TYPE = "rl_tsf"
+# 공개 RL Watch 스코프 (2026-08-14 재편): LLM+TSFM 하이브리드 + TSF 적용 RL.
+# algo/tsf_trend/epi 는 제외.
+PUBLIC_WATCH_TYPES = ("hybrid", "rl_tsf")
 
 # 공개 카드에 허용하는 필드만 명시 (allowlist — 새 필드가 생겨도 기본은 비공개)
 PUBLIC_FIELDS = [
@@ -159,7 +161,7 @@ def sanitize_watch(papers: list) -> list:
     for p in papers:
         if not p.get("oneliner"):               # 아직 triage 안 된 카드는 제외
             continue
-        if p.get("watch_type") != PUBLIC_WATCH_TYPE:  # TSF에 적용된 RL 만 공개
+        if p.get("watch_type") not in PUBLIC_WATCH_TYPES:  # hybrid + rl_tsf 만 공개
             continue
         card = {k: p[k] for k in PUBLIC_FIELDS if p.get(k) not in (None, "", [])}
         out.append(_scrub_card(card))           # 연구 식별자 포함 절 자동 제거
@@ -227,7 +229,7 @@ def main():
     pub_text = json.dumps(pub, ensure_ascii=False, indent=1)
     check_denylist(pub_text, "rl_watch.json")
     (data_dir / "rl_watch.json").write_text(pub_text, encoding="utf-8")
-    print(f"[watch] {len(pub['papers'])} cards (rl_tsf) → {data_dir / 'rl_watch.json'}")
+    print(f"[watch] {len(pub['papers'])} cards ({'+'.join(PUBLIC_WATCH_TYPES)}) → {data_dir / 'rl_watch.json'}")
 
     # 2) 암호화 Lab
     passphrase = _read_passphrase()
