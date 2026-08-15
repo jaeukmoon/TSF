@@ -1,11 +1,8 @@
-"""Daily leaderboard tracker orchestrator.
+"""Deterministic leaderboard ingestion orchestrator.
 
-fetch GIFT-Eval + fev-bench -> aggregate -> diff against the seen ledger ->
-generate Sonnet summary cards for new/pending models -> write site data JSON.
-
-Run from repo root or tracker/:  python tracker/update.py
-Env: ANTHROPIC_API_KEY (optional; without it new cards stay pending)
-     MAX_CARDS (default 12) - cards generated per run
+Fetch GIFT-Eval and fev-bench, update the seen ledger, create facts-only cards
+for undocumented submissions, and leave documented models pending for the
+Codex `tsf-cards` project skill.
 """
 
 import json
@@ -24,26 +21,24 @@ import watch_ltsf
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 
-MAX_CARDS = int(os.environ.get("MAX_CARDS", "12"))
-
 
 def load(name, default):
     try:
-        with open(os.path.join(DATA, name), encoding="utf-8") as f:
-            return json.load(f)
+        with open(os.path.join(DATA, name), encoding="utf-8") as file:
+            return json.load(file)
     except (FileNotFoundError, json.JSONDecodeError):
         return default
 
 
-def save(name, obj):
+def save(name, value):
     os.makedirs(DATA, exist_ok=True)
-    with open(os.path.join(DATA, name), "w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=1)
-        f.write("\n")
+    with open(os.path.join(DATA, name), "w", encoding="utf-8") as file:
+        json.dump(value, file, ensure_ascii=False, indent=1)
+        file.write("\n")
 
 
 def norm_key(name):
-    """Merge identity across sources: 'Chronos-2' and 'chronos-2' -> 'chronos2'."""
+    """Merge identity across sources: `Chronos-2` and `chronos-2`."""
     return re.sub(r"[^a-z0-9]", "", name.lower())
 
 
@@ -57,88 +52,86 @@ def main():
     seen = load("seen.json", {"gift": {}, "fev": {}})
     cards = load("cards.json", {})
 
-    # mark first_seen per source
     new_names = []
     for source, entries in (("gift", gift), ("fev", fev)):
-        for e in entries:
-            if e["name"] not in seen[source]:
-                seen[source][e["name"]] = today
-                new_names.append((source, e["name"]))
+        for entry in entries:
+            if entry["name"] not in seen[source]:
+                seen[source][entry["name"]] = today
+                new_names.append((source, entry["name"]))
     if new_names:
-        print(f"[new] {len(new_names)} new models: {[n for _, n in new_names]}")
+        print(f"[new] {len(new_names)} new models: {[name for _, name in new_names]}")
 
-    # ensure a card slot exists for every model, merged across sources
-    gift_by_key = {norm_key(e["name"]): e for e in gift}
-    fev_by_key = {norm_key(e["name"]): e for e in fev}
+    gift_by_key = {norm_key(entry["name"]): entry for entry in gift}
+    fev_by_key = {norm_key(entry["name"]): entry for entry in fev}
     for source, entries in (("gift", gift), ("fev", fev)):
-        for e in entries:
-            key = norm_key(e["name"])
-            slot = cards.setdefault(key, {
-                "name": e["name"],
-                "sources": {},
-                "first_seen": seen[source][e["name"]],
-                "status": "pending",
-                "card": None,
-            })
-            slot["sources"][source] = e["name"]
-            slot["first_seen"] = min(slot["first_seen"], seen[source][e["name"]])
+        for entry in entries:
+            key = norm_key(entry["name"])
+            slot = cards.setdefault(
+                key,
+                {
+                    "name": entry["name"],
+                    "sources": {},
+                    "first_seen": seen[source][entry["name"]],
+                    "status": "pending",
+                    "card": None,
+                },
+            )
+            slot["sources"][source] = entry["name"]
+            slot["first_seen"] = min(slot["first_seen"], seen[source][entry["name"]])
 
-    # fill cards: anonymous models get a zero-LLM template card immediately;
-    # documented models use Sonnet if an API key is present, otherwise they
-    # stay pending until a local Claude Code session fills them (/tsf-cards)
-    budget = MAX_CARDS
-    use_llm = summarize.available()
-    if not use_llm:
-        print("[cards] no API key/SDK; documented models stay pending for /tsf-cards")
-    for key, slot in sorted(cards.items(), key=lambda kv: kv[1]["first_seen"], reverse=True):
+    for key, slot in sorted(
+        cards.items(), key=lambda item: item[1]["first_seen"], reverse=True
+    ):
         if slot["status"] == "ok":
             continue
-        g, f = gift_by_key.get(key), fev_by_key.get(key)
+        gift_entry, fev_entry = gift_by_key.get(key), fev_by_key.get(key)
         info = {
-            "org": (g or {}).get("org", ""),
-            "model_type": (g or {}).get("model_type", ""),
-            "model_link": (g or {}).get("model_link", ""),
-            "code_link": (g or {}).get("code_link", ""),
-            "testdata_leakage": (g or {}).get("leak", ""),
+            "org": (gift_entry or {}).get("org", ""),
+            "model_type": (gift_entry or {}).get("model_type", ""),
+            "model_link": (gift_entry or {}).get("model_link", ""),
+            "code_link": (gift_entry or {}).get("code_link", ""),
+            "testdata_leakage": (gift_entry or {}).get("leak", ""),
             "stats": {
-                "gift_eval": g and {k: g[k] for k in
-                                    ("mase", "crps", "rank_crps", "rank_mase", "n_configs")},
-                "fev_bench": f and {k: f[k] for k in
-                                    ("win_rate", "skill_score", "median_inference_time_s",
-                                     "overlap", "num_failures")},
+                "gift_eval": gift_entry
+                and {
+                    field: gift_entry[field]
+                    for field in ("mase", "crps", "rank_crps", "rank_mase", "n_configs")
+                },
+                "fev_bench": fev_entry
+                and {
+                    field: fev_entry[field]
+                    for field in (
+                        "win_rate",
+                        "skill_score",
+                        "median_inference_time_s",
+                        "overlap",
+                        "num_failures",
+                    )
+                },
             },
         }
-        if not summarize.has_evidence(info):
-            slot["card"] = summarize.template_card(slot["name"], info)
-            slot["status"] = "ok"
-            slot["generated_at"] = today
-            slot["generated_by"] = "template"
+        if summarize.has_evidence(info):
             continue
-        if not use_llm or budget <= 0:
-            continue
-        print(f"[card] generating: {slot['name']}")
-        card = summarize.make_card(slot["name"], info)
-        if card is None:
-            continue
-        slot["card"] = card
+        slot["card"] = summarize.template_card(slot["name"], info)
         slot["status"] = "ok"
         slot["generated_at"] = today
-        slot["generated_by"] = "sonnet-ci"
-        budget -= 1
-        save("cards.json", cards)  # checkpoint so a crash keeps finished cards
+        slot["generated_by"] = "deterministic-template"
 
-    pending = sum(1 for s in cards.values() if s["status"] != "ok")
-    print(f"[cards] {len(cards) - pending} ok, {pending} pending")
+    pending = sum(1 for slot in cards.values() if slot["status"] != "ok")
+    print(f"[cards] {len(cards) - pending} complete, {pending} pending for Codex")
 
     save("seen.json", seen)
     save("cards.json", cards)
-    save("leaderboard.json", {
-        "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
-        "gift": gift,
-        "fev": fev,
-        "first_seen": seen,
-    })
-    print("[done] data/ updated")
+    save(
+        "leaderboard.json",
+        {
+            "updated": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC"),
+            "gift": gift,
+            "fev": fev,
+            "first_seen": seen,
+        },
+    )
+    print("[done] deterministic data updated")
 
 
 if __name__ == "__main__":

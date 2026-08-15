@@ -2,16 +2,16 @@ name: weekly-leaderboard-update
 
 on:
   schedule:
-    - cron: "30 23 * * 0"   # Monday 08:30 KST, weekly
+    - cron: "30 23 * * 0"
   workflow_dispatch:
-    inputs:
-      max_cards:
-        description: "cards to generate this run (backfill: e.g. 60)"
-        default: "12"
 
 permissions:
   contents: write
   actions: write
+
+concurrency:
+  group: weekly-leaderboard-update
+  cancel-in-progress: false
 
 jobs:
   update:
@@ -23,23 +23,18 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Install deps
-        run: pip install anthropic
-
-      - name: Update leaderboard + cards
-        env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          MAX_CARDS: ${{ inputs.max_cards || '12' }}
+      - name: Deterministic leaderboard ingestion
         run: python tracker/update.py
 
-      - name: Commit & push if changed
+      - name: Commit and push changed data
         run: |
           git config user.name "tsf-tracker-bot"
           git config user.email "actions@github.com"
           git add data/
           git diff --cached --quiet && echo "no changes" && exit 0
           git commit -m "data: weekly leaderboard update $(date -u +%F)"
-          git push
+          git pull --rebase origin main
+          git push origin HEAD:main
 
       - name: Trigger Pages deploy
         env:

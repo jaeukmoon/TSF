@@ -1,8 +1,8 @@
 """Weekly arXiv watcher: flag new LTSF papers that report on the classic
 benchmark (ETT/Weather/ECL/Traffic ...) as candidates for the LTSF tab.
 
-Detection only (0 LLM tokens). Candidates land in data/ltsf_pending.json;
-a local Claude session (/tsf-cards) triages them, transcribes the tables
+Detection only (0 model tokens). Candidates land in data/ltsf_pending.json;
+the local Codex automation supervisor (`tsf-cards`) triages them, transcribes the tables
 into data/ltsf.json, and clears the queue.
 """
 
