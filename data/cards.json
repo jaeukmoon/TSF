@@ -3423,5 +3423,23 @@
   "first_seen": "2026-08-09",
   "status": "pending",
   "card": null
+ },
+ "tafsut": {
+  "name": "tafsut",
+  "sources": {
+   "gift": "tafsut"
+  },
+  "first_seen": "2026-08-16",
+  "status": "pending",
+  "card": null
+ },
+ "timetronv233m": {
+  "name": "TimeTron-v2-33M",
+  "sources": {
+   "gift": "TimeTron-v2-33M"
+  },
+  "first_seen": "2026-08-16",
+  "status": "pending",
+  "card": null
  }
 }
