@@ -1,49 +1,124 @@
 {
- "run_date": "2026-08-03",
+ "run_date": "2026-08-17",
  "window_hours": 192,
  "arxiv_status": "ok",
  "hf_status": "fallback",
  "counts": {
-  "fetched": 1718,
-  "after_filter": 14,
-  "html_scans": 14,
+  "fetched": 1807,
+  "after_filter": 22,
+  "html_scans": 22,
   "baseline": 0,
   "epi": 0,
-  "rl_tsf": 3,
-  "algo": 8,
-  "tsf_trend": 3
+  "hybrid": 7,
+  "rl_tsf": 4,
+  "algo": 6,
+  "tsf_trend": 5
  },
  "candidates": [
   {
-   "id": "2607.27853",
-   "version": "v1",
-   "title": "FinanceHarness: Autonomous Financial Deep Research Framework",
-   "abstract": "Powered by advances in LLMs and autonomous agents, deep research has become one of the most widely adopted agentic products. However, most deep research systems write general-purpose reports, which are inadequate for financial deep research. Financial research demands specialized knowledge to analyze historical patterns and forecast upcoming events. Automating financial deep research therefore requires both a layered harness to drive the research agent and a verifiable, point-in-time benchmark that prevents leakage of future information. We present FinanceHarness, a harness that runs finance-oriented tools and practitioner-guided workflows, automating financial deep research end to end: environment and data construction, the agent execution loop, and reward modeling. We further propose FinanceGym, comprising thesis-driven research questions and rubrics that combine pre-cutoff and post-cutoff criteria. Professional expert validation yields an 82% pass rate. Even leading LLMs and agents score below 40% on the rubrics, showing that FinanceGym is challenging and leaves substantial headroom. With the same open-weight backbone, FinanceHarness improves the overall rubric score from 25.3% to 32.4%. FinanceHarness is available at https://github.com/Yijia-Xiao/FinanceHarness.",
+   "id": "2608.06867",
+   "version": "",
+   "title": "LLMRouter: Unified Infrastructure for Developing, Evaluating, and Deploying LLM Routers",
+   "abstract": "No single large language model (LLM) is optimal across all queries and budget constraints, making model routing essential for cost-effective deployment. Existing routers adopt diverse formulations and implementations, making fair comparison and extension difficult. We present a unified formulation of LLM routing as a sequential decision process characterized by five components: context encoders, model encoders, scoring functions, decision rules, and learning signals, covering single-turn, multi-turn, and personalized routing. Based on this formulation, we develop an automated pipeline for constructing routing supervision and evaluating routers jointly on response quality and inference cost. The resulting benchmark, xRouteBench, spans generic LLM, memory-augmented, vision, time-series, and personalized routing tasks. We further introduce LLMRouter, an open-source modular infrastructure with more than 16 representative routers. Our empirical study shows that learned routers outperform the strongest fixed-model baseline by 14.6% relatively, lightweight routers become more competitive under tight cost constraints, and user-conditioned routing consistently improves personalization.",
    "authors": [
-    "Yijia Xiao",
-    "Rujun Han",
-    "Yanfei Chen",
-    "Zifeng Wang",
-    "Ke Jiang",
-    "Zhongying CuiZhu",
-    "Vishy Tirumalashetty",
-    "Wei Wang",
-    "Burak Gokturk",
-    "Tomas Pfister",
-    "Chen-Yu Lee"
+    "Tao Feng",
+    "Fangxu Yu",
+    "Haozhen Zhang",
+    "Zhongjie Dai",
+    "Liangqi Yuan",
+    "Zijie Lei",
+    "Weizhi Zhang",
+    "Kunlun Zhu",
+    "Haodong Yue",
+    "Keyang Xuan",
+    "Ge Liu",
+    "Jiaxuan You"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2607.27853",
-   "pdf": "https://arxiv.org/pdf/2607.27853",
-   "published": "2026-07-30T08:32:04Z",
+   "url": "https://arxiv.org/abs/2608.06867",
+   "pdf": "https://arxiv.org/pdf/2608.06867",
+   "published": "2026-08-17",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 103,
+   "watch_type": "hybrid",
+   "matched": [
+    "llm",
+    "multi-turn",
+    "time-series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": true,
+   "bigtech_orgs": [
+    "Meta FAIR"
+   ]
+  },
+  {
+   "id": "2608.08675",
+   "version": "v1",
+   "title": "Efficient Test-Time Scaling for LLM-based Time Series Forecasting",
+   "abstract": "Long-term time series forecasting benefits from preserving global structure such as trends and seasonality. Recent LLM-based forecasters often improve accuracy through test-time scaling (e.g., iterative refinement), but these methods are computationally expensive and increasingly prone to global-shape mismatch as the prediction horizon extends. We propose SCALER, a coarse-to-fine forecasting framework that first employs a lightweight Transformer tailored to long-term shape modeling to predict a coarse representation of future dynamics. This predicted shape then serves as a compact guide for an LLM to perform test-time scaling via iterative coarse-to-fine residual token refinement, while processing substantially fewer tokens at each step. By guiding refinement with an explicit future-shape prediction, SCALER reduces reliance on long description prompts, and its fixed-step refinement avoids costly reward-model-based selection, further lowering computational overhead. Experimental results demonstrate that SCALER outperforms strong forecasting baselines in long-term, short-term and zero-shot forecasting while significantly reducing the inference cost associated with scaled LLM for time series forecasting. Code: https://github.com/xuanmay2701/SCALER.",
+   "authors": [
+    "Xuan-May Le",
+    "Minh-Tuan Tran",
+    "Ling Luo",
+    "Uwe Aickelin",
+    "Dinh Phung",
+    "Trung Le"
+   ],
+   "comment": "Accepted at KDD 2026 (Oral)",
+   "url": "https://arxiv.org/abs/2608.08675",
+   "pdf": "https://arxiv.org/pdf/2608.08675",
+   "published": "2026-08-09T12:45:08Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
-   "watch_type": "rl_tsf",
+   "watch_type": "hybrid",
    "matched": [
     "forecast",
-    "reward model"
+    "forecaster",
+    "llm",
+    "refine",
+    "refinement",
+    "time series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "KDD",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.14270",
+   "version": "v1",
+   "title": "TimeSage-EV: A Live Benchmark for Agentic Time Series Analysis in Evolving Environments",
+   "abstract": "Time series analysis in high-stakes domains relies on recurring data releases, where new observations can alter the evidence base and the validity of later conclusions. Existing time series QA benchmarks mostly rely on fixed snapshots, leaving temporal validity and cutoff-aware evidence use unevaluated. We introduce TimeSage-EV, a live benchmark for agentic time series analysis in evolving environments. It tracks 60 real institutional scenarios across 6 domains, comprising 1,485 scenario-period QA pairs from Feb 2023 to May 2026 and spanning monthly, weekly, daily, and irregular release cadences. At each period, large language model (LLM) agents receive time series data and source reports, while the withheld target release provides ground truth. TimeSage-EV evaluates state identification, data summarization, and outlook reasoning. Experiments with frontier LLM agents and TimeSage-1.0, a novel self-evolving agent with a reusable analytical skill library, reveal significant performance gaps across model tiers and recurring failures in temporal validity, exogenous context use, and adaptation. We release TimeSage-EV as a research resource with monthly updates, code, a leaderboard, and failure-mode analyses.",
+   "authors": [
+    "Qingren Yao",
+    "Yaxuan Kong",
+    "Yuqi Nie",
+    "Yichen Li",
+    "Stefan Zohren",
+    "Anna Vettoruzzo",
+    "Qingsong Wen",
+    "Ming Jin",
+    "Joaquin Vanschoren"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.14270",
+   "pdf": "https://arxiv.org/pdf/2608.14270",
+   "published": "2026-08-14T12:53:21Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "agentic",
+    "llm",
+    "time series"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -51,21 +126,304 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.25956",
+   "id": "2608.11753",
    "version": "v1",
-   "title": "Large Language Model for Operations Research Formulation Selection in Multi-Warehouse Inventory Allocation",
-   "abstract": "Multi-warehouse inventory allocation is typically formulated as a mixed-integer programming (MIP) problem, yet no single formulation consistently matches heterogeneous instance-level regimes induced by demand concentration, inventory imbalance, replenishment scale, service constraints, and forecast volatility. We study this issue as instance-wise operations research (OR) formulation selection, where each allocation instance is assigned to a solver-executable formulation from a candidate OR expert library. We propose a solver-guided large language model (LLM) framework for OR formulation selection, in which each OR expert corresponds to a MIP formulation encoding a distinct allocation priority. To train the selector, the framework first constructs balanced expert-conditioned supervised fine-tuning (SFT) records for schema learning, and then uses MIP solver evaluation on historical instances to convert solver-evaluated allocation-quality gaps into margin-weighted identity preference optimization (IPO) preferences and per-instance expert-score metadata for reward lookup during group relative policy optimization (GRPO) to assign rewards to sampled responses. Experiments on multi-warehouse inventory allocation instances from JD$\\mathord{.}$com, one of China's largest e-retailers, demonstrate that GRPO substantially improves expert-selection accuracy relative to the SFT+IPO selector and, more importantly, produces higher realized allocation quality than both the preference-trained selector and the best fixed formulation. With GRPO, Hit Ratio@1 and Hit Ratio@2 increase from 21.45% to 50.42% and from 70.47% to 82.31%. The resulting selector achieves an allocation accuracy gain of 12.57 percentage points over the incumbent baseline, outperforming both the SFT+IPO selector and the best fixed OR expert, and reduces the gap to the ex-post oracle to 4.85 percentage points.",
+   "title": "LabelFusion-TS: Fusing Large Language Models, Transformer Encoders, and Financial Time Series for Monetary-Policy Stance Classification",
+   "abstract": "Financial text is produced and interpreted within a market environment, yet financial text classifiers almost always receive text alone. We study whether financial time series are useful as an additional input on the task of classifying sentences from Federal Reserve communication as hawkish, dovish, or neutral. Our system, \\lfts{}, extends the \\lf{} architecture with this modality: a small voting network combines three independently trained components, a fine-tuned RoBERTa encoder, a prompted large language model (LLM), and a fused ensemble of time-series transformers over the market series of the months preceding publication. Because only about a thousand annotated sentences are available for training, the RoBERTa encoder is first pre-trained on sentences annotated automatically by the LLM and only then fine-tuned on the human labels. Trained on Federal Open Market Committee (FOMC) communication up to 2015 and evaluated on 2015--2022, the fused system achieves 70.2\\% weighted F1 -- against 64.1\\% for the zero-shot LLM -- and overtakes it with as few as 240 human-labelled sentences. We take this as initial evidence for market time series as an input modality in financial text classification.",
    "authors": [
-    "Jintao Xu",
-    "Yingzheng Ma",
-    "Jiong Dong",
-    "Yongzhi Qi",
-    "Jianshen Zhang"
+    "Michael Schlee",
+    "Fabian Lukassen",
+    "Christoph Weisser"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2607.25956",
-   "pdf": "https://arxiv.org/pdf/2607.25956",
-   "published": "2026-07-28T16:41:54Z",
+   "url": "https://arxiv.org/abs/2608.11753",
+   "pdf": "https://arxiv.org/pdf/2608.11753",
+   "published": "2026-08-12T07:46:29Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "ensemble",
+    "llm",
+    "time series",
+    "time-series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.11327",
+   "version": "v1",
+   "title": "Long-Horizon Forecasting of Complete Financial Statements with Forma",
+   "abstract": "Specialist training beats generalist scale when forecasting financial statements. To our knowledge, no prior work jointly forecasts complete financial statements beyond one year, yet in a discounted-cash-flow valuation most firm value sits past that window. We release ProForma-20Q, a reproducible benchmark for forecasting 78 statement line items 1-20 quarters ahead, for anonymized firms, from past statements and an industry code, scored by change-space $R^2$. On it, Forma, a transformer that reads statements as sets of (account, quarter, value) tuples and maximizes a masked-tuple Gaussian likelihood, beats every competitor we field: classical machine learning, chained gradient boosting, a zero-shot time-series foundation model, and frontier large language models. Its lead widens with horizon, where valuation needs accuracy most, and its Gaussian predictive intervals never under-cover. Forma's forecasts nearly satisfy accounting identities; exact coherence is recoverable at no statistically significant accuracy cost. Its tuple interface supports scenario analysis without retraining, and we show that pinning future revenue paths sharpens the rest of the statement.",
+   "authors": [
+    "Travis L. Johnson",
+    "Jiannan Jiang",
+    "Soumyabrata Chaudhuri",
+    "Yihao Chen",
+    "Lauren Falvey",
+    "Donal O'Cofaigh"
+   ],
+   "comment": "46 pages, 2 figures, 3 tables. Benchmark: https://github.com/forma-lab-mccombs/proforma-20q. Model and weights: https://github.com/forma-lab-mccombs/forma-release",
+   "url": "https://arxiv.org/abs/2608.11327",
+   "pdf": "https://arxiv.org/pdf/2608.11327",
+   "published": "2026-08-11T18:21:19Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "foundation model",
+    "large language model",
+    "time-series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.10149",
+   "version": "v1",
+   "title": "REATS: LLM Reasoning-based Ensemble Learning for Adaptive Time Series Forecasting",
+   "abstract": "Due to the diversity of real-world time series, no single forecasting model consistently dominates across all samples. Ensemble learning addresses this by combining complementary model strengths, yet existing methods rely on fixed rules or black-box models based solely on numerical inputs, failing to leverage LLM reasoning for interpretable weighting decisions. We propose REATS, which leverages LLM reasoning capabilities as an intelligent ensemble router that jointly processes textual temporal pattern descriptions and numerical features to produce interpretable, sample-adaptive ensemble weights through chain-of-thought reasoning. To enable effective LLM-based ensembling, we study its key design choices and propose: (i) a structured input pipeline that transforms raw time series into hybrid textual--numerical representations with fixed token cost, enabling rule-based chain-of-thought construction without API dependency, augmented with retrieved similar-sample priors; (ii) a diverse multi-row weight supervision scheme coupled with a token-efficient percentage-table format that reduces numerical complexity and mitigates LLM hallucinations; and (iii) a two-stage fine-tuning framework combining SFT with GRPO, where a reciprocal reward mapping transforms the continuous unbounded MSE gap into bounded signals with amplified near-oracle sensitivity, addressing the uniform sensitivity and outlier-dominated advantage compression inherent in naive reward designs for regression-based GRPO. Experiments on eight benchmarks demonstrate that REATS outperforms competitive ensemble baselines while providing natural language explanations and demonstrating strong transfer learning and out-of-domain generalization to unseen candidate models.",
+   "authors": [
+    "Xu Zhang",
+    "Chang Xu",
+    "Hui Sun",
+    "Nan Ma",
+    "Zijian Zhang",
+    "Peng Wang",
+    "Wei Wang",
+    "Li Zhao"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.10149",
+   "pdf": "https://arxiv.org/pdf/2608.10149",
+   "published": "2026-08-10T19:04:46Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "ensemble",
+    "forecast",
+    "llm",
+    "time series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.08528",
+   "version": "v1",
+   "title": "Task-to-Model Optimization for Enterprise LLM Coding Assistants: A Data-Driven Framework for Cost-Optimal Routing",
+   "abstract": "Enterprise AI coding assistants incur substantial inference spend, and naive token-cost minimization often fails to reduce end-to-end cost once retries, escalations, and developer wait time are included. We present Task-to-Model Optimization (T2MO), a data-driven methodology for optimizing model selection in production coding workflows. We treat each developer session as a task that can be discovered, classified, graded for difficulty, benchmarked in a production-like harness, and routed to the cheapest model able to complete it within quality and latency constraints. The framework is a nine-stage pipeline spanning telemetry instrumentation, taxonomy discovery, difficulty grading, benchmark construction, candidate evaluation, optimal mix derivation, forecasting and version planning, staged routing deployment, and continuous governance. Unlike token-centric routing rules, our objective is cost per completed task, with failure escalation priced in explicitly. We show that this expected-completion-cost objective weakly dominates token-cost minimization under escalation, and we derive the routing boundary, the minimum pass rate a cheaper model must reach on a given cell to be worth deploying. Decisions are organized as a two-level hierarchy of task category difficulty tier, and per-cell displacement opportunities are aggregated into a traffic-weighted savings waterfall that ranks replacement candidates by realized dollar impact. The framework supports developer guidance, spend forecasting, and a staged transition from static policies to shadow-mode classifiers, verified cascades, and ultimately an intelligent router. We describe the methodology, optimization objective, evaluation protocol, and governance loop in a form suitable for production deployment and future empirical study.",
+   "authors": [
+    "Srinivasan Manoharan",
+    "Junhua Zhao",
+    "Fangbo Tu",
+    "Haifeng Wu",
+    "Jian Wan",
+    "Maliah Rajan M",
+    "Ashwin Hegde",
+    "Mithun Sasidharan",
+    "Kalyan Chakravarthi Podamekala"
+   ],
+   "comment": "11 pages, 1 figure, 2 tables",
+   "url": "https://arxiv.org/abs/2608.08528",
+   "pdf": "https://arxiv.org/pdf/2608.08528",
+   "published": "2026-08-09T06:57:53Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "llm",
+    "workflow"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.13505",
+   "version": "v1",
+   "title": "Intern-S2-Preview: Scientific Agentic Foundation Model",
+   "abstract": "Scientific discovery increasingly requires AI systems that can reason over scientific evidence of heterogeneous modalities, interact with scientific tools and environments, and sustain progress across long task horizons. We present Intern-S2-Preview, a series of scientific agentic foundation models designed to support multimodal scientific understanding, reasoning, generation, and long-horizon tasks. The training pipeline begins with scientific multimodal pre-training over rendered scientific documents, interleaved image-text data, and diverse scientific corpora. Starting from the pretrained checkpoint, we apply a unified post-training pipeline consisting of supervised fine-tuning, scalable multi-task reinforcement learning (RL), black- and white-box agentic RL, and on-policy distillation. This pipeline is supported by practical techniques that improve rollout and training stability and efficiency, including partial rollout with off-policy correction, adaptive length regularization, online speculative decoding, robust multi-task optimization, and trace-aware experience assembly for agentic tasks. At the architecture level, Intern-S2-Preview-397B extends time series modelling from efficient long-sequence understanding to numerical forecasting, while Memory Decoder is studied as a separate memory-augmented path for rapid scientific specialization without modifying the frozen 397B backbone. Evaluations across scientific, multimodal, agentic, and general-purpose benchmarks show that Intern-S2-Preview-397B achieves competitive or leading results in multiple settings. The time series modules improve scientific signal understanding and forecasting on SciTS, while the separate Intern-MemDec-4B extension improves the Biology-Instructions average score from 56.92 to 60.32 without modifying the frozen 397B backbone.",
+   "authors": [
+    "Lei Bai",
+    "Jiaqi Cao",
+    "Chiyu Chen",
+    "Guanzhou Chen",
+    "Kai Chen",
+    "Guangran Cheng",
+    "Erfei Cui",
+    "Xuanlang Dai",
+    "Shengyuan Ding",
+    "Shangheng Du",
+    "Yanhui Duan",
+    "Yue Fan",
+    "Youqing Fang",
+    "Quan Gan",
+    "Yuanyuan Gao",
+    "Jiaye Ge",
+    "Lixin Gu",
+    "Yuzhe Gu",
+    "Qipeng Guo",
+    "Junjun He",
+    "Xin Hong",
+    "Ming Hu",
+    "Zhouqi Hua",
+    "Haian Huang",
+    "Junhao Huang",
+    "Zixian Huang",
+    "Minxi Jin",
+    "Lingkai Kong",
+    "Alexander Lam",
+    "Zehao Li",
+    "Zonglin Li",
+    "Tianhao Liang",
+    "Dahua Lin",
+    "Junyao Lin",
+    "Tianyang Lin",
+    "Zhouhan Lin",
+    "Jiangning Liu",
+    "Jin Liu",
+    "Kuikun Liu",
+    "Wenran Liu",
+    "Yifei Liu",
+    "Yuhong Liu",
+    "Yuhong Liu",
+    "Zhoumianze Liu",
+    "Ziyan Liu",
+    "Ziyu Liu",
+    "Haijun Lv",
+    "Han Lv",
+    "Chengqi Lyu",
+    "Le Ma",
+    "Ningsheng Ma",
+    "Zerun Ma",
+    "Haoyang Peng",
+    "Runyu Peng",
+    "Jifei Shan",
+    "Zixin Shang",
+    "Kou Shi",
+    "Xiang Shi",
+    "Qisheng Su",
+    "Xuerui Su",
+    "Hao Sun",
+    "Xiao Sun",
+    "Yanan Sun",
+    "Yu Sun",
+    "Huanze Tang",
+    "Yinghao Tang",
+    "Wenhui Tian",
+    "Zhongbo Tian",
+    "Bingli Wang",
+    "Haomin Wang",
+    "Jiarui Wang",
+    "Jingzhi Wang",
+    "Rui Wang",
+    "Xiquan Wang",
+    "Yi Wang",
+    "Zhecan Wang",
+    "Ziyi Wang",
+    "Zun Wang",
+    "Rubin Wei",
+    "Lianyi Wu",
+    "Wen Wu",
+    "Yue Wu",
+    "Yuhan Wu",
+    "Zhenyu Wu",
+    "Zijian Wu",
+    "Shuhao Xing",
+    "Jun Xu",
+    "Xingle Xu",
+    "Xuenan Xu",
+    "Xiangchao Yan",
+    "Ziang Yan",
+    "Bowen Yang",
+    "Danni Yang",
+    "Lin Yang",
+    "Zhiqi Yang",
+    "Qian Yao",
+    "Haochen Ye",
+    "Peng Ye",
+    "Jinhui Yin",
+    "Jiashuo Yu",
+    "Dingbo Yuan",
+    "Fei Yuan",
+    "Yuhang Zang",
+    "Bo Zhang",
+    "Chao Zhang",
+    "Chen Zhang",
+    "Hongjie Zhang",
+    "Junming Zhang",
+    "Wenlong Zhang",
+    "Wenwei Zhang",
+    "Yiming Zhang",
+    "Zhuo Zhang",
+    "Ziyang Zhang",
+    "Haiteng Zhao",
+    "Penghao Zhao",
+    "Yibo Zhao",
+    "Zhonghan Zhao",
+    "Zhihang Zhong",
+    "Bowen Zhou",
+    "Peiheng Zhou",
+    "Xin Zhou",
+    "Xinyu Zhou",
+    "Yunhua Zhou",
+    "Dongsheng Zhu",
+    "Yicheng Zou"
+   ],
+   "comment": "35 pages, 12 figures",
+   "url": "https://arxiv.org/abs/2608.13505",
+   "pdf": "https://arxiv.org/pdf/2608.13505",
+   "published": "2026-08-13T17:31:28Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 54,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "RL",
+    "forecast",
+    "reinforcement learning",
+    "time series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.09880",
+   "version": "v1",
+   "title": "Financial Numerical Prediction and Allocation as Token Generation",
+   "abstract": "Financial prediction typically relies on task-specific regression, ranking, or policy heads, separating the language model from the numerical object ultimately evaluated. We investigate whether a causal language model can instead represent forecasts and decisions directly through constrained token generation. FinATOM introduces a unified, head-free interface for three-step stock-return forecasting and dynamic five-ETF allocation. The forecasting model autoregressively emits volatility-standardized return tokens and is trained with ordinal and ranking supervision followed by a one-epoch token-level policy stage. The allocation model generates normalized long-only weights; supervised fine-tuning imitates a causal mean--variance anchor, and DAPO-augmented GRPO optimizes realized 21-day Sharpe subject to anchor consistency. In 2023--2025 ETF tests, the allocation policy improves pooled gross Sharpe from 1.428 to 1.529 and net Sharpe under a 5-bp transaction-cost model from 1.394 to 1.494. The multimodal allocation input attains the highest three-period mean Sharpe of 1.540, with its clearest advantage in 2025. On FinTexTS, the SFT and policy strategies achieve 73.52\\%/2.68 and 73.72\\%/2.69 cumulative-return/Sharpe, respectively. These results support the feasibility of direct language-model token generation for financial numerical prediction and decision-making, while motivating broader tests across assets, regimes, and random seeds.",
+   "authors": [
+    "Xu Ouyang",
+    "Moontae Lee"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.09880",
+   "pdf": "https://arxiv.org/pdf/2608.09880",
+   "published": "2026-08-10T17:33:10Z",
    "source": [
     "arxiv"
    ],
@@ -73,8 +431,7 @@
    "watch_type": "rl_tsf",
    "matched": [
     "GRPO",
-    "forecast",
-    "policy optimization"
+    "forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -82,20 +439,20 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.24569",
+   "id": "2608.09335",
    "version": "v1",
-   "title": "The balance between compactness and forecast accuracy of data-driven latent-space reduced-order models in controlled wake flows",
-   "abstract": "Model-based active flow control requires predictive models that are accurate, stable, and fast enough for real-time optimisation. In controlled wake flows, this is often achieved through Reduced-Order Models (ROMs) that first compress high-dimensional velocity snapshots into a latent space and then learn a time- stepping predictor for the dynamics in the latent space. Here, we study how the choice of the spatial encoder affects the predictability of the resulting latent coordinates for wake flows under control inputs. Using two actuated 2D wake configurations, a simplified truck wake and the fluidic pinball, we compare Proper Orthogonal Decomposition (POD) against nonlinear Convolutional Autoencoders (CAEs) and two types of variational autoencoders for compression, and evaluate several temporal predictors based on Long Short-Term Memory networks. CAEs achieve higher compression efficiency and sharper short-term reconstructions, but they produce latent dynamics that are more irregular and with broadband spectral content. As a consequence, long-horizon forecasts degrade faster and show a higher probability of catastrophic divergence than POD-based models. POD yields smoother latent trajectories that are easier to learn and extrapolate, leading to more reliable predictions beyond the short- term regime. These results reveal a clear trade-off between compactness and forecast accuracy, and suggest that the stability of the latent dynamics prediction can outweigh maximal compression. This is particularly relevant for control strategies rooted in forecasts of the dynamics, such as model predictive control and reinforcement learning. The findings provide practical guidance for designing actuation-aware, hardware-feasible predictive ROMs for real-time flow control.",
+   "title": "Control-Oriented Scenario Tree Construction through Reinforcement Learning",
+   "abstract": "Multistage stochastic model predictive control (MPC) handles uncertainty by optimizing over a scenario tree, a finite branching approximation of future outcomes constructed from sampled forecasts. To build such a tree, conventional methods focus on matching the underlying probability distribution---e.g., via Wasserstein-based scenario reduction---but improved distributional accuracy does not necessarily yield better control performance. We propose a control-oriented approach that learns scenario tree construction directly from its impact on downstream decisions. Fixing the tree topology, we formulate tree construction as a sequential assignment of sampled scenarios to leaves. This assignment is parameterized by an attention-based policy over the scenario set and trained using reinforcement learning, with closed-loop control profit as the objective. Training is stabilized by an asymmetric critic that leverages realized future trajectories. We evaluate the method on a risk-averse battery arbitrage problem. Across a range of forecast set sizes, the learned construction consistently achieves the highest profit, outperforming classical forward and backward reduction methods and certainty-equivalent (single-trajectory forecast) control. The learned policy also exhibits greater robustness on challenging instances, consistently demonstrating better tail-risk characteristics. Analysis of the resulting trees indicates that our method constructs compact, selectively branching structures that capture high-impact events while keeping most trajectories nearly deterministic. These findings highlight that the value of a scenario tree depends critically on the decisions it supports, and provide an effective framework to train scenario tree constructors merely based on the closed-loop control optimization signal.",
    "authors": [
-    "Alberto Solera-Rico",
-    "Patricia García-Caspueñas",
-    "Carlos Sanmiguel Vila",
-    "Stefano Discetti"
+    "Fabio Pavirani",
+    "Bert Claessens",
+    "Pierre Pinson",
+    "Chris Develder"
    ],
-   "comment": "32 pages, 20 figures",
-   "url": "https://arxiv.org/abs/2607.24569",
-   "pdf": "https://arxiv.org/pdf/2607.24569",
-   "published": "2026-07-27T15:36:18Z",
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.09335",
+   "pdf": "https://arxiv.org/pdf/2608.09335",
+   "published": "2026-08-10T09:13:29Z",
    "source": [
     "arxiv"
    ],
@@ -111,146 +468,121 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.23802",
-   "version": "v2",
-   "title": "From RLVR to RLSVR: Task Transformation Induces Self-Verifiable Rewards for Open-Ended LLM Self-Improvement",
-   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has driven recent progress in reasoning-oriented large language models (LLMs) by enabling large-scale optimization. However, its applicability remains largely limited to domains such as mathematics and coding, where correctness can be deterministically verifiable. Open-ended tasks instead often rely on human preferences, reward models, or LLM-based judges, introducing evaluation bias, judge capability bottlenecks, and additional inference costs. Drawing on the principle of self-supervised learning, which constructs pretext tasks to derive supervision from the data itself, we propose Reinforcement Learning with Self-Verifiable Rewards (RLSVR), a task-transformation-based training paradigm for extending RLVR to open-ended tasks. RLSVR transforms open-ended tasks into verifiable proxy environments whose internal rules and interaction outcomes automatically generate reward signals. We instantiate RLSVR with SpyRL, a Self-PlaY Reinforcement Learning method inspired by social deduction game Who Is the Spy?. Agents receive asymmetric information, complete the same target task, and vote to identify a designated spy. Because the spy identity is predetermined, voting outcomes provide fully verifiable rewards, while successful identification remains closely related to output quality. Experiments on text summarization, creative writing, and mathematical reasoning show that SpyRL outperforms existing self-improvement methods on non-verifiable tasks and yields consistent gains on verifiable reasoning tasks. These results demonstrate that task transformation can extend scalable RLVR-based self-improvement beyond inherently verifiable domains. Models and code have been released at https://github.com/wangqinsi1/RLSVR/tree/SpyRL.",
+   "id": "2608.08804",
+   "version": "v1",
+   "title": "ML-Based Hierarchical Prediction for Practical Energy Scheduling in Dynamic NTN-WPT Systems",
+   "abstract": "With advancements in long-distance wireless power transfer (WPT) and space-based energy technologies, integrating WPT into non-terrestrial networks (NTNs), referred to as NTN-WPT, is emerging as a promising approach for next-generation wireless networks. This paper proposes an energy-scheduling approach that jointly optimizes energy efficiency, task completion rate, and task waiting time for power transfer from low Earth orbit satellites to terrestrial mobile user devices (UDs). To address scheduling challenges caused by satellite and UD mobility and channel uncertainty from stochastic propagation effects, we decompose the problem into three subproblems within a three-layer predictive framework: 1) a state prediction layer forecasts UD and satellite states; 2) an interaction mapping layer uses a graph neural network (GNN) to model energy transfer efficiency; and 3) a decision-making layer determines the energy allocation plan. Distinct machine learning (ML) methods are tailored to each layer. To balance the competing objectives, we adopt a multi-objective reinforcement learning (MORL) technique that scalarizes them into a weighted-sum reward, transforming the multi-objective problem into a tractable single-objective problem. We further introduce a multi-agent deep learning model integrating self-attention with multi-agent proximal policy optimization (MAPPO) to improve objective balancing. Simulation results show that the proposed approach achieves a better overall trade-off than baseline methods, maintaining competitive task completion rates and energy efficiency while reducing task waiting times, and remains robust under highly variable conditions.",
    "authors": [
-    "Qinsi Wang",
-    "Jing Shi",
-    "Huazheng Wang",
-    "Kun Wan",
-    "Yiran Wu",
-    "Bo Liu",
-    "Qingyun Wu",
-    "Hai Helen Li",
-    "Yiran Chen",
-    "Handong Zhao",
-    "Wentian Zhao"
+    "Zhanyu Ju",
+    "Wenchi Cheng"
    ],
-   "comment": "COLM 2026",
-   "url": "https://arxiv.org/abs/2607.23802",
-   "pdf": "https://arxiv.org/pdf/2607.23802",
-   "published": "2026-07-26T19:04:33Z",
+   "comment": "21 pages, 11 figures",
+   "url": "https://arxiv.org/abs/2608.08804",
+   "pdf": "https://arxiv.org/pdf/2608.08804",
+   "published": "2026-08-09T16:41:13Z",
    "source": [
-    "arxiv",
-    "hf"
+    "arxiv"
    ],
-   "hf_upvotes": 17,
-   "watch_type": "algo",
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
    "matched": [
-    "language model",
-    "llm",
-    "reasoning",
-    "rlvr",
-    "verifiable reward"
+    "forecast",
+    "policy optimization",
+    "reinforcement learning"
    ],
    "baseline_watch": [],
-   "top_conf": "COLM",
+   "top_conf": "",
    "bigtech": false,
    "bigtech_orgs": []
   },
   {
-   "id": "2607.29287",
+   "id": "2608.10126",
    "version": "v1",
-   "title": "Translation with Thought: Difficulty-Adaptive Reasoning via Reinforcement Learning for Multi-Domain Machine Translation",
-   "abstract": "Multi-domain machine translation (MDMT) poses a unique challenge due to varying levels of linguistic complexity across domains. Inspired by human translators' ability to adapt reasoning effort based on difficulty, we propose TwT (Translation with Thought), a resource-rational framework that learns to modulate inference between intuitive and deliberate reasoning. TwT is trained in two stages: (1) supervised fine-tuning on difficulty-aware long chain-of-thought traces distilled from DeepSeek-R1 and rewritten by GPT-4o to reflect human-like reasoning economy, and (2) reinforcement learning with a hybrid reward to optimize translation quality and reasoning efficiency. Evaluated on 15 benchmarks spanning in-domain and out-of-domain settings, as well as 3 seen and 59 unseen languages, with ablations across three backbone models, TwT-7B and TwT-14B outperform much larger SOTA reasoning models in translation quality, while reducing token usage by 32--60\\%. These results confirm that aligning translation behavior with cognitive principles enables robust generalization, high translation quality, and efficient reasoning in MDMT.",
+   "title": "Procedural Fairness Failures in RLHF from Preference Averaging",
+   "abstract": "Reinforcement Learning from Human Feedback (RLHF) aggregates heterogeneous preferences into a single reward model, assuming preference homogeneity. When preferences are heterogeneous, this aggregation induces a procedural fairness failure where majority preference groups dominate reward learning while minority preferences are systematically under-represented. This work defines procedural fairness in alignment as preserving distinct preference signals during reward modeling and shows that standard RLHF violates this via preference averaging. Preference-Aware RLHF (PA-RLHF) is introduced, separating optimization across preference modes at the reward learning stage. In a controlled setting, PA-RLHF improves overall alignment accuracy from 46.9% to 67.9% and reduces the fairness gap between best and worst aligned groups from 15.9 to 9.6 percentage points. These results show that procedural fairness failures in alignment can arise from structural design choices in reward learning, even in controlled, noise-free settings, with direct implications for large language models and agentic systems, where biased reward models can compound inequities across sequential decisions.",
    "authors": [
-    "Yongshi Ye",
-    "Biao Fu",
-    "Chongxuan Huang",
-    "Yidong Chen",
-    "Xiaodong Shi"
+    "M P V S Gopinadh",
+    "Karthik Kamuju",
+    "Kummari Avinash",
+    "John Joshua",
+    "Srinivasa Raju Rudraraju"
    ],
-   "comment": "34 pages, 17 figures, and 21 tables. Accepted to ACL 2026",
-   "url": "https://arxiv.org/abs/2607.29287",
-   "pdf": "https://arxiv.org/pdf/2607.29287",
-   "published": "2026-07-31T10:59:39Z",
+   "comment": "4 pages, Accepted at the ICLR 2026 Workshop on Algorithmic Fairness Across Alignment Procedures and Agentic Systems (AFAA)",
+   "url": "https://arxiv.org/abs/2608.10126",
+   "pdf": "https://arxiv.org/pdf/2608.10126",
+   "published": "2026-08-10T18:38:16Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "algo",
    "matched": [
-    "chain-of-thought",
+    "language model",
+    "rlhf"
+   ],
+   "baseline_watch": [],
+   "top_conf": "ICLR",
+   "bigtech": true,
+   "bigtech_orgs": [
+    "Meta FAIR"
+   ]
+  },
+  {
+   "id": "2608.08743",
+   "version": "v1",
+   "title": "A Distribution Mapping Approach to Counterfactually Fair Reinforcement Learning",
+   "abstract": "Reinforcement learning (RL) seeks to optimize sequential decisions to maximize population-level benefits over time. However, when deployed in high-stakes settings such as healthcare, RL decisions might systematically restrict some subpopulation's access to valuable services in a manner contrary to the values and goals of stakeholders. Counterfactual fairness (CF) offers a promising framework to address this problem based on causal reasoning. This paper develops a data preprocessing algorithm that, when used in tandem with policy learning, enables CF in RL. Our algorithm relies on a novel quantile distribution mapping method for sequentially estimating the counterfactual states and rewards in the data preprocessing step, subsuming common additivity assumptions used for counterfactual prediction as a special case. We theoretically prove that the per-step level of counterfactual unfairness and infinite-horizon suboptimality gap can be bounded under mild regularity conditions. We also empirically test our algorithm in numerical experiments as well as in application to a real-world interventional digital health dataset.",
+   "authors": [
+    "Jianhan Zhang",
+    "Jitao Wang",
+    "John D. Piette",
+    "Donglin Zeng",
+    "Chengchun Shi",
+    "Zhenke Wu"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.08743",
+   "pdf": "https://arxiv.org/pdf/2608.08743",
+   "published": "2026-08-09T14:42:47Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
     "reasoning",
     "reinforcement learning"
    ],
    "baseline_watch": [],
-   "top_conf": "ACL",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2607.25659",
-   "version": "v1",
-   "title": "CoRT: Counterfactual Replay for Token-Level Rubric-Guided Policy Optimization",
-   "abstract": "Rubric-based reinforcement learning enriches language model training by evaluating model outputs against explicit criteria. Yet in GRPO-style pipelines, these structured judgments are reduced to a scalar response-level reward and converted into a response-level advantage, which is broadcast uniformly to all generated tokens. This leaves no explicit mechanism for allocating credit within a response, even when different criteria are grounded in different spans, formatting decisions, or semantic choices. We propose CoRT, a token-level credit weighting method for rubric-conditioned GRPO. Instead of training an auxiliary token scoring model, CoRT uses counterfactual replay to rescore the same sampled response under the original rubric-conditioned prompt and a matched criteria-free prompt. The resulting tokenwise log-likelihood contrasts serve as a proxy for dependence on the rubric context. CoRT maps these contrasts to bounded, response-normalized weights and uses them to redistribute the signed GRPO advantage across tokens, without introducing an auxiliary scorer or changing the response-level reward. Experiments across instruction-tuned models and reward granularities show that CoRT improves over matched response-level GRPO in the vast majority of comparisons, with an average gain of 4.4 percentage points. The method remains competitive with learned token-level credit baselines while avoiding a separate relevance-learning stage. These results suggest that policy-internal counterfactual likelihood contrasts provide an effective training signal for within-response credit allocation while retaining the simplicity and stability of GRPO.",
-   "authors": [
-    "Bo-Wen Zhang",
-    "Junwei He",
-    "Wen Wang",
-    "Song-Lin Lv",
-    "Wentao Ma",
-    "Rongyi Lin",
-    "Shuhan Zhong",
-    "Lan-Zhe Guo"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.25659",
-   "pdf": "https://arxiv.org/pdf/2607.25659",
-   "published": "2026-07-28T12:45:19Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 80,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "policy optimization"
-   ],
-   "baseline_watch": [],
    "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
+   "bigtech": true,
+   "bigtech_orgs": [
+    "Meta FAIR"
+   ]
   },
   {
-   "id": "2607.26784",
-   "version": "v1",
-   "title": "SkillRise: Agentic Reinforcement Learning for Cross-Task Skill Evolution",
-   "abstract": "Large language model agents often encounter related yet distinct tasks that share reusable solution patterns. Yet standard agentic reinforcement learning treats tasks as independent episodes, while existing approaches to skill learning either focus on repeated attempts of one task or use pipelines with multiple stages that entangle extraction, retrieval, and execution. We introduce SkillRise, a unified reinforcement learning framework for learning skills across tasks. SkillRise organizes related instances into progressively challenging sequences and uses a single policy to alternate between task solving and curating an evolving skill document passed directly to the next task. Decoupled credit assignment across tasks supervises solving with the current task outcome and curation with discounted downstream outcomes. Experiments on ALFWorld, WebShop, and ScienceWorld show that SkillRise achieves the strongest Pass@1 performance among the compared methods, with gains over the strongest baseline ranging from 2.3 to 8.5 percentage points. Although trained across distinct tasks, its learned curation policy remains effective for repeated attempts on the same task. Further analysis reveals scaling at test time across tasks: performance improves with longer sequences of related tasks even when each task is attempted only once. This trend suggests that SkillRise reuses transferable skills across tasks rather than benefiting from repeated sampling of the same task. SkillRise further retains strong performance while substantially reducing the runtime overhead of skill learning pipelines with multiple stages. Together, these results provide a simple and efficient training paradigm for LLM agents to extract, refine, and reuse transferable skills across tasks.",
+   "id": "2608.10538",
+   "version": "v2",
+   "title": "SKILLER: Language-Level Reinforcement Learning for Reusable Skill Extraction in Small Language Models",
+   "abstract": "Agent skills represent a standardized format for packaging procedural knowledge and domain expertise, serving within agent harness systems as an essential mechanism to continually constrain a language model's behavior space for repeatable, high-quality task execution. However, because strong closed-source models entail high inference costs, current popular agent harnesses, such as Codex and OpenClaw, remain prohibitively expensive when deploying these skills to accomplish real-world tasks. The rapid capability enhancement of open-source models deployable on consumer-grade GPUs presents a compelling opportunity to drastically reduce these costs by leveraging skill-based behavioral constraints. Nevertheless, automatically generating effective skills tailored specifically for such compact models remains a significant practical challenge. To address this, we propose SKILLER, a natural-language-driven reinforcement learning framework designed to automatically generate executor-specific skills for small models, which employs a strong model as the actor and critic, treats the small-model agent system as the environment, and propagates all reinforcement learning signals entirely via natural language. Extensive experimental evaluations across five relevant benchmarks using Qwen3.5-9B and Qwen3.5-4B demonstrate that SKILLER outperforms three open-source and one closed-source skill generation or evolution methods, achieving absolute gains ranging from 4.3 to 20.4 percentage points for the 9B model and 1.8 to 13.3 points for the 4B model, while remarkably matching the performance of strong closed-source models on single-skill tasks in SkillsBench. The project is available at https://github.com/DANG-ai/SKILLER.",
    "authors": [
-    "Zhiyuan Yao",
-    "Yuxin Chen",
-    "Zhengxi Lu",
-    "Zishan Xu",
-    "Yueqing Sun",
-    "Yifu Guo",
-    "Yuquan Lu",
-    "Zhengzhou Cai",
-    "Kangning Zhang",
-    "Zhuowen Han",
-    "Zi-Han Wang",
-    "Ziang Ye",
-    "Qi Gu",
-    "Xunliang Cai",
-    "Weiwen Liu",
-    "Yongliang Shen"
+    "Chenhao Dang",
+    "Siyuan Xiong",
+    "Conghui He",
+    "Weijia Li"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.26784",
-   "pdf": "https://arxiv.org/pdf/2607.26784",
-   "published": "2026-07-29T11:26:33Z",
+   "comment": "15 pages, 6 figures, and 8 tables. Project and code: https://github.com/DANG-ai/SKILLER",
+   "url": "https://arxiv.org/abs/2608.10538",
+   "pdf": "https://arxiv.org/pdf/2608.10538",
+   "published": "2026-08-11T06:22:02Z",
    "source": [
     "arxiv",
     "hf"
    ],
-   "hf_upvotes": 25,
+   "hf_upvotes": 13,
    "watch_type": "algo",
    "matched": [
     "language model",
-    "llm",
     "reinforcement learning"
    ],
    "baseline_watch": [],
@@ -259,51 +591,19 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.28582",
+   "id": "2608.09805",
    "version": "v1",
-   "title": "$β$-OPSD: Deriving with Policy Optimization, Training with Self-Distillation",
-   "abstract": "On-policy self-distillation (OPSD) is a promising approach to improve reasoning language models, but it remains brittle in practice: making it work reliably often requires substantial engineering effort. We identify a structural source of this difficulty: vanilla OPSD is precisely the $β=1$ member of a broader policy-optimization family, where $β$ weights the KL penalty anchoring the student to a reference policy. This equivalence turns $β$ from an implicit value fixed at one into a controllable regularization parameter, yielding a more general formulation that trades off proximity to a reference policy against privileged teacher guidance. We introduce $β$-OPSD and derive its optimal policy as a geometric interpolation between the reference policy and the privileged teacher. Directly optimizing this objective with reinforcement learning, however, would be costly and high-variance. Rather than optimize the RL objective directly, we turn its closed-form solution into a distillation target. Each value of $β$ selects a target along the reference-to-teacher path, which we implement efficiently by mixing their token-level logits. In this way, inexpensive distillation approximates the solution of expensive policy optimization. Return-to-go credit assignment further aligns token updates with the sequence-level objective while retaining the simplicity of OPSD. Experiments on mathematical reasoning benchmarks show that $β$-OPSD consistently outperforms vanilla OPSD, improving optimization stability and downstream reasoning performance. Our results provide a principled route from self-distillation to policy optimization and back without sacrificing the efficiency that makes OPSD practical.",
+   "title": "Parameter Exploration for RLVR via Variational Learning",
+   "abstract": "Exploration has been a focus of reinforcement learning research for a long time. Recently, there has been growing evidence that it is also an important ingredient in LLM reinforcement learning recipes that can significantly impact downstream performance. Many existing methods control exploration in the action-space, for example, using temperature scaling. However, these methods cannot reorder tokens but only influence the variance in the output distribution. This limits exploration and can lead to divergence or stalled training. Here, we investigate parameter-space exploration, where rollouts are generated by sampling different policies from a posterior that may each explore different rollouts. Sampling less or more diverse policies is then a complementary control lever over exploration. We introduce a family of methods called Perturbed Parameter Policy Optimization (3PO) which use different sampling strategies and different rollout grouping for reward estimation. Experiments on OLMo-3-1025-7B and Qwen2.5-Math-7B across mathematical reasoning and code generation tasks show that these approaches consistently improve average downstream performance over standard GRPO at a near-identical FLOPs cost. Moreover, using multiple parameter samples consistently produces fewer zero-advantage groups and malformed or incorrect rollouts during training than GRPO and action-space baselines. Overall, our work presents evidence that parameter-space exploration can improve reinforcement learning for LLMs.",
    "authors": [
-    "Jiawei Xu",
-    "Minghui Liu",
-    "Juzheng Zhang",
-    "Tom Goldstein",
-    "Furong Huang"
+    "Vatsal Venkatkrishna",
+    "Nico Daheim",
+    "Iryna Gurevych"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2607.28582",
-   "pdf": "https://arxiv.org/pdf/2607.28582",
-   "published": "2026-07-30T17:41:16Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 21,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "policy optimization",
-    "reasoning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2607.25091",
-   "version": "v1",
-   "title": "Towards Robust Reinforcement Learning for Small-Scale Language Model Agents",
-   "abstract": "The alignment of Small Language Models (SLMs) in the 70--500M parameter range using reinforcement learning is often considered unstable, though the underlying failure mechanisms have not been systematically investigated. In the State-of-the-Art (SOTA) research, fifteen (model, corpus) configurations were trained using Proximal Policy Optimization (PPO). The experiments included Pythia-70M, 160M, 410M and SmolLM2-135M, 360M on the TinyStories, CNN/DailyMail, and Wikitext-103 corpora. Three reproducible failure modes were identified in small-scale language models: silent LoRA parameter freezing in standard PEFT/TRL pipelines, numerical overflow in importance ratios when using bfloat16, and catastrophic policy collapse due to reward-model error. These issues were addressed using a merge-and-reinitialize adapter technique, float32 precision during PPO updates, and a three-layer safety mechanism comprising reward whitening, importance-ratio guarding, and weight rollback. In this paper, a capacity-headroom hypothesis is proposed, which states that PPO performance at the SLM scale depends on both a fluent supervised model ($\\text{PPL}<20$) and a discriminative reward signal, rather than on the number of model parameters. The proposed system converged stably in all experiments and improved preference win rate over the SFT baseline in configurations with a fluent prior and an informative reward signal. Furthermore, it outperformed instruction-tuned baselines while requiring significantly less training data. All checkpoints, preference datasets, and training scripts are publicly released$^§$.",
-   "authors": [
-    "Md Rezwanul Haque",
-    "Md. Milon Islam",
-    "Fakhri Karray"
-   ],
-   "comment": "Proceedings of the 2026 IEEE International Conference on Systems, Man, and Cybernetics (SMC), Bellevue, WA, USA",
-   "url": "https://arxiv.org/abs/2607.25091",
-   "pdf": "https://arxiv.org/pdf/2607.25091",
-   "published": "2026-07-27T21:30:44Z",
+   "url": "https://arxiv.org/abs/2608.09805",
+   "pdf": "https://arxiv.org/pdf/2608.09805",
+   "published": "2026-08-10T16:28:07Z",
    "source": [
     "arxiv",
     "hf"
@@ -311,9 +611,9 @@
    "hf_upvotes": 6,
    "watch_type": "algo",
    "matched": [
-    "language model",
     "llm",
-    "reinforcement learning"
+    "reasoning",
+    "rlvr"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -321,51 +621,21 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.27756",
+   "id": "2608.13698",
    "version": "v1",
-   "title": "Cocktail-Talker: Multi-Speaker Dialog Modeling in Noisy Social Environments with Turn Action GRPO",
-   "abstract": "Spoken dialog systems are typically designed for clean, dyadic interactions in which a single user and an assistant take turns speaking. Real-world social conversations, however, are often more ambiguous: multiple speakers may participate in the same conversation amid irrelevant speech and background noise. Each utterance may be directed to the assistant, addressed to another speaker, or completely irrelevant. In such settings, the assistant must decide not only what to say, but also whether to speak at all. In this paper, we introduce Cocktail-Talker, a speech LLM framework for multi-speaker spoken dialog modeling in noisy social environments. We model the assistant's behavior with three action tokens: <|respond|>, <|listen|>, and <|ignore|>, placed before a response or silence. Cocktail-Talker is trained via supervised finetuning and reinforcement learning to generate the appropriate action token and, only in <|respond|> mode, a speech response. To prepare the training data, we develop Cocktail-DialogGen, an LLM-based data pipeline that simulates realistic multi-speaker dialogs with speaker roles across diverse social settings. Together, these components take a step toward spoken dialog systems that interact more naturally and selectively in complex social environments.",
+   "title": "GRPO Beyond English: A Large-Scale Study of GRPO in Non-English and Multilingual Settings",
+   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR), often optimized with Group Relative Policy Optimization (GRPO), has become a central recipe for improving the reasoning capabilities of pretrained language models but current studies remain heavily English-centric. We conduct a large-scale empirical study of multilingual and non-English GRPO across a wide range of base models, training languages, and different reasoning language rewards. We find that training to reason in the native language often leaves only a small gap to training for English reasoning. We further observe strong crosslingual transfer: training in one language often improves performance in many others. However, specific trends are highly model- and language-dependent. In some cases, training in a particular language induces severe regressions on out-of-domain capabilities in other languages. Our analysis shows that RLVR beyond English can provide broad crosslingual gains, but also requires broad evaluation to detect language-specific regressions.",
    "authors": [
-    "Xilin Jiang",
-    "Riki Shimizu",
-    "Sukru Samet Dindar",
-    "Junkai Wu",
-    "Zhongweiyang Xu",
-    "Nima Mesgarani"
+    "Konstantin Dobler",
+    "Federico Scozzafava",
+    "Jonathan Janke",
+    "Mohamed Ali",
+    "Simon Lehnerer"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2607.27756",
-   "pdf": "https://arxiv.org/pdf/2607.27756",
-   "published": "2026-07-30T06:53:15Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "algo",
-   "matched": [
-    "GRPO",
-    "llm"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2607.26862",
-   "version": "v1",
-   "title": "ReCo: Reweighting GRPO Against Distributional Concentration",
-   "abstract": "Group Relative Policy Optimization (GRPO) has become a standard reinforcement learning method for post-training language models. Recent work shows that GRPO can reduce the base model's reasoning capacity and underperform it in Pass@k when k is large, indicating reduced coverage of reasoning paths. We find that this reduction is associated with GRPO concentrating on responses that the base model already generates with high probability. We trace this concentration to two mechanisms in the GRPO update. At the response level, high-probability responses dominate the group gradient through repeated occurrence. At the token level, GRPO's importance ratio scales gradients, further reinforcing tokens that become more likely under the current policy. We propose ReCo, a reweighting method that addresses both effects. Response contributions are normalized by their expected occurrence within the rollout group, and the token-level importance ratio is replaced with a variance-based ratio that gives larger update scale to non-saturated decision points where alternative token choices remain plausible. Across Qwen2.5-Math-1.5B/7B and Llama-3.1-8B-Instruct on five mathematical reasoning benchmarks, ReCo improves Pass@k for large values of k and is comparable to GRPO for small values of k.",
-   "authors": [
-    "Junoh Park",
-    "Junseo Hwang",
-    "Wonguk Cho",
-    "Taesup Kim"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2607.26862",
-   "pdf": "https://arxiv.org/pdf/2607.26862",
-   "published": "2026-07-29T12:45:55Z",
+   "url": "https://arxiv.org/abs/2608.13698",
+   "pdf": "https://arxiv.org/pdf/2608.13698",
+   "published": "2026-08-13T18:43:33Z",
    "source": [
     "arxiv"
    ],
@@ -374,7 +644,6 @@
    "matched": [
     "GRPO",
     "language model",
-    "post-train",
     "reasoning"
    ],
    "baseline_watch": [],
@@ -383,28 +652,32 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.26854",
+   "id": "2608.11787",
    "version": "v1",
-   "title": "TREA-Net: A Transferable Residual Epidemiological Adaptation Network for Dengue Incidence Forecasting",
-   "abstract": "Accurate multi-week dengue forecasting supports timely vector-control interventions, outbreak preparedness, and healthcare resource allocation. However, newly established surveillance systems often lack the historical data needed to train reliable neural forecasting models. Although pretrained time-series models offer promising zero-shot forecasts, their cross-domain training may not capture local epidemiological dynamics. We propose TREA-Net, a Transferable Residual Epidemiological Adaptation Network for dengue forecasting under limited data. TREA-Net augments neural forecasting backbones with projections from an Environmental Time-Series Susceptible-Infected-Recovered model and learns a lightweight gated residual correction transferable from data-rich to data-scarce regions. Its node-invariant design accommodates surveillance systems with different numbers of locations, while target adaptation requires learning only two global parameters. We transfer knowledge from long-running dengue surveillance in Colombia and Nicaragua to 8-week-ahead forecasting in Mexico and Malaysia using only 78 or 104 weeks of target data. Across five neural backbones and ten transfer settings, TREA-Net improves the corresponding backbone in 9 out of 10 settings, with statistically significant gains. When integrated with TiRex, a foundation model for forecasting, it achieves the lowest mean absolute error across all target datasets. Conformal prediction further maintains empirical coverage while reducing 8-week prediction-interval width by 29.6% in Mexico. These results demonstrate TREA-Net's potential as a lightweight and portable early-warning framework for health agencies with limited surveillance data.",
+   "title": "GRPO for Financial Advice Generation: Outperforming Commercial LLMs under CATE Evaluation",
+   "abstract": "Generating actionable financial advice from business records demands that models integrate numerical reasoning, domain knowledge, and sound judgment, while avoiding recommendations that could harm the business. Direct supervision is difficult: historical decisions are not necessarily optimal, and high-quality free-form labels are expensive to obtain. We formulate financial advice generation as a reinforcement learning problem and fine-tune an open-weight language model using Group Relative Policy Optimization (GRPO). Our reward is an LLM-as-a-judge rubric that scores each recommendation across multiple binary dimensions of advice quality, augmented with a safety gate for harm prevention. Since LLM-based evaluation alone cannot confirm whether improvements reflect genuine business value rather than adaptation to the judge, we complement it with a judge-independent audit based on a standard doubly-robust Conditional Average Treatment Effect (CATE) estimator. Under this observational off-policy audit, our trained LLM achieves approximately twice the estimated gross-profit lift of the strongest evaluated commercial baseline ($0.0228$ vs.\\ $0.0104$), together with the lowest downside rate and the least negative tail risk of any policy evaluated. Notably, the two evaluations do not rank the baselines identically: the untrained base model places last on the judge rubric but second on the causal audit, indicating that the audit captures a signal the judge does not. Our results demonstrate that GRPO with a finance-grounded reward signal can produce substantially more useful business recommendations than commercial LLMs, and that a judge-independent causal audit is a valuable complement to, rather than a confirmation of, LLM-as-a-judge assessment in financial NLP.",
    "authors": [
-    "Inesh Shukla",
-    "Madhurima Panja",
-    "Tanujit Chakraborty",
-    "Chittaranjan Hens"
+    "Ofir Ben Shoham",
+    "Shrutendra Harsola",
+    "Vignesh Subrahmaniam",
+    "Shravan Mohan",
+    "Yakov Gazman",
+    "Oded Vainas"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2607.26854",
-   "pdf": "https://arxiv.org/pdf/2607.26854",
-   "published": "2026-07-29T12:37:19Z",
+   "url": "https://arxiv.org/abs/2608.11787",
+   "pdf": "https://arxiv.org/pdf/2608.11787",
+   "published": "2026-08-12T08:28:15Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
-   "watch_type": "tsf_trend",
+   "watch_type": "algo",
    "matched": [
-    "conformal prediction",
-    "forecast"
+    "GRPO",
+    "language model",
+    "llm",
+    "reasoning"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -412,21 +685,47 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.26792",
+   "id": "2608.10553",
    "version": "v1",
-   "title": "Crossing-Free Probabilistic K-Line Forecasts Without Retraining",
-   "abstract": "Probabilistic K-line forecasting describes uncertainty in four complementary prices, namely open--high--low--close (OHLC). However, it introduces two consistency problems: quantile crossing and K-line crossing. Quantile crossing occurs when a higher-quantile forecast falls below a lower-quantile forecast, while K-line crossing occurs when the forecast low exceeds the open or close, or the forecast high falls below the open or close. Existing solutions generally address only one problem through output reordering, specialized architectures, or penalized training objectives. We propose K-line--Quantile Sequential Projection (KQSP), a parameter-free and training-free reconciliation method applicable to forecasts produced by any model. Compared with other crossing solutions, KQSP preserves predictive accuracy while producing substantially smaller corrections to the original forecasts. To mitigate model bias, we evaluate KQSP using various models, including pretrained foundation models. KQSP reduces both quantile and K-line crossing rates to zero for all test data undertaken. These results show that probabilistic K-line consistency can be enforced independently of forecast generation and without retraining.",
+   "title": "Retrieval-Corrected Conformal Prediction for Time Series",
+   "abstract": "Conformal prediction (CP) provides distribution-free prediction intervals for fixed forecasters, but its standard calibration procedure is often inefficient for time series data, where forecast errors are temporally dependent and change across time and operating conditions. Recent time series CP methods improve local calibration using recent, weighted, or localized residuals. Yet local calibration can remain indirect, since broad residual weighting or additional adaptation procedures may dilute the evidence most relevant to the current prediction. This motivates a simple retrieval and correction strategy that selects similar past residuals as local evidence and then corrects the coverage error left by retrieval. In this paper, we propose Retrieval--Corrected Conformal Prediction (RCCP), a retrieval-augmented calibration method for time series prediction intervals. RCCP builds an asymmetric interval from retrieved one-sided residuals and calibrates its normalized retrieval error with a scalar conformal correction. Thus, retrieval provides local residual evidence, while conformal correction determines the final scale needed for coverage. We provide a coverage-gap bound based on the stability of the normalized retrieval error distribution. Across standard benchmarks and backbone forecasters, RCCP attains the target coverage in every setting and achieves the lowest Winkler scores, with fewer severe misses. RCCP also achieves low calibration and inference overhead, showing that retrieval-corrected calibration is an effective and scalable approach to uncertainty quantification in time series forecasting. Code is available at https://github.com/jinsaaang/rccp.",
    "authors": [
-    "Runyao Yu",
-    "Yuchen Tao",
-    "Yujie Chen",
-    "Wentao Wang",
-    "Derek W. Bunn"
+    "Sangjin Jin",
+    "Kangmin Kim",
+    "Junhyeong Lee",
+    "Yongjae Lee"
    ],
-   "comment": "8 pages, 2 figures, 6 tables",
-   "url": "https://arxiv.org/abs/2607.26792",
-   "pdf": "https://arxiv.org/pdf/2607.26792",
-   "published": "2026-07-29T11:33:23Z",
+   "comment": "Accepted at the 35th ACM International Conference on Information and Knowledge Management (CIKM '26), Rome, Italy",
+   "url": "https://arxiv.org/abs/2608.10553",
+   "pdf": "https://arxiv.org/pdf/2608.10553",
+   "published": "2026-08-11T06:43:01Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "conformal prediction",
+    "time series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "CIKM",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.13554",
+   "version": "v1",
+   "title": "Defensive Boosting for Online Probabilistic Forecasting",
+   "abstract": "We study online probabilistic forecasting of binary outcomes chosen by an adaptive adversary. Given an online learning algorithm for a weak hypothesis class $H$, we would like to efficiently obtain two incomparable guarantees that existing online boosting techniques provide separately. Online gradient boosting competes in Brier score with the best predictor induced by the span of $H$ on every sequence, but promises nothing when the span does not contain an accurate predictor. Online weak-to-strong boosting drives classification error to zero under a weak-learning condition, but promises little when that condition fails. We give a simple defensive forecasting algorithm, the Defensive Booster, that obtains both guarantees. On every adaptive sequence, its Brier score is competitive with the best prediction induced by the span of $H$ at the same rate as online gradient boosting; simultaneously, whenever the realized transcript satisfies the smooth weak-learning condition, its Brier score and randomized classification error satisfy the same rate guarantee as online classification boosting. This is achieved by operationalizing the \"dual view\" of boosting: When the algorithm's randomized classification error is persistently high, its mistake weights form a smooth reweighting on which every weak hypothesis has low edge, yielding an ex-post hard-core certificate that the weak-learning condition fails. We also develop a strongly adaptive variant, which satisfies both guarantees on every time interval. The Defensive Booster is very efficient: it accesses just one weak-class learner, whereas the prior online boosting methods we compare against maintain large weak-learner ensembles. Experiments on synthetic and real data streams demonstrate its strong predictive performance (sometimes substantially improving over all prior baselines) coupled with orders-of-magnitude faster runtime.",
+   "authors": [
+    "Georgy Noarov",
+    "Aaron Roth"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.13554",
+   "pdf": "https://arxiv.org/pdf/2608.13554",
+   "published": "2026-08-13T17:59:35Z",
    "source": [
     "arxiv"
    ],
@@ -434,7 +733,7 @@
    "watch_type": "tsf_trend",
    "matched": [
     "forecast",
-    "quantile forecast"
+    "probabilistic forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -442,27 +741,82 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2607.24875",
+   "id": "2608.12685",
    "version": "v1",
-   "title": "FinAbstain: Uncertainty-Calibrated Multimodal RAG for Selective Financial Forecasting",
-   "abstract": "Large language models (LLMs) can synthesize financial narratives but may express high confidence when evidence is sparse, stale, or contradictory. This failure is especially consequential in forecasting, where filings, news, prices, volume, and technical signals can disagree. We present FinAbstain, a research framework for uncertainty-calibrated multimodal retrieval-augmented generation (RAG) with selective prediction. A point-in-time retriever admits only information public at the forecast timestamp and supplies modality-specific evidence to fundamental, news, technical, risk, and verification agents. Their probabilistic assessments are aggregated with retrieval relevance, evidence contradiction, repeated-sample consistency, and historical calibration statistics. Temperature scaling, isotonic regression, conformal prediction, and a proposed hybrid uncertainty score are evaluated under a common chronological protocol. A controller predicts bullish, bearish, or neutral outcomes only when uncertainty is below a validated threshold; otherwise it abstains, requests evidence, reduces exposure, or routes the case to human review. The evaluation covers one- and five-day abnormal-return direction, twenty-day volatility intervals, and abstention decisions, using accuracy, calibration, risk--coverage, citation, trading, latency, and cost metrics. To make the design auditable before a full data collection is complete, we report explicitly labeled simulated results rather than empirical claims. These results illustrate the intended hypothesis: calibrated abstention may trade coverage for lower selective error and drawdown. The contribution is a time-safe architecture, a composite uncertainty formulation, and a reproducible evaluation blueprint for evidence-grounded selective financial forecasting.",
+   "title": "High-resolution Calibrated Probabilistic Hourly Precipitation from a Deterministic Forecast",
+   "abstract": "An ``Attention Residual U-Net'' method is described for probabilistic quantitative precipitation forecasting (PQPF) that predicts the hourly probability of no precipitation plus the distribution of positive precipitation from a weighted mixture of two Gamma distributions. The neural network is trained on patches of numerical weather prediction (NWP) hourly precipitation from The Weather Company's convection-permitting GRAF (Global high-Resolution Atmospheric Forecasting) model along with terrain information and column-average relative humidity from the National Oceanic and Atmospheric Administration's (NOAA's) Global Forecast System (GFS). The target data are NOAA's Multi-Radar, Multi-Sensor (MRMS) gauge-corrected, quality controlled radar data sampled to the same grid as the GRAF data. The network outputs distributional parameters for each model grid point. Training uses negative log-likelihood as a proper scoring rule, with climatological initialization for stable convergence. Inference is performed as a single forward pass over the contiguous United States (CONUS) domain, with edge-replication padding to satisfy the network's spatial-divisibility requirement. The subsequent forecasts are spatially detailed, highly reliable, and skillful with respect to climatology and a simpler reference forecast method. The method is particularly useful for estimating probabilities in regions with large terrain variation.",
    "authors": [
-    "Dorothy Torres",
-    "Wei Cheng",
-    "Henan Huang"
+    "Thomas M Hamill"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2607.24875",
-   "pdf": "https://arxiv.org/pdf/2607.24875",
-   "published": "2026-07-27T07:05:22Z",
+   "url": "https://arxiv.org/abs/2608.12685",
+   "pdf": "https://arxiv.org/pdf/2608.12685",
+   "published": "2026-08-13T01:03:52Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "tsf_trend",
    "matched": [
-    "conformal prediction",
-    "forecast"
+    "forecast",
+    "proper scoring"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.11114",
+   "version": "v1",
+   "title": "Two-stage Odd Residual Flows for Mean-Preserving Probabilistic Time Series Forecasting",
+   "abstract": "Probabilistic forecasting plays an essential role in risk-sensitive decision-making, particularly in long-horizon settings. However, existing approaches often face a fundamental trade-off between distributional flexibility and accurate mean prediction. Traditional parametric methods, such as Mean Variance Estimation (MVE), can suffer from degraded point accuracy when trained under joint Negative Log-Likelihood (NLL) objectives, while modern-flexible generative models, including Normalizing Flows and Diffusion Models, typically rely on costly Monte Carlo sampling and may yield suboptimal mean estimates. To address this limitation, we propose Two-stage Odd Residual Flows (TORF), a framework that decouples mean forecasting from uncertainty estimation. In the first stage, a pre-trained deterministic model is used to produce an accurate mean prediction. In the second stage, a Restricted Normalizing Flow, with strictly odd functions learns flexible residual distributions around the point forecast, guaranteeing mean preservation from the first stage without sampling. Experiments show that TORF achieves state-of-the-art deterministic accuracy (NMAE) while providing strong density estimation performance (CRPS) on short and long-horizon forecasting.",
+   "authors": [
+    "Kiran Madhusudhanan",
+    "Christian Klötergens",
+    "Lars Schmidt-Thieme",
+    "Vijaya Krishna Yalavarthi"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.11114",
+   "pdf": "https://arxiv.org/pdf/2608.11114",
+   "published": "2026-08-11T16:22:47Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "crps",
+    "forecast",
+    "probabilistic forecast",
+    "time series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.09692",
+   "version": "v1",
+   "title": "Evaluating Generative Time-Series Models on Data with Point Masses",
+   "abstract": "Many of the series that generative time-series models are benchmarked on place a large probability mass on a single value --- it does not rain, no ride is requested, no part is ordered. We report what happens when such data is evaluated carefully. First, the standard rolling-origin protocol can score a model on a window whose atom structure bears no resemblance to the dataset: on one benchmark the dataset is $42\\%$ zeros and the evaluation windows are $13\\%$, on another $47\\%$ against $5\\%$. This is not a cosmetic problem --- it reversed one of our own conclusions, turning the strongest occurrence model in our study into what looked like a cautionary tale. Second, we give a control in which CRPS is invariant \\emph{by construction} while the temporal coupling is destroyed, which measures exactly how much that coupling contributes to a chosen statistic. Third, benchmarking seven models on a matched protocol over five seeds, an autoregressive hurdle beats a conditional flow on five of six datasets, by up to a factor of $153$, while the flow's own occurrence statistics vary by up to $62\\%$ across training seeds and every baseline is deterministic. Finally, the model ordering is not the same under five different occurrence statistics, and the two that do not share a construction agree with each other least.",
+   "authors": [
+    "Jian Xu"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.09692",
+   "pdf": "https://arxiv.org/pdf/2608.09692",
+   "published": "2026-08-10T14:57:36Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "crps",
+    "time-series"
    ],
    "baseline_watch": [],
    "top_conf": "",
