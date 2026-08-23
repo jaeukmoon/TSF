@@ -122,7 +122,9 @@
   "goia-forecast-nano-v0": "2026-08-09",
   "Metamorph1.0-4.5M": "2026-08-09",
   "tafsut": "2026-08-16",
-  "TimeTron-v2-33M": "2026-08-16"
+  "TimeTron-v2-33M": "2026-08-16",
+  "ForecastMate": "2026-08-23",
+  "TinyCast": "2026-08-23"
  },
  "fev": {
   "Chronos-2": "2026-07-06",

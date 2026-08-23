@@ -3441,5 +3441,37 @@
   "first_seen": "2026-08-16",
   "status": "pending",
   "card": null
+ },
+ "forecastmate": {
+  "name": "ForecastMate",
+  "sources": {
+   "gift": "ForecastMate"
+  },
+  "first_seen": "2026-08-23",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 30.8. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "Zhejiang University",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-08-23",
+  "generated_by": "deterministic-template"
+ },
+ "tinycast": {
+  "name": "TinyCast",
+  "sources": {
+   "gift": "TinyCast"
+  },
+  "first_seen": "2026-08-23",
+  "status": "pending",
+  "card": null
  }
 }
