@@ -1,6 +1,116 @@
 {
  "papers": [
   {
+   "id": "2608.16072",
+   "version": "",
+   "title": "Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization",
+   "abstract": "Reinforcement learning (RL) with group-relative advantages has become the de facto standard for post-training language model reasoners. However, when optimizing multiple reward objectives, existing methods typically scalarize the reward vector with a fixed weighted sum before group-wise standardization. We show that this design leads to two fundamental problems: rollouts with distinct reward profiles can receive identical advantages, and all objectives are optimized with fixed relative weights regardless of their current level of saturation. As a result, training continues to allocate gradient budget to already-solved objectives instead of focusing on those with greater remaining headroom. We introduce Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization (SA-MRPO), which standardizes each reward objective independently and adaptively discounts its contribution according to a batch-level estimate of objective saturation. This dynamically reallocates optimization effort toward under-optimized objectives while empirically maintaining performance on those that are already well satisfied. We further show that saturation-aware reweighting can reverse the sign of an update, rather than merely rescale its magnitude. Across mathematical reasoning with two- and three-objective reward combinations, SA-MRPO improves the harder correctness objective over GDPO in 12 of 15 benchmark comparisons, with gains of up to 5% on AIME24. On adaptive reasoning it improves accuracy on all five benchmarks, by 3.8% on average and up to 9.2 % on AMC23, and on coding benchmarks it improves pass rate by up to 2.3%, while in all settings maintaining the easier objectives near their already satisfied levels.",
+   "authors": [
+    "Yixuan Wang",
+    "Yifei Chen",
+    "Haichao Zhang",
+    "Haozheng Luo",
+    "Xander Wu",
+    "Jie Ni",
+    "Yun Fu",
+    "Nuno Vasconcelos",
+    "Yijiang Li"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.16072",
+   "pdf": "https://arxiv.org/pdf/2608.16072",
+   "published": "2026-08-24",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 148,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "policy optimization",
+    "post-train",
+    "reasoning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-24"
+  },
+  {
+   "id": "2608.17393",
+   "version": "",
+   "title": "LEGO-RL: Harness-Native Reinforcement Learning for Coding Agents",
+   "abstract": "Reinforcement learning for coding agents increasingly relies on long-running agent harnesses to manage tool integration, repository contexts, and execution feedback. However, the native execution environments of these harnesses are inherently misaligned with policy-gradient training: environmental crashes and reward hacking corrupt outcome signals, while train-inference discrepancies decouple rollout behavior from policy updates. To address this, we present LEGO-RL, a framework that bridges native coding-agent harnesses with scalable policy-gradient optimization without modifying their internal control flow. LEGO-RL is built upon three pillars: (1) faithful optimization via in-process LLM proxying that captures raw generation streams for token-level alignment and robust trainer-side log-probability recomputation, even under harness-side compaction or re-serialization; (2) reliable execution via scalable sandbox orchestration featuring image caching and stage-wise defenses to mitigate reward hacking; and (3) observable training through an integrated plugin that automates validation and monitoring, paired with a Live UI for granular trajectory diagnostics. We evaluate LEGO-RL by training the sparse MoE model Qwen3.5-35B-A3B with GSPO across three native coding-agent harnesses. LEGO-RL improves Qwen3.5-35B-A3B across OpenHands SDK (64.0% to 70.4%), Claude Code (62.4% to 68.2%), and OpenCode (57.2% to 66.6%) on SWE-bench Verified, while maintaining a rollout-training probability correlation above 0.99.",
+   "authors": [
+    "Yiming Du",
+    "Yuxin Jiang",
+    "Tao Yuan",
+    "Jianbo Dai",
+    "Shaowei Wang",
+    "Jierun Chen",
+    "Chaofan Tao",
+    "Xianzhi Yu",
+    "Lifeng Shang",
+    "Kam-Fai Wong",
+    "Xiaohui Li",
+    "Haoli Bai"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.17393",
+   "pdf": "https://arxiv.org/pdf/2608.17393",
+   "published": "2026-08-24",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 24,
+   "watch_type": "algo",
+   "matched": [
+    "llm",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-24"
+  },
+  {
+   "id": "2608.18607",
+   "version": "",
+   "title": "VA-Judger: Reward Modeling from Human Preference Feedback for Joint Video-Audio Generation",
+   "abstract": "Using reinforcement learning to post-train joint video-audio generation models requires a reward signal. Existing methods construct this reward by combining metrics for individual quality dimensions, including audio quality, visual fidelity, and synchronization. However, these metrics evaluate perceptual dimensions separately and fail to capture the overall semantic and temporal coherence among the text prompt, video, and audio that shapes human preferences. Optimizing models against these metrics encourages reward hacking, generating video-audio content that achieves high scores on these metrics yet appears incoherent or unfaithful to human viewers. To address this problem, we first construct a large-scale human-preference dataset VAPref-10K for joint video-audio generation, comprising 9K prompts and 10.3K fine-grained paired comparisons from open-source generation models. We also introduce the VA-Judger-Bench benchmark with both in-domain and out-of-domain model comparisons to evaluate whether reward models truly align with human preferences. We further propose VA-Judger, a chain-of-thought omni-reward model for joint video-audio generation. In particular, VA-Judger first learns from pairs with clear quality gaps to establish structured output and coarse preference discrimination, then distills reliable preference explanations for harder near-quality comparisons via rejection sampling verified against human annotations, and finally performs dimension-wise reinforcement learning that decomposes human feedback into individual quality dimensions for denser reward signals than a single binary preference label. Experiments show that VA-Judger outperforms metric baselines in predicting human preferences on both in-domain and out-of-domain evaluations. Using its human-aligned rewards for post-training audio-video generation model also yields significant improvements in generation quality.",
+   "authors": [
+    "Yinming Huang",
+    "Shuyuan Tu",
+    "Xi Yan",
+    "Zihan Yang",
+    "Jianhua Han",
+    "Xu Hang",
+    "Yu-Gang Jiang",
+    "Zuxuan Wu"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.18607",
+   "pdf": "https://arxiv.org/pdf/2608.18607",
+   "published": "2026-08-24",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 11,
+   "watch_type": "algo",
+   "matched": [
+    "chain-of-thought",
+    "post-train",
+    "reward model"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-08-24"
+  },
+  {
    "id": "2608.06867",
    "version": "",
    "title": "LLMRouter: Unified Infrastructure for Developing, Evaluating, and Deploying LLM Routers",
