@@ -1,44 +1,516 @@
 {
- "run_date": "2026-08-24",
+ "run_date": "2026-08-31",
  "window_hours": 192,
- "arxiv_status": "error",
+ "arxiv_status": "ok",
  "hf_status": "fallback",
  "counts": {
-  "fetched": 127,
-  "after_filter": 3,
-  "html_scans": 3,
-  "baseline": 0,
-  "epi": 0,
-  "hybrid": 0,
-  "rl_tsf": 0,
-  "algo": 3,
-  "tsf_trend": 0
+  "fetched": 1842,
+  "after_filter": 22,
+  "html_scans": 22,
+  "baseline": 2,
+  "epi": 1,
+  "hybrid": 4,
+  "rl_tsf": 1,
+  "algo": 11,
+  "tsf_trend": 3
  },
  "candidates": [
   {
-   "id": "2608.16072",
-   "version": "",
-   "title": "Learn What's Left, Not What's Mastered: Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization",
-   "abstract": "Reinforcement learning (RL) with group-relative advantages has become the de facto standard for post-training language model reasoners. However, when optimizing multiple reward objectives, existing methods typically scalarize the reward vector with a fixed weighted sum before group-wise standardization. We show that this design leads to two fundamental problems: rollouts with distinct reward profiles can receive identical advantages, and all objectives are optimized with fixed relative weights regardless of their current level of saturation. As a result, training continues to allocate gradient budget to already-solved objectives instead of focusing on those with greater remaining headroom. We introduce Saturation Aware Advantage Reweighting for Multi-Reward Policy Optimization (SA-MRPO), which standardizes each reward objective independently and adaptively discounts its contribution according to a batch-level estimate of objective saturation. This dynamically reallocates optimization effort toward under-optimized objectives while empirically maintaining performance on those that are already well satisfied. We further show that saturation-aware reweighting can reverse the sign of an update, rather than merely rescale its magnitude. Across mathematical reasoning with two- and three-objective reward combinations, SA-MRPO improves the harder correctness objective over GDPO in 12 of 15 benchmark comparisons, with gains of up to 5% on AIME24. On adaptive reasoning it improves accuracy on all five benchmarks, by 3.8% on average and up to 9.2 % on AMC23, and on coding benchmarks it improves pass rate by up to 2.3%, while in all settings maintaining the easier objectives near their already satisfied levels.",
+   "id": "2608.26226",
+   "version": "v1",
+   "title": "LLM Agents for Time-Series: A Survey",
+   "abstract": "LLM-based agents are increasingly being developed for time-series problems, but their design choices vary substantially across task settings. This survey adopts a problem-driven taxonomy that organizes these systems by the time-series problems they address rather than by isolated technical components. We group existing systems into four categories: forecasting and reasoning, augmentation and synthesis, anomaly detection and diagnosis, and decision support. Within each category, we examine how task requirements shape agent architecture, tool use, and memory design. We further summarize representative datasets and environments, and compare reported model performance under shared or closely related settings. Overall, this survey offers a task-oriented guide to designing LLM-based agents for time-series problems and identifies open gaps for future work.",
    "authors": [
-    "Yixuan Wang",
-    "Yifei Chen",
-    "Haichao Zhang",
-    "Haozheng Luo",
-    "Xander Wu",
-    "Jie Ni",
-    "Yun Fu",
-    "Nuno Vasconcelos",
-    "Yijiang Li"
+    "Yilong Chen",
+    "Xiao Qin",
+    "Chenghao Liu",
+    "Liang Wu",
+    "Noelle I. Samia",
+    "Kaize Ding"
+   ],
+   "comment": "Accepted to Findings of EMNLP 2026",
+   "url": "https://arxiv.org/abs/2608.26226",
+   "pdf": "https://arxiv.org/pdf/2608.26226",
+   "published": "2026-08-26T15:48:35Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "baseline",
+   "matched": [
+    "CastFlow",
+    "forecast",
+    "llm",
+    "time-series",
+    "tool use"
+   ],
+   "baseline_watch": [
+    "CastFlow"
+   ],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.20492",
+   "version": "",
+   "title": "Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs",
+   "abstract": "Multimodal large language models (MLLMs) have become a prevailing paradigm for unified video perception. However, post-training on large multi-task datasets remains challenging, as existing reinforcement learning methods sample on-policy groups with few high-quality rollouts even with costly chain-of-thought (CoT) generation. In this paper, we study the sample efficiency and scalability of RL post-training for video MLLMs and introduce OraRL. We identify an overlooked role for annotations: Beyond scoring rollouts, each can enter its on-policy group as an oracle rollout, a direct positive optimization target. Direct oracle integration, however, is nontrivial: a high-reward oracle raises the group baseline and inverts otherwise positive policy advantages, a failure we term advantage inversion. At the core of OraRL is a decoupled advantage estimator: policy rollouts determine an oracle-free baseline, while the oracle-policy gap modulates both a directional gain and a separate detached oracle advantage. Sign-balanced pruning improves efficiency: by retaining only the oracle and the strongest rollouts of each sign, OraRL requires just 2.2x the step time of SFT, less than half the 4.9x required by GRPO with CoT. OraRL scales with model size and data, surpassing its backbone from 0.8B to 9B and GRPO up to 100k prompts. Without chain-of-thought, Video-ORA-9B decodes in 130 ms instead of 4,780 ms. Compared with the respective prior best models, it raises temporal mIoU from 62.5 to 66.0, tracking AO from 73.0 to 78.2, segmentation from 64.3 to 70.4, and the three-benchmark spatial-intelligence macro average from 51.0 to 56.1; on VSI-Bench, it scores 73.1 against 55.0 for GPT-5 and 55.1 for Gemini-3-Pro.",
+   "authors": [
+    "Yunheng Li",
+    "Guohong Mu",
+    "Hao Li",
+    "Shengsheng Qian",
+    "Dingwen Zhang",
+    "Qibin Hou",
+    "Ming-Ming Cheng"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2608.16072",
-   "pdf": "https://arxiv.org/pdf/2608.16072",
-   "published": "2026-08-24",
+   "url": "https://arxiv.org/abs/2608.20492",
+   "pdf": "https://arxiv.org/pdf/2608.20492",
+   "published": "2026-08-31",
    "source": [
     "hf"
    ],
-   "hf_upvotes": 148,
+   "hf_upvotes": 109,
+   "watch_type": "baseline",
+   "matched": [
+    "Time-R1",
+    "chain-of-thought",
+    "language model",
+    "llm",
+    "post-train",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [
+    "Time-R1"
+   ],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.23373",
+   "version": "v1",
+   "title": "Modalities Should Talk to Each Other: Dual-Stream Multimodal Learning for Long-Horizon Influenza Forecasting",
+   "abstract": "Forecasting long-range influenza-like illness (ILI) matters for public health readiness. Publicly available surveillance datasets typically pair numeric epidemiological signals with textual information that is noisy, loosely structured, only indirectly related to near-term trends, and often lagged relative to the numeric signal. Fusing the two therefore requires careful design. We propose Dual-Stream Attention (DSA), a multimodal deep learning framework that forecasts 12-week-ahead ILI activity from a 36-week multimodal history by letting the numerical and textual streams condition each other. Using the Time-MMD health-domain dataset, DSA separately encodes the two modalities with a Transformer-based numerical encoder and a domain-adapted headline encoder, then couples them through a bidirectional Cross-Modal Attention (CMA) mechanism: the text (news headlines) conditions the interpretation of the numeric signal and vice versa. The CMA output then passes to a causal temporal model for forecasting. Evaluated across ten random seeds, DSA achieves a median test MSE of 0.416, versus 0.668, 0.607, and 0.851 for iTransformer, TaTS, and GPT4MTS, corresponding to mean-error reductions of 54.95%, 37.29%, and 67.23%, with paired Cohen's d of 0.555, 0.337, and 0.345, respectively, and ranks first in 100% of bootstrap draws. It also has substantially lower worst-window error than all baselines. On an external-geography dataset, DSA again ranks first among nine evaluated baselines. Ablations show the advantage does not depend on text-encoder choice or language-model fine-tuning, and that bidirectional attention outperforms either direction alone. Finally, perturbation-based faithfulness analysis shows the learned CMA is functionally informative under targeted masking, with a stronger effect in the text-to-numerical direction.",
+   "authors": [
+    "Seyed Mohammad Hossein Hashemi",
+    "Mohsen Hooshmand",
+    "Parvin Razzaghi"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.23373",
+   "pdf": "https://arxiv.org/pdf/2608.23373",
+   "published": "2026-08-24T15:20:01Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "epi",
+   "matched": [
+    "ILI",
+    "influenza"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.28482",
+   "version": "v1",
+   "title": "How Proper Scoring Rules Shape LLM Forecasting",
+   "abstract": "This paper evaluates how reward function choice shapes the performance and behavior of LLM forecasters. We compare five proper scoring rules as training objectives for binary forecasts of resolved real-world events. Although the rules share the same theoretical incentive for truthful probability reporting, the resulting models differ in calibration, probability use, and estimated profiles of bias, information, and noise, with smaller differences in aggregate accuracy and discrimination. The Brier-trained model has the lowest observed Brier score and highest AUC-ROC, while the log-trained model has the highest observed log score and lowest calibration error. Models with similar aggregate performance also reach that performance through different combinations of bias, information, and noise. Proper scoring rules therefore need not behave interchangeably as training objectives. Reward choice may shape not only how well an LLM forecasts, but how its forecasting errors are structured. Each condition uses a single seed, so some differences may reflect training stochasticity.",
+   "authors": [
+    "Benjamin Turtel",
+    "Paul Wilczewski",
+    "Kris Skotheim",
+    "Ville A. Satopää",
+    "Philip E. Tetlock"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.28482",
+   "pdf": "https://arxiv.org/pdf/2608.28482",
+   "published": "2026-08-28T16:08:51Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "forecaster",
+    "llm"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.28236",
+   "version": "v1",
+   "title": "D-TAIA: Domain-Aware LLM Adaptation for Multi-Task Predictive Process Monitoring",
+   "abstract": "Predictive Process Monitoring (PPM) enables organizations to forecast future process behavior, such as the next activity and remaining time of ongoing cases. In practice, three conditions cause existing methods to degrade, namely data scarcity, high process entropy and distributional shift. While Foundation Models (FMs), especially Large Language Models (LLMs), offer a new paradigm through broad sequential reasoning, adapting them to multi-task PPM under these conditions remains an open challenge. Existing FM-based approaches either lack mechanisms for handling distributional shift or rely on direct regression heads that can be structurally misaligned with continuous time prediction tasks. This paper introduces D-TAIA (Domain-aware Training and Attention-based Inference Architecture), a framework for a joint next activity and remaining time prediction task via parameter-efficient fine-tuning of an FM backbone. Our approach combines domain-aware triplet loss (DATL) pre-training with FAISS-based nearest neighbor retrieval for remaining time prediction, and adopts the TAIA inference strategy to preserve pre-trained sequential reasoning during fine-tuning. Evaluated across four real-world event logs, D-TAIA consistently shows SOTA or competitive performance compared to a fine-tuned LLM and a recurrent neural network baseline. Ablation studies confirm that techniques from NLP and computer vision can be transferred effectively to PPM with only a 10M-parameter backbone, though component contributions vary by dataset entropy.",
+   "authors": [
+    "Sjoerd van Straten",
+    "Christine Jacob",
+    "Marwan Hassani"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.28236",
+   "pdf": "https://arxiv.org/pdf/2608.28236",
+   "published": "2026-08-28T11:53:16Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "foundation model",
+    "llm"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.26990",
+   "version": "v1",
+   "title": "DSA: Evidence-Aware LLM-Agent Orchestration for Multi-Market Stock Research",
+   "abstract": "Large language models can summarize financial information, but an operational stock-research system must first assemble heterogeneous evidence, expose unavailable data and model capabilities, and control how generated opinions affect a final report. We present DSA, an evidence-aware orchestration framework for multi-market stock research with large language model (LLM) agents. DSA organizes the workflow into evidence acquisition, structured context construction, model-routed analysis, optional role and Strategy Skill reasoning, and report generation with selected context and diagnostics. A default report profile and an optional agentic profile share evidence and model-routing services but use profile-specific output validation and risk safeguards. In the agentic profile, core role outputs are processed by role-specific parsers, whereas Strategy Skill opinions undergo an additional signal-eligibility partition before synthesis; disagreement is supplied explicitly to the decision agent, followed by a conservative risk override. The reference implementation includes six regional market paths, fifteen bundled Strategy Skills, hosted and local model routes, and multiple execution and delivery surfaces. At a frozen software snapshot, a selected manifest of 1,457 portable offline backend contract tests passed; 596 cases were retrospectively mapped to six contract families central to the reported LLM-agent architecture. This evidence establishes implementation conformance for the tested software contracts, not superior report quality, forecasting accuracy, or investment returns.",
+   "authors": [
+    "Linsen Zhu",
+    "Yi Shi"
+   ],
+   "comment": "6 pages, 2 figures, 3 tables. Code available at https://github.com/ZhuLinsen/daily_stock_analysis",
+   "url": "https://arxiv.org/abs/2608.26990",
+   "pdf": "https://arxiv.org/pdf/2608.26990",
+   "published": "2026-08-27T11:37:13Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "agentic",
+    "forecast",
+    "llm",
+    "workflow"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.23058",
+   "version": "v1",
+   "title": "LLM-based Agents for Forecasting and Prediction: Methods, Training, Evaluation, and Applications",
+   "abstract": "Large language models (LLMs) now support forecasting systems that combine language-based reasoning with temporal data, evidence retrieval, external tools, and iterative prediction. We investigate LLM-based forecasting agents, meaning systems in which a language model contributes to a scored prediction about a future or currently unobserved target. We organize architectures into three groups. Standalone LLM workflows operate on encoded time series or event context. Tool- and retrieval-augmented agents incorporate external evidence. Hybrid systems pair LLMs with statistical or foundation models. We then review training methods and evaluation protocols. We examine negative as well as positive evidence, including sensitivity to small input perturbations, ablations in which the LLM component does not improve accuracy, and benchmark gains that may reflect contamination instead of temporal reasoning. We cover applications in finance, weather, health, energy, and operations, and we summarize the benchmarks and datasets used for evaluation. The evidence indicates that measurement is a central limitation. Future work requires calibration under distribution shift, contamination-resistant live evaluation, explicit reporting of cost and accuracy together, and methods for handling feedback between deployed forecasts and the outcomes being forecast.",
+   "authors": [
+    "Xiaogang Xu",
+    "Jiaqi Tang",
+    "Jianmin Chen",
+    "Yingying Yan",
+    "Zhenchao Tang",
+    "Xiangxin Zhou",
+    "Xiaobin Hu",
+    "Wei Wei",
+    "Jinfeng Wu",
+    "Qifeng Chen",
+    "Lu Zhou",
+    "Jiafei Wu",
+    "Zhe Liu",
+    "Jianwei Yin",
+    "Weimin Zheng"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.23058",
+   "pdf": "https://arxiv.org/pdf/2608.23058",
+   "published": "2026-08-24T10:02:39Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "foundation model",
+    "llm",
+    "time series",
+    "workflow"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.24954",
+   "version": "v1",
+   "title": "AFDBench: A Reasoning-First AI Scientist for NationalWeather Service Forecast Discussions",
+   "abstract": "Large language models (LLMs) hallucinate numerical values when generating high-stakes meteorological text, posing risks for weather communication. We present AFDBench, an AI meteorologist that generates professional Area Forecast Discussions (AFDs) by reasoning through structured AI weather forecast data from Google's WeatherNext 2. We introduce AFDBench, the first benchmark for evaluating generative meteorological reasoning, comprising 7,732 expert written discussions from 13 National Weather Service (NWS) offices paired with real AI weather forecast inputs, and three complementary metrics: Met-Align (numerical accuracy), Style-Align (professional dialect adherence), and Input-Grounding (fidelity to source weather data). Zero-shot evaluations reveal that open-source LLMs achieve low Style-Align (~0.33) and moderate Input-Grounding (~0.88), failing to write in the professional NWS register or faithfully use their input data. We apply Group Relative Policy Optimization (GRPO) with domain-specific rewards targeting temperature accuracy, synoptic correctness, and format compliance. On 1,033 held-out samples from two unseen NWS offices, GRPO nearly doubles Style-Align from 0.318 to 0.619 and improves Input-Grounding from 0.881 to 0.940, demonstrating that reinforcement learning teaches a 7B-parameter model to write like a professional meteorologist and faithfully interpret AI weather data.",
+   "authors": [
+    "Manmeet Singh",
+    "Somnath Luitel",
+    "Prabhjot Singh",
+    "Manraaj Banga",
+    "Naveen Sudharsan",
+    "Josh Durkee"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.24954",
+   "pdf": "https://arxiv.org/pdf/2608.24954",
+   "published": "2026-08-25T02:02:24Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "GRPO",
+    "forecast",
+    "policy optimization",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.23311",
+   "version": "v2",
+   "title": "Beyond the Stability-Exploration Dilemma: Environmental Regularization for LLM Policy Optimization",
+   "abstract": "Policy optimization (PO) for Large Language Models faces a stability--exploration trade-off, currently mediated by an action-side Policy-KL regularizer. This puts practitioners in a double bind: keeping Policy-KL constrains response behavior and consumes the action-side exploration budget, while dropping it leaves the optimization without an explicit drift control. We argue for an alternative that breaks the dilemma by moving regularization to the input side. As training progresses, the distribution over training queries induced by the current policy drifts unchecked from its pre-RL reference distribution. Concretely, Environment-Regularized Policy Optimization (ERPO) introduces a Query-KL (QKL) term that bounds this query distribution shift, together with a dataset-static reference-derived per-query weight that biases each per-query update toward queries typical under the reference. The QKL gradient flows strictly through the query likelihood; the response score function used by policy-gradient estimators does not appear in the QKL term, so QKL exerts no direct gradient pressure on the response distribution---exploration is preserved. ERPO plugs into GRPO/PPO/REINFORCE-style pipelines without additional forward passes. On six mathematical reasoning benchmarks, ERPO replaces the standard Policy-KL regularizer while achieving effective control over query distribution drift, delivering stronger accuracy and substantially more stable behavior under high-temperature decoding and long-horizon training. Our source code are available at https://github.com/AlibabaResearch/ERPO",
+   "authors": [
+    "Xianlei Zhou",
+    "Xiangdi Meng",
+    "Yu He",
+    "Tianyu Qi",
+    "Shuyan Guan",
+    "Xianli Zhang",
+    "Jian Zhang",
+    "Xin Li",
+    "Qika Lin",
+    "Jun Liu"
+   ],
+   "comment": "Accepted to EMNLP 2026 main conference",
+   "url": "https://arxiv.org/abs/2608.23311",
+   "pdf": "https://arxiv.org/pdf/2608.23311",
+   "published": "2026-08-24T14:30:59Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 16,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "policy optimization",
+    "reasoning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.27505",
+   "version": "v1",
+   "title": "A Survey on Rubric-Guided Reinforcement Learning for Language Models",
+   "abstract": "Reinforcement learning from human feedback (RLHF) has become the dominant paradigm for aligning large language models (LLMs) with human preferences. However, traditional RLHF relies on scalar reward signals that lack interpretability and fail to capture the multifaceted nature of response quality. Rubric-guided reinforcement learning addresses these limitations by introducing structured, interpretable evaluation criteria, or rubrics, as the backbone of reward design, feedback generation, and policy optimization. In this survey, we introduce a Bayesian framework that defines constitutions as prior distributions $P(R)$ over evaluation criteria and rubrics as conditional instantiations $R_x \\sim P(R|x)$. Under this unified view, we present a taxonomy of rubric-guided RL along the prior-posterior axis, covering constitutional AI, instance-specific rubrics, process-level supervision, self-evolving rubrics, and their agentic and multimodal extensions. Furthermore, as rubrics are natural-language artifacts, we present a linguistic analysis of how granularity trade-offs, semantic drift, and linguistic reward hacking impact alignment reliability, identifying key open problems for future research.",
+   "authors": [
+    "Zifei Shan",
+    "Fangning Shao"
+   ],
+   "comment": "Accepted to Findings of EMNLP 2026",
+   "url": "https://arxiv.org/abs/2608.27505",
+   "pdf": "https://arxiv.org/pdf/2608.27505",
+   "published": "2026-08-27T05:21:07Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.26596",
+   "version": "v1",
+   "title": "Not Just Reason, Not Just Scan: Reinforcement Learning for Proactive Scientific Error Verification over Academic Paper",
+   "abstract": "Multimodal large language models (MLLMs) are increasingly capable scientific assistants, yet they remain far from fully autonomous research. This transition requires models to actively inspect academic papers, build global evidence views, and make traceable judgments without prespecified issues or evidence. However, existing work provides limited task paradigms or training studies for such issue- and evidence-absent verification. We study this challenge through scientific error detection, where models must determine whether errors exist and justify them with evidence-based reasoning. To fill this gap, we present VERA-RL, a reinforcement-learning formulation for scientific error detection over academic papers. Following a Reason--Verify--Scan progression, we construct VERA-13K, a 12,900-sample dataset organized into 4,300 matched chains, covering 6 scientific-error categories across the research workflow and broad natural-science domains. We further introduce fine-grained rewards for reasoning completeness, evidence alignment, and error precision. Training Qwen3-VL-8B with VERA-RL substantially improves verifiable reasoning, approaching flagship MLLMs such as Gemini 3 Pro and Qwen3-VL-235B-A22B on Scan.",
+   "authors": [
+    "Rongjin Li",
+    "Yuanxin Liu",
+    "Hao Zhou",
+    "Fandong Meng",
+    "Jie Zhou",
+    "Xu Sun"
+   ],
+   "comment": "Accepted by EMNLP 2026 Findings",
+   "url": "https://arxiv.org/abs/2608.26596",
+   "pdf": "https://arxiv.org/pdf/2608.26596",
+   "published": "2026-08-27T04:24:29Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "reasoning",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.24214",
+   "version": "v1",
+   "title": "MetaRAG: Belief-Action Aligned Policy Optimization for Agentic RAG",
+   "abstract": "Agentic retrieval-augmented generation (RAG) requires language models to decide when to continue searching and when to answer. Existing RL-based methods rely on external supervision and overlook the agent's internal belief about whether the current evidence is sufficient. To address this problem, we reformulate the search decision quality as belief-action alignment and propose MetaRAG, a belief-action aligned policy optimization framework for agentic RAG. MetaRAG uses Verify-first Action Generation to elicit an explicit verification process before each actual action, and Internal Belief Probing to estimate the policy model's own answerability belief from the same question-history context. Based on these, MetaRAG derives a consistency reward that is further gated by answer correctness, avoiding reinforcement of internally consistent but incorrect trajectories. The belief probe is used only during training and introduces no inference-time overhead. Experiments on seven public QA benchmarks show that MetaRAG consistently improves the accuracy-efficiency trade-off over strong RL-based agentic RAG baselines, with gains that transfer to deep research settings, different optimizers, and multiple model backbones.",
+   "authors": [
+    "Qiuyi Qi",
+    "Tian Liang",
+    "Jiamu Wang",
+    "Jinjian Zhang",
+    "Wei Zhou",
+    "Pengcheng Zhu",
+    "Linjian Mo",
+    "Ming Kong",
+    "Jie Liu",
+    "Qiang Zhu"
+   ],
+   "comment": "EMNLP 2026 MainConference",
+   "url": "https://arxiv.org/abs/2608.24214",
+   "pdf": "https://arxiv.org/pdf/2608.24214",
+   "published": "2026-08-25T08:20:29Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "policy optimization"
+   ],
+   "baseline_watch": [],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.23493",
+   "version": "v1",
+   "title": "SRPO: Self-Reflective Policy Optimization for Long-Horizon Reasoning",
+   "abstract": "Self-reflection is a powerful mechanism for credit assignment in human learning, converting sparse outcome feedback into actionable guidance. However, its potential for post-training Large Language Models (LLMs) remains underexplored. We propose Self-Reflective Policy Optimization (SRPO), a framework that internalizes this capability. SRPO enables LLMs to analyze their own completed trajectories, synthesize errors into concise \"reflection patches,\" and use reflection-conditioned teacher scores on student on-policy rollouts as dense token-level training signals. This process effectively transforms sparse terminal supervision into dense, token-level learning signals without requiring external critics, separate reward models, or larger teacher models. We demonstrate that SRPO achieves state-of-the-art performance across mathematical reasoning and long-horizon agentic benchmarks with exceptional data efficiency. Using a Qwen3-8B base model, SRPO attains 73.3% on AIME'24 using only 8% (0.08x) of the training FLOPs required by scaled supervised fine-tuning, while significantly improving success rates on WebShop (64.7%), ALFWorld (76.8%), and SWE-Bench-Lite (31.2%). Code is available at https://github.com/Galleons2029/SRPO",
+   "authors": [
+    "Jialong Liu",
+    "Yuling Shi",
+    "Ning Yang",
+    "Xiaodong Gu",
+    "Zuchao Li"
+   ],
+   "comment": "Accepted to ICML 2026",
+   "url": "https://arxiv.org/abs/2608.23493",
+   "pdf": "https://arxiv.org/pdf/2608.23493",
+   "published": "2026-08-24T16:55:09Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "policy optimization",
+    "post-train",
+    "reasoning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "ICML",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.22479",
+   "version": "v1",
+   "title": "GTA-RAG: Graph-Trajectory-Augmented Reinforcement Learning for Multi-Turn Retrieval-Augmented Reasoning",
+   "abstract": "Retrieval-augmented generation (RAG) enables LLMs to access external knowledge for answering knowledge-intensive questions. For complex multi-hop questions, multi-turn retrieval-augmented reasoning extends RAG into an iterative process that repeatedly searches for and integrates evidence across documents. However, existing reinforcement-learning (RL) approaches for agentic RAG are typically optimized with final-answer rewards, which provide sparse supervision and overlook whether the model actually retrieves the required evidence chain. We present \\textsc{GTA-RAG}, a graph-trajectory-augmented RL framework for multi-turn retrieval-augmented reasoning. From an entity--document graph, we sample connected document paths, synthesize multi-hop QA trajectories, and validate them with the deployed retriever to obtain executable trajectory-level supervision. We then optimize the retrieval policy with Group Relative Policy Optimization (GRPO) and a trajectory-guided reward that encourages both accurate answers and acquisition of target evidence documents, followed by answer-reward training on natural QA instances. Experiments on three multi-hop and two simple QA benchmarks show that \\method{} consistently outperforms RL-based RAG baselines with both Qwen2.5-3B and Qwen2.5-7B backbones, while substantially improving evidence-chain coverage. Our code is available at https://github.com/cjcj46262/GTA-RAG.",
+   "authors": [
+    "Jun Chen",
+    "Yongchao Liu",
+    "Pengyu Qiu",
+    "Jiajun Zheng",
+    "Juelu Zhang",
+    "Yujie Zeng",
+    "Qin Zhang",
+    "Ziyue Qiao",
+    "Xiao Luo"
+   ],
+   "comment": "11 pages, 5 figures. Accepted to EMNLP 2026 Fundings",
+   "url": "https://arxiv.org/abs/2608.22479",
+   "pdf": "https://arxiv.org/pdf/2608.22479",
+   "published": "2026-08-23T16:05:20Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "llm",
+    "reasoning",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.27448",
+   "version": "v1",
+   "title": "TTPO: Test-Time Policy Optimization",
+   "abstract": "Recent prominent post-training methods, such as Reinforcement Learning (RL) and On-Policy Self-Distillation (OPSD), have driven rapid progress in mathematical reasoning for large language models, yet their reliance on ground-truth labels precludes test-time training (TTT). Replacing ground truth with majority-vote pseudo-labels is a natural alternative, yet it is fragile: an incorrect vote corrupts the teacher and misleads every token. We observe that this failure mode is asymmetric: rollouts that disagree with the pseudo-label are typically wrong regardless of whether the vote itself is correct. Building on this observation, we propose Test-Time Policy Optimization (TTPO), an asymmetric objective that distills agreeing rollouts via OPSD and penalizes disagreeing rollouts with Grouped RL. Token-level selection further refines both branches: distillation down-weights already-converged positions, while RL penalizes only confident errors. Both updates remain well-grounded even under frequent pseudo-label errors, and majority-vote routing yields tighter self-supervision as the model improves. Without any labels, TTPO matches label-supervised OPSD on five competition-level benchmarks, raises Qwen3-1.7B from 38.0% to 45.2% in TTT, yields +25.2% to +36.4% without thinking, and shows strong cross-task generalization.",
+   "authors": [
+    "Aozhe Wang",
+    "Zhengxi Lu",
+    "Jianze Wang",
+    "Shangke Lv",
+    "Ying Liu",
+    "Weiming Lu",
+    "Jun Xiao",
+    "Yueting Zhuang",
+    "Hua Yang",
+    "Qianglong Chen",
+    "Yongliang Shen"
+   ],
+   "comment": "Project Page: https://zju-real.github.io/TTPO Code: https://github.com/ZJU-REAL/TTPO",
+   "url": "https://arxiv.org/abs/2608.27448",
+   "pdf": "https://arxiv.org/pdf/2608.27448",
+   "published": "2026-08-27T17:58:10Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 73,
    "watch_type": "algo",
    "matched": [
     "language model",
@@ -52,35 +524,109 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2608.17393",
-   "version": "",
-   "title": "LEGO-RL: Harness-Native Reinforcement Learning for Coding Agents",
-   "abstract": "Reinforcement learning for coding agents increasingly relies on long-running agent harnesses to manage tool integration, repository contexts, and execution feedback. However, the native execution environments of these harnesses are inherently misaligned with policy-gradient training: environmental crashes and reward hacking corrupt outcome signals, while train-inference discrepancies decouple rollout behavior from policy updates. To address this, we present LEGO-RL, a framework that bridges native coding-agent harnesses with scalable policy-gradient optimization without modifying their internal control flow. LEGO-RL is built upon three pillars: (1) faithful optimization via in-process LLM proxying that captures raw generation streams for token-level alignment and robust trainer-side log-probability recomputation, even under harness-side compaction or re-serialization; (2) reliable execution via scalable sandbox orchestration featuring image caching and stage-wise defenses to mitigate reward hacking; and (3) observable training through an integrated plugin that automates validation and monitoring, paired with a Live UI for granular trajectory diagnostics. We evaluate LEGO-RL by training the sparse MoE model Qwen3.5-35B-A3B with GSPO across three native coding-agent harnesses. LEGO-RL improves Qwen3.5-35B-A3B across OpenHands SDK (64.0% to 70.4%), Claude Code (62.4% to 68.2%), and OpenCode (57.2% to 66.6%) on SWE-bench Verified, while maintaining a rollout-training probability correlation above 0.99.",
+   "id": "2608.24696",
+   "version": "v2",
+   "title": "On-policy Distillation with Verifiable Reward",
+   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) and on-policy distillation (OPD) have become two widely adopted paradigms for post-training large language models. However, RLVR suffers from sparse task-level feedback, while OPD provides dense token-level guidance but ignores trajectory correctness, limiting its performance to that of the teacher. Combining them is a promising direction: OPD supplies dense supervisory signals, while RLVR provides task-level correctness. Nevertheless, existing integrations often rely on weighted combination or heuristic switching, introducing extra hyperparameters and trade-offs. We propose On-policy Distillation with Verifiable Reward (OPDVR), a simple yet effective method that seamlessly combines OPD and RLVR without adding any hyperparameters. We first reformulate the implicit reward of sampled-token OPD based on trajectory correctness, then apply a ReLU gating mechanism to ensure that correct trajectories receive non-negative rewards and incorrect ones receive non-positive rewards---thereby aligning the distillation signal with task success while preserving the teacher's distributional guidance. Furthermore, our modification transforms sampled-token OPD into a proper RLVR method, making it readily combinable with any policy gradient algorithm, such as GRPO. Experiments on six reasoning benchmarks show that OPDVR consistently outperforms standard OPD. Our code is available at https://github.com/LeapLabTHU/OPDVR.",
    "authors": [
-    "Yiming Du",
-    "Yuxin Jiang",
-    "Tao Yuan",
-    "Jianbo Dai",
-    "Shaowei Wang",
-    "Jierun Chen",
-    "Chaofan Tao",
-    "Xianzhi Yu",
-    "Lifeng Shang",
-    "Kam-Fai Wong",
-    "Xiaohui Li",
-    "Haoli Bai"
+    "Wenze Lin",
+    "Jiale Zhao",
+    "Xitai Jiang",
+    "Songde Rao",
+    "Yining Li",
+    "Shenzhi Wang",
+    "Bingxiang He",
+    "Gao Huang"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2608.17393",
-   "pdf": "https://arxiv.org/pdf/2608.17393",
-   "published": "2026-08-24",
+   "url": "https://arxiv.org/abs/2608.24696",
+   "pdf": "https://arxiv.org/pdf/2608.24696",
+   "published": "2026-08-25T15:21:17Z",
    "source": [
+    "arxiv",
     "hf"
    ],
-   "hf_upvotes": 24,
+   "hf_upvotes": 17,
    "watch_type": "algo",
    "matched": [
+    "language model",
+    "post-train",
+    "reasoning",
+    "verifiable reward"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.27351",
+   "version": "v2",
+   "title": "Understanding Evolution Strategies for LLM Reasoning: Broader Reasoning Coverage than GRPO",
+   "abstract": "Evolution Strategies (ES) have recently emerged as a memory-efficient post-training paradigm for LLM reasoning. However, the optimization behavior of ES remains understudied, making it hard to define its advantage scope compared to mainstream post-training paradigms (e.g., Group Relative Policy Optimization (GRPO)). By systematically investigating ES dynamics and mechanisms, this paper first identifies a performance advantage of ES over GRPO, theoretically and empirically showing that ES can lead to broader reasoning coverage, thereby better exploiting the reasoning capabilities of pretrained LLMs. Theoretically, we show that verifier-projected Jensen-Shannon diversity across the ES population is helpful to higher Pass@K performances. Empirically, unlike GRPO, which exhibits entropy collapse, ES improves Pass@1 while attaining higher Pass@K than GRPO. We further develop a sequential GRPO-ES training strategy that combines GRPO's strength in Pass@1 with ES's gains in Pass@K. Second, we find that despite substantial whole-model parameter drift, the task-performance gains of ES are only contributed to a sparse subset of larger-magnitude updates. This functional sparsity suggests that large parameter movement need not imply widespread functional change, and held-out evaluations further show that it does not necessarily lead to catastrophic forgetting. Finally, we study how hyperparameter design affects the effectiveness of ES, demonstrating that ES requires a smaller population size in a larger LLM. These findings position ES as a distinct reasoning post-training paradigm rather than a less effective, memory-efficient alternative to GRPO.",
+   "authors": [
+    "Yunpeng Ba",
+    "Zhi Zheng",
+    "Yue Xie",
+    "Jiaqing Li",
+    "Xialiang Tong",
+    "Tao Zhong",
+    "Mingxuan Yuan",
+    "Zhichao Lu",
+    "Xuyang Wu",
+    "Zhenkun Wang"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2608.27351",
+   "pdf": "https://arxiv.org/pdf/2608.27351",
+   "published": "2026-08-27T16:48:39Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 16,
+   "watch_type": "algo",
+   "matched": [
+    "GRPO",
     "llm",
+    "post-train",
+    "reasoning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.25580",
+   "version": "v1",
+   "title": "V-Rubrics: Visual Faithfulness via Rubric-Based Reinforcement Learning",
+   "abstract": "Vision-language models can produce fluent answers that are insufficiently grounded in the visual evidence: a single unsupported object, chart value, or intermediate inference can undermine an otherwise plausible response. We argue that this is a credit-assignment failure in multimodal post-training. Scalar outcome rewards indicate whether an answer is acceptable, but do not identify which visual facts are grounded, which reasoning steps are valid, or which instruction constraints are missed. We introduce Visual Rubrics-Based Reinforcement Learning, which decomposes reference responses into atomic propositions and scores generated answers along Visual Faithfulness (VF), Reasoning Consistency (RC), and Instruction Following (IF). The resulting rubric items provide structured partial credit and localize rubric credit when supporting evidence spans are available. We first obtain an SFT checkpoint by fine-tuning Qwen3-VL-8B-Instruct on the public OpenMMReasoner-SFT-874K corpus, adapting OpenMMReasoner's cold-start data recipe. We construct V-Rubrics 50K, a 50,248-example training set from 17 visually grounded sources, by applying rule-based filters before deriving example difficulty from rejection-sampling scores and then annotating every example with Gemini-3-Pro under the same structured prompt and protocol. We train our model based on the same SFT checkpoint using component-wise, prefix-localized rubric credit. Experiments show that our rubricbased GRPO improves over both the shared SFT baseline and answer-only GRPO, with the largest gains on knowledge-oriented and visually grounded reasoning benchmarks. The results show rubrics as a useful reward abstraction for visual post-training.",
+   "authors": [
+    "Shulin Tian",
+    "Minglun Li",
+    "Yuhao Dong",
+    "Hao Ding",
+    "Jiarui Yao",
+    "Haiwen Diao",
+    "Jingkang Yang",
+    "Hongyuan Zhu",
+    "Ziwei Liu"
+   ],
+   "comment": "Proj page: https://shulin16.github.io/v-rubrics/",
+   "url": "https://arxiv.org/abs/2608.25580",
+   "pdf": "https://arxiv.org/pdf/2608.25580",
+   "published": "2026-08-26T09:40:46Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 15,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "post-train",
+    "reasoning",
     "reinforcement learning"
    ],
    "baseline_watch": [],
@@ -89,33 +635,131 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2608.18607",
+   "id": "2608.21839",
    "version": "",
-   "title": "VA-Judger: Reward Modeling from Human Preference Feedback for Joint Video-Audio Generation",
-   "abstract": "Using reinforcement learning to post-train joint video-audio generation models requires a reward signal. Existing methods construct this reward by combining metrics for individual quality dimensions, including audio quality, visual fidelity, and synchronization. However, these metrics evaluate perceptual dimensions separately and fail to capture the overall semantic and temporal coherence among the text prompt, video, and audio that shapes human preferences. Optimizing models against these metrics encourages reward hacking, generating video-audio content that achieves high scores on these metrics yet appears incoherent or unfaithful to human viewers. To address this problem, we first construct a large-scale human-preference dataset VAPref-10K for joint video-audio generation, comprising 9K prompts and 10.3K fine-grained paired comparisons from open-source generation models. We also introduce the VA-Judger-Bench benchmark with both in-domain and out-of-domain model comparisons to evaluate whether reward models truly align with human preferences. We further propose VA-Judger, a chain-of-thought omni-reward model for joint video-audio generation. In particular, VA-Judger first learns from pairs with clear quality gaps to establish structured output and coarse preference discrimination, then distills reliable preference explanations for harder near-quality comparisons via rejection sampling verified against human annotations, and finally performs dimension-wise reinforcement learning that decomposes human feedback into individual quality dimensions for denser reward signals than a single binary preference label. Experiments show that VA-Judger outperforms metric baselines in predicting human preferences on both in-domain and out-of-domain evaluations. Using its human-aligned rewards for post-training audio-video generation model also yields significant improvements in generation quality.",
+   "title": "FIRM-Video: Check Before You Score for Reliable Text-to-Video Reward Modeling",
+   "abstract": "Reliable reward models are essential for text-to-video evaluation and alignment. However, the trade-off between evaluation accuracy and inference efficiency places high demands on the quality of training supervision. Existing approaches often rely on holistic judges with fixed rubrics or open-ended reasoning, leading to incomplete inspection, unfaithful justification, and entangled attribution. We introduce FIRM-Video, a unified checklist-driven data construction framework based on a check-before-score principle: construct dimension-specific checklists, verify each criterion against temporal visual evidence, and aggregate only verified decisions. For Instruction Following, FIRM-Video decomposes prompts into weighted atomic requirements; for World Coherence, it constructs prompt-calibrated, target-specific checks grounded in visible entities and actions; and for Perceptual Quality, it applies a generic taxonomy of visual defects. The verified criteria and scores are further transformed into natural-language analyses for end-to-end reward modeling. Subsequently, we construct FIRM-Video-90K with 88,044 dimension-specific instances from 29,348 videos, and introduce FIRM-Video-Bench with 750 point-wise human annotations across 250 videos. The Qwen3-VL-based FIRM-Video-8B achieves the best overall MAE on FIRM-Video-Bench while consistently delivering the highest VBench Total, Quality, and Semantic Scores in Best-of-8 sampling across three video generators.",
    "authors": [
-    "Yinming Huang",
-    "Shuyuan Tu",
-    "Xi Yan",
-    "Zihan Yang",
-    "Jianhua Han",
-    "Xu Hang",
-    "Yu-Gang Jiang",
-    "Zuxuan Wu"
+    "Peiyuan Zhang",
+    "Xiangyu Zhao",
+    "Hongbo Liu",
+    "Xiaoxing Hu",
+    "Mingxin Liu",
+    "Shuran Ma",
+    "Yunhang Shen",
+    "Jian Hu",
+    "Haihan Gao",
+    "Haoyu Cao",
+    "Xue Yang"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2608.18607",
-   "pdf": "https://arxiv.org/pdf/2608.18607",
-   "published": "2026-08-24",
+   "url": "https://arxiv.org/abs/2608.21839",
+   "pdf": "https://arxiv.org/pdf/2608.21839",
+   "published": "2026-08-31",
    "source": [
     "hf"
    ],
-   "hf_upvotes": 11,
+   "hf_upvotes": 3,
    "watch_type": "algo",
    "matched": [
-    "chain-of-thought",
-    "post-train",
+    "reasoning",
     "reward model"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.25871",
+   "version": "v1",
+   "title": "CEDAR: Controlled and Event-Driven Demand Forecasting via Residual Decomposition",
+   "abstract": "Forecasting in large-scale e-commerce marketplaces is increasingly required to support planning: merchants need to evaluate sales outcomes under future action sequences such as budget schedules, rather than passively predicting what happens next. However, most existing time series forecasting (TSF) approaches remain inherently passive. Even when incorporating operational decisions as auxiliary covariates, they typically optimize for correlation-based extrapolation under historical policies. This design suffers from autoregressive inertia and conflates endogenous market evolution with decision-induced transitions, leading to policy-insensitive rollouts and unreliable counterfactual analysis. To bridge this gap, we propose CEDAR (Controlled and Event-Driven Demand forecasting via Action-aware Residual decomposition), a two-stage framework for robust decision-conditioned simulation. In Stage I, an Action-Interleaved Transformer learns controllable action-conditioned state transitions for rollout under planned interventions. In Stage II, a Residual Correction Module leverages external event signals and LLM-assisted text representations to align noisy event descriptions with product context and correct event-driven deviations. Our study is enabled by a large-scale real-world dataset from Alibaba 1688, comprising approximately 32 million product trajectories with paired state-action sequences and aligned event signals. Extensive offline experiments and online controlled experiments in production demonstrate that CEDAR consistently improves simulation accuracy over strong TSF baselines and delivers practical gains for real-world budget planning.",
+   "authors": [
+    "Junjie Meng",
+    "Ranxu Zhang",
+    "Zi-an Zhang",
+    "Shujun Liu",
+    "Xiaoning Qi",
+    "Xiaozhou Xu",
+    "Yanyong Zhang",
+    "Hui Xiong",
+    "Chao Wang"
+   ],
+   "comment": "12 pages, 4 figures, 5 tables. Published in KDD 2026",
+   "url": "https://arxiv.org/abs/2608.25871",
+   "pdf": "https://arxiv.org/pdf/2608.25871",
+   "published": "2026-08-26T14:43:56Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "forecast"
+   ],
+   "baseline_watch": [],
+   "top_conf": "KDD",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.23473",
+   "version": "v1",
+   "title": "MetaCaster: Meta-Harness-Optimized Agent for End-to-End Few-Shot Learning of Lightweight Time Series Forecasters",
+   "abstract": "Time series forecasting (TSF) is evolving toward multimodal and agentic settings, yet using foundation models remains uneconomical in resource-constrained scenarios, where compact, specialized forecasters are more desirable. However, lightweight forecasters typically require substantial training data, limiting their use in domains with scarce, slowly accumulated, or privacy-sensitive time series. To address this dilemma, we investigate the challenging problem of few-shot learning for lightweight forecasters. We propose MetaCaster, a meta-harness-optimized multi-agent framework that uses agentic data generation to automatically train specialized lightweight forecasters from only a few examples and textual contexts. Our work highlights a new TSF paradigm in which agents act not as forecasters but as intermediary engineers that prepare efficient, task-specific forecasters for deployment. Experiments on 18 datasets, 23 state-of-the-art lightweight forecasters, and 14 baselines demonstrate that MetaCaster achieves both data efficiency and computational efficiency while maintaining high-quality TSF performance.",
+   "authors": [
+    "ChengAo Shen",
+    "Wenchao Yu",
+    "Fangyu Wu",
+    "Dongjin Song",
+    "Hanghang Tong",
+    "Dongsheng Luo",
+    "Wei Cheng",
+    "Haifeng Chen",
+    "Jingchao Ni"
+   ],
+   "comment": "Accepted by EMNLP 2026",
+   "url": "https://arxiv.org/abs/2608.23473",
+   "pdf": "https://arxiv.org/pdf/2608.23473",
+   "published": "2026-08-24T16:40:25Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "forecast",
+    "time series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2608.24441",
+   "version": "v1",
+   "title": "A Behavior-Guided Online Probabilistic Forecasting Method for Electric vehicle Charging Loads",
+   "abstract": "Electric vehicle (EV) charging loads exhibit strong behavioral heterogeneity and temporal variability, posing significant challenges for online probabilistic forecasting under evolving operating conditions. In particular, persistent charging patterns may differ substantially across stations, while recent behavioral changes can continuously alter the underlying load distributions. This paper proposes a behavior-guided online probabilistic forecasting framework that explicitly characterizes persistent station-specific patterns and recent behavioral changes. A dual-timescale behavior representation is constructed to distinguish long-term charging characteristics from recent behavioral states and quantify their deviations. These behavioral changes are further semantically encoded to guide drift-aware forecasting adaptation, while a delayed-feedback mechanism ensures temporally consistent online updates when observations become available across different forecasting horizons. Experiments on ten heterogeneous real-world charging stations demonstrate that the proposed method consistently outperforms conventional forecasting models and concept-drift-aware online baselines in forecasting accuracy and probabilistic reliability. For 1-h-ahead forecasting, the proposed method reduces MSE and Pinball loss by 15.3\\% and 17.8\\%, respectively, over the corresponding best baselines. For 4-h-ahead forecasting, the improvements further reach 16.8\\% and 22.6\\%, respectively, demonstrating consistent performance gains under evolving charging behaviors and extended forecasting horizons.",
+   "authors": [
+    "Chenghan Li",
+    "Qingxiang Liu",
+    "Yinliang Xu",
+    "Yuxuan Liang"
+   ],
+   "comment": "Submitted to IEEE",
+   "url": "https://arxiv.org/abs/2608.24441",
+   "pdf": "https://arxiv.org/pdf/2608.24441",
+   "published": "2026-08-25T11:57:06Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "forecast",
+    "probabilistic forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",

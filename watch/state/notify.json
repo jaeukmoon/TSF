@@ -1,4 +1,42 @@
 {
- "run_date": "2026-08-24",
- "hits": []
+ "run_date": "2026-08-31",
+ "hits": [
+  {
+   "id": "2608.26226",
+   "title": "LLM Agents for Time-Series: A Survey",
+   "watch_type": "baseline",
+   "matched": [
+    "CastFlow",
+    "forecast",
+    "llm",
+    "time-series",
+    "tool use"
+   ],
+   "url": "https://arxiv.org/abs/2608.26226"
+  },
+  {
+   "id": "2608.20492",
+   "title": "Annotations as Rollouts: Efficient and Scalable Reinforcement Learning for Video MLLMs",
+   "watch_type": "baseline",
+   "matched": [
+    "Time-R1",
+    "chain-of-thought",
+    "language model",
+    "llm",
+    "post-train",
+    "reinforcement learning"
+   ],
+   "url": "https://arxiv.org/abs/2608.20492"
+  },
+  {
+   "id": "2608.23373",
+   "title": "Modalities Should Talk to Each Other: Dual-Stream Multimodal Learning for Long-Horizon Influenza Forecasting",
+   "watch_type": "epi",
+   "matched": [
+    "ILI",
+    "influenza"
+   ],
+   "url": "https://arxiv.org/abs/2608.23373"
+  }
+ ]
 }
