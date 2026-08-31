@@ -1,5 +1,5 @@
 {
- "updated": "2026-08-23 23:42 UTC",
+ "updated": "2026-08-31 01:25 UTC",
  "gift": [
   {
    "name": "EXAONE-Forecast-Agent",
@@ -1629,8 +1629,17 @@
  ],
  "fev": [
   {
+   "name": "TimesFM-3",
+   "win_rate": 0.867,
+   "skill_score": 0.4865524647906905,
+   "median_inference_time_s": 21.545851544942707,
+   "overlap": 0.0,
+   "num_failures": 0,
+   "n_tasks": 100
+  },
+  {
    "name": "Chronos-2",
-   "win_rate": 0.8320689655172414,
+   "win_rate": 0.8146666666666667,
    "skill_score": 0.4728056092394619,
    "median_inference_time_s": 2.676740106,
    "overlap": 0.0,
@@ -1639,7 +1648,7 @@
   },
   {
    "name": "TiRex-2",
-   "win_rate": 0.8010344827586207,
+   "win_rate": 0.7833333333333333,
    "skill_score": 0.45499020877374863,
    "median_inference_time_s": 1.3686329466290772,
    "overlap": 0.0,
@@ -1648,7 +1657,7 @@
   },
   {
    "name": "Toto-2.0-2.5B",
-   "win_rate": 0.7906896551724137,
+   "win_rate": 0.7763333333333333,
    "skill_score": 0.44420790338434357,
    "median_inference_time_s": 24.589902265,
    "overlap": 0.0,
@@ -1657,7 +1666,7 @@
   },
   {
    "name": "Toto-2.0-1B",
-   "win_rate": 0.7855172413793103,
+   "win_rate": 0.7706666666666667,
    "skill_score": 0.4443401764205588,
    "median_inference_time_s": 11.90202226,
    "overlap": 0.0,
@@ -1666,7 +1675,7 @@
   },
   {
    "name": "Toto-2.0-313m",
-   "win_rate": 0.7682758620689655,
+   "win_rate": 0.755,
    "skill_score": 0.44225902584896404,
    "median_inference_time_s": 4.505332983,
    "overlap": 0.0,
@@ -1675,7 +1684,7 @@
   },
   {
    "name": "TimesFM-2.5",
-   "win_rate": 0.7368965517241379,
+   "win_rate": 0.7183333333333334,
    "skill_score": 0.4667738322050371,
    "median_inference_time_s": 17.461305998,
    "overlap": 0.1,
@@ -1684,7 +1693,7 @@
   },
   {
    "name": "TiRex",
-   "win_rate": 0.726551724137931,
+   "win_rate": 0.7093333333333334,
    "skill_score": 0.4268210999064548,
    "median_inference_time_s": 1.503177849,
    "overlap": 0.01,
@@ -1693,7 +1702,7 @@
   },
   {
    "name": "Toto-2.0-22m",
-   "win_rate": 0.7017241379310345,
+   "win_rate": 0.687,
    "skill_score": 0.4290697373064378,
    "median_inference_time_s": 1.237203972,
    "overlap": 0.0,
@@ -1702,7 +1711,7 @@
   },
   {
    "name": "TS-ICL",
-   "win_rate": 0.6489655172413793,
+   "win_rate": 0.632,
    "skill_score": 0.4311476046883437,
    "median_inference_time_s": 5.729351058602333,
    "overlap": 0.0,
@@ -1711,7 +1720,7 @@
   },
   {
    "name": "FlowState",
-   "win_rate": 0.6441379310344828,
+   "win_rate": 0.6286666666666667,
    "skill_score": 0.4163193008697803,
    "median_inference_time_s": 6.268769268,
    "overlap": 0.08,
@@ -1720,7 +1729,7 @@
   },
   {
    "name": "TabPFN-TS-3",
-   "win_rate": 0.6427586206896552,
+   "win_rate": 0.628,
    "skill_score": 0.43149929774684925,
    "median_inference_time_s": 1934.898520962015,
    "overlap": 0.0,
@@ -1729,7 +1738,7 @@
   },
   {
    "name": "citras-fm",
-   "win_rate": 0.6203448275862069,
+   "win_rate": 0.604,
    "skill_score": 0.411775589747051,
    "median_inference_time_s": 3.987294635968283,
    "overlap": 0.0,
@@ -1738,7 +1747,7 @@
   },
   {
    "name": "Toto-1.0",
-   "win_rate": 0.6148275862068966,
+   "win_rate": 0.601,
    "skill_score": 0.4110543266504033,
    "median_inference_time_s": 93.240779997,
    "overlap": 0.08,
@@ -1747,7 +1756,7 @@
   },
   {
    "name": "Toto-2.0-4m",
-   "win_rate": 0.5906896551724138,
+   "win_rate": 0.574,
    "skill_score": 0.40711208003360944,
    "median_inference_time_s": 0.866240428,
    "overlap": 0.0,
@@ -1756,7 +1765,7 @@
   },
   {
    "name": "TabPFN-TS",
-   "win_rate": 0.5860344827586207,
+   "win_rate": 0.5725,
    "skill_score": 0.41486557888119135,
    "median_inference_time_s": 725.50527064,
    "overlap": 0.0,
@@ -1765,7 +1774,7 @@
   },
   {
    "name": "Moirai-2.0",
-   "win_rate": 0.5737931034482758,
+   "win_rate": 0.5573333333333333,
    "skill_score": 0.40246731693930826,
    "median_inference_time_s": 2.46008681,
    "overlap": 0.28,
@@ -1774,7 +1783,7 @@
   },
   {
    "name": "Chronos-Bolt",
-   "win_rate": 0.5358620689655172,
+   "win_rate": 0.5213333333333333,
    "skill_score": 0.3889296155238765,
    "median_inference_time_s": 1.022911708,
    "overlap": 0.0,
@@ -1783,7 +1792,7 @@
   },
   {
    "name": "TFT",
-   "win_rate": 0.40586206896551724,
+   "win_rate": 0.39466666666666667,
    "skill_score": 0.32179160778195315,
    "median_inference_time_s": 3.261748801,
    "overlap": 0.0,
@@ -1792,7 +1801,7 @@
   },
   {
    "name": "Sundial-Base",
-   "win_rate": 0.36586206896551726,
+   "win_rate": 0.3546666666666667,
    "skill_score": 0.3387456456777861,
    "median_inference_time_s": 36.891696752,
    "overlap": 0.01,
@@ -1801,7 +1810,7 @@
   },
   {
    "name": "Stat. Ensemble",
-   "win_rate": 0.35310344827586204,
+   "win_rate": 0.3436666666666667,
    "skill_score": 0.2065501241734049,
    "median_inference_time_s": 744.825421281,
    "overlap": 0.0,
@@ -1810,7 +1819,7 @@
   },
   {
    "name": "PatchTST",
-   "win_rate": 0.3527586206896552,
+   "win_rate": 0.3423333333333333,
    "skill_score": 0.3008894584013384,
    "median_inference_time_s": 4.289309256,
    "overlap": 0.0,
@@ -1819,7 +1828,7 @@
   },
   {
    "name": "DeepAR",
-   "win_rate": 0.3425862068965517,
+   "win_rate": 0.33216666666666667,
    "skill_score": 0.29083502888132695,
    "median_inference_time_s": 5.414139512,
    "overlap": 0.0,
@@ -1828,7 +1837,7 @@
   },
   {
    "name": "AutoARIMA",
-   "win_rate": 0.30896551724137933,
+   "win_rate": 0.2996666666666667,
    "skill_score": 0.21304134592954238,
    "median_inference_time_s": 202.48795235,
    "overlap": 0.0,
@@ -1837,7 +1846,7 @@
   },
   {
    "name": "AutoETS",
-   "win_rate": 0.25948275862068965,
+   "win_rate": 0.25283333333333335,
    "skill_score": -0.2681852698010143,
    "median_inference_time_s": 16.845804611,
    "overlap": 0.0,
@@ -1846,7 +1855,7 @@
   },
   {
    "name": "CatBoost",
-   "win_rate": 0.25551724137931037,
+   "win_rate": 0.24766666666666667,
    "skill_score": 0.22997503309584744,
    "median_inference_time_s": 1.603855142,
    "overlap": 0.0,
@@ -1855,7 +1864,7 @@
   },
   {
    "name": "LightGBM",
-   "win_rate": 0.23620689655172414,
+   "win_rate": 0.22866666666666666,
    "skill_score": 0.2097912784353272,
    "median_inference_time_s": 1.250898444,
    "overlap": 0.0,
@@ -1864,7 +1873,7 @@
   },
   {
    "name": "AutoTheta",
-   "win_rate": 0.2082758620689655,
+   "win_rate": 0.20166666666666666,
    "skill_score": 0.054573803462045434,
    "median_inference_time_s": 9.476563025,
    "overlap": 0.0,
@@ -1873,7 +1882,7 @@
   },
   {
    "name": "Seasonal Naive",
-   "win_rate": 0.14206896551724138,
+   "win_rate": 0.13733333333333334,
    "skill_score": 0.0,
    "median_inference_time_s": 2.24268109,
    "overlap": 0.0,
@@ -1882,7 +1891,7 @@
   },
   {
    "name": "Naive",
-   "win_rate": 0.09120689655172413,
+   "win_rate": 0.08816666666666667,
    "skill_score": -0.4539898892506442,
    "median_inference_time_s": 2.203211943,
    "overlap": 0.0,
@@ -1891,7 +1900,7 @@
   },
   {
    "name": "Drift",
-   "win_rate": 0.07793103448275862,
+   "win_rate": 0.076,
    "skill_score": -0.4577585382275593,
    "median_inference_time_s": 2.429907902,
    "overlap": 0.0,
@@ -2057,7 +2066,8 @@
    "Naive": "2026-07-06",
    "Drift": "2026-07-06",
    "citras-fm": "2026-07-27",
-   "TS-ICL": "2026-08-09"
+   "TS-ICL": "2026-08-09",
+   "TimesFM-3": "2026-08-31"
   }
  }
 }

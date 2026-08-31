@@ -3473,5 +3473,14 @@
   "first_seen": "2026-08-23",
   "status": "pending",
   "card": null
+ },
+ "timesfm3": {
+  "name": "TimesFM-3",
+  "sources": {
+   "fev": "TimesFM-3"
+  },
+  "first_seen": "2026-08-31",
+  "status": "pending",
+  "card": null
  }
 }
