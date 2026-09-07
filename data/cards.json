@@ -3477,9 +3477,19 @@
  "timesfm3": {
   "name": "TimesFM-3",
   "sources": {
-   "fev": "TimesFM-3"
+   "fev": "TimesFM-3",
+   "gift": "TimesFM-3"
   },
   "first_seen": "2026-08-31",
+  "status": "pending",
+  "card": null
+ },
+ "granitepatchtstfmr2": {
+  "name": "Granite-PatchTST-FM-r2",
+  "sources": {
+   "gift": "Granite-PatchTST-FM-r2"
+  },
+  "first_seen": "2026-09-07",
   "status": "pending",
   "card": null
  }
