@@ -1,6 +1,104 @@
 {
  "papers": [
   {
+   "id": "2609.11042",
+   "version": "",
+   "title": "T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks",
+   "abstract": "Agent usage is shifting toward long-horizon tasks such as coding and scientific discovery, among which terminal tasks are especially important. We introduce T1, a Mixture-of-Experts model of 122B total trained with reinforcement learning, operating a real shell in a cloud sandbox for up to 300+ tool-call turns per task, rewarded by executing each task's own verifier. We provide a comprehensive recipe: First, an aggressively warm-started to stabilize actor-critic training, with a dense process reward scoring trajectories by the absolute number of passing verifiers. Second, stable optimization through TITO construction, training on the exact sampled token identifiers with drift repair at turn boundaries, and rollout routing replay, recording the sampler's per-token expert choices at every MoE layer and replaying them during training. Third, fully out-of-distribution training corpus: isolated seeds and synthesized tasks disjoint from Terminal-Bench 2.1 ensures gains reflect genuine capability transfer over benchmark overfitting. Together, TITO and R3 cut the training-to-inference log-probability difference from 0.021 to 0.013, with exactly aligned zero token drift in the loss region. On Terminal-Bench 2.1, our post-train pipeline raises initial base model from 43.8% to T1 with 64.0% resolved. On Long-Horizon Terminal Bench, T1 reaches 27.9% and surpasses GPT-5.4 and GLM-5.1.",
+   "authors": [
+    "Junyao Yang",
+    "Yucheng Shi",
+    "Zhongzhi Li",
+    "Ruhan Wang",
+    "Zongxia Li",
+    "Haitao Mi",
+    "Leowei Liang"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.11042",
+   "pdf": "https://arxiv.org/pdf/2609.11042",
+   "published": "2026-09-14",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 56,
+   "watch_type": "algo",
+   "matched": [
+    "post-train",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-09-14"
+  },
+  {
+   "id": "2609.11085",
+   "version": "",
+   "title": "Beyond Solver Verdicts: Generative Reward Models for Autoformalization",
+   "abstract": "Neurosymbolic systems rely on mathematical solvers to guarantee reasoning correctness, yet solvers are fundamentally blind to whether a formal translation maintains strict reference-equivalence to a designated formalization. We formalize this vulnerability as Verdict-Preserving-Unfaithfulness (VPU): a failure mode where an incorrect encoding executes successfully and matches the expected verdict. We theoretically prove that structural, verdict-only verification heuristics are mathematically bounded to chance-level detection on these deceptively valid traces. To resolve this, we introduce Generative Verification (GenV), which distills an offline Z3-equivalence oracle into a reference-free, continuous reference-equivalence score by repurposing the language model's native vocabulary space. Mechanistic analysis via decision-projected logit lenses and sparse autoencoders shows this generative readout natively extracts precise spatial error coordinates without explicit localization training. Empirically, our oracle-mined verifier (GenV+HN) achieves 0.961 AUROC in reference-equivalence verification, generalizes zero-shot across unseen translators and divergent formal styles, and yields an 11.3-point downstream accuracy gain in agentic test-time compute allocation.",
+   "authors": [
+    "Vikash Singh",
+    "Debargha Ganguly",
+    "Aman Goel",
+    "Ali Torkamani",
+    "Xiaoxue Han",
+    "Joseph Lilien",
+    "Ferhat Erata",
+    "Vipin Chaudhary"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.11085",
+   "pdf": "https://arxiv.org/pdf/2609.11085",
+   "published": "2026-09-14",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 28,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "reasoning",
+    "reward model"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-09-14"
+  },
+  {
+   "id": "2609.08650",
+   "version": "",
+   "title": "Difficulty-Adaptive Tree-Structured Policy Optimization for Expanding Reasoning Coverage in RLVR",
+   "abstract": "Reinforcement Learning with Verifiable Rewards (RLVR) has been central to the recent success of Large Reasoning Models. However, while RLVR significantly improves single-sample accuracy, it often fails to expand the model's intrinsic reasoning coverage (pass@k) due to limited exploration during training. To address this, we optimize the structural design of train-time rollouts to enhance pass@k. Our analysis identifies three key design principles: (1) difficulty-adaptive rollout can play an important role in expanding pass@k, beyond serving as an efficiency heuristic; (2) tree-based rollout outperforms parallel sampling in discovering correct answers; and (3) sentence-entropy-guided forking overcomes the localization phenomenon of token-level branching to maximize semantic diversity. Building on these insights, we propose DATPO (Difficulty-Adaptive Sentence-entropy-guided Tree-structured Policy Optimization). DATPO integrates difficulty-adaptive tree search with a sibling-diversity advantage term, explicitly promoting semantic diversity to expand reasoning coverage during training. Experiments on mathematical reasoning benchmarks demonstrate that DATPO outperforms baselines especially in pass@k, which directly translates to superior test-time scaling performance.",
+   "authors": [
+    "Youngjun Yu",
+    "Sanghwan Jang",
+    "Hwanjo Yu"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.08650",
+   "pdf": "https://arxiv.org/pdf/2609.08650",
+   "published": "2026-09-14",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 9,
+   "watch_type": "algo",
+   "matched": [
+    "policy optimization",
+    "reasoning",
+    "rlvr"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-09-14"
+  },
+  {
    "id": "2609.02093",
    "version": "v1",
    "title": "Compositional Spectral Prompts for LLM-based Online Time Series Forecasting",
