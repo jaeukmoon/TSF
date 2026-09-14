@@ -3492,5 +3492,74 @@
   "first_seen": "2026-09-07",
   "status": "pending",
   "card": null
+ },
+ "timehedge": {
+  "name": "TIMEHEDGE",
+  "sources": {
+   "gift": "TIMEHEDGE"
+  },
+  "first_seen": "2026-09-14",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 22.8. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "Neurogica Inc.",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-09-14",
+  "generated_by": "deterministic-template"
+ },
+ "lsmoe": {
+  "name": "LS-MoE",
+  "sources": {
+   "gift": "LS-MoE"
+  },
+  "first_seen": "2026-09-14",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 20.2. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "LongShine AI Research",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-09-14",
+  "generated_by": "deterministic-template"
+ },
+ "reglabah1": {
+  "name": "RegLab-AH-1",
+  "sources": {
+   "gift": "RegLab-AH-1"
+  },
+  "first_seen": "2026-09-14",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 25.0. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "RegLab",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-09-14",
+  "generated_by": "deterministic-template"
  }
 }
