@@ -1,6 +1,70 @@
 {
  "papers": [
   {
+   "id": "2609.19745",
+   "version": "",
+   "title": "Region-Level Policy Optimization for Fine-grained MLLM Perception",
+   "abstract": "Fine-grained visual perception in MLLMs is commonly improved by raising the resolution, but the added visual tokens inflate vision-encoding and language-model prefilling costs. We show that the two operations underlying fine-grained perception, localizing the region of interest (RoI) and recognizing its content, have different resolution requirements. In a controlled diagnostic, localization tolerates roughly 3 to 4 times stronger token compression than recognition, which motivates localizing from a coarse view and concentrating resolution on the selected evidence. Decoding coordinates with the MLLM can be trained end-to-end from answers, but costs a full model pass per query and depends on grounding ability. A lightweight proposal network distilled from the model's attention is fast, but inherits the noise of its attention targets. The RoI from the proposal network reaches the answer through a discrete region choice, so its faithfulness to the answer cannot supervise the network. We therefore optimize the proposal network with region-level reinforcement learning, which we call Vision-RL2. It treats coherent regions as actions, and a frozen MLLM reader scores each one by how its removal changes the answer likelihood. Complementary subtractive and additive objectives suppress distracting proposals and recover missing evidence, updating only the predictor without region annotations, response sampling, or reasoning trajectories. The refined proposal further enables a sparse encoding that magnifies evidence and excludes background tokens. Across six fine-grained benchmarks and four MLLM backbones, Vision-RL2 improves accuracy over the base model at every token budget and surpasses its largest-budget accuracy with about 4 times fewer visual tokens. Code is available at https://github.com/YuHengsss/VisionRL2 .",
+   "authors": [
+    "Yuheng Shi",
+    "Xiaohuan Pei",
+    "Minjing Dong",
+    "Chang Xu"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.19745",
+   "pdf": "https://arxiv.org/pdf/2609.19745",
+   "published": "2026-09-21",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 27,
+   "watch_type": "algo",
+   "matched": [
+    "llm",
+    "policy optimization",
+    "reasoning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-09-21"
+  },
+  {
+   "id": "2609.13058",
+   "version": "",
+   "title": "Expert-Space Exploration in MoE Reinforcement Learning",
+   "abstract": "Reinforcement learning (RL) has become central to post-training of large language models. Recent advances in RL for Mixture-of-Experts (MoE) models have primarily focused on improving optimization stability and training efficiency, while treating the expert selection as a fixed component. Since routing determines the sparse computation paths that induce output distributions, expert selection offers an additional source of rollout diversity. Through empirical analysis, we find that perturbing expert routing effectively alters model output and increases rollout diversity, which is similar to increasing the decoding temperature. However, direct perturbation can activate unsuitable experts and substantially degrade rollout quality. Motivated by these observations, we introduce Expert-Space Exploration Reinforcement Learning (ESRL), an architecture-aware framework that explicitly explores the expert-routing space of MoE models. ESRL preserves high-confidence experts as anchors, and restricts stochastic routing to a plausible candidate pool, thereby retaining reliable computation paths. The perturbation strength is further adapted according to router entropy to avoid over-perturbation. To mitigate the routing mismatch introduced by perturbation, ESRL records the expert paths used during rollout and replays them during policy optimization. Experiments demonstrate that ESRL achieves the best performance across MoE backbones with top-K, top-1, and shared-expert routing, as well as across mathematics, science, and code tasks without additional sampling or computational cost. Specifically, ESRL on Qwen3-30B-A3B achieves the best among all compared methods, improving average Pass@1 and Pass@8 over GRPO by 3.2 and 4.5 percentage points, respectively. Further analyses of expert utilization and training dynamics provide insights into how exploiting MoE-specific routing structure benefits RL training.",
+   "authors": [
+    "Hongyi He",
+    "Zhenghao Lin",
+    "Xiao Liu",
+    "Peng Cheng",
+    "Yan Lu",
+    "Yeyun Gong"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.13058",
+   "pdf": "https://arxiv.org/pdf/2609.13058",
+   "published": "2026-09-21",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 5,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "post-train",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": [],
+   "ingested": "2026-09-21"
+  },
+  {
    "id": "2609.11042",
    "version": "",
    "title": "T1: Terminal Agent Reinforcement Learning for Long-Horizon Tasks",
