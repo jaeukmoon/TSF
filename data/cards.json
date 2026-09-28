@@ -3561,5 +3561,33 @@
   },
   "generated_at": "2026-09-14",
   "generated_by": "deterministic-template"
+ },
+ "tw3cast": {
+  "name": "TW3Cast",
+  "sources": {
+   "gift": "TW3Cast"
+  },
+  "first_seen": "2026-09-28",
+  "status": "pending",
+  "card": null
+ },
+ "t0beta": {
+  "name": "t0-beta",
+  "sources": {
+   "gift": "t0-beta",
+   "fev": "t0-beta"
+  },
+  "first_seen": "2026-09-28",
+  "status": "pending",
+  "card": null
+ },
+ "dlineart": {
+  "name": "DLinear-t",
+  "sources": {
+   "gift": "DLinear-t"
+  },
+  "first_seen": "2026-09-28",
+  "status": "pending",
+  "card": null
  }
 }
