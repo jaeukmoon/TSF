@@ -1,41 +1,76 @@
 {
- "run_date": "2026-09-21",
+ "run_date": "2026-09-28",
  "window_hours": 192,
  "arxiv_status": "error",
  "hf_status": "fallback",
  "counts": {
-  "fetched": 119,
-  "after_filter": 2,
-  "html_scans": 2,
+  "fetched": 121,
+  "after_filter": 5,
+  "html_scans": 5,
   "baseline": 0,
   "epi": 0,
   "hybrid": 0,
   "rl_tsf": 0,
-  "algo": 2,
+  "algo": 5,
   "tsf_trend": 0
  },
  "candidates": [
   {
-   "id": "2609.19745",
+   "id": "2609.29816",
    "version": "",
-   "title": "Region-Level Policy Optimization for Fine-grained MLLM Perception",
-   "abstract": "Fine-grained visual perception in MLLMs is commonly improved by raising the resolution, but the added visual tokens inflate vision-encoding and language-model prefilling costs. We show that the two operations underlying fine-grained perception, localizing the region of interest (RoI) and recognizing its content, have different resolution requirements. In a controlled diagnostic, localization tolerates roughly 3 to 4 times stronger token compression than recognition, which motivates localizing from a coarse view and concentrating resolution on the selected evidence. Decoding coordinates with the MLLM can be trained end-to-end from answers, but costs a full model pass per query and depends on grounding ability. A lightweight proposal network distilled from the model's attention is fast, but inherits the noise of its attention targets. The RoI from the proposal network reaches the answer through a discrete region choice, so its faithfulness to the answer cannot supervise the network. We therefore optimize the proposal network with region-level reinforcement learning, which we call Vision-RL2. It treats coherent regions as actions, and a frozen MLLM reader scores each one by how its removal changes the answer likelihood. Complementary subtractive and additive objectives suppress distracting proposals and recover missing evidence, updating only the predictor without region annotations, response sampling, or reasoning trajectories. The refined proposal further enables a sparse encoding that magnifies evidence and excludes background tokens. Across six fine-grained benchmarks and four MLLM backbones, Vision-RL2 improves accuracy over the base model at every token budget and surpasses its largest-budget accuracy with about 4 times fewer visual tokens. Code is available at https://github.com/YuHengsss/VisionRL2 .",
+   "title": "AV-GRPO: Modality-Anchored Decoupling Diffusion Reinforcement Learning for Joint Audio-Video Generation",
+   "abstract": "Recent years have witnessed major progress in joint audio-video generation. Existing models still suffer from limited per-modality fidelity, insufficient text-modality alignment and weak cross-modal synchronization. While reinforcement-learning post-training offers a promising remedy, directly adapting it to joint audio-video generation is challenging. Heterogeneous multimodal rewards entangle learning signals and complicate credit assignment. Joint optimization of two modality towers is computationally expensive given their divergent dynamics. Moreover, synchronization evaluation difficulty depends on paired samples, preventing fair reward comparisons. We propose AV-GRPO, a modality-anchored online diffusion RL framework, and 5DAV, a decoupled, difficulty-controllable training dataset. AV-GRPO includes three key modules: (1) modality-anchored rollouts to disentangle learning signals and stabilize difficulty; (2) trajectory-locked frozen-tower optimization to reduce cost and reassign credit; (3) adaptive objectives and perturbation strengths tailored to modality-specific dynamics. This converts coupled multimodal preference learning into unimodal subproblems for precise reward attribution and better synchronization. Our 5DAV dataset decouples samples across five dimensions for systematic training. Experiments on JavisBench and VABench demonstrate AV-GRPO outperforms LTX-2.3 in generation quality, semantic alignment and cross-modal synchronization under LoRA and full fine-tuning. Ablations confirm our designs. Code and data: https://github.com/zhiyuxu03/AV-GRPO",
    "authors": [
-    "Yuheng Shi",
-    "Xiaohuan Pei",
-    "Minjing Dong",
-    "Chang Xu"
+    "Zhiyu Xu",
+    "Weilong Yan",
+    "Yufei Shi",
+    "Shiyang Li",
+    "Yihao Liu",
+    "Kin-Man Lam",
+    "Yuewen Cao"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2609.19745",
-   "pdf": "https://arxiv.org/pdf/2609.19745",
-   "published": "2026-09-21",
+   "url": "https://arxiv.org/abs/2609.29816",
+   "pdf": "https://arxiv.org/pdf/2609.29816",
+   "published": "2026-09-28",
    "source": [
     "hf"
    ],
-   "hf_upvotes": 27,
+   "hf_upvotes": 5,
    "watch_type": "algo",
    "matched": [
+    "GRPO",
+    "post-train"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": true,
+   "bigtech_orgs": [
+    "Meta FAIR"
+   ]
+  },
+  {
+   "id": "2609.15987",
+   "version": "",
+   "title": "Bellman Policy Optimization",
+   "abstract": "Reinforcement learning with verifiable rewards (RLVR) improves the reasoning capabilities of large language models (LLMs). We introduce Bellman Policy Optimization (BPO), a critic-free method derived from Policy Mirror Descent (PMD). For autoregressive generation with terminal rewards, BPO uses the Bellman equations to reformulate PMD as a trajectory-level objective. The reformulation avoids estimating state values at intermediate states. We prove that it has the same unique optimal solution as the original PMD objective. We derive the practical BPO loss by approximating this objective. Its mismatch-correction weight is a smoothed ratio of complementary token probabilities. Experiments on mathematical reasoning benchmarks demonstrate the effectiveness of BPO.",
+   "authors": [
+    "Zhuoqing Song",
+    "Haotian Xu",
+    "Xikun Zhang",
+    "Lidong Bing"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.15987",
+   "pdf": "https://arxiv.org/pdf/2609.15987",
+   "published": "2026-09-28",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 48,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
     "llm",
     "policy optimization",
     "reasoning"
@@ -46,31 +81,104 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2609.13058",
+   "id": "2609.22870",
    "version": "",
-   "title": "Expert-Space Exploration in MoE Reinforcement Learning",
-   "abstract": "Reinforcement learning (RL) has become central to post-training of large language models. Recent advances in RL for Mixture-of-Experts (MoE) models have primarily focused on improving optimization stability and training efficiency, while treating the expert selection as a fixed component. Since routing determines the sparse computation paths that induce output distributions, expert selection offers an additional source of rollout diversity. Through empirical analysis, we find that perturbing expert routing effectively alters model output and increases rollout diversity, which is similar to increasing the decoding temperature. However, direct perturbation can activate unsuitable experts and substantially degrade rollout quality. Motivated by these observations, we introduce Expert-Space Exploration Reinforcement Learning (ESRL), an architecture-aware framework that explicitly explores the expert-routing space of MoE models. ESRL preserves high-confidence experts as anchors, and restricts stochastic routing to a plausible candidate pool, thereby retaining reliable computation paths. The perturbation strength is further adapted according to router entropy to avoid over-perturbation. To mitigate the routing mismatch introduced by perturbation, ESRL records the expert paths used during rollout and replays them during policy optimization. Experiments demonstrate that ESRL achieves the best performance across MoE backbones with top-K, top-1, and shared-expert routing, as well as across mathematics, science, and code tasks without additional sampling or computational cost. Specifically, ESRL on Qwen3-30B-A3B achieves the best among all compared methods, improving average Pass@1 and Pass@8 over GRPO by 3.2 and 4.5 percentage points, respectively. Further analyses of expert utilization and training dynamics provide insights into how exploiting MoE-specific routing structure benefits RL training.",
+   "title": "Towards Full Pipeline FP8 Reinforcement Learning for LLMs",
+   "abstract": "Reinforcement learning (RL) has become a key technique for improving the reasoning and agentic abilities of large language models (LLMs). Although FP8 quantization can accelerate RL training, maintaining stability throughout an FP8 RL pipeline remains challenging. While previous works have focused on resolving train-inference mismatches using correction techniques like TIS, we reveal that full-pipeline FP8 RL still suffers from severe training instability, manifesting as anomalous mid-training entropy surges and garbled outputs. We trace this instability to a previously overlooked cause: compounded FP8 quantization noise distorts the importance ratio, disproportionately pushing negative-advantage tokens outside the trust region and erroneously zeroing out their gradients. As a result, pathological outputs are not properly penalized and accumulate over the course of training. To address this, we propose Calibrated Clipping, a dynamic method that aligns the FP8 clipping bounds with high-precision BF16 distributions by matching the lower-bound clipping quantile and rebalancing the upper bound accordingly. Extensive experiments across GRPO and DAPO algorithms, model scales from 8B to 32B, and multiple FP8 scaling granularities demonstrate that our approach successfully eliminates entropy surges and restores performance comparable to the BF16 baseline.",
    "authors": [
-    "Hongyi He",
-    "Zhenghao Lin",
-    "Xiao Liu",
-    "Peng Cheng",
-    "Yan Lu",
-    "Yeyun Gong"
+    "Fanchao Chen",
+    "Ziheng Jiang",
+    "Ziyun Wei",
+    "Zheng Zhong",
+    "Du Li",
+    "Chi Zhang",
+    "Haibin Lin",
+    "Shivaram Venkataraman"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2609.13058",
-   "pdf": "https://arxiv.org/pdf/2609.13058",
-   "published": "2026-09-21",
+   "url": "https://arxiv.org/abs/2609.22870",
+   "pdf": "https://arxiv.org/pdf/2609.22870",
+   "published": "2026-09-28",
    "source": [
     "hf"
    ],
-   "hf_upvotes": 5,
+   "hf_upvotes": 17,
    "watch_type": "algo",
    "matched": [
     "language model",
-    "post-train",
+    "llm",
+    "reasoning",
     "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2609.29429",
+   "version": "",
+   "title": "Just Ask Jev: Reinforcement Learning for Calibrated Decisions as a Zero-Shot Detector of AI Alignment Failures",
+   "abstract": "Detectors of alignment failures screen deployed language models and score alignment benchmarks. Most are generative judges that spend a decoding pass on every criterion, and classifiers that read token probabilities, such as Llama Guard, still score one fixed label per call. Jev, a model trained with reinforcement learning for calibrated decisions (RLCD), answers many typed questions about one input with calibrated probabilities in a single call. Whether it detects alignment failures has not been measured. We present RLCDAlignBench, which benchmarks Jev on ten alignment failures: sycophancy, jailbreaks, deception, prompt injection, hallucination, privacy violation, social bias, reward hacking, concealing uncertainty, and power seeking. It spans 44 benchmarks and five target models, labelled by each benchmark's scorer and, on two, by humans. Many of these failures are relational, defined against a reference, such as the user's belief or an injected instruction, that the response alone does not reveal. Our key idea is therefore to vary what Jev is asked separately from what it sees: the question's wording and answer type on one side, the fields of the input on the other. A single generic question reaches a median AUROC of 0.886 zero-shot and beats supervised baselines on most benchmarks. Question wording matters little, while context matters more, mostly through fields that encode the label. Jev matches the reference scorer's agreement with human labels, surfaces label defects in existing benchmarks, and costs 63x less than LLM-judge scorers. Code and data: https://github.com/sumleo/RLCDAlignBench.",
+   "authors": [
+    "Ruoqi Guo",
+    "Yi Liu",
+    "Gelei Deng",
+    "Yuekang Li",
+    "Lida Zhao",
+    "Yutao Wu",
+    "Simin Chen",
+    "Ying Zhang",
+    "Leo Yu Zhang"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.29429",
+   "pdf": "https://arxiv.org/pdf/2609.29429",
+   "published": "2026-09-28",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 9,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2609.29050",
+   "version": "",
+   "title": "SLCA-GRPO: Resolving Cross-Segment Credit Misattribution in Tool-Calling RL",
+   "abstract": "Tool-calling agents produce heterogeneous outputs, interleaving structured tool invocations with user-facing natural language summaries. This output heterogeneity presents a structural failure mode in standard on-policy Reinforcement Learning (RL): algorithms like GRPO indiscriminately broadcast a homogeneous trajectory-level scalar advantage to all tokens. Consequently, gradient noise from summary generation leaks into tool-decision tokens, causing cross-segment credit misattribution and brittle optimization. In this work, we propose SLCA-GRPO, a framework incorporating Segment-Locked Credit Assignment (SLCA). To enable scalable exploration without costly real APIs and stable training, we first construct the Schema-Guided LLM Simulator (SGLS) as foundational training infrastructure. Building on this, SLCA decouples advantage estimation at the structural segment level within a single group of rollouts, without requiring additional rollouts from intermediate states. Supported by Hierarchical Rewards (HierR), SLCA routes execution advantages to tool tokens and preference advantages to summary tokens, eliminating advantage contamination (the dominant cross-segment credit misattribution channel) within each policy update. On a 7B backbone, SLCA-GRPO accelerates convergence and outperforms standard GRPO, ToolPO, and RLTR by +2.53 pp on in-domain evaluation, +1.36 pp on the Berkeley Function-Calling Leaderboard (BFCL), and +9.15 pp on τ^2-Bench under the same training budgets, achieving higher accuracy with reduced tool redundancy and costs.",
+   "authors": [
+    "Yan Zhan",
+    "Shaobo Liu",
+    "Qiunan Liu",
+    "Yuanjun Shi",
+    "Siqi Xu",
+    "WeiYi Hou",
+    "Xiang Xu",
+    "Zekang Li",
+    "Weizhou Pan",
+    "Jiahong Yan"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2609.29050",
+   "pdf": "https://arxiv.org/pdf/2609.29050",
+   "published": "2026-09-28",
+   "source": [
+    "hf"
+   ],
+   "hf_upvotes": 3,
+   "watch_type": "algo",
+   "matched": [
+    "GRPO",
+    "llm"
    ],
    "baseline_watch": [],
    "top_conf": "",
