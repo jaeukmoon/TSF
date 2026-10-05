@@ -1,4 +1,62 @@
 {
- "run_date": "2026-09-28",
- "hits": []
+ "run_date": "2026-10-05",
+ "hits": [
+  {
+   "id": "2610.01800",
+   "title": "LineupRL: Verifiable Reinforcement Learning for Time Series Captioning via Caption-to-Series Identification",
+   "watch_type": "baseline",
+   "matched": [
+    "RL",
+    "RLVR",
+    "TimeMaster",
+    "forecast",
+    "reinforcement learning",
+    "reward model",
+    "time series",
+    "verifiable reward"
+   ],
+   "url": "https://arxiv.org/abs/2610.01800"
+  },
+  {
+   "id": "2610.01766",
+   "title": "VideoEvolve: Evolving Agent Harnesses for Video Temporal Grounding",
+   "watch_type": "baseline",
+   "matched": [
+    "Time-R1",
+    "language model",
+    "refine",
+    "refinement",
+    "temporal prediction",
+    "workflow"
+   ],
+   "url": "https://arxiv.org/abs/2610.01766"
+  },
+  {
+   "id": "2610.02744",
+   "title": "EpiWorld: Grounding LLM Policy Agents in Epidemiological World Models",
+   "watch_type": "epi",
+   "matched": [
+    "influenza"
+   ],
+   "url": "https://arxiv.org/abs/2610.02744"
+  },
+  {
+   "id": "2610.03160",
+   "title": "Multimodal reasoning for broadly neutralizing antibody discovery from label-free human B cell repertoires across virus families",
+   "watch_type": "epi",
+   "matched": [
+    "influenza"
+   ],
+   "url": "https://arxiv.org/abs/2610.03160"
+  },
+  {
+   "id": "2609.35298",
+   "title": "Training-Free Clinical Reasoning through Medical Ontologies and Cognitive Mapping: A Symbolic-Probabilistic Knowledge Graph Framework",
+   "watch_type": "epi",
+   "matched": [
+    "influenza"
+   ],
+   "url": "https://arxiv.org/abs/2609.35298"
+  }
+ ]
 }
