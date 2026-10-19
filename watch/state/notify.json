@@ -1,4 +1,32 @@
 {
- "run_date": "2026-10-12",
- "hits": []
+ "run_date": "2026-10-19",
+ "hits": [
+  {
+   "id": "2610.21223",
+   "title": "Learning and Forecasting Multiscale Spatiotemporal Epidemic Dynamics with Lagrangian-Eulerian Graph Neural ODEs",
+   "watch_type": "epi",
+   "matched": [
+    "epidemic forecast"
+   ],
+   "url": "https://arxiv.org/abs/2610.21223"
+  },
+  {
+   "id": "2610.19058",
+   "title": "Conformalized Physics-Informed Weak Regression for Parameter Estimation in Epidemic Models",
+   "watch_type": "epi",
+   "matched": [
+    "influenza"
+   ],
+   "url": "https://arxiv.org/abs/2610.19058"
+  },
+  {
+   "id": "2610.16074",
+   "title": "Beyond Single-Pathogen Forecasts: Predicting Shared Respiratory Hospital Burden from Influenza, COVID-19, and RSV",
+   "watch_type": "epi",
+   "matched": [
+    "influenza"
+   ],
+   "url": "https://arxiv.org/abs/2610.16074"
+  }
+ ]
 }
