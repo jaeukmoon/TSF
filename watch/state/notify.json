@@ -1,20 +1,14 @@
 {
- "run_date": "2026-10-26",
+ "run_date": "2026-11-02",
  "hits": [
   {
-   "id": "2610.27468",
-   "title": "Training-Free Continual Learning for Multimodal Forecasting via Prompt Evolution",
-   "watch_type": "baseline",
+   "id": "2610.41956",
+   "title": "Chronos-2: A foundation model for multivariate time series forecasting",
+   "watch_type": "epi",
    "matched": [
-    "PostTime",
-    "forecast",
-    "forecaster",
-    "foundation model",
-    "llm",
-    "time series",
-    "tsfm"
+    "disease forecast"
    ],
-   "url": "https://arxiv.org/abs/2610.27468"
+   "url": "https://arxiv.org/abs/2610.41956"
   }
  ]
 }
