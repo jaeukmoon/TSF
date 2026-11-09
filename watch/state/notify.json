@@ -1,14 +1,19 @@
 {
- "run_date": "2026-11-02",
+ "run_date": "2026-11-09",
  "hits": [
   {
-   "id": "2610.41956",
-   "title": "Chronos-2: A foundation model for multivariate time series forecasting",
-   "watch_type": "epi",
+   "id": "2611.04126",
+   "title": "GlucoAgent: Personalized Glucose Forecasting from Multimodal Personal Context",
+   "watch_type": "baseline",
    "matched": [
-    "disease forecast"
+    "CastFlow",
+    "agentic",
+    "forecast",
+    "foundation model",
+    "llm",
+    "time series"
    ],
-   "url": "https://arxiv.org/abs/2610.41956"
+   "url": "https://arxiv.org/abs/2611.04126"
   }
  ]
 }

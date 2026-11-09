@@ -1,89 +1,160 @@
 {
- "run_date": "2026-11-02",
+ "run_date": "2026-11-09",
  "window_hours": 192,
  "arxiv_status": "ok",
  "hf_status": "fallback",
  "counts": {
-  "fetched": 2229,
-  "after_filter": 27,
-  "html_scans": 27,
-  "baseline": 0,
-  "epi": 1,
-  "hybrid": 5,
-  "rl_tsf": 4,
-  "algo": 12,
-  "tsf_trend": 5
+  "fetched": 2377,
+  "after_filter": 32,
+  "html_scans": 32,
+  "baseline": 1,
+  "epi": 0,
+  "hybrid": 7,
+  "rl_tsf": 5,
+  "algo": 8,
+  "tsf_trend": 11
  },
  "candidates": [
   {
-   "id": "2610.41956",
+   "id": "2611.04126",
    "version": "v1",
-   "title": "Chronos-2: A foundation model for multivariate time series forecasting",
-   "abstract": "Accurate forecasting with uncertainty quantification is critical in a variety of scientific applications ranging from epidemiology and economics to energy systems and earth sciences. Yet most forecasting models still need to be developed and trained separately for each domain-specific dataset. Time series foundation models (TSFMs) aim to remove this limitation and enable the application of the same model across domains through large-scale pretraining. However, most existing TSFMs treat each time series independently and therefore cannot model interactions among time series and external drivers. Here, we introduce Chronos-2, a foundation model for zero-shot forecasting that models the interactions between multivariate time series and heterogeneous covariates, which commonly arise in scientific applications. The model infers relationships among time series directly from historical context and generates probabilistic forecasts without task-specific treatment. Across various benchmarks, Chronos-2 achieves state-of-the-art accuracy on average by improving skill scores by 5.2 percentage points relative to the strongest baselines and increasing win rates by 10 percentage points. Chronos-2 is also computationally efficient, generating forecasts for 100 time series in under one second on a single mid-range GPU, 50x and 1000x faster end-to-end than the best task-specific point and probabilistic forecasters, respectively. In addition, we demonstrate its effectiveness in diverse scientific settings -- including infectious-disease forecasting, macroeconomic modeling, carbon-flux prediction, and runoff simulation -- where the model matches or surpasses specialized methods developed for each domain. These results show that a single pretrained model can capture structure shared across temporal systems.",
+   "title": "GlucoAgent: Personalized Glucose Forecasting from Multimodal Personal Context",
+   "abstract": "Continuous glucose monitors, smartwatches, meal logs, and health profiles form a rich multimodal personal context that can significantly enhance glucose forecasting. However, existing methods struggle to effectively utilize these signals to improve glucose prediction because the relevance of different modalities varies drastically across individuals and time. We present GlucoAgent, an LLM-based agentic system that addresses this challenge through dynamic, case-by-case analysis at inference time. For each forecast, GlucoAgent writes and runs code over an individual's multimodal context and returns predictions with a reason and supporting evidence. The generated programs are highly diverse, ranging from retrieving similar past meals to fitting and back-testing physiological and statistical models. On CGMacros, a multimodal glucose dataset, GlucoAgent outperforms time series foundation models on every forecasting horizon, achieving an average RMSE of 22.5 mg/dL compared to 23.5 mg/dL of Chronos-2, the leading multimodal time series foundation model. Furthermore, GlucoAgent is highly effective at leveraging multimodal data. The addition of multimodal data reduces its average RMSE by 1.4 mg/dL (24.0 mg/dL to 22.5 mg/dL), compared to a marginal 0.3 mg/dL (23.8 mg/dL to 23.5 mg/dL) improvement for Chronos-2. This advantage is most pronounced in challenging post-meal windows, where GlucoAgent uses multimodal context to reduce 60-minute forecast RMSE by 4.6 mg/dL (31.0 mg/dL to 26.5 mg/dL), far exceeding the 0.8 mg/dL (31.9 mg/dL to 31.1 mg/dL) reduction achieved by Chronos-2.",
    "authors": [
-    "Abdul Fatir Ansari",
-    "Oleksandr Shchur",
-    "Jaris Küken",
-    "Andreas Auer",
-    "Boran Han",
-    "Pedro Mercado",
-    "Syama Sundar Rangapuram",
-    "Huibin Shen",
-    "Lorenzo Stella",
-    "Xiyuan Zhang",
-    "Mononito Goswami",
-    "Shubham Kapoor",
-    "Danielle C. Maddix",
-    "Pablo Guerron",
-    "Florian Saupe",
-    "Markus Reichstein",
-    "Tony Hu",
-    "Junming Yin",
-    "Nick Erickson",
-    "Prateek Mutalik Desai",
-    "Hao Wang",
-    "Huzefa Rangwala",
-    "George Karypis",
-    "Yuyang Wang",
-    "Michael Bohlke-Schneider"
+    "Xingzhi Sun",
+    "Hyo Jin Kim",
+    "Zhiyuan Wang",
+    "Hao Chen"
    ],
-   "comment": "41 pages, 9 figures. Extended version of the Chronos-2 technical report (arXiv:2510.15821), adding scientific case studies (epidemiology, macroeconomics, carbon flux, hydrology, hierarchical forecasting), additional baselines, ablation studies, and calibration analysis. Code: https://github.com/amazon-science/chronos-forecasting",
-   "url": "https://arxiv.org/abs/2610.41956",
-   "pdf": "https://arxiv.org/pdf/2610.41956",
-   "published": "2026-10-30T16:08:23Z",
+   "comment": "",
+   "url": "https://arxiv.org/abs/2611.04126",
+   "pdf": "https://arxiv.org/pdf/2611.04126",
+   "published": "2026-11-03T01:06:09Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
-   "watch_type": "epi",
+   "watch_type": "baseline",
    "matched": [
-    "disease forecast"
+    "CastFlow",
+    "agentic",
+    "forecast",
+    "foundation model",
+    "llm",
+    "time series"
    ],
-   "baseline_watch": [],
+   "baseline_watch": [
+    "CastFlow"
+   ],
    "top_conf": "",
-   "bigtech": true,
+   "bigtech": false,
    "bigtech_orgs": []
   },
   {
-   "id": "2610.41015",
+   "id": "2611.09407",
    "version": "v1",
-   "title": "Do Language Models Know What Compelling Scientific Evidence Looks Like?",
-   "abstract": "Expert scientists excel at weighing empirical findings from multiple sources that vary in both statistical reliability and epistemic relevance. To what extent are language models, which are increasingly driving autonomous discovery systems, capable of such evidence deliberation? We introduce EDB-Bio, a scientific reasoning benchmark curated from real-world data in three biological domains: drug-perturbation transcriptomics, CRISPR screens, and human genome-wide association studies (GWAS). Each of EDB-Bio's 96k episodes presents a sequence of experimental results from published studies and asks the model to predict the probability that a target hypothesis is true. Out-of-the-box, open-weight and frontier models alike demonstrate systematic underconfidence and attain Brier scores comparable to a trivial base-rate forecaster. Post-training against strictly proper scoring rules significantly improves both calibration and discrimination. This calibration pays off downstream: in a sequential experiment selection task, our Ibis0 model is 2.5 times more efficient than the best frontier model. Throughout, quantifying evidence weights as Bayes factors reveals how models update their beliefs over time, whether they agree with expert biologists on relevance, and where they exhibit inconsistencies and biases. Our work extends calibration training and uncertainty analysis to a realistic scientific forecasting setting with applications to human cancer biology. We release all code, data, and trained models.",
+   "title": "ROAM: Retrieval-Augmented Optimization for Feasible Multi-Day Itinerary Planning",
+   "abstract": "Large language models (LLMs) can draft plausible travel itineraries, but the plans they produce are frequently infeasible: attractions are grouped into days without regard for geography, opening hours are ignored, and a single generation pass cannot reliably organize a multi-day trip. We present ROAM, a retrieval-augmented agentic framework for spontaneous multi-day itinerary planning that couples semantic preference retrieval with explicit spatiotemporal optimization. ROAM embeds the natural-language request, retrieves a compact candidate set from a curated point-of-interest (POI) database, partitions candidates into day groups through maximal-clique analysis and K-means, orders each day with a quality-biased simulated-annealing TSP solver, and repairs hard opening-hour violations with greedy exchange. A spatiotemporal retrieval layer injects weather forecasts, real road distances and POI operating hours into the prompt, after which the LLM renders a structured, map-ready itinerary; an interactive ReAct-style replanning agent then supports natural-language edits while re-checking feasibility. Across four Chinese cities and 510 POIs, ROAM produces 27.5 POIs per three-day plan versus 19.3 for a bare LLM and 17.0 for a retrieval-only baseline (+42% and +62%), while reducing route dispersion from 2,101 to 677 (3.1x). Ablations show that spatial optimization is the dominant driver of route efficiency and that hard time-window repair prevents roughly 30% of attractions from violating operating hours.",
    "authors": [
-    "Conor Igoe",
-    "Gabriel Grand",
-    "Zane Koch",
-    "Albert Bou",
-    "Eli Moss",
-    "Michaela M. Hinks",
-    "Samuel G. Rodriques",
-    "Andrew White",
-    "Siddharth Narayanan"
+    "Ye Zihao",
+    "Lin Xiaoheng"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2610.41015",
-   "pdf": "https://arxiv.org/pdf/2610.41015",
-   "published": "2026-10-29T21:51:23Z",
+   "url": "https://arxiv.org/abs/2611.09407",
+   "pdf": "https://arxiv.org/pdf/2611.09407",
+   "published": "2026-11-06T12:42:23Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "agentic",
+    "forecast",
+    "llm"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.07870",
+   "version": "v1",
+   "title": "FARR: Forecast-Aware Residual Refinement with Matched Endpoint Evidence for Long-Horizon Time-Series Forecasting",
+   "abstract": "Large language models use auxiliary conditioning to incorporate additional information into time-series forecasts. However, auxiliary conditioning does not consistently improve accuracy and can increase forecasting error when its influence is poorly matched to the observed temporal context. We propose Forecast-Aware Residual Refinement (FARR), which learns to correct forecasts using endpoint evidence. FARR obtains a valid forecast under the standard condition and a null forecast under a predefined null condition. Their difference reveals how conditioning changes the prediction. A shared residual refiner combines this endpoint evidence with historical features to estimate the remaining error of the valid forecast. Horizon-wise gating then controls the contribution of the predicted residual to the final output. Experiments on four long-horizon forecasting benchmarks show that FARR achieves the best dataset-average MSE and MAE among the compared methods. Code will be released at https://github.com/blossomrichzyy-star/farr-forecast-aware-residual-refinement.",
+   "authors": [
+    "Yiyang Zhang",
+    "Yuli Zheng",
+    "Bin Li",
+    "Meimei Zhang",
+    "Qiang Sun"
+   ],
+   "comment": "10 pages, 3 figures, 4 tables",
+   "url": "https://arxiv.org/abs/2611.07870",
+   "pdf": "https://arxiv.org/pdf/2611.07870",
+   "published": "2026-11-05T11:45:32Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "large language model",
+    "refine",
+    "refinement",
+    "time-series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.07720",
+   "version": "v1",
+   "title": "Evaluating Language Model Features for Zero-Shot Time-Series Anomaly Detection Under Isolation Assumption",
+   "abstract": "Time-Series Anomaly Detection (TSAD) is a fundamentally challenging task: it is unsupervised, requires high local precision capabilities, and suffers from limited labelled data. Recent work has explored adapting Large Language Models (LLMs) to time-series via cross-modal transfer. However, existing approaches are poorly suited to Multivariate TSAD (MTSAD), as tokenisation often obscures fine-grained temporal and variables structures, and most methods optimise auxiliary objectives such as forecasting or reconstruction. We posit that these surrogate objectives become unreliable as model capacity increases. Highly expressive models risk reconstructing or forecasting anomalies, undermining the foundations of both strategies. Instead, we propose to use LLMs purely as feature extractors and directly analyse their induced feature spaces. In this work, investigate the ability of LLMs to provide useful representations for MTSADs in a zero-shot setting through classification. To this end, we study the separability of the extracted features, under the assumption that anomalous features should be isolated from normal ones. We analyse their temporal and contextual discriminative ability using simple step-wise tokenisation schemes, with one time-step per token, which preserve fine-grained local information. Their usability for MTSAD is assessed using an unsupervised Isolation Forest, enabling a direct evaluation of the resulting representation quality. We further investigate whether the observed performance can be attributed to the language-related pre-training of the LLMs or arises independently of it. Our results provide empirical insight into the ability of LLMs to represent multivariate time-series for anomaly detection and highlight broader applications of cross-modal foundation models.",
+   "authors": [
+    "Romain Hermary",
+    "Nesryne Mejri",
+    "Djamila Aouada"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2611.07720",
+   "pdf": "https://arxiv.org/pdf/2611.07720",
+   "published": "2026-11-05T09:37:57Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "hybrid",
+   "matched": [
+    "forecast",
+    "foundation model",
+    "llm",
+    "time-series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.05896",
+   "version": "v1",
+   "title": "Selective, Risk-Controlled Emotion Forecasting in Conversation: From a Persistence Barrier to Departure Detection with Conformal Guarantees",
+   "abstract": "Forecasting emotion in conversation is increasingly framed as predicting the next emotional state's value. We show this targets a hard quantity in a state-observed testbed and propose a learnable, deployable reformulation instead. On valence-arousal-dominance trajectories from a dyadic corpus, repeating a speaker's own previous state sets a persistence baseline that no frozen-encoder correction meaningfully improves upon and a state-space filter exceeds; the floor requires the historical state to be observed, since an estimated anchor collapses persistence below a direct forecaster. What survives is the timing of a departure from persistence, learnable on three of four corpora and near chance on the highest-base-rate corpus, a negative result we report. We recast the task as selective departure forecasting: a lead-time-weighted metric with a leakage protocol, and commitment policies whose best choice switches with the departure rate. A dialogue-level conformal risk control bounds the expected loss of committed predictions, meeting the target in all twelve configurations tested, though the guarantee is bought through abstention, with coverage and alarm recall falling sharply on the hardest corpus. One tested language model's confidence fails as a ranking signal where another succeeds, a model-dependent failure not yet attributable to family versus scale. Code and result logs are available from the corresponding author upon request.",
+   "authors": [
+    "Bin Wen",
+    "Dai-Qiao Zhang",
+    "Tien-Ping Tan"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2611.05896",
+   "pdf": "https://arxiv.org/pdf/2611.05896",
+   "published": "2026-11-04T03:39:22Z",
    "source": [
     "arxiv"
    ],
@@ -100,45 +171,20 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.40370",
+   "id": "2611.05515",
    "version": "v1",
-   "title": "The Athlete as a Scientist of One: Agentic Bayesian Experimental Design for Individualized Physiology from Consumer Wearables",
-   "abstract": "Large language model (LLM) agents for personal health read wearable data and recommend, but do not learn about the individual in a way that can be audited or falsified. We present EpiCoach, an agentic system that treats one athlete, a cross-country mountain biker, as the subject of accountable N-of-1 science. Claims about the athlete live in an evidence-gated hypothesis registry: each must issue a probabilistic prediction about a future session before it occurs, and its belief moves only through computed evidence from a logged statistical fit. Predictions come from a mechanistic digital twin inferred from heart rate, GPS and barometric altitude: a lagged heart-rate response model, a fitness-fatigue model with learned time constants, and a latent technical-descending skill state, measured on discovered trail segments. The agent prescribes the next training week as a constrained experiment maximizing information gain subject to load and safety constraints, around two instrument rides. We evaluate the system two ways over eighteen months of data. A rolling-origin replay benchmark shows the twin beats standard forecasters on heart rate but not segment time, and the agentic loop matches a static model. A live prospective phase runs the weekly cycle: in its first three weeks the ledger sealed 20 predictions, scored 14, the descent forecast calibrated after one correction, the climb forecast pessimistic as the athlete improved, and the safety officer vetoed the agent twice. Every correction is preserved in the registry, a template for auditable, falsifiable personalization in digital health. We release the registry, benchmark and protocol.",
+   "title": "TSFM Meets LLM: Context as Covariates",
+   "abstract": "Textual information is ubiquitous in real-world time series datasets, appearing as news, reports, and annotations that hold key predictive signals not deducible from numerical history alone. Large Language Models (LLMs) interpret text but lack numerical precision, while Time Series Foundation Models (TSFMs) are quantitatively accurate but cannot reason about the effects of text. Moreover, the lack of large-scale paired multimodal datasets limits progress in bridging this gap. In this work, we address this challenge by providing a scalable approach for generating realistic multimodal datasets by annotating real-world time series with LLMs. Building on this, we propose Context as Covariates (CoCo), a forecasting framework in which an LLM distills its textual reasoning into numerically grounded forecast and confidence covariates that guide a TSFM backbone, thereby exploiting the strengths of both LLMs and TSFMs. We align the two models in stages, first fine-tuning the LLM via Group Relative Policy Optimization (GRPO) with a reward tied to covariate-induced improvement in forecasting performance, and then fine-tuning the TSFM on covariates generated by the aligned LLM. Our experiments show that models trained on our synthetic multimodal corpus generalize to real benchmarks spanning finance, economics, weather, traffic, and security. Notably, CoCo with Qwen3-4B-Instruct-2507 as the LLM and Chronos2 as the TSFM achieves up to 12% MAE improvement over state-of-the-art TSFMs and LLM forecasters, such as GPT-4o. Code, checkpoints, and the evaluation datasets are publicly available.",
    "authors": [
-    "Behnam Moradi"
+    "Hemanth Ram",
+    "Sai Shankar Narasimhan",
+    "Shubhankar Agarwal",
+    "Sandeep Chinchali"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2610.40370",
-   "pdf": "https://arxiv.org/pdf/2610.40370",
-   "published": "2026-10-29T16:20:24Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "hybrid",
-   "matched": [
-    "agentic",
-    "forecast",
-    "forecaster",
-    "llm"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.38292",
-   "version": "v1",
-   "title": "Vendster: An Evaluation Arena to Investigate How Forecasting Tool Quality Affects LLM Agent Behaviors in Buyer-Vendor Negotiation",
-   "abstract": "Time-series forecasters are ranked almost entirely by accuracy metrics, but a forecast's decision value, its effect on the downstream decision, need not track accuracy and is rarely measured. This problem compounds as large language model (LLM) agents increasingly consume forecasters as tools, mediating them through stochastic, opaque policies. We present Vendster, an evaluation arena measuring how a forecaster's bias and prediction-interval width change the outcome of a buyer--vendor discount negotiation between two LLM agents. In the reference instance Vendster-M5, sampling base demand patterns from the M5 dataset, we evaluate two frontier-closed LLM families (Claude Opus 4.6 and GPT-5.6 Sol) and two open ones (DeepSeek-V3.2 and Qwen3-235B-A22B). Model-generated forecasts raise sales target attainment by up to +17 percentage points (p<0.001), yet standard forecast evaluation metrics such as relWQL and MASE do not predict negotiation outcomes at a statistically significant level. To isolate the causal structure, we substitute in synthetic forecasts with controlled bias and interval width. Under-prediction bias significantly improves outcomes for agents that react more to the forecasts---dose-response slopes -0.387 and -0.416 (p<0.001). Interval width has no statistically significant effect at zero bias. These findings indicate that the direction of forecast bias and agent forecast-reactivity are more strongly associated with downstream outcomes than forecast accuracy. Vendster is fully customizable and released under CC BY-NC 4.0 at https://github.com/amazon-science/Vendster.",
-   "authors": [
-    "Charin Polpanumas"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.38292",
-   "pdf": "https://arxiv.org/pdf/2610.38292",
-   "published": "2026-10-28T05:23:48Z",
+   "url": "https://arxiv.org/abs/2611.05515",
+   "pdf": "https://arxiv.org/pdf/2611.05515",
+   "published": "2026-11-03T19:13:19Z",
    "source": [
     "arxiv"
    ],
@@ -147,8 +193,10 @@
    "matched": [
     "forecast",
     "forecaster",
+    "foundation model",
     "llm",
-    "time-series"
+    "time series",
+    "tsfm"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -156,18 +204,17 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.37700",
+   "id": "2611.03826",
    "version": "v1",
-   "title": "The Coordination Tax and the Heterogeneity Dividend: Break-Even Conditions for Multi-Agent LLM Pipelines",
-   "abstract": "Multi-agent LLM pipelines built on interoperability protocols such as the Open Floor Protocol (OFP) or A2A are usually justified on capability grounds, with their runtime cost treated as an overhead of unknown size. Comparing such a pipeline with one model call is underspecified, because a pipeline can give each role a different model. We give a closed-form model that sets the coordination tax (decomposition overhead plus per-handoff protocol cost) against the heterogeneity dividend from routing work to a cheaper model, with a break-even threshold and a feasibility bound, $α< 1/r$, and measure every term, with OFP as the protocol under test, on 135 HumanEval and ClassEval tasks in 2430 runs of six architectures with Claude Opus 5.5 and Haiku 5.5. The protocol adds 7.2 ms per handoff, 0.11% of pipeline wall time. Decomposition does not pay on these tasks: a planner-coder-reviewer pipeline costs 3.22x as much as a single strong call, takes 3.24x as long, and solves no more tasks. Moving planner and reviewer to the cheap model cuts the pipeline's cost to 0.39x but changes pass@1 by -6.7 points, leaving it dearer, slower and less accurate than the single call, and the break-even forecast misses by -19% because the cheap roles inflate token volume. The saving lies in choosing a model per task instead: an oracle choice between the two single calls solves 94.3% of runs at half the strong call's cost per solved task.",
+   "title": "Rethinking Next-Visit Diagnosis Prediction Beyond Aggregate Metrics: Retrieval--Memory Multi-Agent Adjudication",
+   "abstract": "Next-visit diagnosis prediction forecasts the diagnoses documented at a patient's next encounter, turning retrospective electronic health records into prospective clinical prediction. However, conventional aggregate evaluation obscures its multifaceted nature: distributionally, models must handle variable-size diagnosis sets and long-tailed labels; temporally, they must distinguish persistent, newly recorded, and recurrent diagnoses; and both vary with observed history depth. We introduce an evaluation framework along these dimensions and apply it to rule-based heuristics, LLM-based prompting, retrieval, memory, and multi-agent approaches. This reveals that repeating the last visit outperforms most LLM-based approaches overall despite predicting no new or recurrent diagnoses, and that retrieval and memory exhibit distinct profiles whose relative strengths vary across temporal transitions and backbones. Motivated by this, we propose LONGINUS, a retrieval-memory multi-agent adjudication framework combining evidence retrieved from patient records with structured memory of the patient trajectory. Using cross-view agreement as a reliability heuristic, it preserves shared predictions and adjudicates disagreements without revealing their source. Across MIMIC-III and MIMIC-IV with four LLM backbones, LONGINUS achieves the best transition-specific performance among LLM-based methods in nearly all settings while remaining competitive with them on aggregate metrics.",
    "authors": [
-    "Andreas Zettl",
-    "Diego Gosmar"
+    "Heejoon Koo"
    ],
-   "comment": "16 pages, 3 figures, 4 tables",
-   "url": "https://arxiv.org/abs/2610.37700",
-   "pdf": "https://arxiv.org/pdf/2610.37700",
-   "published": "2026-10-25T11:41:30Z",
+   "comment": "2 figures, 18 tables, and 29 pages",
+   "url": "https://arxiv.org/abs/2611.03826",
+   "pdf": "https://arxiv.org/pdf/2611.03826",
+   "published": "2026-11-02T19:03:08Z",
    "source": [
     "arxiv"
    ],
@@ -184,26 +231,28 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.35079",
+   "id": "2611.02387",
    "version": "v1",
-   "title": "Toward Fast Human Reaction Modeling from High-Frequency Digital Interaction Data",
-   "abstract": "We investigate whether limbic-like signatures of rapid, salience-driven behavior can be identified in high-resolution Counter-Strike 2 telemetry. This exploratory study introduces Ego-Knowledge, a leak-reduced reconstruction of each player's plausible perceptual state, supported by a millisecond-precision visibility engine and a reaction-centered extraction pipeline. Using a neuroscience-motivated 60--120 ms window, we derive coarse fight-or-flight labels from visibility- and damage-triggered events, with back-damage cases enabling constrained reaction-time analysis and manual label checks. We train two telemetry-native models using only information available by the trigger: EMBER (gradient boosting) and ORBIT (a custom transformer). On the full validation set, EMBER achieves 73.5% accuracy and ORBIT 71.2%, versus a 51.5% majority-class baseline, and both generalize to held-out players. The strongest LLM baseline achieves 62.7% on 1,000 validation cases; on these same cases, EMBER (73.6%) and ORBIT (70.9%) perform better (McNemar p=1.3e-9 and 1.5e-6, respectively), with orders-of-magnitude lower inference time and cost, though the comparison is not compute-matched. Including a short post-trigger window changes forecasting into early response recognition, raising accuracy monotonically to 85.15%. We propose this curve as a candidate probe of the transition from rapid to deliberative control, but roughly uniform per-tick gains do not establish that interpretation. The neuroscience framing is hypothesis-generating, not mechanistic: physiological ground truth, suitable control distributions, and reverse-inference limitations remain open. We outline extensions to auditory reconstruction, larger datasets, and telemetry-native foundation models.",
+   "title": "EviCast: Forecasting Retrieval Gains Through Shared Response Calibration",
+   "abstract": "Retrieval-augmented generation (RAG) extends large language models with external evidence, yet relevant evidence does not ensure that a generator can use it. Indiscriminate retrieval can degrade task performance while adding retrieval and long-context inference costs. Existing methods neither determine before large-scale execution whether a generator, task distribution, and retriever configuration is worth deploying nor diagnose multiple candidate retrievers under a shared budget. We introduce EviCast, a framework that forecasts retrieval value through interventional evidence-state decomposition. EviCast measures a generator's response to controlled evidence states once and combines this shared profile with the offline evidence-state distribution of each candidate retriever, yielding the end-to-end net utility and its 95% lower confidence bound without executing every RAG configuration. A state-refinement analysis characterizes when its binary and topology-aware instantiations are exact and when shared calibration is statistically more efficient than per-retriever calibration. In frozen evaluations, EviCast correctly decides all 14 HotpotQA retrieval configurations with a forecast error of 2.75 F1 points while reducing diagnostic generation calls by 80%, and it attains the lowest forecast error among seven predictors in the low-budget regime. Its topology-aware instantiation, EviCast-T, captures the complementarity between terminal and bridge evidence, correctly deciding all 16 configurations on MuSiQue and HotpotQA and 23 of 24 after prospective transfer to a third dataset. These results show that retrieval deployment depends on both evidence availability and the generator's ability to convert evidence structure into stable net utility. Code is available at https://github.com/YiboWang2002/EviCast.",
    "authors": [
-    "Emanuel Dopater",
-    "Daniel Gavlas",
-    "Lukáš Jochymek",
-    "Kannan Paul",
-    "Miloslav Szczypka",
-    "David Vojáček",
-    "Josef Žáček",
-    "Jan Plucar",
-    "Radek Svoboda",
-    "Ivan Zelinka"
+    "Yibo Wang",
+    "Jisheng Dang",
+    "Bimei Wang",
+    "Jiongpei Hou",
+    "Jingwen Zhao",
+    "Wenjun Ma",
+    "Fei Shen",
+    "Juncheng Li",
+    "Meng Wang",
+    "Qi Tian",
+    "Bin Hu",
+    "Tat-Seng Chua"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.35079",
-   "pdf": "https://arxiv.org/pdf/2610.35079",
-   "published": "2026-10-26T09:24:10Z",
+   "comment": "13 pages, 6 figures, 8 tables",
+   "url": "https://arxiv.org/abs/2611.02387",
+   "pdf": "https://arxiv.org/pdf/2611.02387",
+   "published": "2026-11-02T01:55:58Z",
    "source": [
     "arxiv"
    ],
@@ -211,8 +260,9 @@
    "watch_type": "hybrid",
    "matched": [
     "forecast",
-    "foundation model",
-    "llm"
+    "large language model",
+    "refine",
+    "refinement"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -220,27 +270,97 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.38838",
+   "id": "2611.08245",
    "version": "v1",
-   "title": "Discovery of Diverse and Realistic Financial Tail-Risk Using Generative Flow Networks",
-   "abstract": "Accurate modeling of rare, high-impact financial events is essential for robust risk management. Sampling-based techniques such as Sequential Markov Chain Monte Carlo (SMCMC) generate diverse scenarios but inefficiently explore high-risk regions, while Deep Reinforcement Learning (DRL) converges on narrow sets of scenarios, limiting diversity. We present GRID, which uses Generative Flow Networks (GFlowNets) -- samplers that draw objects in proportion to a reward -- to systematically generate diverse and realistic financial tail-risk scenarios. Building on continuous GFlowNets, GRID introduces a flexible mixture-policy architecture with variable-specific distribution families for high-dimensional, sequential macro-financial data, together with plausibility constraints that keep generated trajectories realistic. A central practical advantage is robustness to reward-proxy imperfection: because GFlowNets sample proportionally rather than maximize, they remain broadly exploratory even when the oracle's out-of-sample accuracy is low -- an unavoidable reality in financial forecasting. On three real-world crises, GRID improves scenario diversity, realism, and tail-risk coverage over RL and MCMC baselines, and ablations over oracle architectures and distribution families yield practical insights into continuous GFlowNet behavior under noisy rewards.",
+   "title": "Value-oriented policy distillation for interpretable wind farm power control",
+   "abstract": "Wind farm power control can help the system maintain balance and avoid blackouts. In Europe, this can be achieved through implicit balancing, where a wind farm adjusts its power setpoint in anticipation of the imbalance price using information published by the Transmission System Operator. Thereby, the wind farm helps restore system balance while also reducing its own imbalance costs resulting from forecast errors. However, implicit balancing is a challenging problem since the settlement price is unknown in advance and can be impacted by the pursued control strategy. Reinforcement learning methods could help to solve this problem, but lack the interpretability needed to be deployed on real wind farms. Therefore, we propose a policy distillation framework using explainable boosting machines (EBMs), a variant of generalized additive models, to obtain a transparent control policy. To increase the value captured by the EBM model, we introduce a value-oriented perspective to policy distillation inspired by research in the field of energy forecasting. Furthermore, we suggest to include expert knowledge during model design, such that the control strategy is also justifiable to stakeholders. Using real data of the Belgian grid and an offshore wind farm, we find that our value-oriented and expert-based controller can reduce imbalance costs by 82%, while outperforming a price threshold controller as well as a policy distillation baseline using decision trees.",
    "authors": [
-    "Adir Serruya",
-    "Gilad Katz"
+    "Max Bruninx",
+    "Timothy Verstraeten",
+    "Jan Decuyper",
+    "Ann Nowé",
+    "Jan Helsen"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2610.38838",
-   "pdf": "https://arxiv.org/pdf/2610.38838",
-   "published": "2026-10-28T20:26:01Z",
+   "url": "https://arxiv.org/abs/2611.08245",
+   "pdf": "https://arxiv.org/pdf/2611.08245",
+   "published": "2026-11-05T16:22:55Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "rl_tsf",
    "matched": [
+    "forecast",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.07750",
+   "version": "v1",
+   "title": "Foresee to Trade: Forecast-Augmented Policy Optimization for Portfolio Management",
+   "abstract": "Online investment services must translate asset opportunities into investment outcomes for users' accounts, yet the same market opportunity can warrant different account actions. We study how supervision from future asset opportunities can strengthen account-level trading decisions and propose Forecast-Augmented Relative Policy Optimization (FRPO). FRPO separately supervises asset opportunities and account decisions through a jointly learned representation: a Financial State Head (FSH) learns future relative-return targets to provide asset-level opportunity supervision, while Same-Path Group-Relative Optimization compares trading trajectories under the same market path and initial account to provide account-level relative-outcome supervision. An Adaptive Gate coordinates auxiliary supervision using predictive variance and gradient alignment. FSH is used only during training; inference uses the encoder and policy for trading. Across DJIA30, TOPIX Core30, and three investment-style portfolios, ten-seed evaluations show that FRPO achieves the highest mean cumulative and annualized returns among the compared methods in all five settings. These results support strengthening investment agents' trading decisions through joint supervision from asset opportunities and trading outcomes.",
+   "authors": [
+    "Zeyu Liu",
+    "Xuanzhi Feng",
+    "Haoran Xu",
+    "Lai Sing Kwong",
+    "Yang Li",
+    "Hualei Zhang",
+    "Hao Chen",
+    "Jie Zhang",
+    "Xiaoyi Pang",
+    "Song Guo"
+   ],
+   "comment": "",
+   "url": "https://arxiv.org/abs/2611.07750",
+   "pdf": "https://arxiv.org/pdf/2611.07750",
+   "published": "2026-11-05T09:56:17Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "forecast",
+    "policy optimization"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.03244",
+   "version": "v1",
+   "title": "Forecasting How RLHF Responds to Reward-Model Edits Before Training",
+   "abstract": "Responses with headers, lists and greater length receive high scores from reward models (RMs), and RLHF policies learn to produce these features even when true quality does not improve. Practitioners therefore edit their RMs, but they learn whether an edit works only after an RL run. We show that the response of a policy to an RM edit can be forecast before training, from samples of the current policy and the scores of the old and new RM. If we read the RM as a set of prices, the first-order theory of KL-regularized RL implies that each feature moves in proportion to its within-prompt covariance with the change in reward. We implant controlled price changes into retrained RMs under a 2^(4-1) fractional factorial design with a self-distilled placebo, run 54 RL runs from six parent policies, and fix every forecast before the runs. With the covariance predictor, we predict the direction of all 20 changes in supply whose forecast has the same sign at every parent and explain 82% of the standardized change. With counterfactual prices, the classical alternative, we explain 50%. The forecast also holds under GRPO and for real RM upgrades, where we explain 66% out of sample with a coefficient frozen from the factorial runs. For rent, the gap between the proxy reward and a gold reward from stronger judges, we rank RM edits correctly with the same covariance over the first 30 steps (Spearman 0.94). This measures the horizon of the forecast: by step 200, the ranking of the factorial edits reverses under both RLOO and GRPO, while the real upgrades keep their order. When we vary the KL coefficient beta, the initial response does not depend on beta, and the response saturates below the KL equilibrium. In one experiment, the long-run response to a price rise is consistent with an additional implicit regularizer beta_0 of about 0.003 to 0.007.",
+   "authors": [
+    "Zixiao Wang",
+    "Duzhen Zhang",
+    "Xingbo Du",
+    "Dongxia Wu",
+    "Le Song"
+   ],
+   "comment": "22 pages, 7 figures",
+   "url": "https://arxiv.org/abs/2611.03244",
+   "pdf": "https://arxiv.org/pdf/2611.03244",
+   "published": "2026-11-02T14:53:01Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "rl_tsf",
+   "matched": [
+    "GRPO",
     "RL",
+    "RLHF",
     "forecast",
-    "reinforcement learning"
+    "reward model"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -248,54 +368,17 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.38775",
+   "id": "2611.02699",
    "version": "v1",
-   "title": "Skillful and realistic precipitation forecasting with reinforced diffusion",
-   "abstract": "Accurate precipitation forecasting remains elusive as physics-based models struggle to resolve mesoscale convection and machine learning often yields physically inconsistent, blurred results that consistently underestimate extreme events. We present FitzRoy, the first system that simultaneously achieves state-of-the-art predictive skill and physical realism over the continental United States. Through a reinforced diffusion framework, where a conditional discrete diffusion model is refined via reinforcement learning, FitzRoy effectively resolves the long-standing trade-off between pointwise accuracy and structural fidelity. Across lead times up to 24 hours, FitzRoy consistently matches or exceeds state-of-the-art models while preserving structural realism and capturing extreme events. Its low-latency inference further enables deployment in real-time operational settings. In case studies such as the 2025 Texas Hill Country floods and the 2026 Missouri floods, FitzRoy signals record-breaking accumulations that existing models largely missed. By bridging the gap between realism and skill, FitzRoy establishes a new frontier for high-fidelity precipitation forecasting.",
+   "title": "Right Ranking, Wrong Scale: Reproducing the Robotic World Model's Dynamics Model and Testing the Uncertainty of Its Follow-up",
+   "abstract": "We reimplement the dynamics model of the Robotic World Model (RWM) and test the uncertainty estimate that its follow-up, RWM-U, uses to penalize reward in offline policy optimization. Our implementation matches the released model's gradients. On held-out data, training on the model's own rollouts beats one-step training at the preregistered long horizon for all ten episodes, but loses on short one-step windows. RWM-U's ensemble disagreement ranks rollout errors better than forecast step (Spearman rho = 0.90 at 100 steps), yet its spread substantially understates error: one-sigma coverage on the released checkpoint is 4.6% at 100 steps, versus 68% for a calibrated Gaussian. Rolling ensemble members on their own predictions raises coverage to 33%. The implemented squared-error loss on sampled predictions drives each member's variance toward zero. A horizon-specific rescaling restores one-sigma coverage under leave-one-episode-out evaluation, but not two-sigma coverage. We also identify two defects in the released evaluation pipeline. The study covers one robot, one gait and one dataset; it trains no policy.",
    "authors": [
-    "Ozan Sener",
-    "Anand Avati",
-    "David Hafner",
-    "Jierui Lin",
-    "Laura Manduchi",
-    "Xiaoying Pang",
-    "Langwen Huang",
-    "Torsten Hoefler",
-    "Russ Schumacher",
-    "Vladlen Koltun"
+    "Joyjeet Singh"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.38775",
-   "pdf": "https://arxiv.org/pdf/2610.38775",
-   "published": "2026-10-28T19:50:45Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "rl_tsf",
-   "matched": [
-    "forecast",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.35070",
-   "version": "v1",
-   "title": "Joint Dynamic Lane Reversal and Variable Speed Limit Control: A Graphormer-Based Approach",
-   "abstract": "Connected and automated vehicles could allow reassigning lane directions and speed limits on every road frequently, but the benefit hinges on how traffic reroutes, and one-way roads can isolate junctions. We formulate network-wide dynamic lane allocation and directional speed limit control with one-way roads, lane clearing before each reversal, and a navigable graph kept strongly connected at all times. An action-resolution algorithm grounded in graph orientation theory admits a proposal closing a direction only if the network stays strongly connected and otherwise relaxes or reverts it, keeping all junctions mutually reachable within the model, even during clearing. All road controllers share one transformer whose attention, Global Endpoint Relation-Aware Spatio-Temporal Self-Attention (GERASTSA), spans all road-time tokens, biased by the endpoint relations between roads. It is pretrained on action-conditioned traffic forecasting and fine-tuned with per-road proximal policy optimization under a mixed reward that also credits neighboring roads and the network. On a 6 x 6 grid with commuter rush hours, the learned policy makes about two thirds of roads one-way in the peak direction and cuts daily delay by 90% against the initial configuration held fixed and by 85% against a tuned two-way load balancer. Restricted to two-way roads at test time, it gains only about as much as this balancer, whereas its learned speed limits add delay. Pretraining roughly halves the updates needed to surpass the fixed configuration. Of the ablations, only removing the relational bias or the spatial embedding clearly matters, multiplying delay about fivefold.",
-   "authors": [
-    "Hamed Araab",
-    "Abbas Ahmadi",
-    "Mohammad Hossein Basiri"
-   ],
-   "comment": "21 pages, 10 figures, 3 tables, 1 algorithm",
-   "url": "https://arxiv.org/abs/2610.35070",
-   "pdf": "https://arxiv.org/pdf/2610.35070",
-   "published": "2026-10-26T09:17:05Z",
+   "comment": "56 pages",
+   "url": "https://arxiv.org/abs/2611.02699",
+   "pdf": "https://arxiv.org/pdf/2611.02699",
+   "published": "2026-11-02T07:52:09Z",
    "source": [
     "arxiv"
    ],
@@ -311,27 +394,29 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.34466",
+   "id": "2611.02218",
    "version": "v1",
-   "title": "IntNet: A Communication-Driven Multi-Agent Reinforcement Learning Framework for Cooperative Autonomous Driving",
-   "abstract": "Achieving safety in autonomous driving through Multi-Agent Reinforcement Learning (MARL) is a critical yet challenging task due to non-stationarity, partial observability, and the need for effective coordination among agents. Although earlier cooperative MARL methods have aimed to improve coordination by sharing encoded state observations, we find these strategies are insufficient in safety-critical scenarios. To address this gap, we present IntNet, a novel MARL framework that enhances safety by incorporating the transmission of vehicle intent and adaptive communication scheduling into a unified end-to-end learning paradigm, jointly optimising all components for safe coordination. Central to our approach is an observation prediction module that enables agents to forecast subsequent policy outputs, which they can then share across a vehicle-to-vehicle network. Our model-free architecture employs a Graph Attention Network to process incoming messages and a scheduler component to dynamically optimise the communication graph for bandwidth efficiency. We compare IntNet against state-of-the-art communicative MARL methods in complex urban environments with both autonomous and human-operated vehicles, achieving improved coordination, lower collision rates, and reducing communication efforts by up to 60\\%. Through extensive experiments, we assess the framework's learning efficiency, scalability, and the balance between information sharing and bandwidth usage for collision-free trajectories.",
+   "title": "Beyond Ensemble Disagreement: Predictive STL Monitoring of RL Locomotion under Distribution Shift",
+   "abstract": "RL locomotion policies trained under nominal simulation conditions may encounter distribution shifts that compromise safety. Predictive monitors could anticipate violations, but their world-model forecasts may become unreliable under shift, and ensemble disagreement is not calibrated. We evaluate predictive Signal Temporal Logic (STL) monitoring for frozen Ant-v5 and HalfCheetah-v5 policies using closed-loop world-model rollouts and a three-model ensemble. Across external-force, observation-noise, and mass shifts, predicted robustness ranks HalfCheetah's future STL violations strongly, whereas disagreement does not reliably track observation prediction error or violations. Under severe noise, violations remain common ($64.2\\pm24.4\\%$ at $K{=}20$ across three PPO seeds), yet current-state robustness without prediction comes within $0.03$ AUROC of predictive robustness. Penalizing predicted robustness by disagreement does not consistently improve ranking. Ant provides complementary per-specification evidence, but its composite target has no positive violations and its any-violation target is single-class in most evaluated seed-condition slices. Overall, predictive robustness provides useful STL-specific ranking but little demonstrated additional ranking value over the current state; these findings caution against treating ensemble disagreement as a reliable indicator of safety uncertainty.",
    "authors": [
-    "Leandro Parada",
-    "Kevin Yu",
-    "Panagiotis Angeloudis"
+    "Qurban Ali",
+    "Badaruddin Chachar",
+    "Maqsood Ali",
+    "Sajjad Ali Rajper"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.34466",
-   "pdf": "https://arxiv.org/pdf/2610.34466",
-   "published": "2026-10-25T17:38:49Z",
+   "comment": "Accepted at the Modeling Uncertainty in Robotic World Models Workshop CoRL 2026",
+   "url": "https://arxiv.org/abs/2611.02218",
+   "pdf": "https://arxiv.org/pdf/2611.02218",
+   "published": "2026-11-01T21:27:39Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "rl_tsf",
    "matched": [
-    "forecast",
-    "reinforcement learning"
+    "PPO",
+    "RL",
+    "forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -339,95 +424,119 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.23928",
-   "version": "",
-   "title": "miniTE: Diagnosing and Bridging the Execution Gap in Native NVFP4 Reinforcement Learning",
-   "abstract": "Native NVFP4 promises to accelerate reinforcement learning (RL) for large language models (LLMs), but achieving stable learning across separate training and sampling engines remains challenging. We show that matching model weights and numerical formats is insufficient to ensure consistent policy evaluation, highlighting the importance of cross-engine numerical execution. We introduce miniTE, a lightweight framework that combines execution diagnostics, cross-engine numerical alignment, and efficient native W4A4 (4-bit weights and activations) GEMM computation for LLM RL. It improves numerical execution consistency without modifying the RL objective, while reducing implementation overhead to realize the benefits of native low-bit computation. Long-horizon RL experiments on Qwen3-30B-A3B demonstrate stable training and benchmark performance close to BF16, outperforming naive Transformer Engine (TE) NVFP4 in evaluation quality. On single NVIDIA B300 GPU node, the optimized learner reaches 33,540 tokens/s, yielding 1.39x and 1.47x the throughput of BF16 and TE NVFP4, respectively, for complete learner updates. We released the framework, kernels, diagnostics, and training configurations to make native low-bit RL easier.",
+   "id": "2611.09828",
+   "version": "v1",
+   "title": "Designing Effective Monitor-Based Interventions for Mitigating Reward Hacking During RL",
+   "abstract": "Reinforcement learning (RL) rewards are notoriously difficult to design and control, often leading to the model learning unintended behaviors such as reward hacking. One potential solution is to monitor for reward hacking and penalize it when detected; however, training against a monitor could lead to evasive behavior, and our general understanding of how to apply monitors effectively during training is limited. To study how best to use monitors to mitigate reward hacking, we introduce and open source three realistic environments where Qwen3-4B reward hacks: a coding environment hackable via test overwriting, a medical chat environment hackable via sycophancy, and a biography generation environment hackable via hallucination. We first focus on the coding environment, where we find that: (1) models can learn to evade highly accurate monitors by exploiting systemic flaws in probes and LLM judges; (2) monitors that leak more learning signal during RL suppress reward hacking but are more often evaded; and (3) including easier problems in training can decrease reward hacking. We apply our findings to build better reward hacking monitors for the medical chat and biography generation environments that improve upon naive baselines to reduce reward hacking rates across seeds to before-training levels in some interventions. Our results demonstrate that our takeaways translate to new settings and that better monitor intervention designs are possible.",
    "authors": [
-    "Zhen Li",
-    "Mingfa Feng",
-    "Yiming Zhang",
-    "Yang Yu",
-    "Changhai Zhou",
-    "Pengxiang Li",
-    "Dongkuan Wu",
-    "Congkai Xie",
-    "Hongxia Yang"
+    "Aria Wong",
+    "Joshua Engels",
+    "Neel Nanda"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.23928",
-   "pdf": "https://arxiv.org/pdf/2610.23928",
-   "published": "2026-11-02",
+   "comment": "Accepted at NeurIPS 2026",
+   "url": "https://arxiv.org/abs/2611.09828",
+   "pdf": "https://arxiv.org/pdf/2611.09828",
+   "published": "2026-11-06T18:14:52Z",
    "source": [
-    "hf"
+    "arxiv"
    ],
-   "hf_upvotes": 20,
+   "hf_upvotes": null,
    "watch_type": "algo",
    "matched": [
-    "language model",
+    "llm",
+    "reward hacking"
+   ],
+   "baseline_watch": [],
+   "top_conf": "NEURIPS",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.08706",
+   "version": "v1",
+   "title": "Dual-Stream LLM-Guided Reward Design for Reject-Inference-Aware Reinforcement Learning in E-Commerce Payment Fraud Detection",
+   "abstract": "Production fraud-detection models learn from a censored slice of their own traffic: transactions a legacy system blocked never receive fraud labels, so models train on a biased, approved-only distribution. We extend LLM-guided reward design, the framework of Qu et al. (2025) in which an LLM evolves the reward of a two-step REINFORCE fraud-blocking policy, to attack this reject-inference problem inside the reward. A single LLM designs a dual-stream reward: stream 1 applies the standard dollar-weighted precision objective to labeled transactions; stream 2 scores legacy-blocked, unlabeled transactions by contrasting the newest gradient-boosted risk signal against the legacy scores that drove the original block. Rather than prescribe which signals matter, we expose a superset of evidence and let the LLM decide for itself which to use, guided by evaluation feedback alone; because it writes the reward as code, that choice is directly auditable. On a held-out four-month out-of-time test, the dual-stream agent beats the prior labeled-only agent at every target recall, by +4.7, +2.4 and +3.0 points of dollar-weighted precision at 80%, 85% and 90% recall, and the production baseline by +6.8 points on average. The resulting policy is architecturally identical to that of Qu et al. (2025) and adds no inference cost.",
+   "authors": [
+    "Bo Qu",
+    "Zhurong Wang",
+    "Frank Zahradnik",
+    "Ming Ouyang"
+   ],
+   "comment": "12 pages, 1 figure, 3 tables. Extends Qu et al., ACL 2025 Industry Track: https://aclanthology.org/2025.acl-industry.9/",
+   "url": "https://arxiv.org/abs/2611.08706",
+   "pdf": "https://arxiv.org/pdf/2611.08706",
+   "published": "2026-11-05T21:02:58Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
     "llm",
     "reinforcement learning"
    ],
    "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": true,
-   "bigtech_orgs": [
-    "NVIDIA"
-   ]
-  },
-  {
-   "id": "2610.42028",
-   "version": "v1",
-   "title": "CausalXRL: Explainable Reinforcement Learning through Causal Graph Reasoning",
-   "abstract": "Reinforcement learning is a powerful paradigm for training autonomous agents and has achieved impressive performance in complex environments. However, this success often comes at the cost of interpretability, diminishing trust and complicating efforts to debug and improve agent behavior. To address these challenges, we introduce CausalXRL, a novel framework for explainable reinforcement learning (XRL). A key feature of CausalXRL is its use of causal graph reasoning, which provides transparent, structured, multi-level explanations of agent decision-making. We validate CausalXRL through comprehensive case studies and a two-part evaluation: (1) a quantitative analysis of explanation fidelity and causal-structure learning efficiency in benchmark RL environments, and (2) a qualitative expert study assessing explainability in the real-time strategy (RTS) benchmark MicroRTS. The quantitative results show that CausalXRL can provide faithful explanations while efficiently learning causal structures, and the qualitative expert study suggests that participants found CausalXRL useful for inspecting high-level RTS strategies.",
-   "authors": [
-    "Yanming Zhang",
-    "Eric Papenhausen",
-    "Klaus Mueller"
-   ],
-   "comment": "Accepted to ICML 2026 - full paper - main track",
-   "url": "https://arxiv.org/abs/2610.42028",
-   "pdf": "https://arxiv.org/pdf/2610.42028",
-   "published": "2026-10-30T16:55:46Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "algo",
-   "matched": [
-    "reasoning",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "ICML",
+   "top_conf": "ACL",
    "bigtech": false,
    "bigtech_orgs": []
   },
   {
-   "id": "2610.39265",
+   "id": "2611.07510",
    "version": "v1",
-   "title": "DeCoRL: Decomposed Consistency Reinforcement Learning for Multi-Image Composition",
-   "abstract": "Multi-image composition (MICo) is a critical yet challenging capability for large-scale image editing models, where consistency degrades rapidly as the number of reference images increases. While supervised fine-tuning (SFT) can equip models with basic MICo ability, it provides only implicit supervision on the composed image and often fails to learn reliable object-level correspondence across multiple references. We propose DeCoRL, a reinforcement-learning (RL) framework that improves MICo consistency by decomposing holistic MICo consistency into object-level consistency. DeCoRL first establishes instruction-relevant object correspondences across reference images and localizes the corresponding regions in the generated image. It then uses a VLM-based reward model trained on single-object consistency annotations to produce fine-grained, object-wise feedback, which is aggregated into a multi-object consistency reward to guide RL post-training. We further introduce DeCo-Bench, a benchmark covering compositions from 2 to 6 reference images. Experiments on DeCo-Bench and the public MICo-Bench demonstrate consistent improvements in MICo consistency.",
+   "title": "Enhancing Repository-Level Code Completion with Reinforcement Learning in Real-World Scenarios",
+   "abstract": "The rapid development of large language models (LLMs) for code, which closely aligns with the practical needs of real-world software development, has sparked growing attention in repository-level code completion. However, existing Code LLMs present challenges in focusing on suitable contexts from the repository and in deeply reasoning about cross-file dependencies. To address these challenges, we propose a novel reinforcement learning framework for repository-level code completion. To better understand both in-file and cross-file contexts, we employ identifier-driven intent recognition to capture completion intent, thereby improving the model's performance in real-world scenarios. To enhance cross-file reasoning, we propose a reward-driven completion learning to effectively reward in complex repository completion scenarios. To guide LLMs in completing code that aligns with intended functionality and repository context, we introduce a selective-exploration strategy that directs the model to focus on low-confidence, high-reward tokens, promoting the exploration of valuable, underexplored completion patterns. Experimental results show that our approach significantly improves the performance of Code LLMs. The code and the dataset are available at https://github.com/zhenlongDai/RepoCompletion.",
    "authors": [
-    "Zhiqiang Wu",
-    "Shuang Sun",
-    "Jiale Zhang",
-    "Jing Li",
-    "Yibo Chen",
-    "Xu Tang",
-    "Yao Hu"
+    "Zhenlong Dai",
+    "Zhuoluo Zhao",
+    "Xiu Tang",
+    "Sai Wu",
+    "Chang Yao",
+    "Zhipeng Gao",
+    "Jingyuan Chen"
    ],
-   "comment": "NeurIPS",
-   "url": "https://arxiv.org/abs/2610.39265",
-   "pdf": "https://arxiv.org/pdf/2610.39265",
-   "published": "2026-10-29T03:18:03Z",
+   "comment": "Accepted by EMNLP 2026 Main",
+   "url": "https://arxiv.org/abs/2611.07510",
+   "pdf": "https://arxiv.org/pdf/2611.07510",
+   "published": "2026-11-05T06:17:01Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "algo",
    "matched": [
-    "post-train",
+    "language model",
+    "llm",
+    "reasoning",
+    "reinforcement learning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "EMNLP",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.05942",
+   "version": "v3",
+   "title": "Reward Budgeting Reduces Premature Convergence in Reinforcement Learning for LLM Reasoning",
+   "abstract": "RL for LLM reasoning often plateaus early as its policy sharpens. Policy entropy is studied as both a diagnostic and a control signal, but increasing it alone does not reliably change the eventual plateau in our experiments. We analyze RL's implicit target policy using a sharpness factor $κ$ and effective counterpart $κ_{\\mathrm{eff}}$ that describe how reward or advantage gaps translate into probability-ratio gaps. We introduce reward budgeting, a plug-in advantage construction assigning a fixed total reward budget to each prompt. For binary rewards and independent on-policy rollouts, its expected unclipped score-function update is the exact gradient of a finite-$G$ concave objective with diminishing returns; its advantage gap decreases as more rollouts become correct. For general rewards, a shifted log-mean interpretation holds asymptotically under the stated regularity conditions. On Qwen3-8B and Llama3.2-3B-Instruct, reward budgeting consistently improves RL baselines, with gains up to +12.50 on AMC23 and +10.00 on AIME24 and AIME25. These results support an update-dynamics view of premature convergence and substantial gains without explicitly preserving entropy. Code is available at https://github.com/Qwen-Applications/RewardBudget.",
+   "authors": [
+    "Mengni Jia",
+    "Mengyu Zhou",
+    "Xiaoxi Jiang",
+    "Guanjun Jiang"
+   ],
+   "comment": "Accepted to NeurIPS 2026",
+   "url": "https://arxiv.org/abs/2611.05942",
+   "pdf": "https://arxiv.org/pdf/2611.05942",
+   "published": "2026-11-04T04:32:08Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "llm",
+    "reasoning",
     "reinforcement learning"
    ],
    "baseline_watch": [],
@@ -436,25 +545,59 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.35733",
+   "id": "2611.05591",
    "version": "v1",
-   "title": "Multi-Objective Reinforcement Learning Using Routed Ensembles and Trajectory Attribution",
-   "abstract": "Multi-objective reinforcement learning is a fundamental problem for modern AI, with applications spanning post-training, reasoning models, and robotic control. A central challenge is to learn policies that balance competing objectives, such as helpfulness versus honesty in safety and alignment, or speed versus energy in robotics. The optimal policy can vary sharply with objective-weighting combinations, and the extent of this variation depends crucially on the degree of conflict among objectives, making per-preference policy learning sample-inefficient. In this paper, we introduce objective-conflict coefficients and derive near-optimal regret bounds for online settings using this measure, thereby quantifying the impact of misalignment on learning efficiency. Then, we design routed ensemble policy learning, an algorithm that maintains a small set of basis policies and dynamically routes trajectories to the policy with the highest potential reward. Finally, we consider trajectory selection as another approach to mitigate objective conflict, and design a kernel surrogate trajectory attribution algorithm that estimates how feedback signals from a set of trajectories influence policy learning on other trajectories. The kernel can capture nonlinear interactions such as synergy and antagonism between trajectories. We evaluate our approach across diverse environments and benchmarks: routed ensembles improve average performance by 4.3% over baselines for online environments from Meta-World and MO-Gymnasium, and kernel surrogate attribution improves correlation with leave-one-out analysis over existing baselines by 50%. When applied to trajectory selection, kernel-based attribution yields a 27% improvement in reward over baseline attribution methods.",
+   "title": "C-GRPO: Conformal Group Relative Policy Optimization",
+   "abstract": "Reasoning-oriented language model training increasingly relies on multiple on-policy rollouts, but standard Group Relative Policy Optimization (GRPO) uses a fixed group size, wasting compute on easy prompts and under-exploring hard ones. Existing adaptive-budget methods alleviate this inefficiency, yet their stopping rules are heuristic and do not provide a finite-sample calibration guarantee. We propose CGRPO, which replaces the fixed rollout budget of standard GPRO with calibrated conformal thresholds over task-specific nonconformity scores, combining Adaptive Prediction Set (APS)-style calibration for closed-form reasoning, a first-success score for execution-based code, automatic miscoverage selection, and periodic re-calibration. We prove finite-sample coverage for the resulting stopping rule and show that, under monotone policy improvement, recalibration induces a non-increasing expected training budget. Across six benchmarks spanning mathematics, graduate-level science, and code generation, CGRPO reduces mean training rollouts by 49-70% relative to fixed-budget GRPO while retaining strong fixed-budget accuracy, achieves the strongest pass@1 among evaluated static and dynamic baselines on different datasets, and transfers across model families with up to 82% rollout savings.",
    "authors": [
-    "Zhenshuo Zhang",
-    "Ruoxuan Xiong",
-    "Hongyang R. Zhang"
+    "Arya Fayyazi",
+    "Seyedarmin Azizi",
+    "Mehdi Kamal",
+    "Massoud Pedram"
    ],
-   "comment": "30 pages. To appear at NeurIPS 2026 (extended version)",
-   "url": "https://arxiv.org/abs/2610.35733",
-   "pdf": "https://arxiv.org/pdf/2610.35733",
-   "published": "2026-10-26T16:52:29Z",
+   "comment": "Proceeding of NeurIPS 2026",
+   "url": "https://arxiv.org/abs/2611.05591",
+   "pdf": "https://arxiv.org/pdf/2611.05591",
+   "published": "2026-11-03T20:23:53Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "algo",
    "matched": [
+    "GRPO",
+    "language model",
+    "reasoning"
+   ],
+   "baseline_watch": [],
+   "top_conf": "NEURIPS",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.03260",
+   "version": "v2",
+   "title": "The Cost of Mismatch: Noise Amplification in Zeroth-Order Reinforcement Learning",
+   "abstract": "Zeroth-order (ZO) optimization has emerged as a promising approach for memory-efficient large language model (LLM) post-training, yet its reliability in reinforcement learning with verifiable rewards (RLVR) remains largely unexplored. Motivated by the distinct data regimes of on-policy RL and fixed-data optimization, we develop a generic variance-theoretic framework to investigate what limits the reliability of ZO gradient estimation. Our analysis reveals that estimation reliability is structurally determined by whether the two finite-difference evaluations are performed on matched data. On-policy reinforcement learning (RL) under the mismatched-data regime produces a $1/μ^2$ oracle-noise amplification that sets an irreducible noise floor as the perturbation scale $μ$ decreases, whereas Boltzmann Targeted SFT (BOLT) under the matched-data regime eliminates this amplification via noise cancellation. We further derive convergence guarantees with explicit constants that cleanly separate the two regimes. These results motivate the ZO-BOLT algorithm, which builds on BOLT's matched-data advantage for reliable ZO optimization of an RLVR-aligned objective. Controlled perturbation-scale sweeps and matched-versus-mismatched end-to-end comparisons validate the predicted effect of data matching. Experiments across three models and two mathematical reasoning benchmarks further show that ZO-BOLT consistently improves over the pretrained baseline while retaining a near-inference memory footprint. The code is publicly available at https://github.com/lianmin-chen/the_cost_of_mismatch.",
+   "authors": [
+    "Lianmin Chen",
+    "Junbin Qiu",
+    "Chenxing Wei",
+    "Yao Shu",
+    "Kun He"
+   ],
+   "comment": "Accepted to NeurIPS 2026 (Poster). Code is available at https://github.com/lianmin-chen/the_cost_of_mismatch",
+   "url": "https://arxiv.org/abs/2611.03260",
+   "pdf": "https://arxiv.org/pdf/2611.03260",
+   "published": "2026-11-02T15:07:18Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "algo",
+   "matched": [
+    "language model",
+    "llm",
     "post-train",
     "reasoning",
     "reinforcement learning"
@@ -465,78 +608,31 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.35013",
+   "id": "2611.06483",
    "version": "v1",
-   "title": "Multiscale Policy Optimization for Long-Horizon LLM Agents",
-   "abstract": "Long-horizon LLM agents interact with their environments through complete assistant turns while generating each action token by token. We observe that critic values vary primarily across turns, motivating optimization anchored at turns with finer credit allocation among tokens. We propose Multiscale Policy Optimization (MPO), combining Multiscale Advantage Estimation (MAE) and turn-level importance sampling to align credit assignment and policy updates at the turn scale. Extensive experiments across search, tool-use, and automation tasks with 4B and 30B-A3B models demonstrate consistent gains over strong RL baselines.",
+   "title": "What Does Multi-Turn Reinforcement Learning Really Improve in LLM Agents?",
+   "abstract": "While multi-turn agentic reinforcement learning (RL) excels on long-horizon tasks, its performance gains remain highly sensitive to interaction constraints. Evaluating across sampling breadth $K$ and interaction depth $T$ via $Pass@(K,T)$, we show that trajectory-level RL advantages depend on sufficient turn budgets, diminishing significantly when budgets tighten. Besides, agentic RL does not uniformly elevate single-step decision quality; rather, its strength concentrates in error recovery and long-horizon resilience. To mitigate the deployment risks caused by this budget dependence, we provide a preliminary discussion on the benefits and limitations of process supervision signals and introduce BudgetMix RL as an alternative that varies interaction budgets during training. Experiments demonstrate that BudgetMix RL achieves robust performance across diverse execution settings. Project Page: https://rethinking-agentic-rl.github.io/",
    "authors": [
-    "Tao Ren",
-    "Hui Yang",
-    "Jia Deng",
-    "Tingyang Chen",
-    "Qiyao Wang",
-    "Shuo Tang",
-    "Ziyang Zeng",
-    "Yuhua Jiang",
-    "Guanghao Li",
-    "Huatong Song",
-    "Yining Li",
-    "Yifan Luo",
-    "Kunbao Ding",
-    "Feng Chang",
-    "Chuan Hao",
-    "Ran Tao",
-    "Bryan Dai",
-    "Jiafeng Liang",
-    "Jinyang Jiang"
+    "Kejian Zhu",
+    "Zhuoran Jin",
+    "Shangqing Tu",
+    "Tianyi Men",
+    "Yupu Hao",
+    "Jiachun Li",
+    "Kang Liu",
+    "Jun Zhao"
    ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.35013",
-   "pdf": "https://arxiv.org/pdf/2610.35013",
-   "published": "2026-10-26T08:22:11Z",
+   "comment": "Project Page: https://rethinking-agentic-rl.github.io/",
+   "url": "https://arxiv.org/abs/2611.06483",
+   "pdf": "https://arxiv.org/pdf/2611.06483",
+   "published": "2026-11-04T13:24:54Z",
    "source": [
     "arxiv",
     "hf"
    ],
-   "hf_upvotes": 30,
+   "hf_upvotes": 39,
    "watch_type": "algo",
    "matched": [
-    "llm",
-    "policy optimization"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.18683",
-   "version": "",
-   "title": "ProAS: A Progress-Aware Advantage Shaping Framework for Multi-Turn Agentic Reinforcement Learning",
-   "abstract": "Reinforcement learning (RL) has emerged as the primary paradigm for optimizing Large Language Model (LLM) agents, yet efficient critic-free algorithms (e.g., GRPO) suffer from a fundamental uniform credit assignment dilemma that broadcasts trajectory-level advantages equally to all actions. Our analysis reveals that this uniformity inherently reinforces structurally unreasonable actions in preferred trajectories and ignores each action's downstream deviations in unpreferred ones. To resolve this without introducing critic overhead, we propose Progress-Aware Advantage Shaping (ProAS), a plug-and-play framework that leverages a dynamically evolving Agentic Reference Graph (ARG) to achieve fine-grained credit assignment via Masking Unreasonable Incentives (MUI) and Asymmetric Penalty Redistribution (APR). Extensive experiments across Qwen2.5-1.5B-Instruct and Qwen2.5-7B-Instruct demonstrate that ProAS universally elevates mainstream group-based baselines to new state-of-the-art performance, achieving peak success rates of 91.9% and 94.3% on ALFWorld, alongside 66.7% and 70.8% on WebShop, respectively. Furthermore, it accelerates training convergence by up to 2.44times while maintaining strong robustness against imperfect or distilled ARGs. Codes: https://github.com/LINs-lab/ProAS",
-   "authors": [
-    "Bowen Ding",
-    "Mingda Wan",
-    "Yuhan Chen",
-    "Jiyao Yuan",
-    "Qi Zhu",
-    "Futing Wang",
-    "Heyuan Deng",
-    "Fei Mi",
-    "Lifeng Shang",
-    "Tao Lin"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.18683",
-   "pdf": "https://arxiv.org/pdf/2610.18683",
-   "published": "2026-11-02",
-   "source": [
-    "hf"
-   ],
-   "hf_upvotes": 23,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
     "llm",
     "reinforcement learning"
    ],
@@ -546,116 +642,26 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.39264",
+   "id": "2611.08453",
    "version": "v1",
-   "title": "Online Dense Reinforcement Learning with Planning-Grounding Agent for UI Navigation on Live IOS Apps",
-   "abstract": "While frontier vision-language models demonstrate strong capabilities in user interface (UI) navigation, their high inference costs prohibit everyday use. Conversely, smaller models trained via supervised fine-tuning (SFT) or offline reinforcement learning often memorize static trajectories, leading to brittle execution and an inability to recover from errors. To address these limitations, we propose a novel online reinforcement learning framework that trains UI navigation agents directly on live iOS applications. Our framework decouples the agent into two specialized components: a Planning agent and a UI Grounding model. We rely on an LLM-as-a-Judge to provide comprehensive reward signals, combining dense, step-level feedback to evaluate intermediate progress with a terminal reward for overall task completion. To effectively leverage this dual reward structure, we optimize the agent using Proximal Policy Optimization (PPO) with step-level advantage estimation. Furthermore, we introduce GiGPPO, a novel neighbor-conditioned value estimation method that improves critic stability by leveraging reward signals from visually similar states across concurrent trajectories. To support this online training paradigm at scale, we introduce an efficient infrastructure that orchestrates hundreds of concurrent virtual iOS devices. Evaluations on rigorous benchmarks, including UINavBench, iOSWorld, and AndroidWorld, demonstrate that our online RL trained agents substantially outperform both SFT and terminal-only RL baselines while accelerating training convergence. Notably, our 8B RL agents achieve nearly a sevenfold improvement over the SFT baseline in out-of-distribution generalization to Android environments, while outperforming Gemini-3.5-Flash and tying with Gemini-3.1-Pro on real iOS applications.",
+   "title": "Unpacking the Compute Efficiency of Strong-to-Weak OPD against GRPO",
+   "abstract": "On-policy distillation (OPD) trains a student on its own rollouts under a frozen teacher's per-token supervision. Does this dense signal reduce the training FLOPs needed to reach a target accuracy compared with reinforcement learning? We systematically compare vanilla reverse-KL OPD with Group Relative Policy Optimization (GRPO) across task difficulty, student and teacher size, domain, and optimization choices, measuring held-out accuracy against training FLOPs. With an external post-trained teacher, OPD generally loses to GRPO in accuracy per training FLOP at matched settings, even when the teacher is further trained with GRPO, and often suffers response-length inflation. Yet a different teacher changes the picture: when the teacher is the student's own GRPO checkpoint, OPD recovers that checkpoint's accuracy on math with $50\\times$ fewer distillation FLOPs than GRPO needs to reach the same accuracy. Following the same teacher setting, we consistently observe this high efficiency with a larger student, on code, and in a second model family. On a single domain, however, the GRPO checkpoint is already the desired model, so distilling it adds to total compute. Across domains, separate GRPO checkpoints hold different capabilities, and no single checkpoint serves every domain. Multi-teacher OPD (DeepSeek-AI, 2026) consolidates per-domain GRPO experts into a single student that matches each expert's accuracy, with the distillation stage costing only 5.2% (on 2 domains) and 8.0% (on 4 domains) of the specialist training FLOPs. Counting specialist training and distillation together, this pipeline reaches joint GRPO's performance on the 2-domain mix with 42.0% fewer total FLOPs.",
    "authors": [
-    "Peitong Duan",
-    "Khashayar Gatmiry",
-    "Jeffrey Nichols",
-    "Samy Bengio",
-    "Emmanuel Abbe"
+    "Zeyu Leo Liu",
+    "Yang Li",
+    "Bo Pang",
+    "Emre Can Acikgoz",
+    "Xuan-Phi Nguyen",
+    "Anurag Koul",
+    "Srijan Bansal",
+    "Erik Nijkamp",
+    "Shafiq Joty",
+    "Semih Yavuz"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2610.39264",
-   "pdf": "https://arxiv.org/pdf/2610.39264",
-   "published": "2026-10-29T03:17:33Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 10,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "llm",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.30435",
-   "version": "",
-   "title": "Self-Assessment Reinforcement Learning for Search-State Awareness in Retrieval-Augmented Large Language Models",
-   "abstract": "Recent advances in search agents have enabled large language models to tackle complex tasks by retrieving and synthesizing external information. However, existing search agents often lack search-state awareness, i.e., the ability to recognize what information has been obtained and what remains missing, leading to hallucinated reasoning and prematurely terminated search. To address this limitation, we propose Self-Assessment Reinforcement Learning (SARL), a reinforcement learning framework in which models learn to recognize their own search state during training and improve their search behavior accordingly, without requiring additional assessment at test time. SARL achieves this through a dual reward design that captures the corrective effect of each assessment while penalizing excessive reliance on it, jointly encouraging effective and efficient search trajectories. Under this setup, SARL achieves a 24.3% relative improvement over the strongest baseline, with average gains of 35.9% on multi-hop reasoning and 27.9% on deep research benchmarks against the strongest per-benchmark baselines. SARL further surpasses methods built on auxiliary supervision or multi-agent coordination, despite operating as a standalone RL framework with no inference-time scaffolding. Beyond final performance, SARL maintains training stability under extended search horizons, a regime where existing methods consistently degrade, enabling sustained gains as task complexity grows.",
-   "authors": [
-    "Taewhoo Lee",
-    "Minju Song",
-    "Jungwoo Park",
-    "Chanwoong Yoon",
-    "Junha Jung",
-    "Hyeon Hwang",
-    "Sanghoon Lee",
-    "Minbyul Jeong",
-    "Jaewoo Kang"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.30435",
-   "pdf": "https://arxiv.org/pdf/2610.30435",
-   "published": "2026-11-02",
-   "source": [
-    "hf"
-   ],
-   "hf_upvotes": 7,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "reasoning",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.40945",
-   "version": "v1",
-   "title": "On the Origin and Evolution of Training-Inference Mismatch in LLM Reinforcement Learning",
-   "abstract": "On-policy reinforcement learning for large language models assumes that training responses are sampled from the current policy. In practice, an inference engine samples the responses and a separate trainer computes the gradients, and the \\textbf{training-inference mismatch} between the two makes the training data off-policy. The mismatch has two sources, the numerics of the engine and the stale weights of asynchronous sampling, and a correction that stabilizes training under one source can fail under the other. \\textit{We ask which property of a mismatch source decides the correction it needs.} Evaluating the trainer at the sampler's weights splits each sampled-token error exactly into a \\textit{numerical discrepancy} of the engine and a \\textit{policy lag} of the trainer, and we follow both through training. The numerical discrepancy stays approximately constant, so it biases the updates by a nearly fixed amount, and centering the score at each prefix removes its leading bias. The policy lag is produced by the trainer's own updates: the bias it leaves enters the next update, which enlarges the next lag and closes a feedback loop. Importance weighting cuts this loop only while the lag ratio stays concentrated, and on Qwen3-1.7B it fails at the step where the effective sample size of the ratio falls below one half. From this account we derive the \\textbf{discrepancy-lag correction} (DLC), which centers the numerical discrepancy, clips the lag ratio against the sampler's weights and resynchronizes the sampler when this effective sample size falls below one half. Under a stale sampler, DLC keeps the KL divergence from on-policy training within twice the KL between two independent on-policy trainings on Qwen3-0.6B and Qwen3-1.7B, and its resynchronization prevents collapses that the per-token corrections leave and that a KL measured on the sampler's prefixes does not detect.",
-   "authors": [
-    "Yu Li",
-    "Yufa Zhou",
-    "Tian Lan"
-   ],
-   "comment": "",
-   "url": "https://arxiv.org/abs/2610.40945",
-   "pdf": "https://arxiv.org/pdf/2610.40945",
-   "published": "2026-10-29T20:23:04Z",
-   "source": [
-    "arxiv",
-    "hf"
-   ],
-   "hf_upvotes": 3,
-   "watch_type": "algo",
-   "matched": [
-    "language model",
-    "llm",
-    "reinforcement learning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.39056",
-   "version": "v1",
-   "title": "When Does Closed-Loop Curriculum Adaptation Help GRPO? An Analysis on Countdown",
-   "abstract": "Reinforcement fine-tuning has become an effective post-training paradigm for improving the reasoning ability of large language models, but it remains sample-inefficient when the training distribution is mismatched to the model's current capability. In group-relative objectives such as Group Relative Policy Optimization (GRPO), problems that are too hard often produce uniformly failed rollouts, while problems that are too easy provide little useful advantage signal. In this work, we introduce CLOSEDLOOPGAUSSIAN, a lightweight adaptive curriculum method for efficient reinforcement fine-tuning on ordered reasoning tasks. Instead of following a fixed easy-to-hard schedule, CLOSEDLOOPGAUSSIAN preserves the structure of an Easy-to-Hard Gaussian sampler while dynamically adjusting its pace and spread using periodic probe estimates of per-difficulty accuracy. The controller accelerates training when the model is ahead of a reference curriculum, slows down when the model falls behind, and broadens sampling when earlier difficulties regress. This feedback mechanism keeps training focused on tasks that are challenging but still learnable, without changing the reward function, model architecture, or underlying GRPO optimizer. Experiments on symbolic arithmetic reasoning task show that CLOSEDLOOPGAUSSIAN improves exact-match accuracy over vanilla GRPO and fixed open-loop curricula, with the strongest gains in intermediate-difficulty regimes where group-relative learning signals are most informative. Codes are available at https://github.com/yuvrajpant56/Closed_Loop_Curriculum.",
-   "authors": [
-    "Yuv Raj Pant",
-    "Moshiur Rahman Tonmoy",
-    "Kaiqun Fu"
-   ],
-   "comment": "6 pages, 2 figures, Accepted at IEEE ICTAI 2026",
-   "url": "https://arxiv.org/abs/2610.39056",
-   "pdf": "https://arxiv.org/pdf/2610.39056",
-   "published": "2026-10-28T23:35:56Z",
+   "url": "https://arxiv.org/abs/2611.08453",
+   "pdf": "https://arxiv.org/pdf/2611.08453",
+   "published": "2026-11-05T18:47:05Z",
    "source": [
     "arxiv"
    ],
@@ -663,9 +669,7 @@
    "watch_type": "algo",
    "matched": [
     "GRPO",
-    "language model",
-    "post-train",
-    "reasoning"
+    "post-train"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -673,98 +677,61 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.37429",
+   "id": "2611.02091",
    "version": "v1",
-   "title": "Bayes-Adaptive MDPs for Rollout Allocation to Enhance GRPO Training",
-   "abstract": "Group Relative Policy Optimization (GRPO) has demonstrated strong performance in LLM post-training. However, it allocates a uniform rollout budget to every training question, ignoring variations in question difficulty. As a result, highly difficult questions may receive too few rollouts to generate informative positive reward signals, limiting their contribution to training, while moderately difficult questions often receive more rollouts than necessary. In this work, we formulate the problem of difficulty-aware rollout budget allocation to maximize training utility under the same total rollout budget as standard GRPO. We propose AdaRoll-GRPO, which reformulates rollout allocation as a sequential decision-making problem and leverages a Bayes-adaptive Markov decision process (MDP) to learn an adaptive allocation policy. The learned policy is computed offline and applied during GRPO training without introducing additional online optimization overhead. Extensive experiments on multiple reasoning datasets and LLM architectures demonstrate that AdaRoll-GRPO consistently improves GRPO training performance under a fixed rollout budget, highlighting the effectiveness of adaptive rollout allocation for GRPO in LLM post-training.",
+   "title": "HQNN-CL: Regime-Aware Hybrid Quantum Neural Network with Continual Learning for Financial Forecasting",
+   "abstract": "Financial time-series forecasting is still difficult owing to the non-stationary nature of the market, regime changes, and catastrophic forgetting, which makes conventional deep learning models hard to adapt in the long term. To achieve uncertainty-aware robust financial forecasting in the face of changing market conditions, this study proposes a Hybrid Quantum-Classical Neural Network with Continual Learning (HQNN-CL). The proposed framework combines Gaussian Hidden Markov Model (HMM) based regime detection, BiLSTM temporal encoding, adaptive-depth parameterized quantum circuits, Elastic Weight Consolidation (EWC), experience replay, and probabilistic forecasting in a single architecture. The framework was tested on four real-time stock datasets: Microsoft, Systems Limited, Teradata and Tata Consultancy Services, and compared with seven state-of-the-art forecasting models, including recurrent and Transformer-based models. The experimental results show that HQNN-CL has outperformed other methods on the Systems Limited (RMSE = 3.0149) and Teradata (RMSE = 0.8909) datasets and is within 0.32% and 0.40% of the best baseline method for Microsoft and Tata Consultancy Services, respectively. The proposed framework also generates well-calibrated probabilistic forecasts within the range of 89.5% to 96.5% empirical coverage rate, has zero catastrophic forgetting (BWT = 0.0000) for all sequential learning tasks, and consistently shows positive forward transfer. Ablation and statistical significance analyses also validate the performance of adaptive quantum feature learning and continual adaptation under heterogeneous market conditions, regime-wise.",
    "authors": [
-    "Faeze Moradi Kalarde",
-    "Armin Toroghi",
-    "Nam Ho Koh",
-    "Doo Hwan Hwang",
-    "Seungjin Kim",
-    "Kee-Eung Kim",
-    "Scott Sanner"
+    "Muhammad Atif Saeed",
+    "Akhtar Jamil",
+    "Subhan Ullah"
    ],
-   "comment": "22 pages, 8 Figures",
-   "url": "https://arxiv.org/abs/2610.37429",
-   "pdf": "https://arxiv.org/pdf/2610.37429",
-   "published": "2026-10-27T15:41:57Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "algo",
-   "matched": [
-    "GRPO",
-    "llm",
-    "post-train",
-    "reasoning"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.35716",
-   "version": "v1",
-   "title": "Audit Where Hacks Pay: Budgeted Strong-Verifier Audits Against Reward Hacking in GRPO",
-   "abstract": "Reinforcement learning with verifiable rewards trains on cheap checks, such as unit tests, that a policy can learn to game, while a stronger check is too expensive to run on every rollout. We study how to spend a limited strong-verifier budget in GRPO, separating which weakly passing rollouts to audit from what reward a caught hack receives. At a fixed policy state with centered advantages, the expected update depends on a design only through each rollout's marginal audit probability and correction; reflecting a caught hack's reward about the failure reward negates the advantages of an all-hack group; and auditing whole groups with the fewest weak passes first (low-pass budgeted audits, LB) minimizes the advantage mass left on hacks among pass-count designs with a fixed correction when a label's value falls with the pass count. We tested this analysis in actual LLM training: from each run's starting state, the sign of this mass on a frozen panel predicted whether hacking would be suppressed in 33 of 39 runs, including 13 of 16 preregistered ones. In LeetCode (Wong et al., 2026) and Countdown-Code (Khalifa et al., 2026), LB drives hacking to near zero, while random audits with the same penalty and budget do not and use more labels. We also find that the randomness of the update affects training: in Countdown-Code, two unbiased corrections, per-item reward-level IPW and a group-level advantage correction, bring hacking down too but end 6.1-11.8 and 8.0-11.5 points lower in held-out accuracy than LB at the same budget. A full audit, which the group-level correction reproduces in expectation, stays within about two points of LB in three seeds, while LB uses 28% of its labels, and allocating the same correction by pass count recovers most of the loss (one seed). Training outcomes thus depend not only on the expected update but also on the randomness of its estimate.",
-   "authors": [
-    "Shurun Li",
-    "Michael Hua Wang",
-    "Haibo Zeng",
-    "Long Wang"
-   ],
-   "comment": "27 pages, 5 figures, 8 tables",
-   "url": "https://arxiv.org/abs/2610.35716",
-   "pdf": "https://arxiv.org/pdf/2610.35716",
-   "published": "2026-10-26T16:38:14Z",
-   "source": [
-    "arxiv"
-   ],
-   "hf_upvotes": null,
-   "watch_type": "algo",
-   "matched": [
-    "GRPO",
-    "llm"
-   ],
-   "baseline_watch": [],
-   "top_conf": "",
-   "bigtech": false,
-   "bigtech_orgs": []
-  },
-  {
-   "id": "2610.41100",
-   "version": "v1",
-   "title": "QUAL: Quantile Alignment Improves Zero-Shot Time-Series Foundation Models",
-   "abstract": "Time-series foundation models (TSFMs) provide zero-shot forecasts for unseen series, but their accuracy varies across datasets. Combining several models can reduce this variability, yet zero-shot deployment provides no target labels for selecting or weighting them. We find that a model pool is useful not only as a final ensemble, but also as a probability reference for transforming each member forecast. Aligning quantiles through this pool-relative reference improves every member forecast in aggregate. Motivated by this finding, we propose QUAL (Quantile alignment), a simple label-free framework for improving and combining diverse TSFMs. QUAL first produces aligned member forecasts, then applies Huber aggregation and rearrangement to obtain a robust combined forecast without training or model modification. On GIFT-Eval, quantile alignment reduces average member MASE and CRPS by 7.4% and 9.8%. The full framework remains robust when weak forecasters enter a candidate pool whose quality cannot be verified in advance. Code is available at https://github.com/junhyeokkang/QUAL.",
-   "authors": [
-    "Junhyeok Kang",
-    "Sangjun Han",
-    "Jun Seo",
-    "Seunghan Lee",
-    "Jaehoon Lee",
-    "Dongwan Kang",
-    "Minjae Kim",
-    "Sungdong Yoo",
-    "Tae Yoon Lim",
-    "Hwanil Choi",
-    "Soonyoung Lee",
-    "Wonbin Ahn"
-   ],
-   "comment": "Accepted at the NeurIPS 2026 Workshop on Foundation Models for Temporal Systems: From Forecasting to World Modeling",
-   "url": "https://arxiv.org/abs/2610.41100",
-   "pdf": "https://arxiv.org/pdf/2610.41100",
-   "published": "2026-10-30T00:41:39Z",
+   "comment": "20 Pages, 8 Figures",
+   "url": "https://arxiv.org/abs/2611.02091",
+   "pdf": "https://arxiv.org/pdf/2611.02091",
+   "published": "2026-11-01T18:05:51Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "tsf_trend",
    "matched": [
+    "forecast",
+    "probabilistic forecast"
+   ],
+   "baseline_watch": [],
+   "top_conf": "",
+   "bigtech": true,
+   "bigtech_orgs": [
+    "Microsoft Research"
+   ]
+  },
+  {
+   "id": "2611.04760",
+   "version": "v1",
+   "title": "Koopman Generative Operators for Efficient Probabilistic Time-Series Forecasting",
+   "abstract": "Probabilistic time-series forecasting requires models that simultaneously capture structured temporal dynamics, expressive uncertainty, and efficient inference, yet existing approaches fall short of this goal: latent dynamical models impose structure but rely on restrictive generation mechanisms, while modern generative methods such as diffusion and flow matching achieve flexibility at the cost of iterative and computationally expensive sampling. We introduce the Koopman Generative Operator (KGO), a probabilistic forecasting method that conceptualizes prediction as the evolution of structured uncertainty. KGO integrates three core components: (1) Koopman Patch Embedding (KoPE) for temporally consistent latent trajectory extrapolation; (2) Koopman Flow Matching (KoFM), which enables fast, single-step generation through a closed-form matrix exponential in a Koopman latent space, bypassing iterative sampling; and (3) an Adaptive Uncertainty Gate (AUG), which provides probabilistic forecasts by adapting uncertainty per-variable and per-horizon, corresponding to a learned decomposition of aleatoric uncertainty without manual tuning. By unifying these components, KGO achieves state-of-the-art accuracy on 13/17 ProbTS benchmarks in CRPS and 16/17 in NMAE. Further, by eliminating iterative sampling, KGO delivers at least a 25$\\times$ reduction in inference time compared to iterative generative models. These results position KGO as a practical and principled framework that advances the accuracy-efficiency trade-off in probabilistic time-series forecasting, combining leading accuracy on the evaluated benchmarks with fast, single-step generation.",
+   "authors": [
+    "Raz Marshanski",
+    "Liran Nochumsohn",
+    "Mayank Jauhari",
+    "Boris N. Oreshkin",
+    "Omri Azencot"
+   ],
+   "comment": "Accepted at NeurIPS 2026",
+   "url": "https://arxiv.org/abs/2611.04760",
+   "pdf": "https://arxiv.org/pdf/2611.04760",
+   "published": "2026-11-03T12:08:37Z",
+   "source": [
+    "arxiv",
+    "hf"
+   ],
+   "hf_upvotes": 3,
+   "watch_type": "tsf_trend",
+   "matched": [
     "crps",
+    "forecast",
+    "probabilistic forecast",
     "time-series"
    ],
    "baseline_watch": [],
@@ -773,25 +740,133 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.35128",
-   "version": "v2",
-   "title": "STeP-TS: Shared Temporal Filters with Pruning for Time Series",
-   "abstract": "Multivariate time series forecasting requires capturing temporal dependencies across multiple scales while accounting for both shared and variable-specific dynamics. Compact forecasting models have emerged as an attractive alternative to increasingly large architectures, but preserving strong predictive performance within tight computational and memory budgets remains challenging. We propose a compact one-layer convolutional framework that learns a shared bank of multi-scale temporal filters of each variable. Lightweight variable-specific scalar weights determine the contribution of each temporal component, enabling the model to capture shared temporal structure while adapting to variable-specific dynamics. The learned weights and filter-output energy further provide a natural signal for structured pruning of convolutional filters, reducing computational complexity with minimal degradation in forecasting performance. We additionally introduce an amplitude-adaptive normalization mechanism that preserves variable-dependent temporal amplitudes. Experiments on multiple datasets demonstrate forecasting performance competitive with state-of-the-art methods while requiring substantially fewer parameters and inference FLOPs and achieving low per-sample latency.",
+   "id": "2611.09015",
+   "version": "v1",
+   "title": "SIMBAD: Spatio-Temporal Traffic Forecasting Robust to Aperiodicity",
+   "abstract": "Accurate traffic prediction is essential for urban planning but remains challenging due to the irregular patterns caused by unexpected events. While Spatio-Temporal Graph Neural Networks (STGNNs) effectively model periodic data, they often struggle with these aperiodic fluctuations. To address this, we propose SIMBAD, which improves generalization irregular patterns via two key mechanisms: 1) adaptive regulation of periodic signals to prioritize recent signals, and 2) dynamic spatial modeling that adjusts influence between connected nodes based on contextual relations. Built upon simple similarity metrics to adapt to aperiodic patterns, SIMBAD outperforms existing methods on real-world benchmark datasets, demonstrating superior performance in predicting unseen and irregular traffic events.",
    "authors": [
-    "Hanne Raum",
-    "Jasper Hoffmann",
-    "Joschka Boedecker"
+    "Daniel Y. Lee",
+    "Seungwon Shin",
+    "Seunghoon Han",
+    "Sungsu Lim",
+    "Susik Yoon"
    ],
-   "comment": "Accepted at the Workshop TS-LIMITS at NeurIPS 2026",
-   "url": "https://arxiv.org/abs/2610.35128",
-   "pdf": "https://arxiv.org/pdf/2610.35128",
-   "published": "2026-10-26T10:02:43Z",
+   "comment": "Total of 30 pages, 9 figures (4 in main, 5 in appendix), accepted to NeurIPS(Neural Information Processing Systems) 2026",
+   "url": "https://arxiv.org/abs/2611.09015",
+   "pdf": "https://arxiv.org/pdf/2611.09015",
+   "published": "2026-11-06T05:45:28Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "tsf_trend",
    "matched": [
+    "forecast"
+   ],
+   "baseline_watch": [],
+   "top_conf": "NEURIPS",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.08918",
+   "version": "v1",
+   "title": "Composable Causality: A Toolkit for Systematic Time-Series Causal Discovery and Treatment-Effect Benchmarking",
+   "abstract": "Real-world multivariate time series rarely come with verified ground-truth causal structure, so research on time-series causal discovery and treatment-effect estimation depends on synthetic data. Existing tools are either fixed datasets that cannot be modified after release or script-based generators in which each script fixes one combination of mechanism, confounding, and missingness. Neither supports controlled experiments that vary a single property, such as sparsity, noise distribution, or missingness mechanism, while holding the others fixed. Counterfactual evaluation has the same gap, since existing simulators are built per paper with hardcoded mechanisms or produce observational data only. We introduce DTCD (Datasets and Toolkit for Causal Discovery), a data generation library that produces multivariate time series with ground-truth contemporaneous and lagged adjacency matrices. Topology, mechanism, noise, observational mask, and intervention policy are independent components that compose through configuration alone. Paired counterfactual twins, produced by caching the stochastic realization during the factual rollout and re-injecting it during the interventional rollout, recover individual treatment effects to numerical precision. A reference benchmark of eight discovery algorithms on eighty-one configurations and four treatment-effect estimators on eighteen configurations exposes failure modes that aggregate metrics hide. These include the inability of standard discovery methods to handle missing values, regardless of whether the missingness mechanism is informative, and a marginal-variance shortcut (varsortability) that we measure and remove by standardization. Code and data: https://github.com/hferdous/Composable_Causality",
+   "authors": [
+    "Muhammad Hasan Ferdous",
+    "Md Osman Gani"
+   ],
+   "comment": "30 pages, 10 main text pages plus references and appendices, with figures and tables. Accepted to the NeurIPS 2026 Evaluations and Datasets Track. Code and data at https://github.com/hferdous/Composable_Causality",
+   "url": "https://arxiv.org/abs/2611.08918",
+   "pdf": "https://arxiv.org/pdf/2611.08918",
+   "published": "2026-11-06T03:00:38Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "time-series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "NEURIPS",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.07473",
+   "version": "v1",
+   "title": "Echoes of Error: Residual-Directional Local Rollout Consistency for Timeseries Forecasting",
+   "abstract": "In time-series forecasting, rollout errors are not merely one-step fitting discrepancies: once fed back into the evolving state, they can perturb future predictions. We formalize this effect through local rollout consistency, which compares the next prediction produced under teacher forcing with that produced under free running. In principle, this consistency can be enforced directly by tracking the residual-induced perturbation of the next state. In practice, however, the residual-to-state alignment operator is often difficult to design when the input state and output block have different dimensions, heterogeneous components, or architecture-dependent layouts. We therefore use a first-order local surrogate that penalizes the Jacobian-vector product of the predictor along the actual feedback perturbation, suppressing precisely the directions through which self-generated errors remain visible to future predictions. We further give the same loss a geometric interpretation near a predictive manifold: by controlling residual-induced directions that probe the normal bundle, the objective yields theoretical conditions under which free-running trajectories remain inside a stability tube around the manifold. Experiments on time series forecasting tasks support this view, showing that the proposed regularization improves predictive accuracy. More broadly, our results suggest a training principle for time-series forecasters and sequential predictors: a model should not only make small one-step errors, but also learn not to let its own errors echo into the future. Code is available at https://github.com/Wangzzzzzzzz/Echoes-Of-Error.",
+   "authors": [
+    "Zheng Wang",
+    "Kaixuan Zhang",
+    "Xiaonan Lu",
+    "Wanfang Chen"
+   ],
+   "comment": "Accepted for publication at NeurIPS 2026",
+   "url": "https://arxiv.org/abs/2611.07473",
+   "pdf": "https://arxiv.org/pdf/2611.07473",
+   "published": "2026-11-05T05:32:13Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "forecast"
+   ],
+   "baseline_watch": [],
+   "top_conf": "NEURIPS",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.04482",
+   "version": "v1",
+   "title": "TEMPO: Time Series Understanding via Discrete Tokenization",
+   "abstract": "Time-series interpretation often requires both numerical observations and textual context. Integrating these inputs into a pretrained language model raises a representation question: how should a signal enter the model's token sequence? We present TEMPO, which extends an LLM's vocabulary with discrete codes from a context-aware Transformer tokenizer using finite scalar quantization. A frozen tokenizer maps four-step patches to a 625-code vocabulary; signal tokens, scale statistics, and text are then processed by the LLM's existing self-attention layers. Adaptation updates the new token embeddings and DoRA adapters. With a Qwen3-4B backbone and task-specific fine-tuning, TEMPO achieves macro-F1 scores of 89.0% on activity recognition, 85.0% on sleep staging, and 86.0% on bearing-fault diagnosis. Time-series question answering and qualitative bearing-diagnosis examples further illustrate how this interface combines signal representations with textual context. Together, these results demonstrate the utility of discrete vocabulary extension for time-series understanding.",
+   "authors": [
+    "Riccardo Maggioni"
+   ],
+   "comment": "9 pages, 2 figures. Presented at the 2nd ICML Workshop on Foundation Models for Structured Data (FMSD), 2026",
+   "url": "https://arxiv.org/abs/2611.04482",
+   "pdf": "https://arxiv.org/pdf/2611.04482",
+   "published": "2026-11-03T08:13:33Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "time series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "ICML",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.03592",
+   "version": "v1",
+   "title": "Evaluating Uncertainty Calibration in Probabilistic Time Series Foundation Models",
+   "abstract": "Time series foundation models (TSFMs) are increasingly used for probabilistic forecasting across diverse domains, yet the reliability of their uncertainty estimates remains poorly understood. In this work, we study uncertainty calibration in probabilistic TSFMs from a broader methodological and empirical perspective. We introduce a taxonomy of how TSFMs represent predictive uncertainty and develop a fine-grained evaluation framework for calibration in multi-horizon forecasting that distinguishes pooled, horizon-wise, and stronger conditional notions of calibration. Using this framework, we conduct a comprehensive empirical evaluation of popular TSFMs across diverse datasets and show that current models exhibit distinct and systematic patterns of miscalibration that standard metrics often obscure. We further analyze common post-hoc recalibration methods and characterize which forms of calibration they can improve and which tend to persist. Our results provide practical guidance for evaluating and improving uncertainty calibration in TSFMs and highlight important limitations of current practice.",
+   "authors": [
+    "Thomas Decker",
+    "Volker Tresp"
+   ],
+   "comment": "40th Conference on Neural Information Processing Systems (NeurIPS 2026). Track on Evaluations and Datasets",
+   "url": "https://arxiv.org/abs/2611.03592",
+   "pdf": "https://arxiv.org/pdf/2611.03592",
+   "published": "2026-11-02T18:34:50Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "probabilistic forecast",
     "time series"
    ],
    "baseline_watch": [],
@@ -800,30 +875,53 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.40418",
+   "id": "2611.03420",
    "version": "v1",
-   "title": "IMPACT: Inverter-Informed Multimodal Learning for Photovoltaic Generation Forecasting",
-   "abstract": "This work develops a physics-informed multimodal deep learning framework for 10- to 110-minute-ahead probabilistic photovoltaic power forecasting. The forecasting model is built on a four-branch architecture that separately encodes plant-level temporal history and inverter-level spatial cloud dynamics through a graph attention encoder with a learned adjacency, known-future solar geometry, and the current meteorological state, fused through gated cross-attention. The geometry branch adds two forward-looking physical signals, spatial cloud heterogeneity and inverter ramp-down activity, each empirically weighted toward the horizon where it is most predictive. The decoder anchors its prediction to a smart persistence baseline, learning a horizon-conditioned correction, and the resulting quantile forecasts are calibrated online through a kernel-weighted adaptive conformal calibration step. The proposed model outperforms all 14 baselines, achieving a forecast skill score (FSS) of 0.2950, 0.099 above the next-best model. A branch-composition ablation shows that every branch contributes positively and the model retains substantial skill in challenging overcast and variable sky conditions (FSS 0.198 and 0.255).",
+   "title": "Temporal Island Sparse Autoencoders for Interpreting Clinical Time-Series Models",
+   "abstract": "Deep learning models for electronic health records achieve strong predictive performance but provide little insight into what clinical concepts they represent internally. Post-hoc attribution methods produce per-cell importance scores that lack temporal coherence, cross-variable structure, and reusability across patients. We introduce the Temporal Island Sparse Autoencoder (TI-SAE), which learns a backbone-specific, patient-shared clinical concept dictionary from a frozen predictive model's representations. Each dictionary entry (latent) is defined by learned temporal Gaussian islands (specifying when the concept is active) and a sparse variable-composition vector (specifying which variables are involved). A decoupled selector then identifies which dictionary entries drive each patient's prediction, separating representation learning from attribution. We evaluate TI-SAE across five backbone architectures spanning different representation strategies on MIMIC-III and MIMIC-IV (three prediction tasks each). TI-SAE produces structured clinical concepts that go beyond transient attribution heatmaps while achieving strong performance on standard faithfulness benchmarks.",
    "authors": [
-    "Anushka Katiyar",
-    "Cong Feng",
-    "Jing Wang",
-    "Tristan Liu",
-    "Simon Julien",
-    "Zachary Jacobs"
+    "Muhan Yeo",
+    "Bong Gyun Kang",
+    "HyunGi Kim",
+    "Sungroh Yoon"
+   ],
+   "comment": "Accepted at NeurIPS 2026",
+   "url": "https://arxiv.org/abs/2611.03420",
+   "pdf": "https://arxiv.org/pdf/2611.03420",
+   "published": "2026-11-02T16:43:03Z",
+   "source": [
+    "arxiv"
+   ],
+   "hf_upvotes": null,
+   "watch_type": "tsf_trend",
+   "matched": [
+    "time-series"
+   ],
+   "baseline_watch": [],
+   "top_conf": "NEURIPS",
+   "bigtech": false,
+   "bigtech_orgs": []
+  },
+  {
+   "id": "2611.09815",
+   "version": "v1",
+   "title": "The Cost of Coverage: Conformalising Native Forecast Uncertainty for GB Wind Power",
+   "abstract": "Uncertainty bands on wind forecasts help inform reserve sizing and commitments, but often fail to deliver their stated coverage. We apply conformal prediction to native bands to see what it adds and what it costs, comparing six forecasters, from ARIMA to a tabular foundation model, at two wind farms in Great Britain (GB) under operational conditions. We show that calibration repairs empirical marginal coverage with little or no Winkler Score penalty, but this apparent success conceals under-coverage in high winds. Calibrating by forecast wind regime turns marginal coverage into regime-level coverage, cutting day-ahead out-of-band volume in high winds by over 40% relative to pooled calibration while narrowing bands overall.",
+   "authors": [
+    "Carl Somers"
    ],
    "comment": "",
-   "url": "https://arxiv.org/abs/2610.40418",
-   "pdf": "https://arxiv.org/pdf/2610.40418",
-   "published": "2026-10-29T16:44:20Z",
+   "url": "https://arxiv.org/abs/2611.09815",
+   "pdf": "https://arxiv.org/pdf/2611.09815",
+   "published": "2026-11-06T18:02:38Z",
    "source": [
     "arxiv"
    ],
    "hf_upvotes": null,
    "watch_type": "tsf_trend",
    "matched": [
-    "forecast",
-    "quantile forecast"
+    "conformal prediction",
+    "forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -831,22 +929,24 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.39043",
-   "version": "v1",
-   "title": "Modular Bayesian Foundation Models: Bayesian time series encoders for OOD detection, routing and forecasting",
-   "abstract": "Industrial systems continuously generate time series that vary in sampling frequency, scale, dynamics, and operating regime. Consequently a single time-series foundation model may not be able to represent all regimes effectively and retraining a large model for every new dataset or regime shift is computationally expensive. Modular foundation models address this issue by reusing specialised encoders trained on diverse datasets and by allowing the expansion of capabilities through the addition of new experts. This approach requires compact experts to minimize storage cost and a proper selection mechanism of experts for unseen data. We propose a modular foundation model framework that combines end-to-end Bayesian encoder training with uncertainty based routing. Using Singular Bayesian Neural Networks (SBNNs), we build a collection of compact Bayesian encoders whose epistemic uncertainty guides label-free selection. At the selected ranks, our Bayesian collection uses 63.8\\% less storage than its deterministic counterpart. We evaluate this framework on time-series data through distribution shift, encoder selection, and probabilistic forecasting. Across seven incoming datasets, uncertainty-based routing is competitive with distance-based routing in terms of forecast MSE, while reducing average ECE from 0.086 to 0.072 and average NLL from 0.907 to 0.836. It also increases PICP90 from 82.28\\% to 89.03\\%. In a separate model-family comparison, we evaluate the SBNN pipeline against full-rank Bayes by Backprop, deep ensembles, and MC Dropout. The SBNN pipeline achieves an average MSE of 0.390, comparable with 0.396 for deep ensembles, 0.389 for MC dropout, and 0.443 for the full-rank Bayesian model. It uses 63.9\\% fewer parameters than MC dropout, 81.9\\% fewer than the full-rank model, and 92.8\\% fewer than the deep ensemble.",
+   "id": "2611.06166",
+   "version": "v2",
+   "title": "FaCoDiff: Factor-Correlated Diffusion for Multivariate Probabilistic Forecasting",
+   "abstract": "Multivariate probabilistic forecasting requires modeling cross-variable dependence alongside marginal uncertainty. The challenge is to learn this dependence while controlling marginal noise scales and avoiding dense covariance costs. We propose Factor-Correlated Diffusion (FaCoDiff), which couples a compact conditional statistical estimator with structured denoising. History-conditioned factor loadings use distinct coefficients for forecast-center correction, scale adjustment and noise dependence. Diagonal compensation preserves the estimated marginal noise variances, while low-rank operators enable residual Gaussian likelihood evaluation and noise transport without dense covariance storage or factorization. Factor-derived feature modulation explicitly conditions the denoiser, and a geometry-aware objective accounts for errors after noise transport. The same conditional geometry governs forward perturbations and reverse sampling. Across nine datasets, FaCoDiff achieves the lowest mean variogram score on eight datasets and ranks among the top two on 43 of 54 dataset-metric combinations in the reported comparisons. Matched ablations on Solar and Weather show that factor covariance improves mean Energy and Variogram scores under all four combinations of center and scale correction. Disrupting cross-variable sample pairings while preserving marginal trajectories worsens joint and aggregate scores on both datasets, demonstrating the predictive value of generated cross-variable dependence.",
    "authors": [
-    "Mame Diarra Toure",
-    "Quang Hung Pham",
-    "Mohamed Ryad Zemouri",
-    "David Stephens",
-    "Luc Vouligny",
-    "Martin Gagnon"
+    "Jiaxuan Li",
+    "Yao Liu",
+    "Tingting Dai",
+    "Yuewei Xue",
+    "Shijie Dong",
+    "Zixiang Jin",
+    "Xiaoyu Guo",
+    "Qiao Liu"
    ],
-   "comment": "44 pages, 15 figures",
-   "url": "https://arxiv.org/abs/2610.39043",
-   "pdf": "https://arxiv.org/pdf/2610.39043",
-   "published": "2026-10-28T23:16:09Z",
+   "comment": "13 pages, 6 figures",
+   "url": "https://arxiv.org/abs/2611.06166",
+   "pdf": "https://arxiv.org/pdf/2611.06166",
+   "published": "2026-11-04T08:47:35Z",
    "source": [
     "arxiv"
    ],
@@ -854,8 +954,7 @@
    "watch_type": "tsf_trend",
    "matched": [
     "forecast",
-    "probabilistic forecast",
-    "time series"
+    "probabilistic forecast"
    ],
    "baseline_watch": [],
    "top_conf": "",
@@ -863,18 +962,17 @@
    "bigtech_orgs": []
   },
   {
-   "id": "2610.35545",
+   "id": "2611.02895",
    "version": "v1",
-   "title": "Efficient probabilistic weather forecasting at quarter-degree resolution with two-sided transport attention",
-   "abstract": "High-resolution probabilistic weather forecasting remains computationally demanding. Here we present Astra, a 0.25$^\\circ$ ensemble model trained on eight H200 GPUs. It combines Kantorovich Attention, a two-sided transport attention in which each region chooses where it reads from and writes to, so every region sends and receives at token resolution, with a self-featurised continuous ranked probability score (CRPS) that also scores forecasts in the model's multiscale features. In WeatherBench 2, Astra matches GenCast's CRPS averaged over five upper-air targets and days 1-10 with 9.8% of its hardware-normalised training compute. Verified against ERA5, its CRPS and ensemble-mean root-mean-square error are lower than the ECMWF ensemble's on all 600 variable, level and lead-time combinations, and its CRPS is lower than GenCast's on 73.5% of them. A 15-day member needs 39 times fewer floating-point operations than GenCast's GPU implementation, and 50 members take under 40 min on one consumer GPU, within 21 GB.",
+   "title": "Zero-shot time-series foundation models against the Khepri v1.5 baselines for 96-hour carbon-intensity forecasts in nine Nordic bidding zones: a preregistered comparison",
+   "abstract": "We compare three zero-shot time-series foundation models (Timestral-5M, Timestral-209M and Chronos-2, 8192-hour context, no covariates) with the Khepri v1.5 SARIMA and GBM baselines, with their code and hyperparameters unchanged, for 96-hour forecasts of hourly carbon intensity in the Nordic bidding zones NO1-NO5 and SE1-SE4. The design, the analysis code and a minimum detectable effect (MDE) were timestamped before any foundation-model forecast by an OpenTimestamps proof (Bitcoin-confirmed) and the GPG-signed tag prereg-v1; the proofs are archived in Zenodo (DOI 10.5281/zenodo.23881315). The preregistration was also submitted to OSF Registries 2026-11-02 07:49 UTC (osf.io/hncz5; embargo requested, pending OSF approval). On the 2025 test (361 daily origins, contamination not ruled out) all three models have a lower zone-averaged MAPE than both baselines, by 0.952 to 1.347 percentage points (Diebold-Mariano with the Harvey-Leybourne-Newbold correction, all p < 0.0001), and each beats SARIMA in 9 of 9 zones. On a post-release holdout of 14 origins from 2026-10-16 the point estimates have the same sign (0.729 to 1.326 percentage points lower), but all lie within the preregistered MDE of 2.989 points and are reported as not determined. For calibration (RQ4) the preregistration locked a Diebold-Mariano-HLN test on CRPS; the MDE applies to MAPE only. Holdout CRPS point estimates (n = 14) are 1.1114 (Timestral-5M), 1.0733 (Timestral-209M) and 1.1198 (Chronos-2) against 1.4165 gCO2-eq/kWh for SARIMA (each p < 0.0001). The SARIMA quantiles are constructed from the fitted model's Gaussian predictive distribution (deviation D-03), not taken from a native v1.5 forecast, so the difference may partly reflect the SARIMA intervals. The contamination indicator does not exceed its preregistered threshold for any comparison; with 14 holdout origins it has low power (HAC standard errors 0.124 to 0.360 pp).",
    "authors": [
-    "Junu Choi",
-    "Youngjoon Hong"
+    "Eirik Botten Nicolaysen"
    ],
-   "comment": "32 pages, 6 figures, 7 Extended Data figures, 1 Extended Data table",
-   "url": "https://arxiv.org/abs/2610.35545",
-   "pdf": "https://arxiv.org/pdf/2610.35545",
-   "published": "2026-10-26T14:53:50Z",
+   "comment": "15 pages. Code, data and preregistration proofs: https://doi.org/10.5281/zenodo.23881315",
+   "url": "https://arxiv.org/abs/2611.02895",
+   "pdf": "https://arxiv.org/pdf/2611.02895",
+   "published": "2026-11-02T10:29:23Z",
    "source": [
     "arxiv"
    ],
@@ -882,7 +980,8 @@
    "watch_type": "tsf_trend",
    "matched": [
     "crps",
-    "forecast"
+    "forecast",
+    "time-series"
    ],
    "baseline_watch": [],
    "top_conf": "",
