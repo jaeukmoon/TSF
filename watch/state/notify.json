@@ -1,19 +1,37 @@
 {
- "run_date": "2026-11-09",
+ "run_date": "2026-11-16",
  "hits": [
   {
-   "id": "2611.04126",
-   "title": "GlucoAgent: Personalized Glucose Forecasting from Multimodal Personal Context",
+   "id": "2611.12285",
+   "title": "Learning Evidence-Grounded Reasoning for Context-Aware Time Series Forecasting",
    "watch_type": "baseline",
    "matched": [
-    "CastFlow",
-    "agentic",
+    "PostTime",
+    "Time-R1",
     "forecast",
-    "foundation model",
     "llm",
+    "refine",
     "time series"
    ],
-   "url": "https://arxiv.org/abs/2611.04126"
+   "url": "https://arxiv.org/abs/2611.12285"
+  },
+  {
+   "id": "2611.16935",
+   "title": "Universal Infectious Disease Forecasting with Mantis 2",
+   "watch_type": "epi",
+   "matched": [
+    "disease forecast"
+   ],
+   "url": "https://arxiv.org/abs/2611.16935"
+  },
+  {
+   "id": "2611.14272",
+   "title": "Federated Learning for Cross-Regional Epidemic Forecasting with Asynchronous Outbreaks",
+   "watch_type": "epi",
+   "matched": [
+    "epidemic forecast"
+   ],
+   "url": "https://arxiv.org/abs/2611.14272"
   }
  ]
 }
