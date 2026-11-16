@@ -114,7 +114,7 @@
  "tempoensemble": {
   "name": "tempo_ensemble",
   "sources": {
-   "gift": "tempo_ensemble"
+   "gift": "TEMPO_ENSEMBLE"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -839,7 +839,7 @@
  "timers1": {
   "name": "Timer-s1",
   "sources": {
-   "gift": "Timer-s1"
+   "gift": "Timer-S1"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -867,7 +867,7 @@
  "chronos2": {
   "name": "chronos-2",
   "sources": {
-   "gift": "chronos-2",
+   "gift": "Chronos-2",
    "fev": "Chronos-2"
   },
   "first_seen": "2026-07-06",
@@ -1188,7 +1188,7 @@
  "chronos2synth": {
   "name": "chronos-2-synth",
   "sources": {
-   "gift": "chronos-2-synth"
+   "gift": "Chronos-2-Synth"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -1513,7 +1513,7 @@
  "tabpfnts": {
   "name": "tabpfn_ts",
   "sources": {
-   "gift": "tabpfn_ts",
+   "gift": "TabPFN-TS",
    "fev": "TabPFN-TS"
   },
   "first_seen": "2026-07-06",
@@ -2004,7 +2004,7 @@
  "tft": {
   "name": "tft",
   "sources": {
-   "gift": "tft",
+   "gift": "TFT",
    "fev": "TFT"
   },
   "first_seen": "2026-07-06",
@@ -2191,7 +2191,7 @@
  "chronoslarge": {
   "name": "chronos_large",
   "sources": {
-   "gift": "chronos_large"
+   "gift": "Chronos_large"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -2244,7 +2244,7 @@
  "chronosbase": {
   "name": "chronos_base",
   "sources": {
-   "gift": "chronos_base"
+   "gift": "Chronos_base"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -2325,7 +2325,7 @@
  "timesfm": {
   "name": "timesfm",
   "sources": {
-   "gift": "timesfm"
+   "gift": "TimesFM"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -2406,7 +2406,7 @@
  "visionts": {
   "name": "visionts",
   "sources": {
-   "gift": "visionts"
+   "gift": "VisionTS"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -2434,7 +2434,7 @@
  "tide": {
   "name": "tide",
   "sources": {
-   "gift": "tide"
+   "gift": "TIDE"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -2515,7 +2515,7 @@
  "deepar": {
   "name": "deepar",
   "sources": {
-   "gift": "deepar",
+   "gift": "DeepAR",
    "fev": "DeepAR"
   },
   "first_seen": "2026-07-06",
@@ -2624,7 +2624,7 @@
  "autoarima": {
   "name": "auto_arima",
   "sources": {
-   "gift": "auto_arima",
+   "gift": "Auto_Arima",
    "fev": "AutoARIMA"
   },
   "first_seen": "2026-07-06",
@@ -2653,7 +2653,7 @@
  "seasonalnaive": {
   "name": "seasonal_naive",
   "sources": {
-   "gift": "seasonal_naive",
+   "gift": "Seasonal_Naive",
    "fev": "Seasonal Naive"
   },
   "first_seen": "2026-07-06",
@@ -2682,7 +2682,7 @@
  "autotheta": {
   "name": "auto_theta",
   "sources": {
-   "gift": "auto_theta",
+   "gift": "Auto_Theta",
    "fev": "AutoTheta"
   },
   "first_seen": "2026-07-06",
@@ -2710,7 +2710,7 @@
  "naive": {
   "name": "naive",
   "sources": {
-   "gift": "naive",
+   "gift": "Naive",
    "fev": "Naive"
   },
   "first_seen": "2026-07-06",
@@ -2764,7 +2764,7 @@
  "crossformer": {
   "name": "crossformer",
   "sources": {
-   "gift": "crossformer"
+   "gift": "Crossformer"
   },
   "first_seen": "2026-07-06",
   "status": "ok",
@@ -2791,7 +2791,7 @@
  "autoets": {
   "name": "auto_ets",
   "sources": {
-   "gift": "auto_ets",
+   "gift": "Auto_ETS",
    "fev": "AutoETS"
   },
   "first_seen": "2026-07-06",
@@ -3235,7 +3235,7 @@
  "litespecformer": {
   "name": "litespecformer",
   "sources": {
-   "gift": "litespecformer"
+   "gift": "LiteSpecFormer"
   },
   "first_seen": "2026-07-27",
   "status": "pending",
@@ -3477,7 +3477,7 @@
  "timesfm3": {
   "name": "TimesFM-3",
   "sources": {
-   "fev": "TimesFM-3",
+   "fev": "timesfm-3",
    "gift": "TimesFM-3"
   },
   "first_seen": "2026-08-31",
@@ -3587,6 +3587,476 @@
    "gift": "DLinear-t"
   },
   "first_seen": "2026-09-28",
+  "status": "pending",
+  "card": null
+ },
+ "taichutimeseriesagentv2": {
+  "name": "Taichu-TimeSeries-Agent-v2",
+  "sources": {
+   "gift": "Taichu-TimeSeries-Agent-v2"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "pdmnano": {
+  "name": "PDM-Nano",
+  "sources": {
+   "gift": "PDM-Nano",
+   "fev": "PDM-Nano"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "tsrouter": {
+  "name": "TSRouter",
+  "sources": {
+   "gift": "TSRouter"
+  },
+  "first_seen": "2026-11-16",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 28.5. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "Hitsz-iLearn",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-11-16",
+  "generated_by": "deterministic-template"
+ },
+ "timeh2ov1": {
+  "name": "TimeH2O-v1",
+  "sources": {
+   "gift": "TimeH2O-v1",
+   "fev": "timeh2o-v1"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "hcr": {
+  "name": "HCR",
+  "sources": {
+   "gift": "HCR"
+  },
+  "first_seen": "2026-11-16",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 28.6. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "Hitsz iLearn-ML",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-11-16",
+  "generated_by": "deterministic-template"
+ },
+ "personaait4": {
+  "name": "PERSONA-AI-T4",
+  "sources": {
+   "gift": "PERSONA-AI-T4"
+  },
+  "first_seen": "2026-11-16",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 33.5. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "PERSONA AI",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-11-16",
+  "generated_by": "deterministic-template"
+ },
+ "reglabah2": {
+  "name": "RegLab-AH-2",
+  "sources": {
+   "gift": "RegLab-AH-2"
+  },
+  "first_seen": "2026-11-16",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 26.0. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "RegLab",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-11-16",
+  "generated_by": "deterministic-template"
+ },
+ "pdmpico": {
+  "name": "PDM-Pico",
+  "sources": {
+   "gift": "PDM-Pico",
+   "fev": "PDM-Pico"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "timestral209m": {
+  "name": "Timestral-209M",
+  "sources": {
+   "gift": "Timestral-209M",
+   "fev": "Timestral-209M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "timestral123m": {
+  "name": "Timestral-123M",
+  "sources": {
+   "gift": "Timestral-123M",
+   "fev": "Timestral-123M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "opentslmteemoe": {
+  "name": "OpenTSLM-TeeMoE",
+  "sources": {
+   "gift": "OpenTSLM-TeeMoE"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "t0gamma": {
+  "name": "t0-gamma",
+  "sources": {
+   "gift": "t0-gamma",
+   "fev": "t0-gamma"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "chakratslab": {
+  "name": "ChakraTS-Lab",
+  "sources": {
+   "gift": "ChakraTS-Lab"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "ikquadtsfm": {
+  "name": "IK-QuadTSFM",
+  "sources": {
+   "gift": "IK-QuadTSFM"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "morpheus20": {
+  "name": "Morpheus-2.0",
+  "sources": {
+   "gift": "Morpheus-2.0"
+  },
+  "first_seen": "2026-11-16",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 70.5. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "JP Morgan Chase",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-11-16",
+  "generated_by": "deterministic-template"
+ },
+ "lingjiang20": {
+  "name": "Lingjiang2.0",
+  "sources": {
+   "gift": "Lingjiang2.0",
+   "fev": "Lingjiang2.0"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "simons297m": {
+  "name": "Simons-297M",
+  "sources": {
+   "gift": "Simons-297M",
+   "fev": "Simons-297M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "qiyaom": {
+  "name": "QiYao-M",
+  "sources": {
+   "gift": "QiYao-M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "simons178m": {
+  "name": "Simons-178M",
+  "sources": {
+   "gift": "Simons-178M",
+   "fev": "Simons-178M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "chakrats": {
+  "name": "ChakraTS",
+  "sources": {
+   "gift": "ChakraTS",
+   "fev": "ChakraTS"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "timestral28m": {
+  "name": "Timestral-28M",
+  "sources": {
+   "gift": "Timestral-28M",
+   "fev": "Timestral-28M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "iamtime": {
+  "name": "iAmTime",
+  "sources": {
+   "gift": "iAmTime",
+   "fev": "iAmTime"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "simons60m": {
+  "name": "Simons-60M",
+  "sources": {
+   "gift": "Simons-60M",
+   "fev": "Simons-60M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "pdmfemto": {
+  "name": "PDM-Femto",
+  "sources": {
+   "gift": "PDM-Femto",
+   "fev": "PDM-Femto"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "simons25m": {
+  "name": "Simons-25M",
+  "sources": {
+   "gift": "Simons-25M",
+   "fev": "Simons-25M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "timeh2ov1tiny": {
+  "name": "TimeH2O-v1-tiny",
+  "sources": {
+   "gift": "TimeH2O-v1-tiny",
+   "fev": "timeh2o-v1-tiny"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "granitetimeseriesensembler1iqr": {
+  "name": "Granite-timeseries-ensemble-r1-iqr",
+  "sources": {
+   "gift": "Granite-timeseries-ensemble-r1-iqr"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "granitetimeseriesensembler1probabilistic": {
+  "name": "Granite-timeseries-ensemble-r1-probabilistic",
+  "sources": {
+   "gift": "Granite-timeseries-ensemble-r1-probabilistic"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "tabby": {
+  "name": "Tabby",
+  "sources": {
+   "gift": "Tabby"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "timestral5m": {
+  "name": "Timestral-5M",
+  "sources": {
+   "gift": "Timestral-5M",
+   "fev": "Timestral-5M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "pcfm": {
+  "name": "PCFM",
+  "sources": {
+   "gift": "PCFM"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "tabbypretrain": {
+  "name": "Tabby-Pretrain",
+  "sources": {
+   "gift": "Tabby-Pretrain"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "hart36m": {
+  "name": "HART-36M",
+  "sources": {
+   "gift": "HART-36M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "mobius0": {
+  "name": "Mobius-0",
+  "sources": {
+   "gift": "Mobius-0"
+  },
+  "first_seen": "2026-11-16",
+  "status": "ok",
+  "card": {
+   "one_liner": "Anonymous or undocumented leaderboard submission",
+   "summary": "No public paper, model card, or code is available. Current evidence: GIFT-Eval average rank (CRPS) 83.9. Only leaderboard measurements are reported.",
+   "arch_type": "Unknown",
+   "org": "Central South University",
+   "strengths": [],
+   "weaknesses": [
+    "No public paper, model card, or code; architecture cannot be verified"
+   ],
+   "paper_title": null,
+   "paper_url": null,
+   "is_documented": false
+  },
+  "generated_at": "2026-11-16",
+  "generated_by": "deterministic-template"
+ },
+ "timessm25m": {
+  "name": "TimeSSM-2.5M",
+  "sources": {
+   "gift": "TimeSSM-2.5M"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "yug": {
+  "name": "Yug",
+  "sources": {
+   "gift": "Yug"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "tabsutra39mv10": {
+  "name": "tabSutra_39M_v1.0",
+  "sources": {
+   "gift": "tabSutra_39M_v1.0"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "fracast0": {
+  "name": "Fracast-0",
+  "sources": {
+   "gift": "Fracast-0"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "timersi15": {
+  "name": "TimeRSI-1.5",
+  "sources": {
+   "fev": "TimeRSI-1.5"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "ciproto": {
+  "name": "ci-proto",
+  "sources": {
+   "fev": "ci-proto"
+  },
+  "first_seen": "2026-11-16",
+  "status": "pending",
+  "card": null
+ },
+ "timersi": {
+  "name": "TimeRSI",
+  "sources": {
+   "fev": "TimeRSI"
+  },
+  "first_seen": "2026-11-16",
   "status": "pending",
   "card": null
  }
