@@ -14,7 +14,7 @@ SPACE = "Salesforce/GIFT-Eval"
 TREE_URL = f"https://huggingface.co/api/spaces/{SPACE}/tree/main/results"
 RAW_URL = f"https://huggingface.co/spaces/{SPACE}/raw/main/"
 
-BASELINE = "seasonal_naive"
+BASELINE = "Seasonal_Naive"
 MASE_COL = "eval_metrics/MASE[0.5]"
 CRPS_COL = "eval_metrics/mean_weighted_sum_quantile_loss"
 
