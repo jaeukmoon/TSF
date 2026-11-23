@@ -189,7 +189,12 @@
   "Auto_Theta": "2026-11-16",
   "Naive": "2026-11-16",
   "Crossformer": "2026-11-16",
-  "Auto_ETS": "2026-11-16"
+  "Auto_ETS": "2026-11-16",
+  "Albert": "2026-11-23",
+  "EndForecast": "2026-11-23",
+  "TimeSSM-10M": "2026-11-23",
+  "Mobius-0.5": "2026-11-23",
+  "Nring-Sampled-0.121pctPerEpoch-30epoch": "2026-11-23"
  },
  "fev": {
   "Chronos-2": "2026-07-06",
