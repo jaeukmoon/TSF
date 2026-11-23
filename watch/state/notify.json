@@ -1,37 +1,24 @@
 {
- "run_date": "2026-11-16",
+ "run_date": "2026-11-23",
  "hits": [
   {
-   "id": "2611.12285",
-   "title": "Learning Evidence-Grounded Reasoning for Context-Aware Time Series Forecasting",
-   "watch_type": "baseline",
-   "matched": [
-    "PostTime",
-    "Time-R1",
-    "forecast",
-    "llm",
-    "refine",
-    "time series"
-   ],
-   "url": "https://arxiv.org/abs/2611.12285"
-  },
-  {
-   "id": "2611.16935",
-   "title": "Universal Infectious Disease Forecasting with Mantis 2",
+   "id": "2611.22230",
+   "title": "Discovery of new antiviral agents through artificial intelligence: in vitro and in vivo results",
    "watch_type": "epi",
    "matched": [
-    "disease forecast"
+    "influenza"
    ],
-   "url": "https://arxiv.org/abs/2611.16935"
+   "url": "https://arxiv.org/abs/2611.22230"
   },
   {
-   "id": "2611.14272",
-   "title": "Federated Learning for Cross-Regional Epidemic Forecasting with Asynchronous Outbreaks",
+   "id": "2611.20352",
+   "title": "EPI-SST: Renewal-Structured State-Space Transformers for Epidemic Forecasting",
    "watch_type": "epi",
    "matched": [
-    "epidemic forecast"
+    "epidemic forecast",
+    "influenza"
    ],
-   "url": "https://arxiv.org/abs/2611.14272"
+   "url": "https://arxiv.org/abs/2611.20352"
   }
  ]
 }
